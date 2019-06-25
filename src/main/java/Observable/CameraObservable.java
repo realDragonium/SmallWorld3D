@@ -6,7 +6,7 @@ import javafx.scene.transform.Translate;
 public interface CameraObservable {
     void register(CameraObserver ao);
     void notifyObserver();
-    int getXAngle();
-    int getYAngle();
+    double getXAngle();
+    double getYAngle();
     Translate getTranslate();
 }

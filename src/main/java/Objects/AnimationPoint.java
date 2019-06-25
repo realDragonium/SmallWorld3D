@@ -4,8 +4,8 @@ import javafx.scene.transform.Translate;
 
 public class AnimationPoint {
     Translate translate;
-    int xAngle;
-    int yAngle;
+    double xAngle;
+    double yAngle;
 
     public AnimationPoint(){
         translate = new Translate(0,0,0);
@@ -19,13 +19,13 @@ public class AnimationPoint {
         yAngle = 0;
     }
 
-    public AnimationPoint(int xAngle, int yAngle){
+    public AnimationPoint(double xAngle, double yAngle){
         this.xAngle = xAngle;
         this.yAngle = yAngle;
         translate = new Translate(0,0,0);
     }
 
-    public AnimationPoint(Translate translate, int xAngle, int yAngle){
+    public AnimationPoint(Translate translate, double xAngle, double yAngle){
         this.translate = translate;
         this.xAngle = xAngle;
         this.yAngle = yAngle;
@@ -35,11 +35,11 @@ public class AnimationPoint {
         return translate;
     }
 
-    public int getXAngle(){
+    public double getXAngle(){
         return xAngle;
     }
 
-    public int getYAngle(){
+    public double getYAngle(){
         return yAngle;
     }
 }

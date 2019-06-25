@@ -10,15 +10,15 @@ public class CameraModel implements CameraObservable {
     CameraObserver observer;
 
     Translate currentPosition = new Translate(0,0,0);
-    int xAngle = 0;
-    int yAngle = 0;
+    double xAngle = 0;
+    double yAngle = 0;
 
     public void setPosition(Translate position){
         currentPosition = position;
         notifyObserver();
     }
 
-    public void setRotation(int xAngle, int yAngle){
+    public void setRotation(double xAngle, double yAngle){
         this.xAngle = xAngle;
         this.yAngle = yAngle;
         notifyObserver();
@@ -31,9 +31,11 @@ public class CameraModel implements CameraObservable {
         notifyObserver();
     }
 
-    public void rotateCamera(int deltaX, int deltaY){
+    public void rotateCamera(double deltaX, double deltaY){
+
         xAngle += deltaX;
         yAngle += deltaY;
+        System.out.println("rotating to: " + xAngle + " " + yAngle);
         notifyObserver();
     }
 
@@ -48,12 +50,12 @@ public class CameraModel implements CameraObservable {
     }
 
     @Override
-    public int getXAngle() {
+    public double getXAngle() {
         return xAngle;
     }
 
     @Override
-    public int getYAngle() {
+    public double getYAngle() {
         return yAngle;
     }
 

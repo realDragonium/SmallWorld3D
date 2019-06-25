@@ -14,7 +14,8 @@ public class CameraController implements Animatable {
 
     public CameraController(Controller3D worldCon){
         this.worldCon = worldCon;
-        moveToPosition(new Translate(0, -50, -1000), 500);
+        moveToPosition(new Translate(-1500, -1500, 0), 12);
+        rotateToAngle(-50, 90, 8);
     }
 
 
@@ -22,8 +23,12 @@ public class CameraController implements Animatable {
         model.register(co);
     }
 
-    public void moveToPosition(Translate translate, int frames){
-        AnimationsManager.getInstance().createMoveToAnimation(this, translate, frames);
+    public void moveToPosition(Translate translate, int seconds){
+        AnimationsManager.getInstance().createMoveToAnimation(this, translate, seconds);
+    }
+
+    public void rotateToAngle(int xAngle, int yAngle, int seconds){
+        AnimationsManager.getInstance().createRotateToAnimation(this, xAngle, yAngle, seconds);
     }
 
     @Override
@@ -41,5 +46,15 @@ public class CameraController implements Animatable {
     @Override
     public Translate getCurrentPosition() {
         return model.getTranslate();
+    }
+
+    @Override
+    public double getCurrentXAngle() {
+        return model.getXAngle();
+    }
+
+    @Override
+    public double getCurrentYAngle() {
+        return model.getYAngle();
     }
 }

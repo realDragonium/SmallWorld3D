@@ -1,6 +1,7 @@
 package Managers;
 
 import Controller.AnimationController;
+import Controller.CameraController;
 import Objects.Animatable;
 import Objects.AnimationPoint;
 import javafx.application.Platform;
@@ -40,11 +41,14 @@ public class AnimationsManager {
         }
     }
 
-    public void createMoveToAnimation(Animatable animObj, Translate newPosition, int frames){
+    public void createMoveToAnimation(Animatable animObj, Translate newPosition, int seconds){
         AnimationController newAnim = new AnimationController(animObj);
         double deltaX = newPosition.getX() - animObj.getCurrentPosition().getX();
         double deltaY = newPosition.getY() - animObj.getCurrentPosition().getY();
         double deltaZ = newPosition.getZ() - animObj.getCurrentPosition().getZ();
+
+        int frames = seconds * animationFPS;
+
         for(int x = 0; x < frames; x++) {
             Translate point = new Translate(deltaX / frames, deltaY / frames, deltaZ / frames);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
@@ -54,5 +58,18 @@ public class AnimationsManager {
 
     public void removeAnimation(AnimationController animCon) {
         animations.remove(animCon);
+    }
+
+    public void createRotateToAnimation(Animatable animObj, double xAngle, double yAngle, int seconds) {
+        AnimationController newAnim = new AnimationController(animObj);
+        double deltaX = xAngle - animObj.getCurrentXAngle();
+        double deltaY = yAngle - animObj.getCurrentYAngle();
+
+        int frames = seconds * animationFPS;
+
+        for(int x = 0; x < frames; x++) {
+            newAnim.addAnimationPoint(x, new AnimationPoint(deltaX / frames, deltaY / frames));
+        }
+        animations.add(newAnim);
     }
 }

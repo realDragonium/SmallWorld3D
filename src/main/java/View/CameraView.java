@@ -11,6 +11,7 @@ import javafx.scene.PerspectiveCamera;
 public class CameraView implements CameraObserver {
     Group root;
     Xform xForm = new Xform();
+    Xform cameraXform3 = new Xform();
     PerspectiveCamera camera;
     CameraController cameraCon;
 
@@ -24,7 +25,7 @@ public class CameraView implements CameraObserver {
     private void buildCamera(){
         camera = new PerspectiveCamera(true);
         final Xform cameraXform2 = new Xform();
-        final Xform cameraXform3 = new Xform();
+        cameraXform3 = new Xform();
         xForm.getChildren().add(cameraXform2);
         cameraXform2.getChildren().add(cameraXform3);
         cameraXform3.getChildren().add(camera);
@@ -37,11 +38,9 @@ public class CameraView implements CameraObserver {
 
     @Override
     public void update(CameraObservable co){
-        camera.setTranslateX(co.getTranslate().getX());
-        camera.setTranslateY(co.getTranslate().getY());
-        camera.setTranslateZ(co.getTranslate().getZ());
-        xForm.ry.setAngle(co.getYAngle());
-        xForm.rx.setAngle(co.getXAngle());
+        xForm.relocate(co.getTranslate().getX(), co.getTranslate().getY());
+        xForm.setTranslateZ(co.getTranslate().getZ());
+        xForm.setRotate(co.getXAngle(), co.getYAngle(), 0);
     }
 
     public PerspectiveCamera getCamera() {
