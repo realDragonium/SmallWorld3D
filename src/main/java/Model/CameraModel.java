@@ -35,7 +35,6 @@ public class CameraModel implements CameraObservable {
 
         xAngle += deltaX;
         yAngle += deltaY;
-        System.out.println("rotating to: " + xAngle + " " + yAngle);
         notifyObserver();
     }
 

@@ -10,6 +10,7 @@ import Observer.AreaObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 import javafx.scene.Group;
+import javafx.scene.Node;
 
 import java.util.List;
 import java.util.Stack;
@@ -25,17 +26,24 @@ public class AreaController implements FirebaseControllerObserver {
 
 
     private Map2DController map2DCon;
+    private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
 //    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
 
-    public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
-        model = new AreaModel(area.getChildren().get(0).getId());
-        map2DCon = mapCon;
+//    public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
+//        model = new AreaModel(area.getChildren().get(0).getId());
+//        map2DCon = mapCon;
+//        this.gameCon = gameCon;
+//        getAreaInfo();
+////        SceneManager.getInstance().createAreaView(this, area);
+////        fb.AreaListener(model.getId(), this);
+//    }
+
+    public AreaController(String id, Map3DController mapCon, GameController gameCon){
+        model = new AreaModel(id);
+        map3DCon = mapCon;
         this.gameCon = gameCon;
-        getAreaInfo();
-//        SceneManager.getInstance().createAreaView(this, area);
-//        fb.AreaListener(model.getId(), this);
     }
 
     String getId() {
@@ -79,6 +87,8 @@ public class AreaController implements FirebaseControllerObserver {
     public void selectActive() {
         map2DCon.selectSingleArea(this);
     }
+
+    public void makeActive(){ model.changeActive();}
 
     public void destroyAllButOne() {
         model.getAllButOne();
@@ -145,5 +155,13 @@ public class AreaController implements FirebaseControllerObserver {
 
     List<String> getNeighbours() {
         return model.getNeigbours();
+    }
+
+    public void hoverEntered() {
+        model.changeHoverState();
+    }
+
+    public void hoverExited() {
+        model.changeHoverState();
     }
 }

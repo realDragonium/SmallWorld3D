@@ -11,6 +11,15 @@ public class AnimationModel {
     Map<Integer, AnimationPoint> animPoints = new HashMap<>();
     int curFrame = 0;
     int lastFrame = 0;
+    boolean looping = false;
+
+    public void makeLooping(){
+        looping = true;
+    }
+
+    public boolean looping(){
+        return looping;
+    }
 
     public void nextFrame(){
         curFrame++;
@@ -37,5 +46,9 @@ public class AnimationModel {
         }
 
         return new AnimationPoint();
+    }
+
+    public void setToFrameOne() {
+        curFrame = 0;
     }
 }

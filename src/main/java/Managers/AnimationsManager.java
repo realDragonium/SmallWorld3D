@@ -41,15 +41,33 @@ public class AnimationsManager {
         }
     }
 
+    public void createUpAndDownAnimation(Animatable animObj, double height, double seconds){
+        AnimationController newAnim = new AnimationController(animObj, true);
+        int frames = (int)seconds * animationFPS;
+        double yDelta = height / frames;
+        System.out.println(yDelta);
+        for(int x = 1; x <= frames / 2; x++) {
+            System.out.println("omhoog: " + x);
+            Translate point = new Translate(0, yDelta, 0);
+            newAnim.addAnimationPoint(x, new AnimationPoint(point));
+        }
+        for(int x = frames / 2 + 1; x <= frames; x++) {
+            System.out.println("omlaag: " + x);
+            Translate point = new Translate(0, -yDelta, 0);
+            newAnim.addAnimationPoint(x, new AnimationPoint(point));
+        }
+        animations.add(newAnim);
+    }
+
     public void createMoveToAnimation(Animatable animObj, Translate newPosition, int seconds){
-        AnimationController newAnim = new AnimationController(animObj);
+        AnimationController newAnim = new AnimationController(animObj, false);
         double deltaX = newPosition.getX() - animObj.getCurrentPosition().getX();
         double deltaY = newPosition.getY() - animObj.getCurrentPosition().getY();
         double deltaZ = newPosition.getZ() - animObj.getCurrentPosition().getZ();
 
         int frames = seconds * animationFPS;
 
-        for(int x = 0; x < frames; x++) {
+        for(int x = 1; x <= frames; x++) {
             Translate point = new Translate(deltaX / frames, deltaY / frames, deltaZ / frames);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
@@ -61,13 +79,13 @@ public class AnimationsManager {
     }
 
     public void createRotateToAnimation(Animatable animObj, double xAngle, double yAngle, int seconds) {
-        AnimationController newAnim = new AnimationController(animObj);
+        AnimationController newAnim = new AnimationController(animObj, false);
         double deltaX = xAngle - animObj.getCurrentXAngle();
         double deltaY = yAngle - animObj.getCurrentYAngle();
 
         int frames = seconds * animationFPS;
 
-        for(int x = 0; x < frames; x++) {
+        for(int x = 1; x <= frames; x++) {
             newAnim.addAnimationPoint(x, new AnimationPoint(deltaX / frames, deltaY / frames));
         }
         animations.add(newAnim);

@@ -20,6 +20,7 @@ public class AreaModel implements AreaObservable {
     private String id;
     public PlayerController player;
     private AreaType type;
+    private boolean hovering = false;
     private boolean nextToWater = false;
     private boolean borderArea = false;
     private AreaProperty specialProperty = AreaProperty.none;
@@ -59,6 +60,11 @@ public class AreaModel implements AreaObservable {
 
     public String getId() {
         return id;
+    }
+
+    public void changeHoverState(){
+        hovering = !hovering;
+        notifyObserver();
     }
 
     public void changeActive() {
@@ -150,5 +156,15 @@ public class AreaModel implements AreaObservable {
     @Override
     public int getNumberOfFiches() {
         return raceFiches.size();
+    }
+
+    @Override
+    public boolean isHovering() {
+        return hovering;
+    }
+
+    @Override
+    public boolean isShowing() {
+        return false;
     }
 }

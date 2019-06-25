@@ -27,7 +27,12 @@ public class Map3DView {
             fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/map.fxml"));
             Group map = fxmlLoader.load();
             for(Node area : map.getChildren()){
-                System.out.println("id: " + area.getId().substring(14));
+                if(!area.getId().equals("nope")) {
+                    String areaId = area.getId().substring(14);
+                    area.setId(areaId);
+                    mapCon.createArea(area, areaId);
+
+                }
             }
             map.setScaleX(100);
             map.setScaleY(100);

@@ -33,4 +33,7 @@ public interface AreaObservable {
     int getNumberOfFiches();
 
 
+    boolean isHovering();
+
+    boolean isShowing();
 }

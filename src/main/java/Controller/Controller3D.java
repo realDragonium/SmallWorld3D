@@ -36,7 +36,7 @@ public class Controller3D{
 
     public void createMap(){
         System.out.println("creating map...");
-        Map3DController mapCon = new Map3DController(this);
+        Map3DController mapCon = new Map3DController(this, gameCon);
         new Map3DView(mapCon, map);
         world.getChildren().add(map);
     }

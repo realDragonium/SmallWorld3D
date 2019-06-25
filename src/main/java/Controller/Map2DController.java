@@ -18,7 +18,7 @@ public class Map2DController {
 	}
 
 	public void createArea(Group area){
-		areas.put(area.getChildren().get(0).getId(), new AreaController( area, this, gameCon));
+		//areas.put(area.getChildren().get(0).getId(), new AreaController( area, this, gameCon));
 	}
 
 	List<AreaController> getActiveAreas(){
