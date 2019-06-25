@@ -7,7 +7,7 @@ import Observer.DiceObserver;
 public class DiceController {
 
     private DiceModel diceModel = new DiceModel();
-
+    private GameController gameCon;
 
     int ClickedDice() {
         int uitkomst = RollDice();
@@ -17,7 +17,8 @@ public class DiceController {
     }
 
 
-    DiceController() {
+    DiceController(GameController gameController) {
+        gameCon = gameController;
 //        SceneManager.getInstance().loadDice(this);
     }
 

@@ -18,7 +18,7 @@ public class Applicatie {
     private AccountController accountCon;
 
     public Applicatie(Stage primaryStage) {
-        SceneManager.getInstance().registerApp(this);
+//        SceneManager.getInstance().registerApp(this);
         this.primaryStage = primaryStage;
         loadPrimaryStage();
     }

@@ -194,7 +194,7 @@ public class SceneManager {
 
     public void loadInfoscreen(InfoController con) {
         creators.put(InfoView.class, (Callable<InfoView>) () -> new InfoView(groepen.get("infoGroup"), con));
-        FXMLLOADER("/InfoScreen/Infoscreen1.fxml");
+        FXMLLOADER("/InfoScreen/InfoView.fxml");
     }
 
 
@@ -221,7 +221,7 @@ public class SceneManager {
     }
 
     public void loadVerval(VervallenController con) {
-        creators.put(VervallenView.class, (Callable<VervallenView>) () -> new VervallenView(con, groepen.get("vervalGroup")));
+        creators.put(VervallenView.class, (Callable<VervallenView>) () -> new VervallenView(groepen.get("vervalGroup"), con));
         FXMLLOADER("/VervallenView.fxml");
     }
 
@@ -247,9 +247,9 @@ public class SceneManager {
         changeToScene(localGroup);
     }
 
-    public void loadButtons(KnoppenController knopCon) {
-        creators.put(KnoppenView.class, (Callable<KnoppenView>) () -> new KnoppenView(groepen.get("buttonGroup"), knopCon));
-        FXMLLOADER("/Buttons.fxml");
+    public void loadButtons(ButtonController knopCon) {
+        creators.put(ButtonView.class, (Callable<ButtonView>) () -> new ButtonView(groepen.get("buttonGroup"), knopCon));
+        FXMLLOADER("/ButtonView.fxml");
     }
 
     public void loadPlayer(String playerID, PlayerController playerCon) {
@@ -278,7 +278,7 @@ public class SceneManager {
     }
 
     public void loadRedeploying(RedeployingController redeployingCon) {
-        creators.put(RedeployingView.class, (Callable<RedeployingView>) () -> new RedeployingView(redeployingCon, groepen.get("redeployingGroup")));
+//        creators.put(RedeployingView.class, (Callable<RedeployingView>) () -> new RedeployingView(redeployingCon, groepen.get("redeployingGroup")));
         FXMLLOADER("/RedeployingView.fxml");
     }
 

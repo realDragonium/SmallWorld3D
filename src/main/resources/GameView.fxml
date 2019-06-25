@@ -14,6 +14,5 @@
       <Group fx:id="diceGroup" />
       <Group fx:id="redeployingGroup" />
       <Group fx:id="infoGroup"/>
-      <Group fx:id="smallworldGroup"/>
       <Group fx:id="attackGroup"/>
 </Pane>

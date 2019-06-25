@@ -15,7 +15,7 @@ public class RedeployingView {
 
     private RedeployingController redCon;
 
-    public RedeployingView(RedeployingController redCon, Group group){
+    public RedeployingView(Group group, RedeployingController redCon){
         this.redCon = redCon;
         this.group = group;
     }

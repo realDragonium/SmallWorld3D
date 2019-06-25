@@ -1,12 +1,8 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.GameModel;
 import Objects.FXMLLOADER;
-import View.Map2DView;
-import View.PlayerView;
-import View.RoundView;
-import View.TurnView;
+import View.*;
 import javafx.scene.Group;
 
 import java.util.HashMap;
@@ -14,12 +10,13 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class GameController {
-    private ApplicatieController appCon;
+    private ApplicationController appCon;
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
-    private Map<Class, Callable<?>> creators = new HashMap<>();
     private Map2DController mapCon;
-
-
+    private ButtonController buttonCon;
+    private TimerController timerCon;
+    private VervallenController vervalCon;
+    private InfoController infoCon;
 
     private GameModel model;
     private Map<String, PlayerController> players = new HashMap<>();
@@ -38,6 +35,7 @@ public class GameController {
     private RedeployingController redCon;
     private String myPlayerId;
     private DiceController diceCon;
+
 //    private Applicatie app = SceneManager.getInstance().getApp();
 //    private FirebaseServiceOwn fb = app.getFirebaseService();
 
@@ -46,49 +44,78 @@ public class GameController {
         model = new GameModel(8, 8);
         this.lobbyName = lobbyName;
         setMuFirebaseStufF();
-        SceneManager.getInstance().createGameView(this);
-        SceneManager.getInstance().makeMap();
+//        SceneManager.getInstance().createGameView(this);
+//        SceneManager.getInstance().makeMap();
         createGameParts();
         startGame();
         createGameTimer();
     }
 
-    public GameController(ApplicatieController appCon){
+    public GameController(ApplicationController appCon){
         this.appCon = appCon;
 
     }
 
     public void createMap2DView(Group group){
         mapCon = new Map2DController(this);
-        creators.put(Map2DView.class, (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
-        fxmlLoader.loader("/UglyMap.fxml", creators);
+        fxmlLoader.loader("/UglyMap.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
     public void createPlayerView(Group group, String id){
         PlayerController player = new PlayerController(id, this);
         players.put(id, player);
-        creators.put(PlayerView.class, (Callable<PlayerView>)() -> new PlayerView(id, group, player));
-        fxmlLoader.loader("/PlayerView.fxml", creators);
+        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
 
     public void createRoundView(Group group) {
         roundCon = new RoundController(this);
-        creators.put(RoundView.class, (Callable<RoundView>)() -> new RoundView(group, roundCon));
-        fxmlLoader.loader("/RoundView.fxml", creators);
+        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
     }
 
     public void createTurnView(Group group) {
         turnCon = new TurnController(this);
-        creators.put(TurnView.class, (Callable<TurnView>)() -> new TurnView(group, turnCon));
-        fxmlLoader.loader("/TurnView.fxml", creators);
+        fxmlLoader.loader("/TurnView.fxml", (Callable<TurnView>)() -> new TurnView(group, turnCon));
     }
 
+    public void createButtonView(Group group) {
+        buttonCon = new ButtonController(this);
+        fxmlLoader.loader("/ButtonView.fxml", (Callable<ButtonView>)() -> new ButtonView(group, buttonCon));
+    }
 
+    public void createShopView(Group group) {
+        shopCon = new ShopController(this);
+        fxmlLoader.loader("/ShopView.fxml", (Callable<ShopView>)() -> new ShopView(group, shopCon));
+    }
 
+    public void createTimerView(Group group) {
+        timerCon = new TimerController(this);
+        fxmlLoader.loader("/TimerView.fxml", (Callable<TimerView>)() -> new TimerView(group, timerCon));
+    }
 
+    public void createVervalView(Group group) {
+        vervalCon = new VervallenController(this);
+        fxmlLoader.loader("/VervallenView.fxml", (Callable<VervallenView>)() -> new VervallenView(group, vervalCon));
+    }
 
+    public void createDiceView(Group group) {
+        diceCon = new DiceController(this);
+        fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>)() -> new DiceView(group, diceCon));
+    }
 
+    public void createRedeployView(Group group) {
+        redCon = new RedeployingController(this);
+        fxmlLoader.loader("/RedeployingView.fxml", (Callable<RedeployingView>)() -> new  RedeployingView(group, redCon));
+    }
 
+    public void createInfoView(Group group) {
+        infoCon = new InfoController(this);
+        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>)() -> new InfoView(group, infoCon));
+    }
+
+    public void createAttackView(Group group) {
+        attCon = new AttackController(this);
+        fxmlLoader.loader("/AttackView.fxml", (Callable<AttackView>)() -> new AttackView(group, attCon));
+    }
 
 
 
@@ -123,9 +150,9 @@ public class GameController {
         createVerval();
 //        SceneManager.getInstance().loadSmallworld();
         createTurnsAndRounds();
-        diceCon = new DiceController();
-        new InfoController();
-        new KnoppenController(this);
+        diceCon = new DiceController(this);
+        new InfoController(this);
+        new ButtonController(this);
         timeCon = new TimerController(getGameTurn());
         redCon = new RedeployingController(this);
 

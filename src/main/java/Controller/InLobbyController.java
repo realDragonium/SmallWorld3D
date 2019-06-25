@@ -15,18 +15,18 @@ public class InLobbyController implements FirebaseControllerObserver {
     private InLobbyModel mod = new InLobbyModel();
 
     public InLobbyController(){
-        SceneManager.getInstance().createInLobbyView(this);
+//        SceneManager.getInstance().createInLobbyView(this);
     }
 
     InLobbyController(String lobbyNaam, int id){
         app.getAccountCon().setPlayerId("player"+id);
-        SceneManager.getInstance().createInLobbyView(this);
+//        SceneManager.getInstance().createInLobbyView(this);
         setLobbyNaam(lobbyNaam);
         app.getFirebaseService().inLobbyListener(lobbyNaam, this);
     }
 
     public InLobbyController(String lobbyNaam){
-        SceneManager.getInstance().createInLobbyView(this);
+//        SceneManager.getInstance().createInLobbyView(this);
         setLobbyNaam(lobbyNaam);
         SceneManager.getInstance().getApp().getFirebaseService().inLobbyListener(lobbyNaam, this);
     }
@@ -36,7 +36,7 @@ public class InLobbyController implements FirebaseControllerObserver {
     }
 
     public void start(){            // start button
-        SceneManager.getInstance().getApp().getFirebaseService().startGame(mod.getLobbyNaam());
+//        SceneManager.getInstance().getApp().getFirebaseService().startGame(mod.getLobbyNaam());
         //new GameController(mod.getLobbyNaam(), app.getAccountCon().getPlayerId());  // starten van het spel
     }
 

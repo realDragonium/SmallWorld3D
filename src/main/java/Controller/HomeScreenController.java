@@ -7,10 +7,10 @@ import Observer.HomeScreenObserver;
 public class HomeScreenController {
 	
     private HomeScreenModel hsModel = new HomeScreenModel();
-    private ApplicatieController appCon;
+    private ApplicationController appCon;
 
-    public HomeScreenController(ApplicatieController applicatieController) {
-        appCon = applicatieController;
+    public HomeScreenController(ApplicationController applicationController) {
+        appCon = applicationController;
     }
 
     public void register(HomeScreenObserver mvo) {

@@ -1,15 +1,15 @@
 package View;
 
-import Controller.KnoppenController;
+import Controller.ButtonController;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-public class KnoppenView {
+public class ButtonView {
 
     private Group root;
-    private KnoppenController knopCon;
+    private ButtonController knopCon;
 
     @FXML
     public Pane pane;
@@ -17,7 +17,7 @@ public class KnoppenView {
     public Button availableButton;
     public Button nextFaseButton;
 
-    public KnoppenView(Group group, KnoppenController knopCon){
+    public ButtonView(Group group, ButtonController knopCon){
         root = group;
         this.knopCon = knopCon;
     }

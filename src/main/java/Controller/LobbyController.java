@@ -14,7 +14,7 @@ public class LobbyController {
 
 
 	public LobbyController(){
-		SceneManager.getInstance().createLobbyView(this);
+//		SceneManager.getInstance().createLobbyView(this);
 	}
 
 

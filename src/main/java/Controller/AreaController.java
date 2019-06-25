@@ -34,7 +34,7 @@ public class AreaController implements FirebaseControllerObserver {
         map2DCon = mapCon;
         this.gameCon = gameCon;
         getAreaInfo();
-        SceneManager.getInstance().createAreaView(this, area);
+//        SceneManager.getInstance().createAreaView(this, area);
 //        fb.AreaListener(model.getId(), this);
     }
 

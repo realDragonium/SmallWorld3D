@@ -13,7 +13,7 @@ public class LeaderboardController {
 
 
     public LeaderboardController(){
-        SceneManager.getInstance().LeaderboardView(this);
+//        SceneManager.getInstance().LeaderboardView(this);
         TreeMap<Double, String> map = SceneManager.getInstance().getApp().getFirebaseService().getTop3Player();
         Set<Double> lijst = map.keySet();
         Stack<Double> stack = new Stack<>();

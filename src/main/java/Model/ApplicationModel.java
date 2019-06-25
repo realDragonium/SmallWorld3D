@@ -6,7 +6,7 @@ import Observer.ApplicatieObserver;
 
 import java.util.List;
 
-public class ApplicatieModel implements ApplicatieObservable {
+public class ApplicationModel implements ApplicatieObservable {
 
     private ApplicatieObserver observer;
     private ApplicatieViewEnum currentView;

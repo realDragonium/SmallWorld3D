@@ -13,7 +13,7 @@ public class LobbySettingsController {
 
 
     LobbySettingsController(){
-        SceneManager.getInstance().createLobbySettingsView(this);
+//        SceneManager.getInstance().createLobbySettingsView(this);
     }
 
     public void lobbyView(){

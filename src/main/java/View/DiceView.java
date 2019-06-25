@@ -1,6 +1,8 @@
 package View;
 
 import Controller.DiceController;
+import Controller.GameController;
+import Controller.TurnController;
 import Observable.DiceObservable;
 import Observer.DiceObserver;
 import javafx.animation.KeyFrame;
@@ -16,7 +18,6 @@ import java.util.ArrayList;
 
 
 public class DiceView implements DiceObserver {
-
 
     private Group root;
     private DiceController diceController;
@@ -48,6 +49,11 @@ public class DiceView implements DiceObserver {
 
         diceController.registreer(this);
         createScene();
+    }
+
+    public DiceView(Group group, DiceController diceCon) {
+        root = group;
+        diceController = diceCon;
     }
 
     private void createScene() {

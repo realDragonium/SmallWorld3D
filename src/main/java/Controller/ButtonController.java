@@ -2,11 +2,11 @@ package Controller;
 
 import Managers.SceneManager;
 
-public class KnoppenController {
+public class ButtonController {
 
     private GameController gameCon;
 
-    KnoppenController(GameController gameCon){
+    ButtonController(GameController gameCon){
         this.gameCon = gameCon;
 //        SceneManager.getInstance().loadButtons(this);
     }

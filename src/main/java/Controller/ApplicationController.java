@@ -1,7 +1,7 @@
 package Controller;
 
 import Enum.ApplicatieViewEnum;
-import Model.ApplicatieModel;
+import Model.ApplicationModel;
 import Objects.FXMLLOADER;
 import Observer.ApplicatieObserver;
 import View.GameView;
@@ -13,11 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class ApplicatieController {
-    private ApplicatieModel appModel = new ApplicatieModel();
-
+public class ApplicationController {
+    private ApplicationModel appModel = new ApplicationModel();
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
-    private Map<Class, Callable<?>> creators = new HashMap<>();
 
     private LoginController loginCon;
     private HomeScreenController hsCon;
@@ -33,19 +31,16 @@ public class ApplicatieController {
 
     public void createLoginController(Group group){
         loginCon = new LoginController(this);
-        creators.put(LoginView.class, (Callable<LoginView>) () -> new LoginView(loginCon, group));
-        fxmlLoader.loader("/LoginScreen/Loginscherm.fxml", creators);
+        fxmlLoader.loader("/LoginScreen/Loginscherm.fxml", (Callable<LoginView>) () -> new LoginView(loginCon, group));
     }
 
     public void createHomeScreenController(Group group){
         hsCon = new HomeScreenController(this);
-        creators.put(HomeScreenView.class, (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, group));
-        fxmlLoader.loader("/HomeScreen/Homescreen.fxml", creators);
+        fxmlLoader.loader("/HomeScreen/Homescreen.fxml", (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, group));
     }
 
     public void createGameController(Group group) {
         gameCon = new GameController(this);
-        creators.put(GameView.class, (Callable<GameView>) () -> new GameView(gameCon, group));
-        fxmlLoader.loader("/GameView.fxml", creators);
+        fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
     }
 }

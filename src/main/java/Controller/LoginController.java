@@ -6,10 +6,10 @@ import Observer.LoginObserver;
 
 public class LoginController {
     private LoginModel loginModel = new LoginModel();
-    private ApplicatieController appCon;
+    private ApplicationController appCon;
 
-    public LoginController(ApplicatieController applicatieController) {
-        appCon = applicatieController;
+    public LoginController(ApplicationController applicationController) {
+        appCon = applicationController;
     }
 
 //    public void validateLoginInfo(String username, String password) {

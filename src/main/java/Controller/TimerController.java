@@ -8,6 +8,11 @@ public class TimerController {
 
     private GameTurn gameTurn;
     private TimerModel model = new TimerModel();
+    private GameController gameCon;
+
+    public TimerController(GameController gameController) {
+        gameCon = gameController;
+    }
 
     public void registerObs(TimerObserver timerObs){
         model.register(timerObs);

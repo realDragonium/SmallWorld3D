@@ -1,6 +1,7 @@
 package View;
 
 import Controller.InfoController;
+import Controller.TurnController;
 import Managers.SceneManager;
 import Observable.infoObservable;
 import Observer.infoObserver;

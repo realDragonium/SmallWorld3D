@@ -1,6 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.InfoModel;
 import Observer.infoObserver;
 
@@ -8,7 +7,7 @@ public class InfoController {
 
     private InfoModel infoModel = new InfoModel();
 
-    InfoController() {
+    InfoController(GameController gameController) {
 //        SceneManager.getInstance().loadInfoscreen(this);
     }
 

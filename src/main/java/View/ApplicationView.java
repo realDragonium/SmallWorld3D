@@ -1,6 +1,6 @@
 package View;
 
-import Controller.ApplicatieController;
+import Controller.ApplicationController;
 import Enum.ApplicatieViewEnum;
 import Observable.ApplicatieObservable;
 import Observer.ApplicatieObserver;
@@ -12,17 +12,17 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApplicatieView implements ApplicatieObserver {
+public class ApplicationView implements ApplicatieObserver {
     private Scene scene;
     private Stage primaryStage;
     private Group root = new Group();
     private Map<String, Group> groups = new HashMap<>();
 
-    private ApplicatieController appCon = new ApplicatieController();
+    private ApplicationController appCon = new ApplicationController();
 
-    public ApplicatieView(Stage primaryStage){
+    public ApplicationView(Stage primaryStage){
         this.primaryStage = primaryStage;
-        root.getChildren().add(new Button("ApplicatieView!"));
+        root.getChildren().add(new Button("ApplicationView!"));
 
         createViewGroups();
         createViews();
