@@ -137,6 +137,6 @@ public class InfoView implements infoObserver {
     }
 
     public void exitInfoScreen() {
-        SceneManager.getInstance().removeFromStandardScene("infoGroup");
+//        SceneManager.getInstance().removeFromStandardScene("infoGroup");
     }
 }

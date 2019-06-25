@@ -13,7 +13,7 @@ public class VervallenController {
 
     VervallenController(GameController gameCon){
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadVerval(this);
+//        SceneManager.getInstance().loadVerval(this);
     }
 
     /**

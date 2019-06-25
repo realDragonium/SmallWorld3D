@@ -9,7 +9,7 @@ public class InfoController {
     private InfoModel infoModel = new InfoModel();
 
     InfoController() {
-        SceneManager.getInstance().loadInfoscreen(this);
+//        SceneManager.getInstance().loadInfoscreen(this);
     }
 
     public void register(infoObserver ob) {

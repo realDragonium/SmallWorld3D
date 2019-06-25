@@ -8,7 +8,7 @@ public class KnoppenController {
 
     KnoppenController(GameController gameCon){
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadButtons(this);
+//        SceneManager.getInstance().loadButtons(this);
     }
 
     public void showInfo() {

@@ -2,13 +2,18 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.Pane?>
-<Pane fx:id="headPane" layoutX="200" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameView">
-   <children>
-      <Group fx:id="mapGroup"/>
+<Pane fx:id="headPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameView">
       <Group fx:id="buttonGroup" />
       <Group fx:id="playerGroup" />
-      <Group fx:id="shopGroup" />
       <Group fx:id="roundGroup" />
+      <Group fx:id="shopGroup" />
+      <Group fx:id="timerGroup" />
       <Group fx:id="turnGroup" />
-   </children>
+      <Group fx:id="mapGroup" />
+      <Group fx:id="vervalGroup" />
+      <Group fx:id="diceGroup" />
+      <Group fx:id="redeployingGroup" />
+      <Group fx:id="infoGroup"/>
+      <Group fx:id="smallworldGroup"/>
+      <Group fx:id="attackGroup"/>
 </Pane>

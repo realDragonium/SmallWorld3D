@@ -16,7 +16,7 @@ public class RedeployingController {
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadRedeploying(this);
+//        SceneManager.getInstance().loadRedeploying(this);
 
     }
 

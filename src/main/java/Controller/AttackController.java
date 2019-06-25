@@ -15,7 +15,7 @@ public class AttackController {
     AttackController(GameController gameCon) {
 
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadAttack(this);
+//        SceneManager.getInstance().loadAttack(this);
     }
 
     public void removeFichesNeeded(int amount){

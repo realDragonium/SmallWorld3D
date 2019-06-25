@@ -4,6 +4,9 @@ import Managers.SceneManager;
 import Model.GameModel;
 import Objects.FXMLLOADER;
 import View.Map2DView;
+import View.PlayerView;
+import View.RoundView;
+import View.TurnView;
 import javafx.scene.Group;
 
 import java.util.HashMap;
@@ -61,12 +64,24 @@ public class GameController {
         fxmlLoader.loader("/UglyMap.fxml", creators);
     }
 
-    public void createPlayerView(Group group){
-        mapCon = new PlayerController(this);
-        creators.put(Map2DView.class, (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
-        fxmlLoader.loader("/UglyMap.fxml", creators);
+    public void createPlayerView(Group group, String id){
+        PlayerController player = new PlayerController(id, this);
+        players.put(id, player);
+        creators.put(PlayerView.class, (Callable<PlayerView>)() -> new PlayerView(id, group, player));
+        fxmlLoader.loader("/PlayerView.fxml", creators);
     }
 
+    public void createRoundView(Group group) {
+        roundCon = new RoundController(this);
+        creators.put(RoundView.class, (Callable<RoundView>)() -> new RoundView(group, roundCon));
+        fxmlLoader.loader("/RoundView.fxml", creators);
+    }
+
+    public void createTurnView(Group group) {
+        turnCon = new TurnController(this);
+        creators.put(TurnView.class, (Callable<TurnView>)() -> new TurnView(group, turnCon));
+        fxmlLoader.loader("/TurnView.fxml", creators);
+    }
 
 
 
@@ -106,7 +121,7 @@ public class GameController {
         createPlayer();
         createShop();
         createVerval();
-        SceneManager.getInstance().loadSmallworld();
+//        SceneManager.getInstance().loadSmallworld();
         createTurnsAndRounds();
         diceCon = new DiceController();
         new InfoController();
@@ -222,4 +237,5 @@ public class GameController {
     public String getLobbyname(){
         return lobbyName;
     }
+
 }

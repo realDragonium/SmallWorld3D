@@ -18,7 +18,7 @@ public class DiceController {
 
 
     DiceController() {
-        SceneManager.getInstance().loadDice(this);
+//        SceneManager.getInstance().loadDice(this);
     }
 
     private int RollDice() {

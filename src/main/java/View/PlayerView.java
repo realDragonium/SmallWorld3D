@@ -15,26 +15,23 @@ public class PlayerView implements PlayerObserver {
     private PlayerController playerCon;
 
     @FXML
-    public Pane pane;
+    private Pane pane;
     @FXML
-    public Text playerId;
-    @FXML
-    public Text fiches;
-    @FXML
-    public Text punten;
+    private Text playerId, fiches, punten;
+
 
     public PlayerView(String id, Group group, PlayerController playerCon){
+        this.group = group;
         this.playerCon = playerCon;
         this.id = id;
-        this.group = group;
     }
 
     public void initialize() {
         if(Integer.parseInt(id.split("yer")[1]) != 0){
-            group.getChildren().add(pane);
             playerId.setText(id);
             playerCon.register(this);
             pane.setLayoutY((100 + 150*Integer.parseInt(id.split("yer")[1])));
+            group.getChildren().add(pane);
         }
 
     }

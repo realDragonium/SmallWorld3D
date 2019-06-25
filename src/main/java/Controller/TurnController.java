@@ -21,7 +21,7 @@ public class TurnController {
     TurnController(GameController gameCon){
         model = new TurnModel(4);
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadTurn(this);
+//        SceneManager.getInstance().loadTurn(this);
         decideStartingPlayer();
     }
 

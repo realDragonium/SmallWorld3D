@@ -2,6 +2,7 @@ package View;
 
 import Controller.VervallenController;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 public class VervallenView {
 
 
+    public Button vervalButton;
     Group group;
     public Pane root;
 

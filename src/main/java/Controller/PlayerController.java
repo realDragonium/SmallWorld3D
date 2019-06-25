@@ -21,7 +21,7 @@ public class PlayerController implements FirebaseControllerObserver {
     public PlayerController(String playerID, GameController gameCon) {
         model = new PlayerModel(playerID);
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadPlayer(playerID, this);
+//        SceneManager.getInstance().loadPlayer(playerID, this);
 //        fb.playerListen(playerID, this);
     }
 
@@ -67,9 +67,7 @@ public class PlayerController implements FirebaseControllerObserver {
 
     boolean hasActiveCombination(){
         if(hasCombination()) {
-            if(combinations.get(0).isActive()){
-                return true;
-            }
+            return combinations.get(0).isActive();
         }
         return false;
     }

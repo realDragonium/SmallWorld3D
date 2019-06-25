@@ -11,7 +11,7 @@ public class GameView {
     private GameController gameCon;
 
     @FXML
-    private Group mapGroup, buttonGroup, playerGroup, roundGroup, turnGroup;
+    private Group mapGroup, buttonGroup, playerGroup, roundGroup, turnGroup, shopGroup, timerGroup, vervalGroup, diceGroup, redeployingGroup, infoGroup, smallworldGroup, attackGroup;
     @FXML
     private Pane headPane;
 
@@ -24,7 +24,12 @@ public class GameView {
     public void initialize() {
         root.getChildren().add(headPane);
         gameCon.createMap2DView(mapGroup);
-        gameCon.createPlayerView(playerGroup);
+        gameCon.createPlayerView(playerGroup, "player1");
+        gameCon.createPlayerView(playerGroup, "player2");
+        gameCon.createPlayerView(playerGroup, "player3");
+        gameCon.createPlayerView(playerGroup, "player4");
+        gameCon.createRoundView(roundGroup);
+        gameCon.createTurnView(turnGroup);
     }
 
 

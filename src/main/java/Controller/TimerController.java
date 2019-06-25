@@ -15,7 +15,7 @@ public class TimerController {
 
     TimerController(GameTurn gameTurn){
         this.gameTurn = gameTurn;
-        SceneManager.getInstance().loadTimer(this);
+//        SceneManager.getInstance().loadTimer(this);
     }
 
     public long getElapsedTime(){
