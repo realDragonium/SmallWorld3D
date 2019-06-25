@@ -10,9 +10,11 @@ import javafx.scene.transform.Translate;
 public class CameraController implements Animatable {
 
     CameraModel model = new CameraModel();
+    Controller3D worldCon;
 
-    public CameraController(ApplicatieController applicatieController){
-
+    public CameraController(Controller3D worldCon){
+        this.worldCon = worldCon;
+        moveToPosition(new Translate(0, -50, -1000), 500);
     }
 
 
@@ -20,8 +22,8 @@ public class CameraController implements Animatable {
         model.register(co);
     }
 
-    public void moveToPosition(Translate translate){
-        AnimationsManager.getInstance().createMoveToAnimation(this, translate);
+    public void moveToPosition(Translate translate, int frames){
+        AnimationsManager.getInstance().createMoveToAnimation(this, translate, frames);
     }
 
     @Override

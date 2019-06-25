@@ -13,6 +13,7 @@ import java.util.TimerTask;
 
 public class AnimationsManager {
     private static AnimationsManager animManager;
+    int animationFPS = 20;
     List<AnimationController> animations = new ArrayList<>();
 
     public static AnimationsManager getInstance(){
@@ -30,7 +31,7 @@ public class AnimationsManager {
         };
 
         Timer animTimer = new Timer();
-        animTimer.scheduleAtFixedRate(start, 0, 10);
+        animTimer.scheduleAtFixedRate(start, 0, 1000/animationFPS);
     }
 
     private void playAnimations(){
@@ -39,12 +40,19 @@ public class AnimationsManager {
         }
     }
 
-    public void createMoveToAnimation(Animatable animObj, Translate newPosition){
+    public void createMoveToAnimation(Animatable animObj, Translate newPosition, int frames){
         AnimationController newAnim = new AnimationController(animObj);
         double deltaX = newPosition.getX() - animObj.getCurrentPosition().getX();
         double deltaY = newPosition.getY() - animObj.getCurrentPosition().getY();
-        for(int x = 0; x < 100; x++) {
-            newAnim.addAnimationPoint(x, new AnimationPoint(new Translate(deltaX / 100, deltaY / 100)));
+        double deltaZ = newPosition.getZ() - animObj.getCurrentPosition().getZ();
+        for(int x = 0; x < frames; x++) {
+            Translate point = new Translate(deltaX / frames, deltaY / frames, deltaZ / frames);
+            newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
+        animations.add(newAnim);
+    }
+
+    public void removeAnimation(AnimationController animCon) {
+        animations.remove(animCon);
     }
 }

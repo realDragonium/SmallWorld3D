@@ -29,17 +29,17 @@ public class ApplicatieController {
         appModel.register(ao);
     }
 
-    public void createLoginController(Group group){
-        loginCon = new LoginController(this);
-        creators.put(LoginView.class, () -> new LoginView(loginCon, group));
-        FXMLLOADER("/LoginScreen/Loginscherm.fxml");
-    }
+//    public void createLoginController(Group group){
+//        loginCon = new LoginController(this);
+//        creators.put(LoginView.class, () -> new LoginView(loginCon, group));
+//        FXMLLOADER("/LoginScreen/Loginscherm.fxml");
+//    }
 
-    public void createHomeScreenController(Group group){
-        hsCon = new HomeScreenController(this);
-        creators.put(HomeScreenView.class, (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, group));
-        FXMLLOADER("/HomeScreen/Homescreen.fxml");
-    }
+//    public void createHomeScreenController(Group group){
+//        hsCon = new HomeScreenController(this);
+//        creators.put(HomeScreenView.class, (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, group));
+//        FXMLLOADER("/HomeScreen/Homescreen.fxml");
+//    }
 
     private void FXMLLOADER(String path) {
         FXMLLoader fxmlLoader = new FXMLLoader();

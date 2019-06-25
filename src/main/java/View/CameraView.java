@@ -14,20 +14,21 @@ public class CameraView implements CameraObserver {
     PerspectiveCamera camera;
     CameraController cameraCon;
 
-    public CameraView(Group group, CameraController cameraCon){
+    public CameraView(CameraController cameraCon, Group root){
         this.cameraCon = cameraCon;
-        root = group;
+        this.root = root;
         buildCamera();
+        cameraCon.registerObserver(this);
     }
 
     private void buildCamera(){
-        final PerspectiveCamera camera = new PerspectiveCamera(true);
+        camera = new PerspectiveCamera(true);
         final Xform cameraXform2 = new Xform();
         final Xform cameraXform3 = new Xform();
         xForm.getChildren().add(cameraXform2);
         cameraXform2.getChildren().add(cameraXform3);
         cameraXform3.getChildren().add(camera);
-        cameraXform3.setRotateZ(180.0);
+
         camera.setNearClip(0.1);
         camera.setFarClip(10000);
 
@@ -41,5 +42,9 @@ public class CameraView implements CameraObserver {
         camera.setTranslateZ(co.getTranslate().getZ());
         xForm.ry.setAngle(co.getYAngle());
         xForm.rx.setAngle(co.getXAngle());
+    }
+
+    public PerspectiveCamera getCamera() {
+        return camera;
     }
 }

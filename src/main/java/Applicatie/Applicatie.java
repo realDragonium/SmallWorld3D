@@ -1,6 +1,7 @@
 package Applicatie;
 
 import Controller.AccountController;
+import Controller.Controller3D;
 import Controller.LoginController;
 import Firebase.FirebaseServiceOwn;
 import Managers.SceneManager;
@@ -19,9 +20,10 @@ public class Applicatie {
     private AccountController accountCon;
 
     public Applicatie(Stage primaryStage) {
-        SceneManager.getInstance().registerApp(this);
-        this.primaryStage = primaryStage;
-        loadPrimaryStage();
+//        SceneManager.getInstance().registerApp(this);
+//        this.primaryStage = primaryStage;
+//        loadPrimaryStage();
+        new Controller3D(primaryStage);
     }
 
     public void setAccount(AccountController accountCon){

@@ -16,6 +16,10 @@ public class AnimationModel {
         curFrame++;
     }
 
+    public boolean animEnded(){
+        return curFrame >= lastFrame;
+    }
+
     public int getCurFrame(){
         return curFrame;
     }

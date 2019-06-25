@@ -34,8 +34,8 @@ public class ApplicatieView implements ApplicatieObserver {
     }
 
     private void createViews(){
-        appCon.createLoginController(groups.get("login"));
-        appCon.createHomeScreenController(groups.get("homescreen"));
+//        appCon.createLoginController(groups.get("login"));
+//        appCon.createHomeScreenController(groups.get("homescreen"));
     }
 
     private void createViewGroups(){
