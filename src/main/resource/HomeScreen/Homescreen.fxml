@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeScreenView">
+   <children>
+      <ImageView  layoutX="3.0" layoutY="-1.0">
+         <image>
+            <Image url="@Background.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="230.0" fitWidth="648.0" layoutX="692.0" layoutY="56.0">
+         <image>
+            <Image url="@SmallWorldLogo.png" />
+         </image>
+      </ImageView>
+      <HBox id="select" layoutX="690.0" layoutY="385.0" onMouseClicked="#createGame" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+      	  <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="50.0" layoutY="385.0">
+	         <image>
+	            <Image url="@Blank_Power.png" />
+	         </image>
+	      </ImageView>
+	      <Text id="game" text="Start Game">
+      			<font>
+      				<Font size="35.0" />
+      			</font>
+      	  </Text>
+	      <ImageView id="Ras" fitHeight="141.0" fitWidth="316.0" layoutX="1200.0" layoutY="381.0">
+	         <image>
+	            <Image url="@Blank_Ras.png" />
+	         </image>
+	      </ImageView>
+
+	  </HBox>
+	  <HBox id="select" layoutX="690.0" layoutY="609.0" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+	      <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="795.0" layoutY="609.0">
+	         <image>
+	            <Image url="@Blank_Power.png" />
+	         </image>
+	      </ImageView>
+	      <Text id="rules" text="Game Rules">
+      			<font>
+      				<Font size="35.0" />
+      			</font>
+      	  </Text>
+	      <ImageView id="Ras" fitHeight="141.0" fitWidth="316.0" layoutX="912.0" layoutY="605.0">
+	         <image>
+	            <Image url="@Blank_Ras.png" />
+	         </image>
+	      </ImageView>
+	  </HBox>
+	  <HBox id="select" layoutX="690.0" layoutY="835.0" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+	      <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="789.0" layoutY="835.0">
+	         <image>
+	            <Image url="@Blank_Power.png" />
+	         </image>
+	      </ImageView>
+	      <VBox id="game">
+	      	  <padding><Insets bottom="25" left="20" top="50" /></padding>
+		      <Text text="Settings">
+	      			<font>
+	      				<Font size="35.0" />
+	      			</font>
+	      	  </Text>
+	      </VBox>
+	      <ImageView id="Ras" fitHeight="141.0" fitWidth="316.0" layoutX="906.0" layoutY="831.0">
+	         <image>
+	            <Image url="@Blank_Ras.png" />
+	         </image>
+	      </ImageView>
+	  </HBox>
+   </children>
+</AnchorPane>
