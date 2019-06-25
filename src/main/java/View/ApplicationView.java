@@ -6,6 +6,7 @@ import Observable.ApplicatieObservable;
 import Observer.ApplicatieObserver;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -61,8 +62,16 @@ public class ApplicationView implements ApplicatieObserver {
         root.getChildren().add(groups.get(view.getStringValue()));
     }
 
+    private void addSubScene(SubScene subScene){
+        if(!root.getChildren().contains(subScene)) {
+            System.out.println("adding 3d");
+            root.getChildren().add(subScene);
+        }
+    }
+
     @Override
     public void update(ApplicatieObservable ao) {
         setActive(ao.getCurrentView());
+        if(ao.get3dScene() != null) addSubScene(ao.get3dScene());
     }
 }

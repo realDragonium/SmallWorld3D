@@ -8,6 +8,7 @@ import View.GameView;
 import View.HomeScreenView;
 import View.LoginView;
 import javafx.scene.Group;
+import javafx.scene.SubScene;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,5 +43,9 @@ public class ApplicationController {
     public void createGameController(Group group) {
         gameCon = new GameController(this);
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
+    }
+
+    public void addSubScene(SubScene scene) {
+        appModel.addSubScene(scene);
     }
 }

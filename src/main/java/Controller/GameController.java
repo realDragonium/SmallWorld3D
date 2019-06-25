@@ -4,12 +4,17 @@ import Model.GameModel;
 import Objects.FXMLLOADER;
 import View.*;
 import javafx.scene.Group;
+import javafx.scene.SubScene;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class GameController {
+
+    SubScene subScene3d;
+
+    private Controller3D con3d;
     private ApplicationController appCon;
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
     private Map2DController mapCon;
@@ -53,7 +58,10 @@ public class GameController {
 
     public GameController(ApplicationController appCon){
         this.appCon = appCon;
+    }
 
+    public void create3dView(Group group){
+        con3d = new Controller3D(this, group);
     }
 
     public void createMap2DView(Group group){
@@ -265,4 +273,7 @@ public class GameController {
         return lobbyName;
     }
 
+    public void addSubScene(SubScene scene) {
+        appCon.addSubScene(scene);
+    }
 }
