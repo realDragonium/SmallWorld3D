@@ -3,10 +3,7 @@ package Controller;
 import View.CameraView;
 import View.Map3DView;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.Scene;
-import javafx.scene.SubScene;
+import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class Controller3D{
@@ -19,7 +16,7 @@ public class Controller3D{
 
     public Controller3D(GameController gameCon, Group group){
         this.gameCon = gameCon;
-        scene = new SubScene(world, 1600, 900);
+        scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
         createMap();
         createCamera();
         group.getChildren().add(scene);
