@@ -1,6 +1,5 @@
 package View;
 
-import Controller.HomeScreenController;
 import Controller.LobbyController;
 import Observable.ObservableLobby;
 import Observer.LobbyObserver;
@@ -51,10 +50,6 @@ public class LobbyView implements LobbyObserver {
         }
     }
 
-    public void terug() {
-        new HomeScreenController();
-    }
-
     public void join() {
         lobbyCon.joinLobby(activeButton.getText());               // start de LobbySettingView
     }
@@ -74,16 +69,13 @@ public class LobbyView implements LobbyObserver {
         } else {
             ((Node) t.getSource()).setOpacity(0);
             root.getChildren().remove(t.getSource());
-            System.out.println("Max aantal lobbies");
         }
     }
 
     @Override
     public void update(ObservableLobby lo) {
         List<String> lobbynamen =  lo.getLobbyName();
-        System.out.println(lobbynamen.size());
         for(String test:lobbynamen){
-            System.out.println(test);
             addLobbyFirebase(test);
         }
     }

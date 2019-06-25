@@ -1,6 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.Map2DModel;
 import javafx.scene.Group;
 
@@ -15,7 +14,7 @@ public class Map2DController {
 
 	Map2DController(GameController gameCon){
 		this.gameCon = gameCon;
-		SceneManager.getInstance().createMap(this);
+//		SceneManager.getInstance().createMap(this);
 	}
 
 	public void createArea(Group area){

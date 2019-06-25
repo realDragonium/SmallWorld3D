@@ -24,17 +24,11 @@ public class DiceModel implements DiceObservable {
     }
 
     public int giveValue(int gegooideOgen) {
-        int newWaarde = 0;
         if (gegooideOgen < 3) {
-            newWaarde = 0;
-        } else if (gegooideOgen == 3) {
-            newWaarde = 1;
-        } else if (gegooideOgen == 4) {
-            newWaarde = 2;
-        } else if (gegooideOgen == 5) {
-            newWaarde = 3;
-        } else System.out.println("joe");
-        return newWaarde;
+            return 0;
+        }
+        return gegooideOgen - 3;
+
     }
 
     public void register(DiceObserver ob) {

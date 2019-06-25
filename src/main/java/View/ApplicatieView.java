@@ -1,13 +1,13 @@
 package View;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import Controller.ApplicatieController;
 import Enum.ApplicatieViewEnum;
 import Observable.ApplicatieObservable;
 import Observer.ApplicatieObserver;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class ApplicatieView implements ApplicatieObserver {
     private Scene scene;
     private Stage primaryStage;
-    private Group root = new Group();;
+    private Group root = new Group();
     private Map<String, Group> groups = new HashMap<>();
 
     private ApplicatieController appCon = new ApplicatieController();
@@ -28,14 +28,19 @@ public class ApplicatieView implements ApplicatieObserver {
         createViews();
 
         appCon.register(this);
-        appCon.setActiveView(ApplicatieViewEnum.LOGIN);
+        setStartScreen();
 
         startPrimaryStage();
+    }
+
+    private void setStartScreen(){
+        appCon.setActiveView(ApplicatieViewEnum.GAME);
     }
 
     private void createViews(){
         appCon.createLoginController(groups.get("login"));
         appCon.createHomeScreenController(groups.get("homescreen"));
+        appCon.createGameController(groups.get("game"));
     }
 
     private void createViewGroups(){

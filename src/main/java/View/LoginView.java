@@ -41,8 +41,8 @@ public class LoginView implements LoginObserver{
 
 	@FXML
 	private void login(){
-		loginController.validateLoginInfo(Username.getText(), Password.getText());
-//		loginController.goToHomeScreen(); //voor als je geen internet hebt
+//		loginController.validateLoginInfo(Username.getText(), Password.getText());
+		loginController.goToHomeScreen();
 	}
 
 	private void goToHomeScreen(){
@@ -62,7 +62,7 @@ public class LoginView implements LoginObserver{
 
     @FXML
 	private void registeren(){
-    	loginController.register(Username.getText(), Password.getText());
+//    	loginController.register(Username.getText(), Password.getText());
 	}
 
 	@Override

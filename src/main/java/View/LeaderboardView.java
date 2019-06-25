@@ -1,7 +1,5 @@
 package View;
 
-
-import Controller.HomeScreenController;
 import Controller.LeaderboardController;
 import Observable.LeaderboardObservable;
 import Observer.LeaderboardObserver;
@@ -21,7 +19,6 @@ public class LeaderboardView implements LeaderboardObserver {
     public Label points2;
     public Label points3;
 
-
     public Group root;
     private Group group;
     public Button hoofdmenu;
@@ -29,49 +26,12 @@ public class LeaderboardView implements LeaderboardObserver {
     public LeaderboardView(Group group, LeaderboardController leadCon){
         this.group = group;
         this.leadCon = leadCon;
-
     }
-
-
-    public void back(){
-        new HomeScreenController();
-
-    }
-
-
-
-    /*
-    public LeaderboardView(Stage primaryStage){
-        startScene(primaryStage);
-    }
-    public LeaderboardView(){
-        registreer();
-    }
-
-
-
-    public void startScene(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/LoginScreen/Leaderboard.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Leaderboard");
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-*/
 
     public void initialize(){
         group.getChildren().add(root);
         leadCon.registreer(this);
-
     }
-
-
-
 
     @Override
     public void update(LeaderboardObservable ob) {
@@ -87,7 +47,8 @@ public class LeaderboardView implements LeaderboardObserver {
     public void registreer(){
         leadCon.registreer(this);
     }
-@FXML
+
+    @FXML
     public void drukKnop(){
     leadCon.addValue();
 

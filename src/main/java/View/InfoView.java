@@ -133,9 +133,7 @@ public class InfoView implements infoObserver {
 
 
     public void initialize() {
-        System.out.println("test123");
         infoGroup.getChildren().add(pane);
-        System.out.println("test2");
     }
 
     public void exitInfoScreen() {

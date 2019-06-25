@@ -1,7 +1,6 @@
 package Applicatie;
 
 import Controller.AccountController;
-import Controller.LoginController;
 import Firebase.FirebaseServiceOwn;
 import Managers.SceneManager;
 import javafx.scene.Scene;
@@ -46,11 +45,9 @@ public class Applicatie {
         primaryStage.setTitle("Small World");
         primaryStage.show();
 
-       new LoginController();
     }
 
     public void loadScene(Scene scene) {
-        System.out.println("switched!");
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
 

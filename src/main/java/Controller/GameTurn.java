@@ -29,7 +29,6 @@ class GameTurn implements FirebaseControllerObserver {
     }
 
     private void endPhase() {
-        System.out.println("switching van: " + currentPhase);
         switch (currentPhase) {
             case none:
                 startPreperationPhase();
@@ -103,7 +102,5 @@ class GameTurn implements FirebaseControllerObserver {
     void newTurn(PlayerController currentPlayer) {
         this.currentPlayer = currentPlayer;
         endPhase();
-        System.out.println("Begin beurt: " + currentPlayer.getId());
-        System.out.println("Jij bent speler: " + gameCon.getMyPlayerId());
     }
 }

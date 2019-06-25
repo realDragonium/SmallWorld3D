@@ -1,22 +1,29 @@
 package Controller;
 
-import Applicatie.Applicatie;
-import Firebase.FirebaseServiceOwn;
 import Managers.SceneManager;
 import Model.GameModel;
+import Objects.FXMLLOADER;
+import View.Map2DView;
+import javafx.scene.Group;
 
 import java.util.HashMap;
 import java.util.Map;
-
-//import com.google.cloud.firestore.Firestore;
+import java.util.concurrent.Callable;
 
 public class GameController {
+    private ApplicatieController appCon;
+    private FXMLLOADER fxmlLoader = new FXMLLOADER();
+    private Map<Class, Callable<?>> creators = new HashMap<>();
+    private Map2DController mapCon;
+
+
+
     private GameModel model;
     private Map<String, PlayerController> players = new HashMap<>();
     private PlayerController currentPlayer;
     private RoundController roundCon;
     private TurnController turnCon;
-    private Map2DController mapCon;
+
     private String lobbyName;
     private VervallenController vervCon;
     private TimerController timeCon;
@@ -28,11 +35,10 @@ public class GameController {
     private RedeployingController redCon;
     private String myPlayerId;
     private DiceController diceCon;
-    private Applicatie app = SceneManager.getInstance().getApp();
-    private FirebaseServiceOwn fb = app.getFirebaseService();
+//    private Applicatie app = SceneManager.getInstance().getApp();
+//    private FirebaseServiceOwn fb = app.getFirebaseService();
 
     public GameController(String lobbyName, String playerID) {
-        System.out.println(this);
         myPlayerId = playerID;
         model = new GameModel(8, 8);
         this.lobbyName = lobbyName;
@@ -44,13 +50,41 @@ public class GameController {
         createGameTimer();
     }
 
+    public GameController(ApplicatieController appCon){
+        this.appCon = appCon;
+
+    }
+
+    public void createMap2DView(Group group){
+        mapCon = new Map2DController(this);
+        creators.put(Map2DView.class, (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        fxmlLoader.loader("/UglyMap.fxml", creators);
+    }
+
+    public void createPlayerView(Group group){
+        mapCon = new PlayerController(this);
+        creators.put(Map2DView.class, (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        fxmlLoader.loader("/UglyMap.fxml", creators);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     private void setMuFirebaseStufF(){
-        fb.setGame(lobbyName);
-        Map<String, Object> info = new HashMap<>();
-        info.put("Name", app.getAccountCon().getAccountName());
-        info.put("fiches", 0);
-        info.put("punten", 5);
-        fb.registerPlayer(myPlayerId, info);
+//        fb.setGame(lobbyName);
+//        Map<String, Object> info = new HashMap<>();
+//        info.put("Name", app.getAccountCon().getAccountName());
+//        info.put("fiches", 0);
+//        info.put("punten", 5);
+//        fb.registerPlayer(myPlayerId, info);
     }
 
 
@@ -149,7 +183,6 @@ public class GameController {
     GameTurn getGameTurn() { return gameTurn;}
 
     void endGame(){
-        System.out.println("Game Ended!");
         model.gameEnded = true;
     }
 

@@ -115,7 +115,6 @@ public class FirebaseServiceOwn {
         for (int i = 1; i < 5; i++) {
             if (lobbySet.get("player" + i) == null) {
                 docRef.update("player" + i, Name);
-                System.out.println("join lobby");
                 return i;
             }
         }
@@ -123,7 +122,6 @@ public class FirebaseServiceOwn {
     }
 
     public void resetTimer(Map<String, Object> info) {
-        System.out.println(info.toString());
         gameRef.collection("Extras").document("Timer").set(info);
     }
 
@@ -196,7 +194,6 @@ public class FirebaseServiceOwn {
                 }
                 List<String> buttonLijst = new ArrayList<>();
                 for (DocumentSnapshot doc : snapshot.getDocuments()) {
-                    //System.out.println("fb: "+doc.getId());
                     buttonLijst.add(doc.getId());
                 }
                 controller.update(buttonLijst);
@@ -320,7 +317,6 @@ public class FirebaseServiceOwn {
         DocumentSnapshot document = getDocSnapshot(docRef);
 
         if (document.exists()) return document;
-        else System.out.println("No such document!");
         return null;
 
     }

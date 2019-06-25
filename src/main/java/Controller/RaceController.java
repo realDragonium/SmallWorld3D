@@ -48,7 +48,6 @@ public class RaceController {
 	}
 
 	void fichesOver(){
-		System.out.println(combiCon.getPlayer().getId() + " heeft " + model.getFichesCount() + " fiches.");
 	}
 
 	void doKractAction(){

@@ -3,28 +3,28 @@ package View;
 import Controller.GameController;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 
 public class GameView {
 
-    @FXML
-    public Group mapGroup;
-    @FXML
-    public Group buttonGroup;
-    @FXML
-    public Group playerGroup;
-    @FXML
-    public Group roundGroup;
-    @FXML
-    public Group turnGroup;
-
+    private Group root;
     private GameController gameCon;
 
-    public GameView(GameController gameCon) {
+    @FXML
+    private Group mapGroup, buttonGroup, playerGroup, roundGroup, turnGroup;
+    @FXML
+    private Pane headPane;
+
+
+    public GameView(GameController gameCon, Group group){
         this.gameCon = gameCon;
+        root = group;
     }
 
     public void initialize() {
-
+        root.getChildren().add(headPane);
+        gameCon.createMap2DView(mapGroup);
+        gameCon.createPlayerView(playerGroup);
     }
 
 

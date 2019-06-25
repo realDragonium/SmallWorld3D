@@ -3,7 +3,6 @@ package Controller;
 import Enum.AreaProperty;
 import Enum.AreaType;
 import Firebase.FirebaseControllerObserver;
-import Firebase.FirebaseServiceOwn;
 import Managers.SceneManager;
 import Model.AreaModel;
 import Objects.RaceFiche;
@@ -28,7 +27,7 @@ public class AreaController implements FirebaseControllerObserver {
     private Map2DController map2DCon;
     private AreaModel model;
     private GameController gameCon;
-    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
+//    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
 
     public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
         model = new AreaModel(area.getChildren().get(0).getId());
@@ -36,7 +35,7 @@ public class AreaController implements FirebaseControllerObserver {
         this.gameCon = gameCon;
         getAreaInfo();
         SceneManager.getInstance().createAreaView(this, area);
-        fb.AreaListener(model.getId(), this);
+//        fb.AreaListener(model.getId(), this);
     }
 
     String getId() {
@@ -49,7 +48,7 @@ public class AreaController implements FirebaseControllerObserver {
 
     void attackArea(Stack<RaceFiche> fiches) {
         model.setFiches(fiches);
-        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
+//        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
     }
 
     void setPlayerOwner(PlayerController player) {
@@ -83,24 +82,24 @@ public class AreaController implements FirebaseControllerObserver {
 
     public void destroyAllButOne() {
         model.getAllButOne();
-        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
+//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
     }
 
     void returnAllButOne(RaceController raceController) {
         raceController.pushFiches(model.getAllButOne());
-        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
+//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
     }
 
     private void getAreaInfo() {
-        DocumentSnapshot ds = fb.getAreaInfo(model.getId());
-        Platform.runLater(() -> {
-            model.setFiches((int) Math.round(ds.getDouble("fiches")));
-            model.setAreaType(ds.getString("type"));
-            model.setBorderArea(ds.getBoolean("borderArea"));
-            model.setNeighbours((List<String>) ds.get("neighbours"));
-            model.setAttackAble(ds.getBoolean("attackAble"));
-            model.notifyObserver();
-        });
+//        DocumentSnapshot ds = fb.getAreaInfo(model.getId());
+//        Platform.runLater(() -> {
+//            model.setFiches((int) Math.round(ds.getDouble("fiches")));
+//            model.setAreaType(ds.getString("type"));
+//            model.setBorderArea(ds.getBoolean("borderArea"));
+//            model.setNeighbours((List<String>) ds.get("neighbours"));
+//            model.setAttackAble(ds.getBoolean("attackAble"));
+//            model.notifyObserver();
+//        });
     }
 
     @Override
@@ -113,7 +112,6 @@ public class AreaController implements FirebaseControllerObserver {
                 model.setFiches((int) Math.round(ds.getDouble("fiches")));
             }
             model.setFiches((int) Math.round(ds.getDouble("fiches")));
-            System.out.println(ds.getDouble("fiches"));
         });
     }
 

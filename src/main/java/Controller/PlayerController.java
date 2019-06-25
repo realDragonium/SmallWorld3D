@@ -1,8 +1,6 @@
 package Controller;
 
-import Applicatie.Applicatie;
 import Firebase.FirebaseControllerObserver;
-import Firebase.FirebaseServiceOwn;
 import Managers.SceneManager;
 import Model.PlayerModel;
 import Observer.PlayerObserver;
@@ -15,8 +13,8 @@ import java.util.Map;
 
 public class PlayerController implements FirebaseControllerObserver {
     private GameController gameCon;
-    private Applicatie app = SceneManager.getInstance().getApp();
-    private FirebaseServiceOwn fb = app.getFirebaseService();
+//    private Applicatie app = SceneManager.getInstance().getApp();
+//    private FirebaseServiceOwn fb = app.getFirebaseService();
     private PlayerModel model;
     private List<CombinationController> combinations = new ArrayList<>();
 
@@ -24,11 +22,10 @@ public class PlayerController implements FirebaseControllerObserver {
         model = new PlayerModel(playerID);
         this.gameCon = gameCon;
         SceneManager.getInstance().loadPlayer(playerID, this);
-        fb.playerListen(playerID, this);
+//        fb.playerListen(playerID, this);
     }
 
     void buyFromShop(CombinationController combo, int costs) {
-        System.out.println(getId() + " voegt combinatie toe");
         model.removePoints(costs);
         combinations.add(combo);
         combo.setPlayer(this);
@@ -36,7 +33,7 @@ public class PlayerController implements FirebaseControllerObserver {
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getFiches());
         info.put("punten", model.getPunten());
-        fb.playerUpdate(gameCon.getPlayer().getId(), info);
+//        fb.playerUpdate(gameCon.getPlayer().getId(), info);
     }
 
     void showActiveCombiFichesLeft() {
@@ -61,7 +58,7 @@ public class PlayerController implements FirebaseControllerObserver {
     public void setFiches(int fiches) {
         model.fiches = fiches;
         model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), fiches);
+//        fb.playerUpdateFiches(model.getId(), fiches);
     }
 
     private boolean hasCombination(){
@@ -80,18 +77,17 @@ public class PlayerController implements FirebaseControllerObserver {
     void lowerFiches(int count) {
         model.fiches -= count;
         model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), model.fiches);
+//        fb.playerUpdateFiches(model.getId(), model.fiches);
     }
 
     void higherFiches(int count) {
         model.fiches += count;
         model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), model.fiches);
+//        fb.playerUpdateFiches(model.getId(), model.fiches);
     }
 
     @Override
     public void update(DocumentSnapshot ds) {
-        System.out.println(ds.getData());
 //        if(gameCon.getCurrentPlayer()==this) return;
         model.fiches = (int) Math.round(ds.getDouble("fiches"));
         model.punten = (int) Math.round(ds.getDouble("punten"));
@@ -115,6 +111,6 @@ public class PlayerController implements FirebaseControllerObserver {
 
     public void addPoints(int i) {
         model.addPunten(i);
-        fb.changePointsPlayer(model.getId(), model.getPunten());
+//        fb.changePointsPlayer(model.getId(), model.getPunten());
     }
 }

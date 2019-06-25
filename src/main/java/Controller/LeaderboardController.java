@@ -15,7 +15,6 @@ public class LeaderboardController {
     public LeaderboardController(){
         SceneManager.getInstance().LeaderboardView(this);
         TreeMap<Double, String> map = SceneManager.getInstance().getApp().getFirebaseService().getTop3Player();
-        System.out.println(map.toString());
         Set<Double> lijst = map.keySet();
         Stack<Double> stack = new Stack<>();
         for(double getal: lijst){
@@ -30,7 +29,6 @@ public class LeaderboardController {
         String place3s =String.valueOf((int)place3);
 
 
-        System.out.println(stack.toString());
         changePlayer(map.get(place1), map.get(place2), map.get(place3));
         changePoints(place1s,place2s, place3s);
     }

@@ -1,7 +1,5 @@
 package Controller;
 
-import Firebase.FirebaseServiceOwn;
-import Managers.SceneManager;
 import javafx.application.Platform;
 
 import java.util.HashMap;
@@ -17,13 +15,13 @@ public class GameTimer {
     private Timer gameTimer;
     private boolean current = false;
     private boolean timerAvailable = true;
-    private FirebaseServiceOwn fb;
+//    private FirebaseServiceOwn fb;
 
     GameTimer(GameController gameCon, int time) {
         maxTime = time;
         this.gameCon = gameCon;
         timeLeft = time;
-        fb = SceneManager.getInstance().getApp().getFirebaseService();
+//        fb = SceneManager.getInstance().getApp().getFirebaseService();
 
         TimerTask start = new TimerTask() {
             @Override
@@ -40,13 +38,12 @@ public class GameTimer {
         timeLeft--;
         gameCon.getTimer().setTime(timeLeft);
         if (timeLeft == 0 && gameCon.getCurrentPlayer().getId().equals(gameCon.getMyPlayerId()) && timerAvailable) {
-            System.out.println("ik heb m geupdate");
             Map<String, Object> info = new HashMap<>();
             current = !current;
             info.put("endPhase", current);
             info.put("time", maxTime);
             timerAvailable = false;
-            fb.resetTimer(info);
+//            fb.resetTimer(info);
         }
     }
 
