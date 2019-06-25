@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.Pane?>
+<Pane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: rgb(162, 191, 196);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Group id="buttonGroup" />
+        <Group id="playerGroup" />
+        <Group id="roundGroup" />
+        <Group id="shopGroup" />
+        <Group id="timerGroup" />
+        <Group id="turnGroup" />
+        <Group id="mapGroup" />
+        <Group id="vervalGroup" />
+        <Group id="diceGroup" />
+        <Group id="redeployingGroup" />
+        <Group id="infoGroup"/>
+        <Group id="smallworldGroup"/>
+        <Group id="attackGroup"/>
+    </children>
+</Pane>

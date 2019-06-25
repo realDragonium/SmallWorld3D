@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.*?>
+<Group fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LeaderboardView">
+   <children>
+      <ImageView fitHeight="1080" fitWidth="1920" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@leaderboard.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="940.0" layoutY="800.0" mnemonicParsing="false" onAction="#drukKnop" text="Button" />
+      <Label fx:id="place1" layoutX="900.0" layoutY="290.0" text="Player1" textFill="#ff0404">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="place2" layoutX="900.0" layoutY="520.0" text="Player2" textFill="#ff0404">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="place3" layoutX="900.0" layoutY="740.0" text="Player3" textFill="#ff0404">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="points1" layoutX="785.0" layoutY="345.0" text="120">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="points2" layoutX="790.0" layoutY="565.0" text="95">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="points3" layoutX="790.0" layoutY="785.0" text="60">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="hoofdmenu" layoutX="899.0" layoutY="943.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="135.0" text="Back" />
+   </children>
+</Group>

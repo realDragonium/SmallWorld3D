@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeScreenView">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="root" maxHeight="1080.0" maxWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeScreenView">
    <children>
-      <ImageView  layoutX="3.0" layoutY="-1.0">
+   
+      <ImageView fitHeight="1080.0" fitWidth="1905.0" layoutX="3.0" layoutY="-1.0">
          <image>
             <Image url="@Background.jpg" />
          </image>
@@ -21,7 +17,7 @@
             <Image url="@SmallWorldLogo.png" />
          </image>
       </ImageView>
-      <HBox id="select" layoutX="690.0" layoutY="385.0" onMouseClicked="#createGame" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+      <HBox id="select" fx:id="" layoutX="690.0" layoutY="385.0" onMouseClicked="#createGame" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
       	  <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="50.0" layoutY="385.0">
 	         <image>
 	            <Image url="@Blank_Power.png" />
@@ -37,7 +33,7 @@
 	            <Image url="@Blank_Ras.png" />
 	         </image>
 	      </ImageView>
-
+	      
 	  </HBox>
 	  <HBox id="select" layoutX="690.0" layoutY="609.0" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
 	      <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="795.0" layoutY="609.0">
@@ -76,5 +72,10 @@
 	         </image>
 	      </ImageView>
 	  </HBox>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@Border_screen.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

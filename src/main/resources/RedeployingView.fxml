@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="pane" layoutX="1400" layoutY="300" prefHeight="600.0" prefWidth="116.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.RedeployingView">
+   <children>
+      <Button fx:id="add" onAction="#addButton" style="-fx-background-color: rgb(29, 196, 154);" text="add fiches">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+      <Button fx:id="remove" layoutY="50" onAction="#removeButton" style="-fx-background-color: rgb(234, 95, 77);" text="remove fiches">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+
+   </children>
+</Pane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<Group fx:id="root" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LobbySettingsView">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@backgroundLobby.jpg" />
+         </image></ImageView>
+      <ImageView layoutX="254.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@guiLobbyScreen.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="terug" layoutX="428.0" layoutY="561.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="Back" />
+      <Button fx:id="hosten" layoutX="940.0" layoutY="561.0" mnemonicParsing="false" onAction="#submit" prefHeight="35.0" prefWidth="100.0" text="Submit &amp; host" />
+      <ChoiceBox fx:id="box" layoutX="711.0" layoutY="479.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button layoutX="567.0" layoutY="479.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Select player amount" />
+      <Button layoutX="568.0" layoutY="514.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Enter lobby name" />
+      <TextField fx:id="lobbyNaam" layoutX="711.0" layoutY="514.0" onAction="#lobbyName" prefHeight="25.0" prefWidth="179.0" />
+   </children>
+</Group>
