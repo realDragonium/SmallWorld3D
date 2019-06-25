@@ -144,7 +144,7 @@ public class GameController {
         setGameTurn();
     }
 
-    void createGameParts() {
+    private void createGameParts() {
         createPlayer();
         createShop();
         createVerval();
@@ -188,7 +188,7 @@ public class GameController {
         gameTurn.newTurn(currentPlayer);
     }
 
-    PlayerController getPlayer(String id){
+    private PlayerController getPlayer(String id){
         return players.get(id);
     }
 
@@ -236,7 +236,7 @@ public class GameController {
         gameTurn = new GameTurn(this, currentPlayer);
     }
 
-    void createGameTimer(){
+    private void createGameTimer(){
         gameTimer = new GameTimer(this, 30);
     }
 
