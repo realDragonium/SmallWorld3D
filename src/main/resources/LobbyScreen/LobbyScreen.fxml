@@ -6,23 +6,25 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.GridPane?>
-<Group fx:id="root" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LobbyView">
-   <children>
-      <ImageView fitHeight="900.0" fitWidth="1600.0">
-         <image>
-            <Image url="@backgroundLobby.jpg" />
-         </image></ImageView>
-      <ImageView layoutX="254.0" layoutY="168.0">
-         <image>
-            <Image url="@guiLobbyScreen.jpg" />
-         </image>
-         <viewport>
-            <Rectangle2D />
-         </viewport>
-      </ImageView>
-      <Button fx:id="terug" layoutX="412.0" layoutY="562.0" mnemonicParsing="false" onAction="#terug" prefHeight="30.0" prefWidth="130.0" text="Terug" />
-      <Button fx:id="hosten" layoutX="649.0" layoutY="562.0" mnemonicParsing="false" onAction="#hostGame" prefHeight="30.0" prefWidth="130.0" text="Host game" />
-      <Button fx:id="join" layoutX="888.0" layoutY="562.0" mnemonicParsing="false" onAction="#join" prefHeight="30.0" prefWidth="130.0" text="Join" />
-      <GridPane fx:id="panel" layoutX="395.0" layoutY="264.0" />
-   </children>
+<Group fx:id="root" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8"
+       xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LobbyView">
+    <ImageView fitHeight="900.0" fitWidth="1600.0">
+
+        <Image url="@backgroundLobby.jpg"/>
+    </ImageView>
+    <ImageView layoutX="254.0" layoutY="168.0">
+
+        <Image url="@guiLobbyScreen.jpg"/>
+
+        <viewport>
+            <Rectangle2D/>
+        </viewport>
+    </ImageView>
+    <Button fx:id="terug" layoutX="412.0" layoutY="562.0" mnemonicParsing="false" onAction="#terug" prefHeight="30.0"
+            prefWidth="130.0" text="Terug"/>
+    <Button fx:id="hosten" layoutX="649.0" layoutY="562.0" mnemonicParsing="false" onAction="#hostGame"
+            prefHeight="30.0" prefWidth="130.0" text="Host game"/>
+    <Button fx:id="join" layoutX="888.0" layoutY="562.0" mnemonicParsing="false" onAction="#join" prefHeight="30.0"
+            prefWidth="130.0" text="Join"/>
+    <GridPane fx:id="panel" layoutX="395.0" layoutY="264.0"/>
 </Group>

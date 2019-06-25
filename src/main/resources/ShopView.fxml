@@ -4,108 +4,121 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane fx:id="pane" layoutX="1400" layoutY="300" prefHeight="800.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShopView">
-   <children>
-      <Text layoutY="-30" layoutX="30.0" text="Combination Shop">
-         <font>
-            <Font size="30.0" />
-         </font></Text>
-      <Group fx:id="item1" layoutY="0.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="0" fx:id="buy1" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 1">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
-      <Group fx:id="item2" layoutY="50.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="1" fx:id="buy2" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 2">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
-      <Group fx:id="item3" layoutY="100.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="2" fx:id="buy3" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 3">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
-      <Group fx:id="item4" layoutY="150.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="3" fx:id="buy4" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 4">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
-      <Group fx:id="item5" layoutY="200.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="4" fx:id="buy5" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 5">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
+<Pane fx:id="pane" layoutX="1400" layoutY="300" prefHeight="800.0" prefWidth="300.0"
+      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShopView">
+    <Text layoutY="-30" layoutX="30.0" text="Combination Shop">
+        <font>
+            <Font size="30.0"/>
+        </font>
+    </Text>
+    <Group fx:id="item1">
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="0" fx:id="buy1" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 1">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
+    <Group fx:id="item2" layoutY="50.0">
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="1" fx:id="buy2" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 2">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
+    <Group fx:id="item3" layoutY="100.0">
 
-      <Group fx:id="item6" layoutY="250.0">
-         <children>
-            <Text layoutX="0.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Text layoutX="100.0" layoutY="30.0" text="test">
-               <font>
-                  <Font size="21.0" />
-               </font></Text>
-            <Button id="5" fx:id="buy6" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem" onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 6">
-               <font>
-                  <Font size="21.0" />
-               </font></Button>
-         </children>
-      </Group>
-   </children>
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="2" fx:id="buy3" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 3">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
+    <Group fx:id="item4" layoutY="150.0">
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="3" fx:id="buy4" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 4">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
+    <Group fx:id="item5" layoutY="200.0">
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="4" fx:id="buy5" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 5">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
+
+    <Group fx:id="item6" layoutY="250.0">
+        <Text layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Text layoutX="100.0" layoutY="30.0" text="test">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
+        <Button id="5" fx:id="buy6" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
+                onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 6">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Button>
+    </Group>
 </Pane>

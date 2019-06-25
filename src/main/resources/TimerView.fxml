@@ -4,10 +4,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <Pane fx:id="pane" layoutX="1500" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TimerView">
-   <children>
       <Text fx:id="timer" layoutX="60.0" layoutY="60.0" opacity="0.75" strokeWidth="2.0" text="0:00" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
-         </font></Text>
-   </children>
+         </font>
+      </Text>
 </Pane>

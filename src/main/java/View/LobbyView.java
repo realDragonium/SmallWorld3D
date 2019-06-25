@@ -79,4 +79,7 @@ public class LobbyView implements LobbyObserver {
             addLobbyFirebase(test);
         }
     }
+
+    public void terug(ActionEvent actionEvent) {
+    }
 }

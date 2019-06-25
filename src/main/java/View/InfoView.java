@@ -6,22 +6,28 @@ import Observable.infoObservable;
 import Observer.infoObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 
-import java.awt.*;
 
 
 public class InfoView implements infoObserver {
+
     private Group infoGroup;
     private InfoController infoCon;
-    @FXML
-    public Group pane;
 
     @FXML
-    public TextArea infoText;
-
+    private MenuBar infoMenu;
     @FXML
-    public MenuItem button;
+    private Group pane;
+    @FXML
+    private TextArea infoText;
+    @FXML
+    private Button exit;
+    @FXML
+    private MenuItem button;
 
     public InfoView(Group groep, InfoController infoController) {
         infoGroup = groep;
