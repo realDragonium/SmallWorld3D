@@ -6,6 +6,7 @@ import Enum.AreaType;
 import Objects.RaceFiche;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,16 @@ public class AreaModel implements AreaObservable {
     private AreaProperty specialProperty = AreaProperty.none;
     private List<String> neighbours = new ArrayList<>();
     private boolean attackAble = true;
+    private Translate areaPoint;
 
-    public AreaModel(String id) {
+    public AreaModel(String id, Translate areaPoint) {
         this.id = id;
+        this.areaPoint = areaPoint;
         type = AreaType.valueOf(id.split("_")[0]);
+    }
+
+    public Translate getAreaPoint(){
+        return areaPoint;
     }
 
     public void setFiches(int fiches){

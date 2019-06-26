@@ -11,6 +11,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Stack;
@@ -40,10 +41,19 @@ public class AreaController implements FirebaseControllerObserver {
 ////        fb.AreaListener(model.getId(), this);
 //    }
 
-    public AreaController(String id, Map3DController mapCon, GameController gameCon){
-        model = new AreaModel(id);
+    public AreaController(String id, Map3DController mapCon, Translate areaPoint , GameController gameCon){
+        model = new AreaModel(id, areaPoint);
         map3DCon = mapCon;
         this.gameCon = gameCon;
+    }
+
+    public void createFiche(){
+        FicheController fiche = map3DCon.con3D.createFiche("yeet");
+        fiche.moveToPosition(model.getAreaPoint());
+    }
+
+    public Translate getAreaPoint(){
+        return model.getAreaPoint();
     }
 
     String getId() {

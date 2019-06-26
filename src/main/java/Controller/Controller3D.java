@@ -2,6 +2,7 @@ package Controller;
 
 import View.CameraView;
 import View.Map3DView;
+import View.fiche3dView;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.stage.Stage;
@@ -12,6 +13,7 @@ public class Controller3D{
     SubScene scene;
     Group map = new Group();
     Group camera = new Group();
+    Group fiches = new Group();
     GameController gameCon;
 
     public Controller3D(GameController gameCon, Group group){
@@ -19,7 +21,9 @@ public class Controller3D{
         scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
         createMap();
         createCamera();
+        createFiche("ratten");
         group.getChildren().add(scene);
+        world.getChildren().add(fiches);
     }
 
     public void setCamera(PerspectiveCamera camera){
@@ -39,5 +43,11 @@ public class Controller3D{
         Map3DController mapCon = new Map3DController(this, gameCon);
         new Map3DView(mapCon, map);
         world.getChildren().add(map);
+    }
+
+    public FicheController createFiche(String race){
+        FicheController ficheCon = new FicheController(gameCon);
+        new fiche3dView(ficheCon, fiches, race);
+        return ficheCon;
     }
 }

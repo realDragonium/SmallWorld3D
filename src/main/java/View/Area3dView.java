@@ -6,12 +6,16 @@ import Observer.AreaObserver;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
+import javafx.scene.input.PickResult;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Mesh;
 import javafx.scene.shape.MeshView;
 import Enum.AreaColor;
 import javafx.scene.shape.TriangleMesh;
+import javafx.scene.transform.Translate;
+
+import java.awt.event.MouseEvent;
 
 public class Area3dView implements AreaObserver {
 
@@ -30,15 +34,19 @@ public class Area3dView implements AreaObserver {
 
     }
 
+
     public void init(){
-        area.setOnMouseClicked(e -> areaCon.makeActive());
+        area.setOnMouseClicked(e -> {
+            PickResult pr = e.getPickResult();
+            areaCon.createFiche();
+            //System.out.println("areaPoints.put(" + area.getId() + " ,new Translate(" + Math.round(pr.getIntersectedPoint().getX() * 100) + "," + Math.round(pr.getIntersectedPoint().getY() * 100) + "," + Math.round( pr.getIntersectedPoint().getZ()* 100) + "));");
+        });
         area.setOnMouseEntered(e -> areaCon.hoverEntered());
         area.setOnMouseExited(e -> areaCon.hoverExited());
     }
 
     @Override
     public void update(AreaObservable ao) {
-        System.out.println("update!");
         if(ao.getActive()){
             PhongMaterial material = new PhongMaterial();
             material.setDiffuseColor(Color.GREY);
@@ -58,7 +66,6 @@ public class Area3dView implements AreaObserver {
         }
         else{
             PhongMaterial material = new PhongMaterial();
-            System.out.println(AreaColor.valueOf(area.getId().substring(0, (area.getId().length() - 4))).getColor());
             material.setDiffuseColor(AreaColor.valueOf(area.getId().substring(0, (area.getId().length() - 4))).getColor());
             area.setMaterial(material);
 
