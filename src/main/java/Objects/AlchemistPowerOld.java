@@ -3,7 +3,7 @@ package Objects;
 import Controller.CombinationController;
 import Enum.TurnFase;
 
-public class AlchemistPower implements Power {
+public class AlchemistPowerOld implements PowerOld {
 
 
     private TurnFase usingPhase = TurnFase.redeploying;

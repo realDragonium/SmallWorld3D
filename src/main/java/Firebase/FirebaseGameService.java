@@ -16,8 +16,12 @@ public class FirebaseGameService {
         gameRef = fb.collection("Games").document(gameName);
     }
 
+    public void setTest(String itemId, Object object){
+        gameRef.collection("Shop").document(itemId).set(object);
+    }
+
     public void updatePlayer(String playerId, Map<String, Object> map){
-        gameRef.collection("Players").document(playerId).update(map);
+        gameRef.collection("Players").document(playerId).set(map);
     }
 
     public void updateArea(String playerId, Map<String, Object> map){

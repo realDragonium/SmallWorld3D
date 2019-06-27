@@ -2,15 +2,23 @@ package Controller;
 
 import Enum.TurnFase;
 import Model.CombinationModel;
-import Objects.Power;
+import Objects.PowerOld;
 import Observer.CombinationObserver;
+import Enum.RaceEnum;
+import Enum.PowerEnum;
+import Race.Race;
+import Power.Power;
+
 
 public class CombinationController {
 
     private RaceController race;
-    private Power power;
+    private PowerOld powerOld;
     private PlayerController player;
     private CombinationModel model;
+
+    private Race race2;
+    private Power power2;
 
     public void registerObserver(CombinationObserver obs){
         model.register(obs);
@@ -20,12 +28,27 @@ public class CombinationController {
         return model.isActive();
     }
 
-    public CombinationController(RaceController race, Power power){
+    public CombinationController(RaceController race, PowerOld powerOld){
         this.race = race;
-        this.power = power;
-        power.setCombiCon(this);
-        model = new CombinationModel(race.getId(), power.getId());
+        this.powerOld = powerOld;
+        powerOld.setCombiCon(this);
+        model = new CombinationModel(race.getId(), powerOld.getId());
         //SceneManager.getInstance().loadCombination(this);
+    }
+
+    public CombinationController(){}
+
+    public CombinationController(String race, String power){
+        this.race2 = RaceEnum.valueOf(race).getRace();
+        this.power2 = PowerEnum.valueOf(power).getPower();
+    }
+
+    public Power getPower2() {
+        return power2;
+    }
+
+    public Race getRace2(){
+        return race2;
     }
 
     public void setPlayer(PlayerController player){
@@ -40,8 +63,8 @@ public class CombinationController {
         if(race.checkPhaseActoin(curPhase)){
             race.doKractAction();
         }
-        if(power.checkPhaseAction(curPhase)){
-            power.doAction();
+        if(powerOld.checkPhaseAction(curPhase)){
+            powerOld.doAction();
         }
     }
 
@@ -49,8 +72,8 @@ public class CombinationController {
         return race;
     }
 
-    public Power getPower(){
-        return power;
+    public PowerOld getPowerOld(){
+        return powerOld;
     }
 
 

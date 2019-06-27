@@ -4,6 +4,7 @@ import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
 import Objects.*;
 import Observer.ShopObserver;
+import Objects.PowerOld;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 
@@ -15,7 +16,7 @@ public class ShopController implements FirebaseGameObserver {
     GameController gameCon;
     ShopModel model = new ShopModel();
     private List<RaceController> races = new ArrayList<>();
-    private List<Power> powers = new ArrayList<>();
+    private List<PowerOld> powerOlds = new ArrayList<>();
 
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
@@ -53,18 +54,18 @@ public class ShopController implements FirebaseGameObserver {
         races.add(new RaceController(new TritansKracht(), "tritans", 10));
         races.add(new RaceController(new HumanKracht(), "humans", 9));
 
-        powers.add(new AlchemistPower());
-        powers.add(new WelthPower());
-        powers.add(new AlchemistPower());
-        powers.add(new WelthPower());
-        powers.add(new AlchemistPower());
+        powerOlds.add(new AlchemistPowerOld());
+        powerOlds.add(new WelthPowerOld());
+        powerOlds.add(new AlchemistPowerOld());
+        powerOlds.add(new WelthPowerOld());
+        powerOlds.add(new AlchemistPowerOld());
     }
 
     private void makeNewCombination() {
         RaceController race = getRandomRace();
-        Power power = getRandomPower();
-        if (race != null && power != null) {
-            CombinationController combination = new CombinationController(race, power);
+        PowerOld powerOld = getRandomPower();
+        if (race != null && powerOld != null) {
+            CombinationController combination = new CombinationController(race, powerOld);
             race.setCombiCon(combination);
             model.addShopItem(combination);
         }
@@ -77,9 +78,9 @@ public class ShopController implements FirebaseGameObserver {
         return null;
     }
 
-    private Power getRandomPower() {
-        if (powers.size() != 0) {
-            return powers.remove(0);
+    private PowerOld getRandomPower() {
+        if (powerOlds.size() != 0) {
+            return powerOlds.remove(0);
         }
         return null;
     }

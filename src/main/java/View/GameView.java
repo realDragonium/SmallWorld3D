@@ -78,7 +78,7 @@ public class GameView implements GameObserver {
 
     private void basicViewLayout() {
         root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));

@@ -1,6 +1,8 @@
 package Controller;
 
+import Firebase.FireBaseObjectTest;
 import Firebase.FirebaseGameService;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,20 +14,17 @@ public class FirebaseGameController {
     private FirebaseGameService service;
 
     public FirebaseGameController(String gameName){
-        service  = new FirebaseGameService(gameName);
-//        testPlayerUpdate("player1");
+        service  = new FirebaseGameService("test");
+//        teester();
     }
 
-    private void testPlayerUpdate(String playerId){
+    private void teester(){
         Map<String, Object> map = new HashMap<>();
-        List<String> lijst = new ArrayList<>();
-        lijst.add("test4");
-        lijst.add("test5");
-        lijst.add("test6");
-        map.put("fiches", 55);
-        map.put("points", 50);
-        map.put("lijst", lijst);
-        service.updatePlayer(playerId, map);
+        map.put("item0", new FireBaseObjectTest("test0", "test0"));
+        map.put("item1", new FireBaseObjectTest("test1", "test1"));
+        map.put("item2", new FireBaseObjectTest("test2", "test2"));
+        map.forEach((s, o) -> service.setTest(s, o));
+
     }
 
     public void playerUpdate(PlayerController player){
@@ -41,8 +40,24 @@ public class FirebaseGameController {
     }
 
     public void shopUpdate(ShopController shop){
-        shop.getShopItems();
+        List<CombinationController> items = shop.getShopItems();
+        List<Pair<String, String>> itemsFB = new ArrayList<>();
+        for(CombinationController con : items){
+            itemsFB.add(new Pair<>(con.getRace().getId(),
+            con.getPowerOld().getId()));
+        }
     }
+
+
+
+    public void getAreaInfo(String id){
+        Pair<String, String> pair = new Pair<>("test", "test");
+
+    }
+
+
+
+
 
     public void areaListener(AreaController area){
         service.areaListener(area.getId(), area);

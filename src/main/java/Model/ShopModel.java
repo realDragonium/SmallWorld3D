@@ -57,7 +57,7 @@ public class ShopModel implements ShopObservable {
     @Override
     public String getPower(int item) {
         if(shopItems.size() > item) {
-            return shopItems.get(item).getPower().getId();
+            return shopItems.get(item).getPowerOld().getId();
         }
         else{
             return "none";

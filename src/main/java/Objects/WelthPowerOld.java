@@ -3,7 +3,7 @@ package Objects;
 import Controller.CombinationController;
 import Enum.TurnFase;
 
-public class WelthPower implements Power {
+public class WelthPowerOld implements PowerOld {
 
     private String id = "Welth";
     private boolean used = false;
