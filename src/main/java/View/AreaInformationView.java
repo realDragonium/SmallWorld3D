@@ -19,16 +19,18 @@ public class AreaInformationView implements AreaInformationObserver {
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
         this.group = group;
-        areaInfoCon.registerObserver(this);
+
     }
 
     public void initialize(){
         group.getChildren().add(pane);
+        areaInfoCon.registerObserver(this);
     }
 
     @Override
     public void update(AreaInformationObservable ao) {
         group.setVisible(ao.isActive());
+        System.out.println(ao.getArea());
         if(ao.getArea().getOwnerPlayer() != null){
             areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
         }
