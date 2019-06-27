@@ -95,7 +95,7 @@ public class InfoModel implements infoObservable {
             "redeploy do not have to be adjacent or contiguous to the " +
             "Region(s) they fled from. If all of a player's Regions were " +
             "attacked this turn, leaving him with some Race tokens in hand " +
-            "but none on the board, he may redeploy these as if he was " +
+            "but PhaseNone on the board, he may redeploy these as if he was " +
             "doing a First Conquest, on his next turn. " +
             "When a Region defended by a single token is captured, the " +
             "defending token is discarded. This will usually be the case if the " +

@@ -3,12 +3,13 @@ package Controller;
 import Enum.TurnFase;
 import Firebase.FirebaseControllerObserver;
 import Firebase.FirebaseServiceOwn;
-import Managers.SceneManager;
+import Phase.*;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 
 class GameTurn implements FirebaseControllerObserver {
 
+    private Phase phase;
     GameController gameCon;
     private FirebaseServiceOwn fb;// = SceneManager.getInstance().getApp().getFirebaseService();
 
@@ -23,9 +24,19 @@ class GameTurn implements FirebaseControllerObserver {
 //        fb.timerListen(this);
         this.gameCon = gameCon;
         currentPlayer = player;
-        currentPhase = TurnFase.none;
-
+//        currentPhase = TurnFase.none;
+        phase = new PhaseNone();
 //        SceneManager.getInstance().switchToSpectatingView();
+    }
+
+    GameTurn(GameController gameCon){
+        this.gameCon = gameCon;
+        phase = new PhaseNone();
+    }
+
+    public void nextPhase(){
+        phase = phase.nextPhase();
+        gameCon.changeGameView(phase.changeView());
     }
 
     private void endPhase() {

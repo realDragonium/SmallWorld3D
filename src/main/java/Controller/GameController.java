@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.SubScene;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import Enum.GameViewEnum;
@@ -59,6 +60,7 @@ public class GameController {
     public GameController(ApplicationController appCon){
         this.appCon = appCon;
         model = new GameModel(8, 8);
+        gameTurn = new GameTurn(this);
 //        startGame();
     }
 
@@ -235,6 +237,14 @@ public class GameController {
 
     public void removeFromGameView(GameViewEnum go){
         model.removeActiveView(go);
+    }
+
+    public void changeGameView(List<GameViewEnum> views){
+        model.changeGameView(views);
+    }
+
+    public void nextPhase(){
+        gameTurn.nextPhase();
     }
 
     public void register(GameObserver go){

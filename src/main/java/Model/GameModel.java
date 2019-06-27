@@ -17,7 +17,6 @@ public class GameModel implements GameObservable {
     public GameModel(int rounds, int turn){
         numberOfRounds = rounds;
         turnsARound = turn;
-        activeViews.add(GameViewEnum.BUTTON);
     }
 
     public int getNumberOfRounds(){
@@ -30,10 +29,17 @@ public class GameModel implements GameObservable {
 
     public void addActiveView(GameViewEnum view){
         activeViews.add(view);
+        notifyObserver();
     }
 
     public void removeActiveView(GameViewEnum view){
         activeViews.remove(view);
+        notifyObserver();
+    }
+
+    public void changeGameView(List<GameViewEnum> views){
+        activeViews = views;
+        notifyObserver();
     }
 
 

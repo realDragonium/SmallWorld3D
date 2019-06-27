@@ -19,6 +19,6 @@ public class ButtonController {
         gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
     }
 
-    public void nextPhase(){        }
+    public void nextPhase(){ gameCon.nextPhase(); }
 
 }
