@@ -9,7 +9,7 @@
     <ImageView fitHeight="800.0" fitWidth="1600.0">
         <Image url="@background.png"/>
     </ImageView>
-    <Button fx:id="exit" text="exit" layoutX="1500" layoutY="700" onAction="#exitInfoScreen"/>
+    <Button fx:id="exit" text="exit" layoutX="100" layoutY="700" onAction="#exitInfoScreen"/>
     <MenuBar fx:id="infoMenu" layoutY="2.0" prefHeight="25.0" prefWidth="1600.0">
         <Menu mnemonicParsing="false" text="Races">
             <MenuItem mnemonicParsing="false" onAction="#showHumans" text="Humans"/>

@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Map2DModel;
+import View.AreaView;
 import javafx.scene.Group;
 
 import java.util.HashMap;
@@ -18,7 +19,8 @@ public class Map2DController {
 	}
 
 	public void createArea(Group area){
-		//areas.put(area.getChildren().get(0).getId(), new AreaController( area, this, gameCon));
+		areas.put(area.getChildren().get(0).getId(), new AreaController( area, this, gameCon));
+		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
 	}
 
 	List<AreaController> getActiveAreas(){

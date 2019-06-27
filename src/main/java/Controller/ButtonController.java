@@ -12,15 +12,13 @@ public class ButtonController {
     }
 
     public void showInfo() {
-        SceneManager.getInstance().addToStandardScene("infoGroup");
+
     }
 
     public void fichesOver() {
         gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
     }
 
-    public void nextPhase(){
-        //gameCon.getGameTurn().endPhase();
-         }
+    public void nextPhase(){        }
 
 }

@@ -4,7 +4,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane fx:id="pane" layoutX="1400" layoutY="300" prefHeight="800.0" prefWidth="300.0"
+<Pane fx:id="pane" layoutX="1400" layoutY="300" prefHeight="300.0" prefWidth="300.0"
       xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShopView">
     <Text layoutY="-30" layoutX="30.0" text="Combination Shop">
         <font>

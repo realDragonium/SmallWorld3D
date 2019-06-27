@@ -35,6 +35,10 @@ public class AreaModel implements AreaObservable {
         type = AreaType.valueOf(id.split("_")[0]);
     }
 
+    public AreaModel(String id) {
+        this.id = id;
+    }
+
     public Translate getAreaPoint(){
         return areaPoint;
     }

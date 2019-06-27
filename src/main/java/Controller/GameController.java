@@ -51,13 +51,12 @@ public class GameController {
         setMuFirebaseStufF();
 //        SceneManager.getInstance().createGameView(this);
 //        SceneManager.getInstance().makeMap();
-        createGameParts();
         startGame();
-        createGameTimer();
     }
 
     public GameController(ApplicationController appCon){
         this.appCon = appCon;
+//        startGame();
     }
 
     public void create3dView(Group group){
@@ -152,45 +151,6 @@ public class GameController {
         setGameTurn();
     }
 
-    private void createGameParts() {
-        createPlayer();
-        createShop();
-        createVerval();
-//        SceneManager.getInstance().loadSmallworld();
-        createTurnsAndRounds();
-        diceCon = new DiceController(this);
-        new InfoController(this);
-        new ButtonController(this);
-        timeCon = new TimerController(getGameTurn());
-        redCon = new RedeployingController(this);
-
-        createAttCon();
-        mapCon = new Map2DController(this);
-    }
-
-
-
-    private void createVerval() {
-        vervCon = new VervallenController(this);
-    }
-
-    private void createPlayer(){
-        players.put("player0", new PlayerController("player0", this));
-        players.put("player1", new PlayerController("player1", this));
-        players.put("player2", new PlayerController("player2", this));
-        players.put("player3", new PlayerController("player3", this));
-        players.put("player4", new PlayerController("player4", this));
-        myPlayer = players.get(myPlayerId);
-    }
-
-    private void createShop(){
-        shopCon = new ShopController(this);
-    }
-
-    private void createTurnsAndRounds(){
-        roundCon = new RoundController(this);
-        turnCon = new TurnController(this);
-    }
 
     private void setGameTurn(){
         gameTurn.newTurn(currentPlayer);
@@ -202,10 +162,6 @@ public class GameController {
 
     public PlayerController getCurrentPlayer(){
         return currentPlayer;
-    }
-
-    private void createAttCon(){
-        attCon = new AttackController(this);
     }
 
     RoundController getRoundCon(){
@@ -248,10 +204,7 @@ public class GameController {
         gameTimer = new GameTimer(this, 30);
     }
 
-    void nextTurn() {
-
-        turnCon.nextTurn();
-    }
+    void nextTurn() { turnCon.nextTurn(); }
 
     PlayerController getMyPlayer() {
         return myPlayer;

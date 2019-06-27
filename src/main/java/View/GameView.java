@@ -24,8 +24,8 @@ public class GameView {
     public void initialize() {
 
         root.getChildren().add(headPane);
-//        gameCon.createMap2DView(mapGroup);
-        gameCon.create3dView(Group3d);
+        gameCon.createMap2DView(mapGroup);
+//        gameCon.create3dView(Group3d);
         gameCon.createPlayerView(playerGroup, "player1");
         gameCon.createPlayerView(playerGroup, "player2");
         gameCon.createPlayerView(playerGroup, "player3");
@@ -34,12 +34,12 @@ public class GameView {
         gameCon.createTurnView(turnGroup);
         gameCon.createButtonView(buttonGroup);
         gameCon.createShopView(shopGroup);
-        gameCon.createTimerView(timerGroup);
-        gameCon.createVervalView(vervalGroup);
-        gameCon.createDiceView(diceGroup);
-        gameCon.createRedeployView(redeployingGroup);
+//        gameCon.createTimerView(timerGroup);
+//        gameCon.createVervalView(vervalGroup);
+//        gameCon.createDiceView(diceGroup);
+//        gameCon.createRedeployView(redeployingGroup);
 //        gameCon.createInfoView(infoGroup);
-        gameCon.createAttackView(attackGroup);
+//        gameCon.createAttackView(attackGroup);
 
     }
 

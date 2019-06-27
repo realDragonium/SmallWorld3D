@@ -15,11 +15,6 @@ public interface TimerObservable {
     void register(TimerObserver to);
 
     /**
-     * @param to unregisters an observer to the observable
-     */
-    void unregister(TimerObserver to);
-
-    /**
      * @return an integer of the seconds
      */
     int getSeconds();

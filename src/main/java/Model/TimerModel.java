@@ -8,7 +8,6 @@ import javax.swing.event.ChangeListener;
 
 public class TimerModel implements TimerObservable, ChangeListener {
 
-
     private int elapsedTime;
     private TimerObserver observer;
     private int timeAmount = 10;
@@ -24,12 +23,9 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     @Override
     public void register(TimerObserver to) {
+        System.out.println(to);
         observer = to;
-    }
-
-    @Override
-    public void unregister(TimerObserver to) {
-        observer = null;
+        System.out.println(to);
     }
 
     @Override
@@ -39,7 +35,7 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     @Override
     public void notifyAllObservers() {
-
+        System.out.println(observer);
         observer.update(this);
     }
 
