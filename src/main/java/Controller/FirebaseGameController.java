@@ -40,6 +40,10 @@ public class FirebaseGameController {
         service.updateArea(area.getId(), map);
     }
 
+    public void shopUpdate(ShopController shop){
+        shop.getShopItems();
+    }
+
     public void areaListener(AreaController area){
         service.areaListener(area.getId(), area);
     }

@@ -29,7 +29,7 @@ public class CameraController implements Animatable {
     }
 
     public void rotateToAngle(int xAngle, int yAngle, int seconds){
-        AnimationsManager.getInstance().createRotateToAnimation(this, xAngle, yAngle, seconds);
+        AnimationsManager.getInstance().createRotateToAnimation(this, xAngle, yAngle, seconds, false);
     }
 
     @Override

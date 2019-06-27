@@ -6,6 +6,7 @@ import Firebase.FirebaseGameObserver;
 import Model.AreaModel;
 import Objects.RaceFiche;
 import Observer.AreaObserver;
+import View.NumberView;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -28,6 +29,7 @@ public class AreaController implements FirebaseGameObserver {
     private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
+    private NumberController numberCon;
 //    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
 
 //    public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
@@ -157,9 +159,6 @@ public class AreaController implements FirebaseGameObserver {
         return model.getNumberOfFiches();
     }
 
-    void addFiche(RaceFiche fiche) {
-        model.addFiche(fiche);
-    }
 
     public AreaType getAreaType() {
         return model.getAreaType();
@@ -191,6 +190,16 @@ public class AreaController implements FirebaseGameObserver {
             value += fiche.getDefenceValue();
         }
         return value;
+    }
+
+    public void createNumber(Group group){
+        numberCon = new NumberController();
+        new NumberView(numberCon, group);
+    }
+
+    public void setNumber(int number){
+        System.out.println("setting");
+        numberCon.setNumber(number);
     }
 
     public void showInfo() {

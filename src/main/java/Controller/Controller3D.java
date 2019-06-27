@@ -49,4 +49,8 @@ public class Controller3D{
         new fiche3dView(ficheCon, fiches, race);
         return ficheCon;
     }
+
+    public void add3dObject(Node number) {
+        map.getChildren().add(number);
+    }
 }

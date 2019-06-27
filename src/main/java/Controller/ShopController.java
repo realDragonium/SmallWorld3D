@@ -84,6 +84,10 @@ public class ShopController implements FirebaseGameObserver {
         return null;
     }
 
+    public List<CombinationController> getShopItems(){
+        return model.getShopItems();
+    }
+
     @Override
     public void update(DocumentSnapshot ds) {
         if(ds.get("bought")==null) return;

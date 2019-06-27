@@ -12,12 +12,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import Enum.GameViewEnum;
+import javafx.scene.transform.Translate;
 
 public class GameController {
 
     SubScene subScene3d;
 
     private FirebaseGameController fbGame = new FirebaseGameController("test");
+    Translate player1Pos = new Translate(600, 0, 0);
+
     private Controller3D con3d;
     private ApplicationController appCon;
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
@@ -66,6 +69,12 @@ public class GameController {
 //        startGame();
     }
 
+    public void setPlayerPositions(){
+        players.get("player1").setPlayerPosition(player1Pos);
+        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+    }
+
     public void create3dView(Group group){
         con3d = new Controller3D(this, group);
     }
@@ -80,6 +89,8 @@ public class GameController {
         players.put(id, player);
         fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
+
+
 
     public void createRoundView(Group group) {
         roundCon = new RoundController(this);

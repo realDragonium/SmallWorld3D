@@ -1,6 +1,7 @@
 package Observable;
 
 import Observer.AreaObserver;
+import javafx.scene.transform.Translate;
 
 /**
  * This interface is the AreaObservable which is implemented by the AreaModel class.
@@ -36,4 +37,6 @@ public interface AreaObservable {
     boolean isHovering();
 
     boolean isShowing();
+
+    Translate getAreaPoint();
 }

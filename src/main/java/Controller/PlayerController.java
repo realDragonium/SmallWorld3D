@@ -4,6 +4,7 @@ import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
 import Observer.PlayerObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,13 +25,16 @@ public class PlayerController implements FirebaseGameObserver {
 //        fb.playerListen(playerID, this);
     }
 
+    public void setPlayerPosition(Translate pos){
+        model.setPlayerPos(pos);
+    }
+
     void buyFromShop(CombinationController combo, int costs) {
         model.removePoints(costs);
         combinations.add(combo);
         combo.setPlayer(this);
-        setFiches(combo.getRace().fichesCount());
         Map<String, Object> info = new HashMap<>();
-        info.put("fiches", model.getFiches());
+        info.put("fiches", model.getRaceFichesAmount());
         info.put("points", model.getPoints());
 //        fb.playerUpdate(gameCon.getRace().getId(), info);
     }
@@ -54,10 +58,13 @@ public class PlayerController implements FirebaseGameObserver {
         model.register(po);
     }
 
-    public void setFiches(int fiches) {
-        model.fiches = fiches;
-        model.notifyObserver();
+    public void addRaceFiche(FicheController fiche) {
+        model.addRaceFiche(fiche);
 //        fb.playerUpdateFiches(model.getId(), fiches);
+    }
+
+    public FicheController removeRaceFiche(){
+        return model.removeRaceFiche();
     }
 
     private boolean hasCombination(){
@@ -71,22 +78,11 @@ public class PlayerController implements FirebaseGameObserver {
         return false;
     }
 
-    void lowerFiches(int count) {
-        model.fiches -= count;
-        model.notifyObserver();
-//        fb.playerUpdateFiches(model.getId(), model.fiches);
-    }
-
-    void higherFiches(int count) {
-        model.fiches += count;
-        model.notifyObserver();
-//        fb.playerUpdateFiches(model.getId(), model.fiches);
-    }
 
     @Override
     public void update(DocumentSnapshot ds) {
 //        if(gameCon.getCurrentPlayer()==this) return;
-        model.fiches = (int) Math.round(ds.getDouble("fiches"));
+//        model.fiches = (int) Math.round(ds.getDouble("fiches"));
         model.points = (int) Math.round(ds.getDouble("points"));
         model.notifyObserver();
     }
@@ -127,4 +123,9 @@ public class PlayerController implements FirebaseGameObserver {
         model.connected = true;
     }
 
+
+    public boolean hasEnoughFiches(int fichesNeeded) {
+        System.out.println(model.getRaceFichesAmount());
+        return model.getRaceFichesAmount() >= fichesNeeded;
+    }
 }
