@@ -47,6 +47,12 @@ public class AreaController implements FirebaseControllerObserver {
         this.gameCon = gameCon;
     }
 
+    public AreaController(Group area, Map2DController map2DController, GameController gameCon) {
+        model = new AreaModel(area.getChildren().get(0).getId());
+        map2DCon = map2DController;
+        this.gameCon = gameCon;
+    }
+
     public void createFiche(){
         FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
         map3DCon.placeFiche(this, fiche);

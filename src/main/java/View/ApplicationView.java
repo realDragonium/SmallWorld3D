@@ -1,9 +1,9 @@
 package View;
 
 import Controller.ApplicationController;
-import Enum.ApplicatieViewEnum;
-import Observable.ApplicatieObservable;
-import Observer.ApplicatieObserver;
+import Enum.ApplicationViewEnum;
+import Observable.ApplicationObservable;
+import Observer.ApplicationObserver;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApplicationView implements ApplicatieObserver {
+public class ApplicationView implements ApplicationObserver {
     private Scene scene;
     private Stage primaryStage;
     private Group root = new Group();
@@ -35,7 +35,7 @@ public class ApplicationView implements ApplicatieObserver {
     }
 
     private void setStartScreen(){
-        appCon.setActiveView(ApplicatieViewEnum.GAME);
+        appCon.setActiveView(ApplicationViewEnum.GAME);
     }
 
     private void createViews(){
@@ -57,21 +57,13 @@ public class ApplicationView implements ApplicatieObserver {
         primaryStage.show();
     }
 
-    private void setActive(ApplicatieViewEnum view) {
+    private void setActive(ApplicationViewEnum view) {
         root.getChildren().clear();
         root.getChildren().add(groups.get(view.getStringValue()));
     }
 
-    private void addSubScene(SubScene subScene){
-        if(!root.getChildren().contains(subScene)) {
-            System.out.println("adding 3d");
-            root.getChildren().add(subScene);
-        }
-    }
-
     @Override
-    public void update(ApplicatieObservable ao) {
+    public void update(ApplicationObservable ao) {
         setActive(ao.getCurrentView());
-        if(ao.get3dScene() != null) addSubScene(ao.get3dScene());
     }
 }

@@ -250,7 +250,7 @@ public class FirebaseServiceOwn {
     private void setAreas(String lobbyName) {
         List<QueryDocumentSnapshot> list = null;
         list = getQuerySnapshot(firestore.collection("Maps").document("4PlayerMap").collection("Areas").get()).getDocuments();
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         for(QueryDocumentSnapshot iets : list){
             map.put("fiches", iets.get("fiches"));
             colRef.document(lobbyName).collection("Areas").document(iets.getId()).set(map);

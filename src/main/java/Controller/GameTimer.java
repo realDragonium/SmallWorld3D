@@ -36,6 +36,7 @@ public class GameTimer {
 
     private void timerAction(){
         timeLeft--;
+        System.out.println(timeLeft);
         gameCon.getTimer().setTime(timeLeft);
         if (timeLeft == 0 && gameCon.getCurrentPlayer().getId().equals(gameCon.getMyPlayerId()) && timerAvailable) {
             Map<String, Object> info = new HashMap<>();

@@ -31,7 +31,7 @@ public class LobbyView implements LobbyObserver {
         group.getChildren().add(root);
         lobbyCon.register(this);
         panel.setVgap(10);
-        List<String> lijst = lobbyCon.getFirebaseLobbyNamen();   // Gets lobbynames from firebase and puts in a list
+        List<String> lijst = null;   // Gets lobbynames from firebase and puts in a list
 
         for(String lobbyNaam: lijst) {
             Button btn = new Button(lobbyNaam);

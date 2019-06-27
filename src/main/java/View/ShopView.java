@@ -10,13 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-/**
- *  Gemaakt door Yoran op 17-6-2019.
- *  ShopView class weergeeft a.h.v. een FXML tag de buttons, waardoor de speler een ras kan kopen.
- *
- */
-
-
 public class ShopView implements ShopObserver {
 
     @FXML
@@ -35,7 +28,6 @@ public class ShopView implements ShopObserver {
     public Group item5;
     public Group item6;
 
-
     private Button lastActiveButton;
     private ShopController shopCon;
     Group group;
@@ -43,7 +35,6 @@ public class ShopView implements ShopObserver {
     public ShopView(Group group, ShopController shopCon){
         this.shopCon = shopCon;
         this.group = group;
-        shopCon.registerObserver(this);
     }
 
     @FXML
@@ -59,6 +50,8 @@ public class ShopView implements ShopObserver {
 
     public void initialize() {
         group.getChildren().add(pane);
+        shopCon.registerObserver(this);
+        shopCon.makeItems();
     }
 
 
@@ -69,7 +62,7 @@ public class ShopView implements ShopObserver {
     @Override
     public void update(ShopObservable so) {
         for(int i = 0; i < 6; i++) {
-            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getPlayer(i));
+            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getRace(i));
             ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(1)).setText(so.getPower(i));
         }
     }

@@ -1,17 +1,26 @@
 package View;
 
 import Controller.GameController;
+import Observable.GameObservable;
+import Observer.GameObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import Enum.GameViewEnum;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class GameView {
+public class GameView implements GameObserver {
 
     private Group root;
+    private Group notBasicRoot = new Group();
     private GameController gameCon;
+    private Map<String, Group> groups = new HashMap<>();
 
     @FXML
-    private Group Group3d, areaInfoGroup, mapGroup, buttonGroup, playerGroup, roundGroup, turnGroup, shopGroup, timerGroup, vervalGroup, diceGroup, redeployingGroup, infoGroup, attackGroup;
+    private Group Group3d, mapGroup, buttonGroup, playerGroup, roundGroup, turnGroup, shopGroup, timerGroup,
+            vervalGroup, diceGroup, redeployingGroup, infoGroup, attackGroup;
     @FXML
     private Pane headPane;
 
@@ -22,27 +31,68 @@ public class GameView {
     }
 
     public void initialize() {
-
-        root.getChildren().add(headPane);
-//        gameCon.createMap2DView(mapGroup);
-        gameCon.create3dView(Group3d);
-        gameCon.createPlayerView(playerGroup, "player1");
-        gameCon.createPlayerView(playerGroup, "player2");
-        gameCon.createPlayerView(playerGroup, "player3");
-        gameCon.createPlayerView(playerGroup, "player4");
-        gameCon.createRoundView(roundGroup);
-        gameCon.createTurnView(turnGroup);
-        gameCon.createButtonView(buttonGroup);
-        gameCon.createShopView(shopGroup);
-        gameCon.createTimerView(timerGroup);
-        gameCon.createVervalView(vervalGroup);
-        gameCon.createDiceView(diceGroup);
-        gameCon.createRedeployView(redeployingGroup);
-        gameCon.createAreaInfoView(areaInfoGroup);
-//        gameCon.createInfoView(infoGroup);
-        gameCon.createAttackView(attackGroup);
+        createGroups();
+        createViews();
+        basicViewLayout();
+        gameCon.register(this);
 
     }
 
+    private void createGroups(){
+        groups.put("map2D", new Group());
+        groups.put("map3D", new Group());
+        groups.put("players", new Group());
+        groups.put("round", new Group());
+        groups.put("turn", new Group());
+        groups.put("button", new Group());
+        groups.put("shop", new Group());
+        groups.put("timer", new Group());
+        groups.put("verval", new Group());
+        groups.put("dice", new Group());
+        groups.put("redeploy", new Group());
+        groups.put("info", new Group());
+        groups.put("attack", new Group());
+        groups.put("areaInfo", new Group());
+    }
 
+    private void createViews(){
+        gameCon.createMap2DView(groups.get("map2D"));
+        gameCon.create3dView(groups.get("map3D"));
+        gameCon.createPlayerView(groups.get("players"), "player1");
+        gameCon.createPlayerView(groups.get("players"), "player2");
+        gameCon.createPlayerView(groups.get("players"), "player3");
+        gameCon.createPlayerView(groups.get("players"), "player4");
+        gameCon.createRoundView(groups.get("round"));
+        gameCon.createTurnView(groups.get("turn"));
+        gameCon.createButtonView(groups.get("button"));
+        gameCon.createShopView(groups.get("shop"));
+        gameCon.createTimerView(groups.get("timer"));
+        gameCon.createVervalView(groups.get("verval"));
+        gameCon.createDiceView(groups.get("dice"));
+        gameCon.createRedeployView(groups.get("redeploy"));
+        gameCon.createInfoView(groups.get("info"));
+        gameCon.createAttackView(groups.get("attack"));
+        gameCon.createAreaInfoView(groups.get("areaInfo"));
+    }
+
+    private void basicViewLayout() {
+        root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
+        root.getChildren().add(notBasicRoot);
+    }
+
+    private void setActive(List<GameViewEnum> views){
+        notBasicRoot.getChildren().clear();
+        views.forEach(s -> notBasicRoot.getChildren().add(groups.get(s.getStringValue())));
+    }
+
+
+    @Override
+    public void update(GameObservable go) {
+        setActive(go.getCurrenViews());
+    }
 }

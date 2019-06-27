@@ -1,17 +1,14 @@
 package Controller;
 
-import Enum.ApplicatieViewEnum;
+import Enum.ApplicationViewEnum;
 import Model.ApplicationModel;
 import Objects.FXMLLOADER;
-import Observer.ApplicatieObserver;
+import Observer.ApplicationObserver;
 import View.GameView;
 import View.HomeScreenView;
 import View.LoginView;
 import javafx.scene.Group;
-import javafx.scene.SubScene;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class ApplicationController {
@@ -22,11 +19,11 @@ public class ApplicationController {
     private HomeScreenController hsCon;
     private GameController gameCon;
 
-    public void setActiveView(ApplicatieViewEnum view){
+    public void setActiveView(ApplicationViewEnum view){
         appModel.setCurrentView(view);
     }
 
-    public void register(ApplicatieObserver ao){
+    public void register(ApplicationObserver ao){
         appModel.register(ao);
     }
 
@@ -45,7 +42,4 @@ public class ApplicationController {
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
     }
 
-    public void addSubScene(SubScene scene) {
-        appModel.addSubScene(scene);
-    }
 }

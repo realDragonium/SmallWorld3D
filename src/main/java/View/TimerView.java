@@ -22,11 +22,11 @@ public class TimerView implements TimerObserver {
     public TimerView(Group group, TimerController timerCon){
         this.group = group;
         this.timerCon = timerCon;
-        timerCon.registerObs(this);
     }
 
     public void initialize(){
         group.getChildren().add(pane);
+        timerCon.registerObs(this);
     }
 
     @Override

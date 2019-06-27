@@ -1,10 +1,10 @@
 package Enum;
 
-public enum ApplicatieViewEnum {
+public enum ApplicationViewEnum {
     LOGIN("login"), GAME("game"), HOMESCREEN("homescreen");
     private String view;
 
-    ApplicatieViewEnum(String view){
+    ApplicationViewEnum(String view){
         this.view = view;
     }
 

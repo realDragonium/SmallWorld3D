@@ -9,27 +9,26 @@ import javafx.scene.layout.Pane;
 public class ButtonView {
 
     private Group root;
-    private ButtonController knopCon;
+    private ButtonController buttonCon;
 
-    @FXML
     public Pane pane;
     public Button infoButton;
     public Button availableButton;
     public Button nextFaseButton;
 
-    public ButtonView(Group group, ButtonController knopCon){
+    public ButtonView(Group group, ButtonController buttonCon){
         root = group;
-        this.knopCon = knopCon;
+        this.buttonCon = buttonCon;
     }
 
     public void initialize() {
         root.getChildren().add(pane);
     }
 
-    @FXML
-    public void showInfo(){knopCon.showInfo();}
+
+    public void showInfo(){ buttonCon.showInfo(); }
     public void fichesOver(){
-        knopCon.fichesOver();
+        buttonCon.fichesOver();
     }
-    public void nextPhase(){knopCon.nextPhase();}
+    public void nextPhase(){ buttonCon.nextPhase(); }
 }

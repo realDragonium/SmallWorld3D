@@ -26,10 +26,10 @@ public interface ShopObservable {
     int getRound();
 
     /**
-     * @param item is given to the method getPlayer to add the racecombo
+     * @param item is given to the method getRace to add the racecombo
      * @return a String of the player
      */
-    String getPlayer(int item);
+    String getRace(int item);
 
     /**
      * @param item is given to the method getPower to add the racecombo
