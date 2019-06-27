@@ -4,25 +4,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<Pane fx:id="pane" prefWidth="800" style="-fx-background-color: rgb(170, 190, 221);" prefHeight="500" layoutX="500" layoutY="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AreaInformationView">
+<Pane fx:id="pane" prefWidth="500" style="-fx-background-color: rgb(170, 190, 221);" prefHeight="500" layoutX="500" layoutY="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AreaInformationView">
+        <Text fx:id="areaType" layoutX="20" layoutY="20" >
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
 
-            <Text fx:id="areaType" layoutX="20" layoutY="20" >
-                <font>
-                    <Font size="21.0"/>
-                </font>
-            </Text>
+        <Text fx:id="areaDefenceValue" layoutX="20" layoutY="50" >
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
 
-            <Text fx:id="areaDefenceValue" layoutX="20" layoutY="50" >
-                <font>
-                    <Font size="21.0"/>
-                </font>
-            </Text>
-
-            <Text fx:id="areaOwner" layoutX="20" layoutY="80" >
-                <font>
-                    <Font size="21.0"/>
-                </font>
-            </Text>
+        <Text fx:id="areaOwner" layoutX="20" layoutY="80" >
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Text>
 
         <Button fx:id="attackButton" layoutY="200.0" layoutX="100" mnemonicParsing="false" onAction="#attackCountry"
                 style="-fx-background-color: rgb(224, 158, 145);" text="Attack">
@@ -45,10 +44,17 @@
             </font>
         </Button>
 
-        <Button fx:id="retreatButton" layoutY="47.0" mnemonicParsing="false" onAction="#leaveArea"
+        <Button fx:id="retreatButton" layoutY="50.0" layoutX="300" mnemonicParsing="false" onAction="#leaveArea"
                 style="-fx-background-color: rgb(224, 158, 145);" text="Leave">
             <font>
                 <Font size="21.0"/>
             </font>
         </Button>
+
+    <Button fx:id="exitButton" layoutY="400.0" layoutX="300" mnemonicParsing="false" onAction="#exitScreen"
+            style="-fx-background-color: rgb(224, 158, 145);" text="Close">
+        <font>
+            <Font size="21.0"/>
+        </font>
+    </Button>
 </Pane>

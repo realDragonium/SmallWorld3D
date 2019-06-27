@@ -29,7 +29,6 @@ public class AreaInformationModel implements AreaInformationObservable {
     @Override
     public void register(AreaInformationObserver ob) {
         observer = ob;
-        notifyAllObs();
     }
 
     @Override

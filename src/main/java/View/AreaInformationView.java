@@ -3,6 +3,7 @@ package View;
 import Controller.AreaInformationController;
 import Observable.AreaInformationObservable;
 import Observer.AreaInformationObserver;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
@@ -19,11 +20,13 @@ public class AreaInformationView implements AreaInformationObserver {
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
         this.group = group;
-        areaInfoCon.registerObserver(this);
+
     }
 
     public void initialize(){
         group.getChildren().add(pane);
+        areaInfoCon.registerObserver(this);
+        group.setVisible(false);
     }
 
     @Override
@@ -53,5 +56,9 @@ public class AreaInformationView implements AreaInformationObserver {
     }
 
     public void leaveArea() {
+    }
+
+    public void exitScreen() {
+        areaInfoCon.closeAreaInformation();
     }
 }
