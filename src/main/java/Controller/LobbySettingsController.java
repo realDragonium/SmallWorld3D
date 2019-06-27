@@ -1,7 +1,5 @@
 package Controller;
 
-import Firebase.FirebaseServiceOwn;
-import Managers.SceneManager;
 import Model.LobbySettingsModel;
 import Observer.LobbySettingsObserver;
 

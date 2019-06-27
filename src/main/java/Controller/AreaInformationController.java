@@ -2,7 +2,6 @@ package Controller;
 
 import Model.AreaInformationModel;
 import Observer.AreaInformationObserver;
-import View.AreaInformationView;
 
 public class AreaInformationController {
 

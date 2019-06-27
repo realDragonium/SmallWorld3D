@@ -1,7 +1,6 @@
 package Controller;
 
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
 import Observer.PlayerObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlayerController implements FirebaseControllerObserver {
+public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
 //    private Applicatie app = SceneManager.getInstance().getApp();
 //    private FirebaseServiceOwn fb = app.getFirebaseService();
@@ -32,7 +31,7 @@ public class PlayerController implements FirebaseControllerObserver {
         setFiches(combo.getRace().fichesCount());
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getFiches());
-        info.put("punten", model.getPunten());
+        info.put("points", model.getPoints());
 //        fb.playerUpdate(gameCon.getRace().getId(), info);
     }
 
@@ -88,7 +87,7 @@ public class PlayerController implements FirebaseControllerObserver {
     public void update(DocumentSnapshot ds) {
 //        if(gameCon.getCurrentPlayer()==this) return;
         model.fiches = (int) Math.round(ds.getDouble("fiches"));
-        model.punten = (int) Math.round(ds.getDouble("punten"));
+        model.points = (int) Math.round(ds.getDouble("points"));
         model.notifyObserver();
     }
 
@@ -109,6 +108,23 @@ public class PlayerController implements FirebaseControllerObserver {
 
     public void addPoints(int i) {
         model.addPunten(i);
-//        fb.changePointsPlayer(model.getId(), model.getPunten());
+//        fb.changePointsPlayer(model.getId(), model.getPoints());
     }
+
+    int getPoints(){
+        return model.points;
+    }
+
+    boolean isConnected(){
+        return model.connected;
+    }
+
+    public void disconnect(){
+        model.connected = false;
+    }
+
+    public void connect(){
+        model.connected = true;
+    }
+
 }

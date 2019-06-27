@@ -1,15 +1,13 @@
 package Controller;
 
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.InLobbyModel;
 import Observer.InLobbyObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
 
 import java.util.Map;
 
-public class InLobbyController implements FirebaseControllerObserver { ;
+public class InLobbyController implements FirebaseGameObserver { ;
     private InLobbyModel mod = new InLobbyModel();
 
     public InLobbyController(){

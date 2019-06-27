@@ -1,11 +1,7 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.LobbyModel;
 import Observer.LobbyObserver;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class LobbyController {
 	private LobbyModel lobbymodel = new LobbyModel();

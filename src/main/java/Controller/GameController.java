@@ -17,6 +17,7 @@ public class GameController {
 
     SubScene subScene3d;
 
+    private FirebaseGameController fbGame = new FirebaseGameController("test");
     private Controller3D con3d;
     private ApplicationController appCon;
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
@@ -143,7 +144,7 @@ public class GameController {
 //        Map<String, Object> info = new HashMap<>();
 //        info.put("Name", app.getAccountCon().getAccountName());
 //        info.put("fiches", 0);
-//        info.put("punten", 5);
+//        info.put("points", 5);
 //        fb.registerPlayer(myPlayerId, info);
     }
 

@@ -1,10 +1,8 @@
 package View;
 
 import Controller.AreaController;
-import Controller.FicheController;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
-import javafx.geometry.Bounds;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.input.PickResult;
@@ -13,10 +11,6 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Mesh;
 import javafx.scene.shape.MeshView;
 import Enum.AreaColor;
-import javafx.scene.shape.TriangleMesh;
-import javafx.scene.transform.Translate;
-
-import java.awt.event.MouseEvent;
 
 public class Area3dView implements AreaObserver {
 
@@ -30,7 +24,7 @@ public class Area3dView implements AreaObserver {
         Mesh mesh = ((MeshView) area).getMesh();
 
         Point3D boundsInScene = area.localToScene(0,0,0);
-        System.out.println(boundsInScene);
+//        System.out.println(boundsInScene);
         areaCon.register(this);
 
     }

@@ -1,7 +1,6 @@
 package Controller;
 
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
 import Objects.*;
 import Observer.ShopObserver;
@@ -11,7 +10,7 @@ import javafx.application.Platform;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopController implements FirebaseControllerObserver {
+public class ShopController implements FirebaseGameObserver {
 
     GameController gameCon;
     ShopModel model = new ShopModel();

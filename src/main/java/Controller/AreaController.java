@@ -2,15 +2,13 @@ package Controller;
 
 import Enum.AreaProperty;
 import Enum.AreaType;
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.AreaModel;
 import Objects.RaceFiche;
 import Observer.AreaObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.Stack;
  * @version June 2019
  */
 
-public class AreaController implements FirebaseControllerObserver {
+public class AreaController implements FirebaseGameObserver {
 
 
     private Map2DController map2DCon;

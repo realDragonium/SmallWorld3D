@@ -1,7 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
-
 /** This controller-class controlls the logic of the methods that can be called in the Redeploying phase
  *
  * @author yoran

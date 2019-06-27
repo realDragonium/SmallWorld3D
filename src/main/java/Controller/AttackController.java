@@ -1,11 +1,5 @@
 package Controller;
 
-import Enum.TurnFase;
-import Managers.SceneManager;
-
-import java.awt.geom.Area;
-import java.util.List;
-
 public class AttackController {
 
     private GameController gameCon;

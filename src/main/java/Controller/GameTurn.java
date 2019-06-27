@@ -1,13 +1,13 @@
 package Controller;
 
 import Enum.TurnFase;
-import Firebase.FirebaseControllerObserver;
+import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseServiceOwn;
 import Phase.*;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 
-class GameTurn implements FirebaseControllerObserver {
+class GameTurn implements FirebaseGameObserver {
 
     private Phase phase;
     GameController gameCon;

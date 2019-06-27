@@ -5,13 +5,22 @@ import Observer.PlayerObserver;
 
 public class PlayerModel implements PlayerObservable {
     private PlayerObserver observer;
+    private final String NAME;
     private String playerID;
     public int fiches;
-    public int punten;
+    public int points;
+    public boolean connected = true;
+
+    public PlayerModel(String playerId, String name) {
+        playerID = playerId;
+        points = 5;
+        NAME = name;
+    }
 
     public PlayerModel(String playerId) {
         playerID = playerId;
-        punten = 5;
+        points = 5;
+        NAME = playerId;
     }
 
     public void setFicheAmount(int amount){
@@ -19,7 +28,7 @@ public class PlayerModel implements PlayerObservable {
     }
 
     public void removePoints(int amount){
-        punten -= amount;
+        points -= amount;
         notifyObserver();
     }
 
@@ -43,12 +52,12 @@ public class PlayerModel implements PlayerObservable {
     }
 
     @Override
-    public int getPunten() {
-        return punten;
+    public int getPoints() {
+        return points;
     }
 
     public void addPunten(int amount) {
-        punten += amount;
+        points += amount;
         notifyObserver();
     }
 }
