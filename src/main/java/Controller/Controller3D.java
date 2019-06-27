@@ -21,7 +21,6 @@ public class Controller3D{
         scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
         createMap();
         createCamera();
-        createFiche("ratten");
         group.getChildren().add(scene);
         world.getChildren().add(fiches);
     }
@@ -45,8 +44,8 @@ public class Controller3D{
         world.getChildren().add(map);
     }
 
-    public FicheController createFiche(String race){
-        FicheController ficheCon = new FicheController(gameCon);
+    public FicheController createRaceFiche(String race){
+        FicheController ficheCon = new FicheController(gameCon, 1);
         new fiche3dView(ficheCon, fiches, race);
         return ficheCon;
     }

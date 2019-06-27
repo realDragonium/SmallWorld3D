@@ -28,6 +28,7 @@ public class GameController {
     private PlayerController currentPlayer;
     private RoundController roundCon;
     private TurnController turnCon;
+    private AreaInformationController areaInfoCon;
 
     private String lobbyName;
     private VervallenController vervCon;
@@ -78,6 +79,11 @@ public class GameController {
     public void createRoundView(Group group) {
         roundCon = new RoundController(this);
         fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
+    }
+
+    public void createAreaInfoView(Group group) {
+        areaInfoCon = new AreaInformationController(this);
+        fxmlLoader.loader("/AreaInfoView.fxml", (Callable<AreaInformationView>)() -> new AreaInformationView(group, areaInfoCon));
     }
 
     public void createTurnView(Group group) {
@@ -275,5 +281,9 @@ public class GameController {
 
     public void addSubScene(SubScene scene) {
         appCon.addSubScene(scene);
+    }
+
+    public AreaInformationController getAreaInfoCon() {
+        return areaInfoCon;
     }
 }

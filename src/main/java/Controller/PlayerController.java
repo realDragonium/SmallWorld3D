@@ -47,7 +47,7 @@ public class PlayerController implements FirebaseControllerObserver {
         return null;
     }
 
-    String getId() {
+    public String getId() {
         return model.getId();
     }
 

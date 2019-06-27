@@ -10,9 +10,11 @@ import javafx.scene.transform.Translate;
 public class FicheController implements Animatable {
 
     GameController gameCon;
-    FicheModel model = new FicheModel();
+    FicheModel model;
 
-    public FicheController(GameController gameCon){
+
+    public FicheController(GameController gameCon, int defenceValue){
+        model = new FicheModel(defenceValue);
         this.gameCon = gameCon;
     }
 
@@ -52,5 +54,9 @@ public class FicheController implements Animatable {
     @Override
     public double getCurrentYAngle() {
         return 0;
+    }
+
+    public int getDefenceValue() {
+        return model.getDefenceValue();
     }
 }

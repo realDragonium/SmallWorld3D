@@ -11,9 +11,15 @@ public class FicheModel implements FicheObservable {
 
     Translate position = new Translate(0,0,0);
     List<FicheObserver> observers = new ArrayList<>();
+    int defenceValue;
+
+    public FicheModel(int defenceValue){
+        this.defenceValue = defenceValue;
+    }
 
     public void setPosition(Translate translate){
         position = translate;
+        notifyAllObs();
     }
 
     public void moveFiche(Translate deltaPosition){
@@ -33,6 +39,11 @@ public class FicheModel implements FicheObservable {
         for(FicheObserver obs : observers){
             obs.update(this);
         }
+    }
+
+    @Override
+    public int getDefenceValue() {
+        return defenceValue;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.FicheController;
 import Controller.PlayerController;
 import Enum.AreaProperty;
 import Enum.AreaType;
@@ -26,6 +27,7 @@ public class AreaModel implements AreaObservable {
     private boolean borderArea = false;
     private AreaProperty specialProperty = AreaProperty.none;
     private List<String> neighbours = new ArrayList<>();
+    private Stack<FicheController> fiches = new Stack<>();
     private boolean attackAble = true;
     private Translate areaPoint;
 
@@ -43,6 +45,18 @@ public class AreaModel implements AreaObservable {
         raceFiches = new Stack<>();
         IntStream.range(0, fiches).forEach(o -> raceFiches.push(new RaceFiche()));
         notifyObserver();
+    }
+
+    public void addFiche(FicheController fiche){
+        fiches.add(fiche);
+        double height = areaPoint.getY();
+
+        height = height - (fiches.size() - 1) * 10;
+        Translate fichePoint = new Translate(areaPoint.getX(), height, areaPoint.getZ());
+        System.out.println("areapoint hoogte: "+ areaPoint.getY());
+        System.out.println("hoogte: " + height);
+
+        fiche.moveToPosition(fichePoint);
     }
 
     public void setNeighbours(List<String> neighbour){
@@ -173,5 +187,9 @@ public class AreaModel implements AreaObservable {
     @Override
     public boolean isShowing() {
         return false;
+    }
+
+    public Stack<FicheController> getFiches() {
+        return fiches;
     }
 }

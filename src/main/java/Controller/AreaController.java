@@ -48,8 +48,14 @@ public class AreaController implements FirebaseControllerObserver {
     }
 
     public void createFiche(){
-        FicheController fiche = map3DCon.con3D.createFiche("yeet");
-        fiche.moveToPosition(model.getAreaPoint());
+        FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
+        map3DCon.placeFiche(this, fiche);
+        //fiche.moveToPosition(model.getAreaPoint());
+
+    }
+
+    public void putFiche(FicheController fiche){
+        model.addFiche(fiche);
     }
 
     public Translate getAreaPoint(){
@@ -73,7 +79,7 @@ public class AreaController implements FirebaseControllerObserver {
         model.player = player;
     }
 
-    PlayerController getOwnerPlayer() {
+    public PlayerController getOwnerPlayer() {
         return model.player;
     }
 
@@ -173,5 +179,17 @@ public class AreaController implements FirebaseControllerObserver {
 
     public void hoverExited() {
         model.changeHoverState();
+    }
+
+    public int getDefenceValue() {
+        int value = 0;
+        for(FicheController fiche : model.getFiches()){
+            value += fiche.getDefenceValue();
+        }
+        return value;
+    }
+
+    public void showInfo() {
+        gameCon.getAreaInfoCon().putAreaInformationScreen(this);
     }
 }

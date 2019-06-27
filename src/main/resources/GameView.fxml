@@ -16,5 +16,6 @@
       <Group fx:id="redeployingGroup" />
       <Group fx:id="infoGroup"/>
       <Group fx:id="attackGroup"/>
+      <Group fx:id="areaInfoGroup"/>
 
 </Pane>

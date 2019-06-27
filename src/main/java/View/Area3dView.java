@@ -1,6 +1,7 @@
 package View;
 
 import Controller.AreaController;
+import Controller.FicheController;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
 import javafx.geometry.Bounds;
@@ -38,7 +39,8 @@ public class Area3dView implements AreaObserver {
     public void init(){
         area.setOnMouseClicked(e -> {
             PickResult pr = e.getPickResult();
-            areaCon.createFiche();
+            areaCon.showInfo();
+
             //System.out.println("areaPoints.put(" + area.getId() + " ,new Translate(" + Math.round(pr.getIntersectedPoint().getX() * 100) + "," + Math.round(pr.getIntersectedPoint().getY() * 100) + "," + Math.round( pr.getIntersectedPoint().getZ()* 100) + "));");
         });
         area.setOnMouseEntered(e -> areaCon.hoverEntered());
