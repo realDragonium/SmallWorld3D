@@ -35,6 +35,7 @@ public class GameView implements GameObserver {
         createViews();
         basicViewLayout();
         gameCon.register(this);
+        gameCon.setPlayerPositions();
 
     }
 

@@ -41,6 +41,7 @@ public class AreaModel implements AreaObservable {
         this.id = id;
     }
 
+    @Override
     public Translate getAreaPoint(){
         return areaPoint;
     }
@@ -54,13 +55,10 @@ public class AreaModel implements AreaObservable {
     public void addFiche(FicheController fiche){
         fiches.add(fiche);
         double height = areaPoint.getY();
-
         height = height - (fiches.size() - 1) * 10;
         Translate fichePoint = new Translate(areaPoint.getX(), height, areaPoint.getZ());
-        System.out.println("areapoint hoogte: "+ areaPoint.getY());
-        System.out.println("hoogte: " + height);
-
         fiche.moveToPosition(fichePoint);
+        notifyObserver();
     }
 
     public void setNeighbours(List<String> neighbour){
@@ -145,11 +143,6 @@ public class AreaModel implements AreaObservable {
         return tempFiche;
     }
 
-    public void addFiche(RaceFiche fiche) {
-        raceFiches.add(fiche);
-        notifyObserver();
-    }
-
     public AreaType getAreaType() {
         return type;
     }
@@ -180,7 +173,7 @@ public class AreaModel implements AreaObservable {
 
     @Override
     public int getNumberOfFiches() {
-        return raceFiches.size();
+        return fiches.size();
     }
 
     @Override

@@ -23,7 +23,7 @@ public interface PlayerObservable {
     /**
      * @return the amount of fiches a player has.
      */
-    int getFiches();
+    int getRaceFichesAmount();
 
     /**
      * @return the amount of points a player has.

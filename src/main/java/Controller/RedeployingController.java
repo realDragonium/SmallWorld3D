@@ -45,7 +45,7 @@ public class RedeployingController {
         if(activeArea != null){
             if(activeArea.getOwnerPlayer().getId().equals(player.getId())){
                 if(player.getActiveCombination().getRace().hasEnoughFiches(1)){
-                    activeArea.addFiche(player.getActiveCombination().getRace().removeFiche());
+                    //activeArea.addFiche(player.getActiveCombination().getRace().removeFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }

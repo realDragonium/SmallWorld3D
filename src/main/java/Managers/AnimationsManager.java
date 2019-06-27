@@ -1,7 +1,6 @@
 package Managers;
 
 import Controller.AnimationController;
-import Controller.CameraController;
 import Objects.Animatable;
 import Objects.AnimationPoint;
 import javafx.application.Platform;
@@ -78,8 +77,8 @@ public class AnimationsManager {
         animations.remove(animCon);
     }
 
-    public void createRotateToAnimation(Animatable animObj, double xAngle, double yAngle, int seconds) {
-        AnimationController newAnim = new AnimationController(animObj, false);
+    public void createRotateToAnimation(Animatable animObj, double xAngle, double yAngle, int seconds, boolean b) {
+        AnimationController newAnim = new AnimationController(animObj, b);
         double deltaX = xAngle - animObj.getCurrentXAngle();
         double deltaY = yAngle - animObj.getCurrentYAngle();
 
