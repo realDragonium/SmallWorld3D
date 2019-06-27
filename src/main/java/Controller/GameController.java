@@ -2,6 +2,7 @@ package Controller;
 
 import Model.GameModel;
 import Objects.FXMLLOADER;
+import Observer.GameObserver;
 import View.*;
 import javafx.scene.Group;
 import javafx.scene.SubScene;
@@ -9,6 +10,7 @@ import javafx.scene.SubScene;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import Enum.GameViewEnum;
 
 public class GameController {
 
@@ -56,6 +58,7 @@ public class GameController {
 
     public GameController(ApplicationController appCon){
         this.appCon = appCon;
+        model = new GameModel(8, 8);
 //        startGame();
     }
 
@@ -226,7 +229,16 @@ public class GameController {
         return lobbyName;
     }
 
-    public void addSubScene(SubScene scene) {
-        appCon.addSubScene(scene);
+    public void addToGameView(GameViewEnum go){
+        model.addActiveView(go);
     }
+
+    public void removeFromGameView(GameViewEnum go){
+        model.removeActiveView(go);
+    }
+
+    public void register(GameObserver go){
+        model.register(go);
+    }
+
 }

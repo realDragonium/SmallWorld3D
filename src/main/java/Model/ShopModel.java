@@ -45,7 +45,7 @@ public class ShopModel implements ShopObservable {
     }
 
     @Override
-    public String getPlayer(int item) {
+    public String getRace(int item) {
         if(shopItems.size() > item) {
             return shopItems.get(item).getRace().getId();
         }

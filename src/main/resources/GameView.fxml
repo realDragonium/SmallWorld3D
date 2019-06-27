@@ -2,19 +2,19 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.Pane?>
-<Pane fx:id="headPane"  xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameView">
-      <Group fx:id="Group3d"/>
-      <Group fx:id="buttonGroup" />
-      <Group fx:id="playerGroup" />
-      <Group fx:id="roundGroup" />
-      <Group fx:id="shopGroup" />
-      <Group fx:id="timerGroup" />
-      <Group fx:id="turnGroup" />
-      <Group fx:id="mapGroup" />
-      <Group fx:id="vervalGroup" />
-      <Group fx:id="diceGroup" />
-      <Group fx:id="redeployingGroup" />
-      <Group fx:id="infoGroup"/>
-      <Group fx:id="attackGroup"/>
+<Pane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameView">
+<!--      <Group fx:id="Group3d"/>-->
+<!--      <Group fx:id="buttonGroup" />-->
+<!--      <Group fx:id="playerGroup" />-->
+<!--      <Group fx:id="roundGroup" />-->
+<!--      <Group fx:id="shopGroup" />-->
+<!--      <Group fx:id="timerGroup" />-->
+<!--      <Group fx:id="turnGroup" />-->
+<!--      <Group fx:id="mapGroup" />-->
+<!--      <Group fx:id="vervalGroup" />-->
+<!--      <Group fx:id="diceGroup" />-->
+<!--      <Group fx:id="redeployingGroup" />-->
+<!--      <Group fx:id="infoGroup"/>-->
+<!--      <Group fx:id="attackGroup"/>-->
 
 </Pane>

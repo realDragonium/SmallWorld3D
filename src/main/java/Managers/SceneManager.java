@@ -1,6 +1,5 @@
 package Managers;
 
-import Applicatie.Applicatie;
 import Controller.*;
 import View.*;
 import javafx.fxml.FXMLLoader;
@@ -22,13 +21,8 @@ public class SceneManager {
     private List<Group> shopItems = new ArrayList<>();
     private static SceneManager sceneManager;
     private List<Group> standardPane = new ArrayList<>();
-    private Applicatie app;
     private Group gameView;
     private Pane currentPane;
-
-    public Applicatie getApp() {
-        return app;
-    }
 
     public static SceneManager getInstance() {
         if (sceneManager == null) sceneManager = new SceneManager();
@@ -63,9 +57,6 @@ public class SceneManager {
         }
     }
 
-    public void registerApp(Applicatie newApp) {
-        this.app = newApp;
-    }
 
     public void switchToSpectatingView() {
         Pane pane = new Pane();

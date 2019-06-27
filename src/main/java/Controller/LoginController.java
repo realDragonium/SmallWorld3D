@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.ApplicatieViewEnum;
+import Enum.ApplicationViewEnum;
 import Model.LoginModel;
 import Observer.LoginObserver;
 
@@ -32,6 +32,6 @@ public class LoginController {
     }
 
 	public void goToHomeScreen() {
-		appCon.setActiveView(ApplicatieViewEnum.HOMESCREEN);
+		appCon.setActiveView(ApplicationViewEnum.HOMESCREEN);
 	}
 }

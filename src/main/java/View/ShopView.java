@@ -35,7 +35,6 @@ public class ShopView implements ShopObserver {
     public ShopView(Group group, ShopController shopCon){
         this.shopCon = shopCon;
         this.group = group;
-        shopCon.registerObserver(this);
     }
 
     @FXML
@@ -51,6 +50,8 @@ public class ShopView implements ShopObserver {
 
     public void initialize() {
         group.getChildren().add(pane);
+        shopCon.registerObserver(this);
+        shopCon.makeItems();
     }
 
 
@@ -61,7 +62,7 @@ public class ShopView implements ShopObserver {
     @Override
     public void update(ShopObservable so) {
         for(int i = 0; i < 6; i++) {
-            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getPlayer(i));
+            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getRace(i));
             ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(1)).setText(so.getPower(i));
         }
     }

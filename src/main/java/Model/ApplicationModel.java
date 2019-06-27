@@ -1,26 +1,24 @@
 package Model;
 
-import Enum.ApplicatieViewEnum;
-import Observable.ApplicatieObservable;
-import Observer.ApplicatieObserver;
+import Enum.ApplicationViewEnum;
+import Observable.ApplicationObservable;
+import Observer.ApplicationObserver;
 import javafx.scene.SubScene;
 
-import java.util.List;
+public class ApplicationModel implements ApplicationObservable {
 
-public class ApplicationModel implements ApplicatieObservable {
-
-    private ApplicatieObserver observer;
-    private ApplicatieViewEnum currentView;
+    private ApplicationObserver observer;
+    private ApplicationViewEnum currentView;
     private SubScene subScene3d;
 
 
-    public void setCurrentView(ApplicatieViewEnum view){
+    public void setCurrentView(ApplicationViewEnum view){
         currentView = view;
         notifyObserver();
     }
 
     @Override
-    public void register(ApplicatieObserver ao) {
+    public void register(ApplicationObserver ao) {
         observer = ao;
     }
 
@@ -30,17 +28,8 @@ public class ApplicationModel implements ApplicatieObservable {
     }
 
     @Override
-    public ApplicatieViewEnum getCurrentView() {
+    public ApplicationViewEnum getCurrentView() {
         return currentView;
     }
 
-    @Override
-    public SubScene get3dScene() {
-        return subScene3d;
-    }
-
-    public void addSubScene(SubScene subScene) {
-        subScene3d = subScene;
-        notifyObserver();
-    }
 }

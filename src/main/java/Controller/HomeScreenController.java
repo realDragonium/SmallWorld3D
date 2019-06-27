@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.ApplicatieViewEnum;
+import Enum.ApplicationViewEnum;
 import Model.HomeScreenModel;
 import Observer.HomeScreenObserver;
 
@@ -18,6 +18,6 @@ public class HomeScreenController {
     }
 
     public void startGame() {
-        appCon.setActiveView(ApplicatieViewEnum.GAME);
+        appCon.setActiveView(ApplicationViewEnum.GAME);
     }
 }

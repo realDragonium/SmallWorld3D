@@ -21,11 +21,14 @@ public class ShopController implements FirebaseControllerObserver {
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
 //        SceneManager.getInstance().loadShop(this);
+//        SceneManager.getInstance().getApp().getFirebaseService().shopListener(this);
+    }
+
+    public void makeItems(){
         createShopItems();
         for (int i = 0; i < 6; i++) {
             makeNewCombination();
         }
-//        SceneManager.getInstance().getApp().getFirebaseService().shopListener(this);
     }
 
     private void removeItem(double item){

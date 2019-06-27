@@ -1,6 +1,5 @@
 package Controller;
 
-import Applicatie.Applicatie;
 import Managers.SceneManager;
 import Model.LobbyModel;
 import Observer.LobbyObserver;
@@ -19,8 +18,7 @@ public class LobbyController {
 
 
 	public void joinLobby(String Name){
-		Applicatie app = SceneManager.getInstance().getApp();
-		int id = app.getFirebaseService().joinLobby(Name, app.getAccountCon().getAccountName());
+		int id = 0;
 		if(id>0){
 			new InLobbyController(Name, id);
 		}
@@ -36,15 +34,5 @@ public class LobbyController {
 		new LobbySettingsController();
 	}
 
-
-	// Tries to get a list of available lobbies.
-	public List<String> getFirebaseLobbyNamen(){
-		try {
-			return SceneManager.getInstance().getApp().getFirebaseService().getActiveLobbies();
-		} catch (ExecutionException | InterruptedException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 }

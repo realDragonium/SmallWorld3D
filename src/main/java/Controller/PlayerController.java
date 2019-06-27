@@ -33,7 +33,7 @@ public class PlayerController implements FirebaseControllerObserver {
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getFiches());
         info.put("punten", model.getPunten());
-//        fb.playerUpdate(gameCon.getPlayer().getId(), info);
+//        fb.playerUpdate(gameCon.getRace().getId(), info);
     }
 
     void showActiveCombiFichesLeft() {
