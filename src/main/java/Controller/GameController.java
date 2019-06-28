@@ -81,7 +81,7 @@ public class GameController {
 
     public void createMap2DView(Group group){
         mapCon = new Map2DController(this);
-        fxmlLoader.loader("/UglyMap.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        fxmlLoader.loader("/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
     public void createPlayerView(Group group, String id){
@@ -257,7 +257,7 @@ public class GameController {
         model.removeActiveView(go);
     }
 
-    public void changeGameView(List<GameViewEnum> views){
+    void changeGameView(List<GameViewEnum> views){
         model.changeGameView(views);
     }
 
@@ -265,7 +265,7 @@ public class GameController {
         gameTurn.nextPhase();
     }
 
-    public AreaInformationController getAreaInfoCon() {
+    AreaInformationController getAreaInfoCon() {
         return areaInfoCon;
     }
 
@@ -273,4 +273,7 @@ public class GameController {
         model.register(go);
     }
 
+    FirebaseGameController getFireBase() {
+        return fbGame;
+    }
 }

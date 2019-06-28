@@ -165,7 +165,7 @@ public class SceneManager {
 
     public void createMap(Map2DController mapController) {
         creators.put(Map2DView.class, (Callable<Map2DView>) () -> new Map2DView(mapController, groepen.get("mapGroup")));
-        FXMLLOADER("/UglyMap.fxml");
+        FXMLLOADER("/UglyMap4.fxml");
     }
 
     public void makeMap() {

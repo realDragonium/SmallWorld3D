@@ -15,13 +15,6 @@ import javafx.scene.transform.Translate;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * This Controller-class handles the logic for all the functions that can be called for areas
- *
- * @author beau
- * @version June 2019
- */
-
 public class AreaController implements FirebaseGameObserver {
 
 
@@ -30,16 +23,7 @@ public class AreaController implements FirebaseGameObserver {
     private AreaModel model;
     private GameController gameCon;
     private NumberController numberCon;
-//    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
-
-//    public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
-//        model = new AreaModel(area.getChildren().get(0).getId());
-//        map2DCon = mapCon;
-//        this.gameCon = gameCon;
-//        getAreaInfo();
-////        SceneManager.getInstance().createAreaView(this, area);
-////        fb.AreaListener(model.getId(), this);
-//    }
+    private FirebaseGameController fb;
 
     public AreaController(String id, Map3DController mapCon, Translate areaPoint , GameController gameCon){
         model = new AreaModel(id, areaPoint);
@@ -48,16 +32,18 @@ public class AreaController implements FirebaseGameObserver {
     }
 
     public AreaController(Group area, Map2DController map2DController, GameController gameCon) {
-        model = new AreaModel(area.getChildren().get(0).getId());
+        String id = area.getChildren().get(0).getId();
+        model = new AreaModel(id);
         map2DCon = map2DController;
         this.gameCon = gameCon;
+//        fb = gameCon.getFireBase();
+//        getAreaInfo(id);
     }
 
     public void createFiche(){
         FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
         map3DCon.placeFiche(this, fiche);
         //fiche.moveToPosition(model.getAreaPoint());
-
     }
 
     public void putFiche(FicheController fiche){
@@ -122,16 +108,12 @@ public class AreaController implements FirebaseGameObserver {
 //        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
     }
 
-    private void getAreaInfo() {
-//        DocumentSnapshot ds = fb.getAreaInfo(model.getId());
-//        Platform.runLater(() -> {
-//            model.setFiches((int) Math.round(ds.getDouble("fiches")));
-//            model.setAreaType(ds.getString("type"));
-//            model.setBorderArea(ds.getBoolean("borderArea"));
-//            model.setNeighbours((List<String>) ds.get("neighbours"));
-//            model.setAttackAble(ds.getBoolean("attackAble"));
-//            model.notifyObserver();
-//        });
+    private void getAreaInfo(String id) {
+        model.setBorderArea(fb.isAreaBorderArea(id));
+        model.setAreaType(fb.getAreaType(id));
+        model.setNeighbours(fb.getNeighboursArea(id));
+        model.setAttackAble(fb.isAttackable(id));
+        model.setFiches(fb.basicFichesCount(id));
     }
 
     @Override
@@ -139,11 +121,11 @@ public class AreaController implements FirebaseGameObserver {
         if (gameCon.getCurrentPlayer() == gameCon.getMyPlayer()) return;
         Platform.runLater(() -> {
             if (model.getPlayer() == gameCon.getMyPlayer()) {
-                model.getPlayer().getActiveCombination().getRace().pushFiches(removeFiches());
+                model.getPlayer().getActiveCombination().gatRace().pushFiches(removeFiches());
                 model.player = null;
-                model.setFiches((int) Math.round(ds.getDouble("fiches")));
+                model.setFiches(ds.getDouble("fiches").intValue());
             }
-            model.setFiches((int) Math.round(ds.getDouble("fiches")));
+            model.setFiches(ds.getDouble("fiches").intValue());
         });
     }
 

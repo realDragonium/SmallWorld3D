@@ -8,7 +8,7 @@ public enum PowerEnum {
     flying(new Flying()), forest(new Forest()), fortified(new Fortified()), heroic(new Heroic()),
     hill(new Hill()), merchant(new Merchant()), mounted(new Mounted()), pillaging(new Pillaging()),
     seafaring(new Seafaring()), spirit(new Spirit()), stout(new Stout()), swamp(new Swamp()),
-    underworld(new Underworld()), wealth(new Wealthy());
+    underworld(new Underworld()), wealthy(new Wealthy());
 
     private Power power;
 

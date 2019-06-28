@@ -1,9 +1,13 @@
 package Firebase;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.database.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class FirebaseGameService {
 
@@ -16,17 +20,34 @@ public class FirebaseGameService {
         gameRef = fb.collection("Games").document(gameName);
     }
 
-    public void setTest(String itemId, Object object){
+    public void setTest(String itemId, Object object) {
         gameRef.collection("Shop").document(itemId).set(object);
     }
 
-    public void updatePlayer(String playerId, Map<String, Object> map){
+    public void updatePlayer(String playerId, Map<String, Object> map) {
         gameRef.collection("Players").document(playerId).set(map);
     }
 
-    public void updateArea(String playerId, Map<String, Object> map){
+    public void updateArea(String playerId, Map<String, Object> map) {
         gameRef.collection("Areas").document(playerId).update(map);
     }
+
+    public void updateShop(String itemId, Object object) {
+        gameRef.collection("Shop").document(itemId).set(object);
+    }
+
+    public void buyFromShop(String itemId, Map<String, Object> map){
+        gameRef.collection("Extra").document("Shop").update(map);
+    }
+
+    public List<QueryDocumentSnapshot>  getShopItems() {
+        return getQuerySnapshot(gameRef.collection("Shop").get()).getDocuments();
+    }
+
+    public DocumentSnapshot getAreaInfo(String areaId){
+        return getDocSnapshot(fb.collection("Maps").document("4PlayerMap").collection("Areas").document(areaId));
+    }
+
 
 
     public void areaListener(String areaId, final FirebaseGameObserver controller) {
@@ -70,5 +91,33 @@ public class FirebaseGameService {
                 }
             }
         });
+    }
+
+
+
+
+
+
+    private DocumentSnapshot getDocSnapshot(DocumentReference docRef) {
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        try {
+            return future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private QuerySnapshot getQuerySnapshot(ApiFuture<QuerySnapshot> querySnapshotApiFuture){
+        try {
+            return querySnapshotApiFuture.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

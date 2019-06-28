@@ -27,9 +27,9 @@ public class RedeployingController {
                 if(activeArea.getFichesAmount() >= 1){
                     if(activeArea.getFichesAmount() == 1){
                         player.addPoints(-1);
-                        player.getActiveCombination().getRace().removeArea(activeArea);
+                        player.getActiveCombination().gatRace().removeArea(activeArea);
                     }
-                    player.getActiveCombination().getRace().addFiche(activeArea.getOneFiche());
+                    player.getActiveCombination().gatRace().addFiche(activeArea.getOneFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }
@@ -42,8 +42,8 @@ public class RedeployingController {
 
         if(activeArea != null){
             if(activeArea.getOwnerPlayer().getId().equals(player.getId())){
-                if(player.getActiveCombination().getRace().hasEnoughFiches(1)){
-                    //activeArea.addFiche(player.getActiveCombination().getRace().removeFiche());
+                if(player.getActiveCombination().gatRace().hasEnoughFiches(1)){
+                    //activeArea.addFiche(player.getActiveCombination().gatRace().removeFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }

@@ -1,6 +1,7 @@
 package Race;
 
-import Race.Race;
 
 public class Orcs implements Race {
+
+    public String name = "orcs";
 }

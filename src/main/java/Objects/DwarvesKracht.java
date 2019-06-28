@@ -31,7 +31,7 @@ public class DwarvesKracht implements Kracht{
     public void doAction() {
         for(AreaController area : raceCon.getAllAreas()){
             if(area.getSpecialProp().equals(AreaProperty.mine)){
-                raceCon.getCombiCon().getPlayer().addPoints(1);
+                raceCon.getCombiCon().gatPlayer().addPoints(1);
             }
         }
     }

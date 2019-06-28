@@ -7,12 +7,12 @@ public class AlchemistPowerOld implements PowerOld {
 
 
     private TurnFase usingPhase = TurnFase.redeploying;
-    private String id = "Alchemist";
+    private String id = "alchemist";
     private CombinationController combiCon;
 
     @Override
     public void doAction(){
-        combiCon.getPlayer().addPoints(2);
+        combiCon.gatPlayer().addPoints(2);
     }
 
     @Override

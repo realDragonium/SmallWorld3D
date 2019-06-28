@@ -30,8 +30,8 @@ public class AttackController {
     }
 
     private void attack(PlayerController player, AreaController area, int fiches){
-        player.getActiveCombination().getRace().addArea(area);
-        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
+        player.getActiveCombination().gatRace().addArea(area);
+        area.attackArea(player.getActiveCombination().gatRace().getFiches(fiches));
         area.setPlayerOwner(player);
     }
 
@@ -41,7 +41,7 @@ public class AttackController {
     }
 
     private boolean isNeighbour(AreaController area, PlayerController player){
-        for(AreaController areaCon : player.getActiveCombination().getRace().getAllAreas()){
+        for(AreaController areaCon : player.getActiveCombination().gatRace().getAllAreas()){
             if(areaCon.getNeighbours().contains(area.getId())) return true;
         }
         return false;
@@ -55,7 +55,7 @@ public class AttackController {
         if(area.isAttackAble()) {
             if (player.hasActiveCombination()) {
                 if (player.hasEnoughFiches(fichesNeeded)) {
-                    if (player.getActiveCombination().getRace().getAllAreas().size() == 0) {
+                    if (player.getActiveCombination().gatRace().getAllAreas().size() == 0) {
                         if (area.firstAttackArea()) {
                             return true;
                         }

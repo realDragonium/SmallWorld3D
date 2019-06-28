@@ -47,7 +47,7 @@ public class ShopModel implements ShopObservable {
     @Override
     public String getRace(int item) {
         if(shopItems.size() > item) {
-            return shopItems.get(item).getRace().getId();
+            return shopItems.get(item).gatRace().getId();
         }
         else{
             return "none";
@@ -57,7 +57,7 @@ public class ShopModel implements ShopObservable {
     @Override
     public String getPower(int item) {
         if(shopItems.size() > item) {
-            return shopItems.get(item).getPowerOld().getId();
+            return shopItems.get(item).gatPowerOld().getId();
         }
         else{
             return "none";

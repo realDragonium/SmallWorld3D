@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
-<Pane fx:id="pane" layoutX="700" layoutY="900" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ButtonView">
+<Pane fx:id="pane" layoutX="700" layoutY="950" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ButtonView">
       <Button fx:id="infoButton"  mnemonicParsing="false" onAction="#showInfo" text="Info" />
       <Button fx:id="availableButton" layoutX="100.0" mnemonicParsing="false" onAction="#fichesOver" text="Available" />
       <Button fx:id="nextFaseButton" layoutX="200.0" mnemonicParsing="false" onAction="#nextPhase" text="next Fase" />

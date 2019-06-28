@@ -5,7 +5,7 @@ import Enum.TurnFase;
 
 public class WelthPowerOld implements PowerOld {
 
-    private String id = "Welth";
+    private String id = "wealthy";
     private boolean used = false;
     private TurnFase usablePhase = TurnFase.redeploying;
     private CombinationController combiCon;
@@ -13,7 +13,7 @@ public class WelthPowerOld implements PowerOld {
     @Override
     public void doAction(){
         if(!used){
-            combiCon.getPlayer().addPoints(7);
+            combiCon.gatPlayer().addPoints(7);
             used = true;
         }
     }

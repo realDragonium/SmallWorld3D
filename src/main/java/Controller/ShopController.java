@@ -29,6 +29,8 @@ public class ShopController implements FirebaseGameObserver {
         for (int i = 0; i < 6; i++) {
             makeNewCombination();
         }
+//        gameCon.getFireBase().shopUpdate(this);
+        gameCon.getFireBase().getShopItems();
     }
 
     private void removeItem(double item){
@@ -48,16 +50,18 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     private void createShopItems() {
-        races.add(new RaceController(new RattenKracht(), "rats", 12));
-        races.add(new RaceController(new WizzardsKracht(), "wizzards", 8));
+        races.add(new RaceController(new RattenKracht(), "ratmen", 12));
+        races.add(new RaceController(new WizzardsKracht(), "wizards", 8));
         races.add(new RaceController(new DwarvesKracht(), "dwarves", 7));
-        races.add(new RaceController(new TritansKracht(), "tritans", 10));
+        races.add(new RaceController(new TritansKracht(), "tritons", 10));
+        races.add(new RaceController(new HumanKracht(), "humans", 9));
         races.add(new RaceController(new HumanKracht(), "humans", 9));
 
         powerOlds.add(new AlchemistPowerOld());
         powerOlds.add(new WelthPowerOld());
         powerOlds.add(new AlchemistPowerOld());
         powerOlds.add(new WelthPowerOld());
+        powerOlds.add(new AlchemistPowerOld());
         powerOlds.add(new AlchemistPowerOld());
     }
 

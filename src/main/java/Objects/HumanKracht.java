@@ -30,7 +30,7 @@ public class HumanKracht implements Kracht{
     public void doAction() {
         for(AreaController area : raceCon.getAllAreas()){
             if(area.getAreaType().equals(AreaType.farm)){
-                raceCon.getCombiCon().getPlayer().addPoints(1);
+                raceCon.getCombiCon().gatPlayer().addPoints(1);
             }
         }
     }

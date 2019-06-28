@@ -41,6 +41,7 @@ public class CombinationController {
     public CombinationController(String race, String power){
         this.race2 = RaceEnum.valueOf(race).getRace();
         this.power2 = PowerEnum.valueOf(power).getPower();
+
     }
 
     public Power getPower2() {
@@ -51,11 +52,19 @@ public class CombinationController {
         return race2;
     }
 
+    public String getRaceName(){
+        return race.getId();
+    }
+
+    public String getPowerName(){
+        return powerOld.getId();
+    }
+
     public void setPlayer(PlayerController player){
         this.player = player;
     }
 
-    public PlayerController getPlayer(){
+    public PlayerController gatPlayer(){
         return this.player;
     }
 
@@ -68,11 +77,11 @@ public class CombinationController {
         }
     }
 
-    public RaceController getRace(){
+    public RaceController gatRace(){
         return race;
     }
 
-    public PowerOld getPowerOld(){
+    public PowerOld gatPowerOld(){
         return powerOld;
     }
 
@@ -84,7 +93,7 @@ public class CombinationController {
 
     void setToNonActive() {
         model.setToNonActive();
-        for(AreaController area: getRace().getAllAreas()){
+        for(AreaController area: gatRace().getAllAreas()){
             area.destroyAllButOne();
         }
     }

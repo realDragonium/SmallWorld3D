@@ -23,7 +23,6 @@ public class AreaModel implements AreaObservable {
     public PlayerController player;
     private AreaType type;
     private boolean hovering = false;
-    private boolean nextToWater = false;
     private boolean borderArea = false;
     private AreaProperty specialProperty = AreaProperty.none;
     private List<String> neighbours = new ArrayList<>();
@@ -49,7 +48,6 @@ public class AreaModel implements AreaObservable {
     public void setFiches(int fiches){
         raceFiches = new Stack<>();
         IntStream.range(0, fiches).forEach(o -> raceFiches.push(new RaceFiche()));
-        notifyObserver();
     }
 
     public void addFiche(FicheController fiche){
