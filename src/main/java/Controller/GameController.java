@@ -16,8 +16,6 @@ import javafx.scene.transform.Translate;
 
 public class GameController {
 
-    SubScene subScene3d;
-
     private FirebaseGameController fbGame = new FirebaseGameController("test");
     Translate player1Pos = new Translate(600, 0, 0);
 
@@ -49,9 +47,6 @@ public class GameController {
     private String myPlayerId;
     private DiceController diceCon;
 
-//    private Applicatie app = SceneManager.getInstance().getApp();
-//    private FirebaseServiceOwn fb = app.getFirebaseService();
-
     public GameController(String lobbyName, String playerID) {
         myPlayerId = playerID;
         model = new GameModel(8, 8);
@@ -81,7 +76,7 @@ public class GameController {
 
     public void createMap2DView(Group group){
         mapCon = new Map2DController(this);
-        fxmlLoader.loader("/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
     public void createPlayerView(Group group, String id){

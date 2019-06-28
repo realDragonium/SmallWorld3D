@@ -28,8 +28,8 @@ public class FirebaseGameService {
         gameRef.collection("Players").document(playerId).set(map);
     }
 
-    public void updateArea(String playerId, Map<String, Object> map) {
-        gameRef.collection("Areas").document(playerId).update(map);
+    public void updateArea(String areaId, Map<String, Object> map) {
+        gameRef.collection("Areas").document(areaId).set(map);
     }
 
     public void updateShop(String itemId, Object object) {

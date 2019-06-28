@@ -1,0 +1,276 @@
+{
+   "farm_001": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["water_003", "swamp_001"]
+   },
+   "farm_002": {
+      "type": "mine",
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["forest_001", "farm_003", "water_003", "hill_001", "hill_002"]
+   },
+   "farm_003": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["farm_002", "hill_001", "hill_002", "hill_005", "mountain_001", "swamp_005"]
+   },
+   "farm_004": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["swamp_003", "swamp_004", "hill_003", "mountain_002"]
+   },
+   "farm_005": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["hill_003", "swamp_003", "swamp_006", "forest_006", "mountain_005", "mountain_006", "mountain_007", "water_002"]
+   },
+   "farm_006": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["mountain_007", "swamp_006", "forest_006", "hill_007"]
+   },
+   "farm_007": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["mountain_008", "forest_007", "swamp_007"]
+   },
+   "forest_001": {
+      "type": "cavern",
+      "borderarea": true,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_002", "hill_001", "water_003"]
+   },
+   "forest_002": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["mountain_001", "mountain_002", "swamp_002", "forest_003"]
+   },
+   "forest_003": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["mountain_001", "mountain_002", "forest_002", "swamp_003", "water_002"]
+   },
+   "forest_004": {
+      "type": "magic source",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["swamp_001", "swamp_005", "mountain_003", "hill_001", "hill_006", "water_003"]
+   },
+   "forest_005": {
+      "type": "magic source",
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["water_001", "mountain_006", "mountain_007", "hill_004"]
+   },
+   "forest_006": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_006", "farm_005", "mountain_007", "swamp_006"]
+   },
+   "forest_007": {
+      "type": "mine",
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_007", "mountain_008", "mountain_004", "mountain_005", "swamp_006",  "swamp_007", "hill_006"]
+   },
+   "swamp_001": {
+      "type": "magic source",
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_001", "water_003", "hill_001", "forest_004"]
+   },
+   "swamp_002": {
+      "type": "magic source",
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["hill_002", "forest_002", "moutain_001"]
+   },
+   "swamp_003": {
+      "type": "mine",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["farm_004", "farm_005", "water_002", "forest_003", "hill_003"]
+   },
+   "swamp_004": {
+      "type": "cavern",
+      "borderarea": true,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_004", "hill_003", "hill_004"]
+   },
+   "swamp_005": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["mountain_004", "farm_003", "hill_001", "hill_005", "hill_006", "forest_004"]
+   },
+   "swamp_006": {
+      "type": "cavern",
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_006", "farm_005", "forest_006", "forest_007", "mountain_008", "moutain_005", "hill_007"]
+   },
+   "swamp_007": {
+      "type": "mine",
+      "borderarea": true,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["hill_006", "farm_007", "forest_007", "mountain_003"]
+   },
+   "hill_001": {
+      "type": "cavern",
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_002", "farm_003", "water_003", "swamp_001", "swamp_005",  "forest_004"]
+   },
+   "hill_002": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["forest_001", "swamp_002", "mountain_001", "farm_002", "farm_003"]
+   },
+   "hill_003": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 1,
+      "attackable": true,
+      "neighbours": ["farm_004", "farm_005", "swamp_004", "swamp_003", "moutain_006", "hill_004"]
+   },
+   "hill_004": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["hill_003", "swamp_004", "mountain_006", "water_001", "forest_005"]
+   },
+   "hill_005": {
+      "type": "magic source",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["water_002", "farm_003", "moutain_004", "swamp_005"]
+   },
+   "hill_006": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["swamp_005", "moutain_003", "moutain_004", "swamp_007", "forest_007", "forest_004"]
+   },
+   "hill_007": {
+      "type": "mine",
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["farm_006", "swamp_006", "moutain_008"]
+   },
+   "mountain_001": {
+      "type": "mine",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["farm_001", "hill_002", "swamp_002", "forest_002", "forest_003", "water_002"]
+   },
+   "mountain_002": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["forest_002", "forest_003", "farm_004", "swamp_003"]
+   },
+   "mountain_003": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["water_003", "forest_004", "hill_006", "swamp_007"]
+   },
+   "mountain_004": {
+      "type": "magic source, carvern",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["water_002", "hill_005", "swamp_005", "hill_006", "forest_007", "moutain_005"]
+   },
+   "mountain_005": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["mountain_004", "water_002", "farm_005", "swamp_006", "forest_007"]
+   },
+   "mountain_006": {
+      "type": "cavern",
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["moutain_007", "farm_005", "forest_005", "hill_003", "hill_004"]
+   },
+   "mountain_007": {
+      "type": "mine",
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["moutain_006", "forest_005", "forest_006", "farm_005", "farm_006"]
+   },
+   "mountain_008": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": true,
+      "neighbours": ["farm_007", "hill_007", "forest_007", "swamp_006"]
+   },
+   "water_001": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": false,
+      "neighbours": ["forest_005", "hill_004"]
+   },
+   "water_002": {
+      "type": null,
+      "borderarea": false,
+      "fiches": 0,
+      "attackable": false,
+      "neighbours": ["swamp_003", "hill_005", "mountain_001", "mountain_004", "mountain_005", "farm_005", "forest_003"]
+   },
+   "water_003": {
+      "type": null,
+      "borderarea": true,
+      "fiches": 0,
+      "attackable": false,
+      "neighbours": ["hill_001", "mountain_003", "farm_001", "farm_002", "forest_001", "forest_004", "swamp_001"]
+   }
+   
+}

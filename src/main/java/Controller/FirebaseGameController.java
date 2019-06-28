@@ -73,7 +73,7 @@ public class FirebaseGameController {
     }
     @SuppressWarnings("ConstantConditions")
     boolean isAttackable(String id){
-        return getAreaInfo(id).getBoolean("attackAble");
+        return getAreaInfo(id).getBoolean("attackable");
     }
     @SuppressWarnings("ConstantConditions")
     int basicFichesCount(String id){ return getAreaInfo(id).getDouble("fiches").intValue(); }

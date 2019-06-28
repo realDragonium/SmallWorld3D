@@ -9,7 +9,7 @@ public class PhaseNone implements Phase {
     List<GameViewEnum> views = new ArrayList<>();
 
     public PhaseNone(){
-        views.add(GameViewEnum.INFO);
+        views.add(GameViewEnum.PLAYER);
     }
 
 

@@ -8,7 +8,6 @@ import Objects.RaceFiche;
 import Observer.AreaObserver;
 import View.NumberView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
@@ -29,6 +28,9 @@ public class AreaController implements FirebaseGameObserver {
         model = new AreaModel(id, areaPoint);
         map3DCon = mapCon;
         this.gameCon = gameCon;
+        fb = gameCon.getFireBase();
+//        loadAreaInFirebase();
+        listenToFirebase();
     }
 
     public AreaController(Group area, Map2DController map2DController, GameController gameCon) {
@@ -36,9 +38,34 @@ public class AreaController implements FirebaseGameObserver {
         model = new AreaModel(id);
         map2DCon = map2DController;
         this.gameCon = gameCon;
-//        fb = gameCon.getFireBase();
+        fb = gameCon.getFireBase();
+
 //        getAreaInfo(id);
     }
+
+    private void listenToFirebase(){
+        fb.areaListener(this);
+    }
+
+    private void loadAreaInFirebase(){
+        model.setFiches(1);
+        fb.areaUpdate(this);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    public void addFiche(){}
+    public void removeFiche(){}
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     public void createFiche(){
         FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
@@ -118,15 +145,16 @@ public class AreaController implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-        if (gameCon.getCurrentPlayer() == gameCon.getMyPlayer()) return;
-        Platform.runLater(() -> {
-            if (model.getPlayer() == gameCon.getMyPlayer()) {
-                model.getPlayer().getActiveCombination().gatRace().pushFiches(removeFiches());
-                model.player = null;
-                model.setFiches(ds.getDouble("fiches").intValue());
-            }
-            model.setFiches(ds.getDouble("fiches").intValue());
-        });
+        System.out.println(ds.getDouble("fiches").intValue());
+//        if (gameCon.getCurrentPlayer() == gameCon.getMyPlayer()) return;
+//        Platform.runLater(() -> {
+//            if (model.getPlayer() == gameCon.getMyPlayer()) {
+//                model.getPlayer().getActiveCombination().gatRace().pushFiches(removeFiches());
+//                model.player = null;
+//                model.setFiches(ds.getDouble("fiches").intValue());
+//            }
+//            model.setFiches(ds.getDouble("fiches").intValue());
+//        });
     }
 
     public AreaProperty getSpecialProp() {
