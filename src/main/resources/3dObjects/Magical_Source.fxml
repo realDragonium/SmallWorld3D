@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright/License : unknown -->
+<!-- FXML specification : JRE/JavaFX 8.0 early access build b128 -->
+<!-- Generator : ModelImporterJFX 0.4.1 of InteractiveMesh, www.interactivemesh.org/models/jfx3dbrowser.html -->
+
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.PhongMaterial?>
+<?import javafx.scene.shape.MeshView?>
+<?import javafx.scene.shape.TriangleMesh?>
+
+<MeshView id="Icosphere" cullFace="BACK" drawMode="FILL">
+  <material>
+    <PhongMaterial specularPower="96.07843">
+      <diffuseColor>
+        <Color red="0.614781" green="0.005381" blue="0.539514" opacity="1.0"/>
+      </diffuseColor>
+      <specularColor>
+        <Color red="0.319619" green="0.103496" blue="1.0" opacity="1.0"/>
+      </specularColor>
+    </PhongMaterial>
+  </material>
+  <mesh>
+    <TriangleMesh>
+      <points>0.0 -0.022035 0.0 0.7236 -1.572407 -0.61035 -0.276385 -1.572407 -0.987575 0.7236 -1.572407 0.61035 -0.894425 -1.572407 0.0 -0.276385 -1.572407 0.987575 0.894425 -3.52383 0.0 0.276385 -3.52383 -0.987575 -0.7236 -3.52383 -0.61035 -0.7236 -3.52383 0.61035 0.276385 -3.52383 0.987575 0.0 -5.110189 0.0</points>
+      <texCoords>0.0 1.0</texCoords>
+      <faces>0 0 1 0 2 0 1 0 0 0 3 0 0 0 2 0 4 0 0 0 4 0 5 0 0 0 5 0 3 0 1 0 3 0 6 0 2 0 1 0 7 0 4 0 2 0 8 0 5 0 4 0 9 0 3 0 5 0 10 0 1 0 6 0 7 0 2 0 7 0 8 0 4 0 8 0 9 0 5 0 9 0 10 0 3 0 10 0 6 0 7 0 6 0 11 0 8 0 7 0 11 0 9 0 8 0 11 0 10 0 9 0 11 0 6 0 10 0 11 0</faces>
+      <faceSmoothingGroups>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</faceSmoothingGroups>
+    </TriangleMesh>
+  </mesh>
+</MeshView>

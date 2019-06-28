@@ -30,6 +30,7 @@ public class CameraView implements CameraObserver {
         cameraXform2.getChildren().add(cameraXform3);
         cameraXform3.getChildren().add(camera);
 
+        camera.setFieldOfView(70);
         camera.setNearClip(0.1);
         camera.setFarClip(10000);
 

@@ -15,8 +15,8 @@ public class CameraController implements Animatable {
     public CameraController(Controller3D worldCon){
         this.worldCon = worldCon;
         //AnimationsManager.getInstance().createUpAndDownAnimation(this, -10, 5);
-        moveToPosition(new Translate(-1500, -1500, 0), 12);
-        rotateToAngle(-50, 90, 8);
+        moveToPosition(new Translate(0, -800, -700), 12);
+        rotateToAngle(-55, 0, 8);
     }
 
 

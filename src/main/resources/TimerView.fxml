@@ -6,12 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TimerView">
-    <ImageView fitHeight="72.0" fitWidth="154.0" layoutX="1397.0" layoutY="23.0">
+    <ImageView fitHeight="72.0" fitWidth="154.0" layoutX="1680.0" layoutY="23.0">
         <image>
             <Image url="@Phaseindicator.png" />
         </image>
     </ImageView>
-      <Text fx:id="timer" fill="#fcfcfc" layoutX="1441.0" layoutY="73.0" opacity="0.75" strokeWidth="2.0" text="0:00" textAlignment="CENTER">
+      <Text fx:id="timer" fill="#fcfcfc" layoutX="1730.0" layoutY="72.0" opacity="0.9" strokeWidth="2.0" text="0:00" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
          </font>
