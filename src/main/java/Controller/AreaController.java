@@ -2,22 +2,21 @@ package Controller;
 
 import Enum.AreaProperty;
 import Enum.AreaType;
-import Firebase.FirebaseGameObserver;
 import Model.AreaModel;
-import Objects.RaceFiche;
+import Fiches.RaceFiche;
+import Objects.AreaInfo;
 import Observer.AreaObserver;
 import View.NumberView;
-import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Stack;
 
-public class AreaController implements FirebaseGameObserver {
+public class AreaController{
 
 
-    private Map2DController map2DCon;
+    private MapController mapCon;
     private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
@@ -30,27 +29,32 @@ public class AreaController implements FirebaseGameObserver {
         this.gameCon = gameCon;
         fb = gameCon.getFireBase();
 //        loadAreaInFirebase();
-        listenToFirebase();
+//        listenToFirebase();
     }
 
-    public AreaController(Group area, Map2DController map2DController, GameController gameCon) {
+    public AreaController(Group area, MapController mapController, GameController gameCon) {
         String id = area.getChildren().get(0).getId();
         model = new AreaModel(id);
-        map2DCon = map2DController;
+        mapCon = mapController;
         this.gameCon = gameCon;
         fb = gameCon.getFireBase();
 
 //        getAreaInfo(id);
     }
 
-    private void listenToFirebase(){
-        fb.areaListener(this);
+    public AreaController(AreaInfo info, MapController map){
+        mapCon = map;
+        model = new AreaModel(info);
     }
 
-    private void loadAreaInFirebase(){
-        model.setFiches(1);
-        fb.areaUpdate(this);
-    }
+//    private void listenToFirebase(){
+//        fb.areaListener(this);
+//    }
+//
+//    private void loadAreaInFirebase(){
+//        model.setFiches(1);
+//        fb.areaUpdate(this);
+//    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,26 +89,17 @@ public class AreaController implements FirebaseGameObserver {
         return model.getId();
     }
 
-    int numbersNeeded() {
-        return model.numbersNeeded();
-    }
-
-    void attackArea(Stack<RaceFiche> fiches) {
+    public void attackArea(Stack<FicheController> fiches) {
         model.setFiches(fiches);
 //        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
     }
 
-    void setPlayerOwner(PlayerController player) {
+    public void setPlayerOwner(PlayerController player) {
         model.player = player;
     }
 
     public PlayerController getOwnerPlayer() {
         return model.player;
-    }
-
-    Stack<RaceFiche> removeFiches() {
-//        fb.areaUpdateFiches(model.getId(), 0);
-        return model.getAllFiches();
     }
 
     RaceFiche getOneFiche() {
@@ -120,42 +115,10 @@ public class AreaController implements FirebaseGameObserver {
     }
 
     public void selectActive() {
-        map2DCon.selectSingleArea(this);
+        mapCon.selectSingleArea(this);
     }
 
     public void makeActive(){ model.changeActive();}
-
-    public void destroyAllButOne() {
-        model.getAllButOne();
-//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
-    }
-
-    void returnAllButOne(RaceController raceController) {
-        raceController.pushFiches(model.getAllButOne());
-//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
-    }
-
-    private void getAreaInfo(String id) {
-        model.setBorderArea(fb.isAreaBorderArea(id));
-        model.setAreaType(fb.getAreaType(id));
-        model.setNeighbours(fb.getNeighboursArea(id));
-        model.setAttackAble(fb.isAttackable(id));
-        model.setFiches(fb.basicFichesCount(id));
-    }
-
-    @Override
-    public void update(DocumentSnapshot ds) {
-        System.out.println(ds.getDouble("fiches").intValue());
-//        if (gameCon.getCurrentPlayer() == gameCon.getMyPlayer()) return;
-//        Platform.runLater(() -> {
-//            if (model.getPlayer() == gameCon.getMyPlayer()) {
-//                model.getPlayer().getActiveCombination().gatRace().pushFiches(removeFiches());
-//                model.player = null;
-//                model.setFiches(ds.getDouble("fiches").intValue());
-//            }
-//            model.setFiches(ds.getDouble("fiches").intValue());
-//        });
-    }
 
     public AreaProperty getSpecialProp() {
         return model.getSpecialProp();
@@ -208,7 +171,6 @@ public class AreaController implements FirebaseGameObserver {
     }
 
     public void setNumber(int number){
-        System.out.println("setting");
         numberCon.setNumber(number);
     }
 

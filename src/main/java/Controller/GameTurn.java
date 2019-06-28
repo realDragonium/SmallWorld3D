@@ -1,17 +1,21 @@
 package Controller;
 
 import Enum.TurnFase;
-import Firebase.FirebaseGameObserver;
+import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseServiceOwn;
+import FirebaseActions.FirebaseAction;
 import Phase.*;
-import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
+import com.google.cloud.firestore.DocumentChange;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 
-class GameTurn implements FirebaseGameObserver {
+import java.util.List;
+
+public class GameTurn implements FirebaseActionObserver {
 
     private Phase phase;
     GameController gameCon;
-    private FirebaseServiceOwn fb;// = SceneManager.getInstance().getApp().getFirebaseService();
+    private FirebaseGameController fb;
 
     void endTurn() {
         gameCon.getGameTimer().endPhase();
@@ -21,22 +25,23 @@ class GameTurn implements FirebaseGameObserver {
     private PlayerController currentPlayer;
 
     GameTurn(GameController gameCon, PlayerController player) {
-//        fb.timerListen(this);
         this.gameCon = gameCon;
         currentPlayer = player;
-//        currentPhase = TurnFase.none;
         phase = new PhaseNone();
-//        SceneManager.getInstance().switchToSpectatingView();
+
     }
 
     GameTurn(GameController gameCon){
         this.gameCon = gameCon;
         phase = new PhaseNone();
+        fb = gameCon.getFireBase();
+        fb.turnActionListener(this);
     }
 
     public void nextPhase(){
         phase = phase.nextPhase();
         gameCon.changeGameView(phase.changeView());
+
     }
 
     private void endPhase() {
@@ -66,7 +71,6 @@ class GameTurn implements FirebaseGameObserver {
 //            SceneManager.getInstance().switchToPreperationPhase();
 
             if (currentPlayer.hasActiveCombination()) {
-                currentPlayer.returnFiches();
                 currentPlayer.getActiveCombination().checkForSpecialActions(currentPhase);
 
 //                SceneManager.getInstance().addToScene("vervalGroup");
@@ -101,17 +105,23 @@ class GameTurn implements FirebaseGameObserver {
         }
     }
 
-    @Override
-    public void update(DocumentSnapshot ds) {
-        Platform.runLater(() -> {
-            endPhase();
-            gameCon.getTimer().setTime(gameCon.getGameTimer().maxTime);
-            gameCon.getGameTimer().resetTimer(ds.getBoolean("endPhase"));
-        });
-    }
 
     void newTurn(PlayerController currentPlayer) {
         this.currentPlayer = currentPlayer;
         endPhase();
+    }
+
+    @Override
+    public void update(QuerySnapshot qs) {
+        List<DocumentChange> testList = qs.getDocumentChanges();
+//        System.out.println(testList.get(0).getDocument().getId());
+        FirebaseAction action = testList.get(0).getDocument().toObject(FirebaseAction.class);
+        action.doAction(this);
+
+//        List<QueryDocumentSnapshot> docs = qs.getDocuments();
+//        QueryDocumentSnapshot qDoc = docs.get(docs.size()-1);
+//        System.out.println(qDoc.getId());
+//        FirebaseAction action = qDoc.toObject(FirebaseAction.class);
+//        action.doAction(this);
     }
 }

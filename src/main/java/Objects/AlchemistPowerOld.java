@@ -12,7 +12,7 @@ public class AlchemistPowerOld implements PowerOld {
 
     @Override
     public void doAction(){
-        combiCon.gatPlayer().addPoints(2);
+        combiCon.getPlayer().addPoints(2);
     }
 
     @Override

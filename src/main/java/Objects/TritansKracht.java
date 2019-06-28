@@ -28,8 +28,8 @@ public class TritansKracht implements Kracht{
 
     @Override
     public void doAction() {
-        if(raceCon.getCombiCon().gatPlayer().getGameCon().getAttCon().getAttackArea().isNextToWater()){
-            raceCon.getCombiCon().gatPlayer().getGameCon().getAttCon().removeFichesNeeded(1);
+        if(raceCon.getCombiCon().getPlayer().getGameCon().getAttCon().getAttackArea().isNextToWater()){
+            raceCon.getCombiCon().getPlayer().getGameCon().getAttCon().removeFichesNeeded(1);
         }
     }
 

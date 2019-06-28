@@ -1,6 +1,7 @@
 package Controller;
 
 import Enum.TurnFase;
+import Fiches.RaceFiche;
 import Model.CombinationModel;
 import Objects.PowerOld;
 import Observer.CombinationObserver;
@@ -8,6 +9,8 @@ import Enum.RaceEnum;
 import Enum.PowerEnum;
 import Race.Race;
 import Power.Power;
+
+import java.util.Stack;
 
 
 public class CombinationController {
@@ -44,27 +47,22 @@ public class CombinationController {
 
     }
 
-    public Power getPower2() {
-        return power2;
+
+    public void attackThisArea(AreaController area){
+        model.getAttack().Attack(area, this);
     }
 
-    public Race getRace2(){
-        return race2;
+    public Stack<FicheController> getFiches(int count){
+        Stack<FicheController> tempFiches = model.removeFiches(count);
+        return tempFiches;
     }
 
-    public String getRaceName(){
-        return race.getId();
-    }
-
-    public String getPowerName(){
-        return powerOld.getId();
-    }
 
     public void setPlayer(PlayerController player){
         this.player = player;
     }
 
-    public PlayerController gatPlayer(){
+    public PlayerController getPlayer(){
         return this.player;
     }
 
@@ -77,28 +75,16 @@ public class CombinationController {
         }
     }
 
-    public RaceController gatRace(){
+    public RaceController getRace(){
         return race;
     }
 
-    public PowerOld gatPowerOld(){
+    public PowerOld getPowerOld(){
         return powerOld;
     }
 
 
-
-    void returnFiches() {
-            race.returnFiches();
-    }
-
     void setToNonActive() {
         model.setToNonActive();
-        for(AreaController area: gatRace().getAllAreas()){
-            area.destroyAllButOne();
-        }
-    }
-
-    void destroyAllFichesButOne() {
-        race.destroyAllFichesButOne();
     }
 }

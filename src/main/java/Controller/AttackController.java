@@ -22,7 +22,7 @@ public class AttackController {
     }
 
     private void getTargetArea() {
-        targetArea = gameCon.getMapCon().getActiveAreas().get(0);
+        targetArea = gameCon.getMapCon().getActiveArea();
     }
 
     private void attackAreaLocal() {
@@ -30,18 +30,18 @@ public class AttackController {
     }
 
     private void attack(PlayerController player, AreaController area, int fiches){
-        player.getActiveCombination().gatRace().addArea(area);
-        area.attackArea(player.getActiveCombination().gatRace().getFiches(fiches));
+        player.getActiveCombination().getRace().addArea(area);
+//        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
         area.setPlayerOwner(player);
     }
 
     public void attackCountry() {
-        getTargetArea();
-        attackAreaLocal();
+        AreaController area = gameCon.getMapCon().getActiveArea();
+        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(area);
     }
 
     private boolean isNeighbour(AreaController area, PlayerController player){
-        for(AreaController areaCon : player.getActiveCombination().gatRace().getAllAreas()){
+        for(AreaController areaCon : player.getActiveCombination().getRace().getAllAreas()){
             if(areaCon.getNeighbours().contains(area.getId())) return true;
         }
         return false;
@@ -55,7 +55,7 @@ public class AttackController {
         if(area.isAttackAble()) {
             if (player.hasActiveCombination()) {
                 if (player.hasEnoughFiches(fichesNeeded)) {
-                    if (player.getActiveCombination().gatRace().getAllAreas().size() == 0) {
+                    if (player.getActiveCombination().getRace().getAllAreas().size() == 0) {
                         if (area.firstAttackArea()) {
                             return true;
                         }
@@ -97,4 +97,6 @@ public class AttackController {
         }
         System.out.println("not able to attack");
     }
+
+
 }

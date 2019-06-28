@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.database.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseGameService {
@@ -20,78 +18,30 @@ public class FirebaseGameService {
         gameRef = fb.collection("Games").document(gameName);
     }
 
-    public void setTest(String itemId, Object object) {
-        gameRef.collection("Shop").document(itemId).set(object);
+    public void placeAction(Object object){
+        gameRef.collection("Actions").document(getLastestActionNumber()).set(object);
     }
 
-    public void updatePlayer(String playerId, Map<String, Object> map) {
-        gameRef.collection("Players").document(playerId).set(map);
+    public String getLastestActionNumber(){
+        List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Actions")).getDocuments();
+        return String.valueOf(list.size());
     }
 
-    public void updateArea(String areaId, Map<String, Object> map) {
-        gameRef.collection("Areas").document(areaId).set(map);
-    }
-
-    public void updateShop(String itemId, Object object) {
-        gameRef.collection("Shop").document(itemId).set(object);
-    }
-
-    public void buyFromShop(String itemId, Map<String, Object> map){
-        gameRef.collection("Extra").document("Shop").update(map);
-    }
-
-    public List<QueryDocumentSnapshot>  getShopItems() {
-        return getQuerySnapshot(gameRef.collection("Shop").get()).getDocuments();
-    }
-
-    public DocumentSnapshot getAreaInfo(String areaId){
-        return getDocSnapshot(fb.collection("Maps").document("4PlayerMap").collection("Areas").document(areaId));
-    }
-
-
-
-    public void areaListener(String areaId, final FirebaseGameObserver controller) {
-        DocumentReference docRef = gameRef.collection("Areas").document(areaId);
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
+    public void actionListener(final FirebaseActionObserver controller) {
+        CollectionReference docRef = gameRef.collection("Actions");
+        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirestoreException error) {
                 if (error != null) {
                     System.err.println("Listen failed: " + error);
                     return;
                 }
-                if (snapshot != null && snapshot.exists()) controller.update(snapshot);
-            }
-        });
-    }
-
-    public void playerListener(String player, final FirebaseGameObserver controller) {
-        DocumentReference docRef = gameRef.collection("Players").document(player);
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
-                if (error != null) {
-                    System.err.println("Listen failed: " + error);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
+                if (snapshot != null && snapshot.getDocuments().size() > 0) {
                     controller.update(snapshot);
                 }
             }
         });
     }
 
-    public void shopListener(final FirebaseGameObserver controller) {
-        DocumentReference docRef = gameRef.collection("Extras").document("Shop");
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
-                if (error != null) {
-                    System.err.println("Listen failed: " + error);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
-                    controller.update(snapshot);
-                }
-            }
-        });
-    }
 
 
 
@@ -110,9 +60,9 @@ public class FirebaseGameService {
         return null;
     }
 
-    private QuerySnapshot getQuerySnapshot(ApiFuture<QuerySnapshot> querySnapshotApiFuture){
+    private QuerySnapshot getQuerySnapshot(CollectionReference colRef){
         try {
-            return querySnapshotApiFuture.get();
+            return colRef.get().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

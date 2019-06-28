@@ -38,14 +38,15 @@ public class Area3dView implements AreaObserver {
         this.con3d = con3d;
         init();
         areaCon.register(this);
-
     }
 
 
     public void init(){
         area.setOnMouseClicked(e -> {
+            PickResult pr = e.getPickResult();
             //areaCon.showInfo();
-            areaCon.createFiche();
+            //areaCon.createFiche();
+            System.out.println(area.getId());
             //System.out.println("areaPoints.put(" + area.getId() + " ,new Translate(" + Math.round(pr.getIntersectedPoint().getX() * 100) + "," + Math.round(pr.getIntersectedPoint().getY() * 100) + "," + Math.round( pr.getIntersectedPoint().getZ()* 100) + "));");
         });
         area.setOnMouseEntered(e -> {

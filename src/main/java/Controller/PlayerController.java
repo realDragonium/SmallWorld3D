@@ -36,12 +36,12 @@ public class PlayerController implements FirebaseGameObserver {
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getRaceFichesAmount());
         info.put("points", model.getPoints());
-//        fb.playerUpdate(gameCon.gatRace().getId(), info);
+//        fb.playerUpdate(gameCon.getRace().getId(), info);
     }
 
     void showActiveCombiFichesLeft() {
         for (CombinationController combiCon : combinations) {
-            combiCon.gatRace().fichesOver();
+            combiCon.getRace().fichesOver();
         }
     }
 
@@ -87,14 +87,10 @@ public class PlayerController implements FirebaseGameObserver {
         model.notifyObserver();
     }
 
-    void returnFiches() {
-        getActiveCombination().returnFiches();
-    }
-
     void addRoundPoints() {
         if(hasCombination()){
             for(CombinationController combi : combinations)
-            model.addPunten(combi.gatRace().getAreasAmount());
+            model.addPunten(combi.getRace().getAreasAmount());
         }
     }
 

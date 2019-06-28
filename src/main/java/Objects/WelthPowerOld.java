@@ -13,7 +13,7 @@ public class WelthPowerOld implements PowerOld {
     @Override
     public void doAction(){
         if(!used){
-            combiCon.gatPlayer().addPoints(7);
+            combiCon.getPlayer().addPoints(7);
             used = true;
         }
     }

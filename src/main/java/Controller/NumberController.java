@@ -11,7 +11,7 @@ public class NumberController implements Animatable {
     private NumberModel model = new NumberModel();
 
     public NumberController(){
-        AnimationsManager.getInstance().createRotateToAnimation(this, 0, 360, 3, true);
+        AnimationsManager.getInstance().createRotateToAnimation(this, 0, 360, 6, true);
     }
 
     public void setNumber(int number){

@@ -30,7 +30,7 @@ public class ShopController implements FirebaseGameObserver {
             makeNewCombination();
         }
 //        gameCon.getFireBase().shopUpdate(this);
-        gameCon.getFireBase().getShopItems();
+//        gameCon.getFireBase().getShopItems();
     }
 
     private void removeItem(double item){

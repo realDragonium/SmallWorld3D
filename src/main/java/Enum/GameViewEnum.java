@@ -3,8 +3,7 @@ package Enum;
 public enum GameViewEnum {
     MAP2D("map2D"), SHOP("shop"), MAP3D("map3D"), PLAYER("players"), ROUND("round"), TURN("turn"),
     BUTTON("button"), TIMER("timer"), VERVAL("verval"), DICE("dice"), REDEPLOY("redeploy"), INFO("info"),
-    ATTACK("attack"), AREAINFO("areaInfo");
-
+    ATTACK("attack"), AREAINFO("areaInfo"), UIOVERLAY("uiOverlay") ;
     private String view;
 
     GameViewEnum(String view){

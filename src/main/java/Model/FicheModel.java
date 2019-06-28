@@ -11,9 +11,11 @@ public class FicheModel implements FicheObservable {
 
     Translate position = new Translate(0,0,0);
     List<FicheObserver> observers = new ArrayList<>();
-    int defenceValue;
+    private int defenceValue;
+    private String name;
 
-    public FicheModel(int defenceValue){
+    public FicheModel(int defenceValue, String name){
+        this.name = name;
         this.defenceValue = defenceValue;
     }
 

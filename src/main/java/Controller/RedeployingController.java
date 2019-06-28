@@ -27,9 +27,9 @@ public class RedeployingController {
                 if(activeArea.getFichesAmount() >= 1){
                     if(activeArea.getFichesAmount() == 1){
                         player.addPoints(-1);
-                        player.getActiveCombination().gatRace().removeArea(activeArea);
+                        player.getActiveCombination().getRace().removeArea(activeArea);
                     }
-                    player.getActiveCombination().gatRace().addFiche(activeArea.getOneFiche());
+                    player.getActiveCombination().getRace().addFiche(activeArea.getOneFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }
@@ -42,8 +42,8 @@ public class RedeployingController {
 
         if(activeArea != null){
             if(activeArea.getOwnerPlayer().getId().equals(player.getId())){
-                if(player.getActiveCombination().gatRace().hasEnoughFiches(1)){
-                    //activeArea.addFiche(player.getActiveCombination().gatRace().removeFiche());
+                if(player.getActiveCombination().getRace().hasEnoughFiches(1)){
+                    //activeArea.addFiche(player.getActiveCombination().getRace().removeFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }
@@ -56,11 +56,7 @@ public class RedeployingController {
      */
 
     private AreaController getActiveArea(){
-        AreaController activeArea = null;
-
-        if(gameCon.getMapCon().getActiveAreas().size() > 0){
-            activeArea = gameCon.getMapCon().getActiveAreas().get(0);
-        }
+        AreaController activeArea = gameCon.getMapCon().getActiveArea();
         return activeArea;
     }
 }

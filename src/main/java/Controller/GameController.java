@@ -5,7 +5,6 @@ import Objects.FXMLLOADER;
 import Observer.GameObserver;
 import View.*;
 import javafx.scene.Group;
-import javafx.scene.SubScene;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +21,7 @@ public class GameController {
     private Controller3D con3d;
     private ApplicationController appCon;
     private FXMLLOADER fxmlLoader = new FXMLLOADER();
-    private Map2DController mapCon;
+    private MapController mapCon;
     private ButtonController buttonCon;
     private TimerController timerCon;
     private VervallenController vervalCon;
@@ -75,7 +74,7 @@ public class GameController {
     }
 
     public void createMap2DView(Group group){
-        mapCon = new Map2DController(this);
+        mapCon = new MapController(this);
         fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
@@ -85,6 +84,9 @@ public class GameController {
         fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
 
+    public void createUIOverlay(Group group) {
+        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
+    }
 
 
     public void createRoundView(Group group) {
@@ -192,7 +194,7 @@ public class GameController {
         return turnCon;
     }
 
-    Map2DController getMapCon(){
+    MapController getMapCon(){
         return mapCon;
     }
 

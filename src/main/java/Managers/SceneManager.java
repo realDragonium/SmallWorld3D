@@ -163,7 +163,7 @@ public class SceneManager {
         new AreaView(area, areaController);
     }
 
-    public void createMap(Map2DController mapController) {
+    public void createMap(MapController mapController) {
         creators.put(Map2DView.class, (Callable<Map2DView>) () -> new Map2DView(mapController, groepen.get("mapGroup")));
         FXMLLOADER("/Map/UglyMap4.fxml");
     }

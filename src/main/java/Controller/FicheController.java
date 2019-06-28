@@ -9,13 +9,11 @@ import javafx.scene.transform.Translate;
 
 public class FicheController implements Animatable {
 
-    GameController gameCon;
     FicheModel model;
 
 
-    public FicheController(GameController gameCon, int defenceValue){
-        model = new FicheModel(defenceValue);
-        this.gameCon = gameCon;
+    public FicheController(int defenceValue, String name){
+        model = new FicheModel(defenceValue, name);
     }
 
     public void registerObserver(FicheObserver fo){

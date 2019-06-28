@@ -1,0 +1,703 @@
+[
+  {
+    "id": "farm_001",
+    "neighbours": [
+      "swamp_001",
+      "forest_002",
+      "swamp_008",
+      "forest_003"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "farm_002",
+    "neighbours": [
+      "swamp_002",
+      "hill_001",
+      "forest_001",
+      "forest_002",
+      "hill_008"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "farm_003",
+    "neighbours": [
+      "water_002",
+      "swamp_002",
+      "forest_007",
+      "mountain_005",
+      "mountain_006",
+      "forest_005"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "farm_004",
+    "neighbours": [
+      "swamp_007",
+      "hill_002",
+      "swamp_003",
+      "mountain_004"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "farm_005",
+    "neighbours": [
+      "farm_006",
+      "mountain_003",
+      "swamp_006",
+      "hill_004"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "farm_006",
+    "neighbours": [
+      "farm_005",
+      "mountain_003",
+      "forest_008"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "farm_007",
+    "neighbours": [
+      "mountain_009",
+      "hill_005",
+      "farm_008",
+      "hill_006",
+      "swamp_004",
+      "hill_007",
+      "water_002"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "farm_008",
+    "neighbours": [
+      "hill_005",
+      "mountain_001",
+      "swamp_005",
+      "swamp_009",
+      "hill_006",
+      "farm_007"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "Mine",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "farm_009",
+    "neighbours": [
+      "swamp_008",
+      "hill_008",
+      "water_001",
+      "forest_009",
+      "swamp_004",
+      "mountain_008"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "forest_001",
+    "neighbours": [
+      "forest_002",
+      "farm_001",
+      "hill_001",
+      " farm_002",
+      "swamp_001"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "forest_002",
+    "neighbours": [
+      "forest_001",
+      "farm_001",
+      "swamp_001",
+      "farm_002",
+      " hill_008",
+      "swamp_008"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "forest_003",
+    "neighbours": [
+      "swamp_008",
+      "water_001",
+      "farm_001"
+    ],
+    "nextToWater": true,
+    "borderArea": true,
+    "property": "Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "forest_004",
+    "neighbours": [
+      "swamp_006",
+      "mountain_009",
+      "mountain_004",
+      "swamp_003",
+      "water_002"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "forest_005",
+    "neighbours": [
+      "farm_003",
+      "mountain_005",
+      "hill_002",
+      "swamp_003",
+      "water_002"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "forest_006",
+    "neighbours": [
+      "water_003",
+      "mountain_006",
+      "mountain_005",
+      "hill_003"
+    ],
+    "nextToWater": true,
+    "borderArea": true,
+    "property": "Cave",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "forest_007",
+    "neighbours": [
+      "swamp_002",
+      "farm_003",
+      "mountain_006",
+      "mountain_007"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "forest_008",
+    "neighbours": [
+      "farm_006",
+      "mountain_003",
+      "hill_005",
+      "mountain_001"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "forest_009",
+    "neighbours": [
+      "hill_009",
+      "water_001",
+      "farm_009",
+      "swamp_004",
+      "hill_006"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "hill_001",
+    "neighbours": [
+      "forest_001",
+      "farm_002",
+      "swamp_002",
+      "mountain_007"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "hill_002",
+    "neighbours": [
+      "swamp_007",
+      "farm_004",
+      "swamp_003",
+      "forest_005",
+      "mountain_005",
+      "hill_003"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "hill_003",
+    "neighbours": [
+      "mountain_005",
+      "forest_006",
+      "water_003",
+      "swamp_007",
+      "hill_002"
+    ],
+    "nextToWater": true,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "hill_004",
+    "neighbours": [
+      "farm_005",
+      "swamp_006",
+      "mountain_004"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "hill_006",
+    "neighbours": [
+      "forest_009",
+      "swamp_004",
+      "farm_007",
+      "farm_008",
+      "swamp_009",
+      "water_001"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "hill_007",
+    "neighbours": [
+      "water_002",
+      "farm_007",
+      "swamp_004",
+      "mountain_008"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "hill_008",
+    "neighbours": [
+      "forest_002",
+      "farm_002",
+      "swamp_002",
+      "water_002",
+      "mountain_008",
+      "farm_009",
+      "swamp_008"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "hill_009",
+    "neighbours": [
+      "forest_009",
+      "water_001"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "mountain_001",
+    "neighbours": [
+      "swamp_005",
+      "farm_008",
+      "hill_005",
+      "forest_008"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Cave",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_002",
+    "neighbours": [
+      "swamp_005",
+      "swamp_009",
+      "water_001"
+    ],
+    "nextToWater": true,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_003",
+    "neighbours": [
+      "farm_006",
+      "farm_005",
+      "swamp_006",
+      "mountain_009",
+      "hill_005",
+      "forest_008"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_004",
+    "neighbours": [
+      "hill_004",
+      "swamp_006",
+      "forest_004",
+      "swamp_003",
+      "farm_004"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_005",
+    "neighbours": [
+      "forest_006",
+      "hill_003",
+      "hill_002",
+      "forest_005",
+      "farm_003",
+      "mountain_006"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_006",
+    "neighbours": [
+      "forest_007",
+      "farm_003",
+      "mountain_005",
+      "forest_006"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_007",
+    "neighbours": [
+      "hill_001",
+      "swamp_002",
+      "forest_007",
+      "mountain_006"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_008",
+    "neighbours": [
+      "hill_008",
+      "water_002",
+      "hill_007",
+      "swamp_004",
+      "farm_009"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Cave, Mine",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "mountain_009",
+    "neighbours": [
+      "swamp_006",
+      "mountain_003",
+      "forest_004",
+      "water_002",
+      "farm_007",
+      "hill_005"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "swamp_001",
+    "neighbours": [
+      "forest_001",
+      "forest_002",
+      "farm_001"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Mine",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_002",
+    "neighbours": [
+      "mountain_007",
+      "hill_001",
+      "farm_002",
+      "hill_008",
+      "water_002",
+      "farm_003",
+      "forest_007"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_003",
+    "neighbours": [
+      "mountain_004",
+      "farm_004",
+      "hill_002",
+      "forest_005",
+      "water_002",
+      "forest_004"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "Mine",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_004",
+    "neighbours": [
+      "forest_009",
+      "hill_006",
+      "farm_007",
+      "hill_007",
+      "mountain_008",
+      "farm_009"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_005",
+    "neighbours": [
+      "mountain_001",
+      "farm_008",
+      "swamp_009",
+      "mountain_002"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Magical",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "swamp_006",
+    "neighbours": [
+      "hill_004",
+      "farm_005",
+      "mountain_003",
+      "mountain_009",
+      "forest_004",
+      "mountain_004"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_007",
+    "neighbours": [
+      "farm_004",
+      "hill_002",
+      "hill_003"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "Cave",
+    "lostTribe": true,
+    "attackable": true
+  },
+  {
+    "id": "swamp_008",
+    "neighbours": [
+      "forest_003",
+      "farm_001",
+      "forest_002",
+      "hill_008",
+      "farm_009",
+      "water_001"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "swamp_009",
+    "neighbours": [
+      "mountain_002",
+      "swamp_005",
+      "farm_008",
+      "hill_006",
+      "water_001"
+    ],
+    "nextToWater": true,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
+    "id": "water_001",
+    "neighbours": [
+      "mountain_002",
+      "swamp_009",
+      "hill_006",
+      "forest_009",
+      "hill_009",
+      "farm_009,swamp_008",
+      "forest_003"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": false
+  },
+  {
+    "id": "water_002",
+    "neighbours": [
+      "farm_003",
+      "forest_005",
+      "swamp_003",
+      "forest_004",
+      "mountain_009",
+      "farm_007",
+      "hill_007",
+      "mountain_008",
+      "hill_008",
+      "swamp_002"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": false
+  },
+  {
+    "id": "water_003",
+    "neighbours": [
+      "hill_003",
+      "forest_006"
+    ],
+    "nextToWater": false,
+    "borderArea": true,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": false
+  }
+]

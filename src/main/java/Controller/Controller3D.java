@@ -45,7 +45,7 @@ public class Controller3D{
     }
 
     public FicheController createRaceFiche(String race){
-        FicheController ficheCon = new FicheController(gameCon, 1);
+        FicheController ficheCon = new FicheController(1, "Ghost");
         new fiche3dView(ficheCon, fiches, race);
         return ficheCon;
     }

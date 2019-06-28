@@ -37,8 +37,6 @@ public class RoundView implements RoundObserver {
     public void initialize() {
         group.getChildren().add(groupFXML);
         roundCon.register(this);
-        roundField.setX(20);
-        roundField.setY(35);
     }
     @Override
     public void update(RoundObservable ro) {

@@ -3,7 +3,7 @@ package Controller;
 import Enum.TurnFase;
 import Model.RaceModel;
 import Objects.Kracht;
-import Objects.RaceFiche;
+import Fiches.RaceFiche;
 
 import java.util.List;
 import java.util.Stack;
@@ -52,17 +52,7 @@ public class RaceController {
 		kracht.doAction();
 	}
 
-    void returnFiches() {
-		for(AreaController area : model.getAreas()){
-			area.returnAllButOne(this);
-		}
-    }
-
-	void destroyAllFichesButOne(){
-		model.removeAllFichesButOne();
-	}
-
-    void addArea(AreaController area){
+    public void addArea(AreaController area){
 		model.addArea(area);
 	}
 

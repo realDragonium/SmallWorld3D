@@ -1,6 +1,7 @@
 package Controller;
 
-import Managers.SceneManager;
+import FirebaseActions.FirebaseAction;
+import FirebaseActions.FirebaseTurnActionEnum;
 
 public class ButtonController {
 
@@ -19,6 +20,16 @@ public class ButtonController {
         gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
     }
 
-    public void nextPhase(){ gameCon.nextPhase(); }
+    public void nextPhase(){
+//        gameCon.nextPhase();
+        FirebaseAction action = new FirebaseAction(FirebaseTurnActionEnum.nextphase);
+        gameCon.getFireBase().placeTurnAction(action);
+    }
 
+    public void nextTurn() {
+    }
+
+    public void nextRound() {
+
+    }
 }
