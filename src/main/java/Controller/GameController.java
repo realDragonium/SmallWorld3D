@@ -89,6 +89,9 @@ public class GameController {
         fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
 
+    public void createUIOverlay(Group group) {
+        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
+    }
 
 
     public void createRoundView(Group group) {

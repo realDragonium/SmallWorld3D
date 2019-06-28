@@ -74,6 +74,8 @@ public class Map3DController {
         areaPoints.put("hill_009" ,new Translate(-373,-1,102));
         areaPoints.put("mountain_002" ,new Translate(-308,-87,417));
         areaPoints.put("swamp_009" ,new Translate(-243,-1,319));
+        areaPoints.put("mountain_001" ,new Translate(-34,-84,409));
+        areaPoints.put("swamp_005" ,new Translate(-147,-1,437));
     }
 
     public void placeFiche(AreaController areaCon, FicheController fiche) {

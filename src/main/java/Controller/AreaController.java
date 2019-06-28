@@ -200,7 +200,6 @@ public class AreaController implements FirebaseControllerObserver {
     }
 
     public void setNumber(int number){
-        System.out.println("setting");
         numberCon.setNumber(number);
     }
 

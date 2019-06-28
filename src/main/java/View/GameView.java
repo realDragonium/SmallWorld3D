@@ -54,6 +54,7 @@ public class GameView implements GameObserver {
         groups.put("info", new Group());
         groups.put("attack", new Group());
         groups.put("areaInfo", new Group());
+        groups.put("uiOverlay", new Group());
     }
 
     private void createViews(){
@@ -74,15 +75,19 @@ public class GameView implements GameObserver {
         gameCon.createInfoView(groups.get("info"));
         gameCon.createAttackView(groups.get("attack"));
         gameCon.createAreaInfoView(groups.get("areaInfo"));
+        gameCon.createUIOverlay(groups.get("uiOverlay"));
     }
 
     private void basicViewLayout() {
         root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
+        //root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
+
         root.getChildren().add(notBasicRoot);
     }
 
