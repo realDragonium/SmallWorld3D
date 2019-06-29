@@ -2,13 +2,18 @@ package Controller;
 
 import Model.MapModel;
 import Objects.AreaInfo;
+import View.Area3dView;
+import View.AreaView;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +24,7 @@ public class MapController {
 	private Map<String, AreaController> areas = new HashMap<>();
 	private GameController gameCon;
 	private MapModel model = new MapModel();
-
+	private Controller3D con3D;
 
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
@@ -27,9 +32,13 @@ public class MapController {
 		createAreaControllers();
 	}
 
-	public void createArea(){
+	public void createAreaView(Node area, String areaId){
 //		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
-//		new Area3dView(area, areaCon, con3D);
+		new Area3dView(area, areas.get(areaId), con3D);
+	}
+
+	public void createAreaView(Group area){
+		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
 	}
 
 
@@ -46,6 +55,10 @@ public class MapController {
 			infoMap.put(info.id, info);
 		}
 		model.areaInfos = infoMap;
+	}
+
+	public AreaController getAreaCon(String areaId){
+		return areas.get(areaId);
 	}
 
 	private void createAreaControllers(){
@@ -81,7 +94,7 @@ public class MapController {
 	}
 
 	private void setupAreaPoints(){
-		Map<String, Translate> areaPoints; = new HashMap<>();
+		Map<String, Translate> areaPoints = new HashMap<>();
 		areaPoints.put("farm_005" ,new Translate(402,-1,363));
 		areaPoints.put("hill_004" ,new Translate(409,-1,217));
 		areaPoints.put("mountain_004" ,new Translate(343,-74,94));

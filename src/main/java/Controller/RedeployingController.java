@@ -29,7 +29,7 @@ public class RedeployingController {
                         player.addPoints(-1);
                         player.getActiveCombination().getRace().removeArea(activeArea);
                     }
-                    player.getActiveCombination().getRace().addFiche(activeArea.getOneFiche());
+//                    player.getActiveCombination().getRace().addFiche(activeArea.getOneFiche());
 //                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }

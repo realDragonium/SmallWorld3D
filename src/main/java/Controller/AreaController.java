@@ -102,9 +102,6 @@ public class AreaController{
         return model.player;
     }
 
-    RaceFiche getOneFiche() {
-        return model.getOneFiche();
-    }
 
     void changeActive() {
         model.changeActive();
@@ -120,7 +117,7 @@ public class AreaController{
 
     public void makeActive(){ model.changeActive();}
 
-    public AreaProperty getSpecialProp() {
+    public String getSpecialProp() {
         return model.getSpecialProp();
     }
 
@@ -131,7 +128,6 @@ public class AreaController{
     int getFichesAmount() {
         return model.getNumberOfFiches();
     }
-
 
     public AreaType getAreaType() {
         return model.getAreaType();

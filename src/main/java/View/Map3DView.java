@@ -1,24 +1,35 @@
 package View;
 
-import Controller.Map3DController;
+import Controller.*;
 import Objects.Xform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.shape.MeshView;
+import javafx.scene.*;
 
 import java.io.IOException;
 
 public class Map3DView {
 
-    Group root;
-    Xform xForm = new Xform();
-    Map3DController mapCon;
+    private Group root;
+    private Xform xForm = new Xform();
+    private MapController mapCon;
 
-    public Map3DView(Map3DController mapCon, Group map) {
+    Group world = new Group();
+    SubScene scene;
+    Group map = new Group();
+    Group camera = new Group();
+    Group fiches = new Group();
+    GameController gameCon;
+
+    public Map3DView(MapController mapCon, Group map) {
         root = map;
         this.mapCon = mapCon;
         loadMap();
+
+        scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
+
+        createCamera();
+        root.getChildren().add(scene);
+        world.getChildren().addAll(fiches);
     }
 
     public void loadMap(){
@@ -30,7 +41,7 @@ public class Map3DView {
                 if(!area.getId().equals("nope")) {
                     String areaId = area.getId().substring(14);
                     area.setId(areaId);
-                    mapCon.createArea(area, areaId);
+                    mapCon.createAreaView(area, areaId);
 
                 }
             }
@@ -46,5 +57,33 @@ public class Map3DView {
         catch (IOException e) {
             // exception handling
         }
+    }
+
+    public void setCamera(PerspectiveCamera camera){
+        scene.setCamera(camera);
+    }
+
+    public void createCamera(){
+        System.out.println("creating camera...");
+        CameraController cameraCon = new CameraController();
+        CameraView cameraView = new CameraView(cameraCon, camera);
+        world.getChildren().add(camera);
+        setCamera(cameraView.getCamera());
+    }
+
+    public void createMap(){
+        System.out.println("creating map...");
+        new Map3DView(mapCon, map);
+        world.getChildren().add(map);
+    }
+
+    public FicheController createRaceFiche(String race){
+        FicheController ficheCon = new FicheController(1, "Ghost");
+        new fiche3dView(ficheCon, fiches, race);
+        return ficheCon;
+    }
+
+    public void add3dObject(Node number) {
+        map.getChildren().add(number);
     }
 }

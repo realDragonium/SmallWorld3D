@@ -58,7 +58,7 @@ public class GameView implements GameObserver {
     }
 
     private void createViews(){
-        gameCon.createMap2DView(groups.get("map2D"));
+//        gameCon.createMap2DView(groups.get("map2D"));
         gameCon.create3dView(groups.get("map3D"));
         gameCon.createPlayerView(groups.get("players"), "player1");
         gameCon.createPlayerView(groups.get("players"), "player2");
@@ -79,7 +79,7 @@ public class GameView implements GameObserver {
     }
 
     private void basicViewLayout() {
-        root.getChildren().add(groups.get(GameViewEnum.MAP2D.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
 //        root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
 //        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
 //        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));

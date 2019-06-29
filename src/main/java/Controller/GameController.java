@@ -15,7 +15,7 @@ import javafx.scene.transform.Translate;
 
 public class GameController {
 
-    private FirebaseGameController fbGame = new FirebaseGameController("test");
+//    private FirebaseGameController fbGame = new FirebaseGameController("test");
     Translate player1Pos = new Translate(600, 0, 0);
 
     private Controller3D con3d;
@@ -60,8 +60,10 @@ public class GameController {
         this.appCon = appCon;
         model = new GameModel(8, 8);
         gameTurn = new GameTurn(this);
+        mapCon = new MapController(this);
 //        startGame();
     }
+
 
     public void setPlayerPositions(){
         players.get("player1").setPlayerPosition(player1Pos);
@@ -71,10 +73,10 @@ public class GameController {
 
     public void create3dView(Group group){
         con3d = new Controller3D(this, group);
+
     }
 
     public void createMap2DView(Group group){
-        mapCon = new MapController(this);
         fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
@@ -271,6 +273,6 @@ public class GameController {
     }
 
     FirebaseGameController getFireBase() {
-        return fbGame;
+        return null; //fbGame;
     }
 }

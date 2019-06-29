@@ -324,6 +324,23 @@
     "attackable": true
   },
   {
+    "id": "hill_005",
+    "neighbours": [
+      "farm_008",
+      "swamp_004",
+      "farm_007",
+      "mountain_009",
+      "mountain_003",
+      "mountain_001",
+      "forest_008"
+    ],
+    "nextToWater": false,
+    "borderArea": false,
+    "property": "None",
+    "lostTribe": false,
+    "attackable": true
+  },
+  {
     "id": "hill_006",
     "neighbours": [
       "forest_009",

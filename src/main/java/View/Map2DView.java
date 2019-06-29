@@ -27,7 +27,7 @@ public class Map2DView{
 	
 	private void makeAreas() {
         for (Node area : pane.getChildren()) {
-        	mapCon.createArea((Group) area);
+        	mapCon.createAreaView((Group) area);
         }
 	}
 

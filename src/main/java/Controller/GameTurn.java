@@ -35,7 +35,7 @@ public class GameTurn implements FirebaseActionObserver {
         this.gameCon = gameCon;
         phase = new PhaseNone();
         fb = gameCon.getFireBase();
-        fb.turnActionListener(this);
+//        fb.turnActionListener(this);
     }
 
     public void nextPhase(){

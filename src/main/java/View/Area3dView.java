@@ -59,10 +59,9 @@ public class Area3dView implements AreaObserver {
             hideNumber();
             areaCon.hoverExited();
         });
-
         areaCon.createNumber(number);
 
-        con3d.add3dObject(number);
+//        con3d.add3dObject(number);
 
     }
 

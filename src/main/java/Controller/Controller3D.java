@@ -31,7 +31,7 @@ public class Controller3D{
 
     public void createCamera(){
         System.out.println("creating camera...");
-        CameraController cameraCon = new CameraController(this);
+        CameraController cameraCon = new CameraController();
         CameraView cameraView = new CameraView(cameraCon, camera);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
@@ -39,7 +39,7 @@ public class Controller3D{
 
     public void createMap(){
         System.out.println("creating map...");
-        Map3DController mapCon = new Map3DController(this, gameCon);
+        MapController mapCon = gameCon.getMapCon();
         new Map3DView(mapCon, map);
         world.getChildren().add(map);
     }

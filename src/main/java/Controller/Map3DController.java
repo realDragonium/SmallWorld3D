@@ -13,7 +13,7 @@ public class Map3DController {
     GameController gameCon;
     Map<String, Translate> areaPoints = new HashMap<>();
 
-    public Map3DController(Controller3D con3D, GameController gameCon){
+    Map3DController(Controller3D con3D, GameController gameCon){
         this.gameCon = gameCon;
         this.con3D = con3D;
         setupAreaPoints();
@@ -75,7 +75,7 @@ public class Map3DController {
         areaPoints.put("swamp_005" ,new Translate(-147,-1,437));
     }
 
-    public void placeFiche(AreaController areaCon, FicheController fiche) {
+    void placeFiche(AreaController areaCon, FicheController fiche) {
         areaCon.putFiche(fiche);
     }
 }
