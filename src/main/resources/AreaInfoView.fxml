@@ -11,7 +11,6 @@
     <ImageView fx:id="area_picture" translateY="70" preserveRatio="true" fitWidth="800" fitHeight="200">
         <image>
             <Image  url="/Images/Hill_info.jpg">
-
             </Image>
         </image>
     </ImageView>
@@ -33,35 +32,35 @@
             </font>
         </Text>
 
-        <Button fx:id="attackButton" layoutY="400.0" layoutX="50" mnemonicParsing="false" onAction="#attackCountry"
+        <Button layoutY="400.0" layoutX="50" mnemonicParsing="false" onAction="#attackCountry"
                 style="-fx-background-color: rgb(224, 158, 145);" text="Attack">
             <font>
                 <Font size="21.0"/>
             </font>
         </Button>
 
-        <Button fx:id="addButton" layoutY="300.0" layoutX="600" mnemonicParsing="false" onAction="#addFiche"
+        <Button layoutY="300.0" layoutX="600" mnemonicParsing="false" onAction="#addFiche"
                 style="-fx-background-color: rgb(224, 158, 145);" text="Add">
             <font>
                 <Font size="21.0"/>
             </font>
         </Button>
 
-        <Button fx:id="removeButton" layoutY="300.0" layoutX="500" mnemonicParsing="false" onAction="#removeFiche"
+        <Button layoutY="300.0" layoutX="500" mnemonicParsing="false" onAction="#removeFiche"
                 style="-fx-background-color: rgb(42, 112, 77);" text="Remove">
             <font>
                 <Font size="21.0"/>
             </font>
         </Button>
 
-        <Button fx:id="retreatButton" layoutY="400.0" layoutX="500" mnemonicParsing="false" onAction="#leaveArea"
+        <Button layoutY="400.0" layoutX="500" mnemonicParsing="false" onAction="#leaveArea"
                 style="-fx-background-color: rgb(224, 158, 145);" text="Leave">
             <font>
                 <Font size="21.0"/>
             </font>
         </Button>
 
-    <Button fx:id="exitButton" layoutY="400.0" layoutX="700" mnemonicParsing="false" onAction="#exitScreen"
+    <Button layoutY="400.0" layoutX="700" mnemonicParsing="false" onAction="#exitScreen"
             style="-fx-background-color: rgb(224, 158, 145);" text="Close">
         <font>
             <Font size="21.0"/>
