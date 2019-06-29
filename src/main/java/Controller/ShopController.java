@@ -2,21 +2,28 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
-import Objects.*;
+
+import Objects.ShopCombination;
 import Observer.ShopObserver;
 import Objects.PowerOld;
+import Power.Power;
+import Race.Race;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.application.Platform;
 
+import Enum.RaceEnum;
+import Enum.PowerEnum;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShopController implements FirebaseGameObserver {
 
     GameController gameCon;
     ShopModel model = new ShopModel();
-    private List<RaceController> races = new ArrayList<>();
-    private List<PowerOld> powerOlds = new ArrayList<>();
+    private List<String> races = new ArrayList<>();
+    private List<String> powers = new ArrayList<>();
 
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
@@ -24,9 +31,9 @@ public class ShopController implements FirebaseGameObserver {
 
     public void makeItems(){
         createShopItems();
-        for (int i = 0; i < 6; i++) {
-            makeNewCombination();
-        }
+        makeNewCombination();
+
+
 //        gameCon.getFireBase().shopUpdate(this);
 //        gameCon.getFireBase().getShopItems();
     }
@@ -47,46 +54,39 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     private void createShopItems() {
-        races.add(new RaceController(new RattenKracht(), "ratmen", 12));
-        races.add(new RaceController(new WizzardsKracht(), "wizards", 8));
-        races.add(new RaceController(new DwarvesKracht(), "dwarves", 7));
-        races.add(new RaceController(new TritansKracht(), "tritons", 10));
-        races.add(new RaceController(new HumanKracht(), "humans", 9));
-        races.add(new RaceController(new HumanKracht(), "humans", 9));
+        RaceEnum[] tempRaces = RaceEnum.values();
+        PowerEnum[] tempPowers = PowerEnum.values();
 
-        powerOlds.add(new AlchemistPowerOld());
-        powerOlds.add(new WelthPowerOld());
-        powerOlds.add(new AlchemistPowerOld());
-        powerOlds.add(new WelthPowerOld());
-        powerOlds.add(new AlchemistPowerOld());
-        powerOlds.add(new AlchemistPowerOld());
-    }
-
-    private void makeNewCombination() {
-        RaceController race = getRandomRace();
-        PowerOld powerOld = getRandomPower();
-        if (race != null && powerOld != null) {
-            CombinationController combination = new CombinationController(race, powerOld);
-            race.setCombiCon(combination);
-            model.addShopItem(combination);
+        for(int i = 0; i< 6; i++) {
+            races.add(tempRaces[(int) (Math.random() * tempRaces.length)].getRace().getName());
+            powers.add(tempPowers[(int) (Math.random() * tempPowers.length)].getPower().getName());
         }
     }
 
-    private RaceController getRandomRace() {
+    private void makeNewCombination() {
+        String race = getRandomRace();
+        String power = getRandomPower();
+        if (race != null && power != null) {
+            ShopCombination combi = new ShopCombination(race, power);
+            model.addShopItem(combi);
+        }
+    }
+
+    private String getRandomRace() {
         if (races.size() != 0) {
             return races.remove(0);
         }
         return null;
     }
 
-    private PowerOld getRandomPower() {
-        if (powerOlds.size() != 0) {
-            return powerOlds.remove(0);
+    private String getRandomPower() {
+        if (powers.size() != 0) {
+            return powers.remove(0);
         }
         return null;
     }
 
-    public List<CombinationController> getShopItems(){
+    public List<ShopCombination> getShopItems(){
         return model.getShopItems();
     }
 

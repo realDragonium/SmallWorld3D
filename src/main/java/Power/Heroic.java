@@ -1,5 +1,9 @@
 package Power;
 
 public class Heroic implements Power {
-    public String name = "heroic";
+
+    @Override
+    public String getName() {
+        return "heroic";
+    }
 }

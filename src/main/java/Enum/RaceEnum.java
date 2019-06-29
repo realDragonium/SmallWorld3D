@@ -17,4 +17,5 @@ public enum RaceEnum {
     public Race getRace(){
         return race;
     }
+
 }

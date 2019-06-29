@@ -20,9 +20,6 @@ public class CombinationController {
     private PlayerController player;
     private CombinationModel model;
 
-    private Race race2;
-    private Power power2;
-
     public void registerObserver(CombinationObserver obs){
         model.register(obs);
     }
@@ -38,14 +35,14 @@ public class CombinationController {
         model = new CombinationModel(race.getId(), powerOld.getId());
     }
 
-    public CombinationController(){}
-
     public CombinationController(String race, String power){
-        this.race2 = RaceEnum.valueOf(race).getRace();
-        this.power2 = PowerEnum.valueOf(power).getPower();
-
+        model = new CombinationModel(race, power);
     }
 
+
+    public void addArea(AreaController area){
+        model.addArea(area);
+    }
 
     public void attackThisArea(AreaController area){
         model.getAttack().Attack(area, this);

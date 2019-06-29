@@ -1,5 +1,9 @@
 package Power;
 
 public class Flying implements Power {
-    public String name = "flying";
+
+    @Override
+    public String getName() {
+        return "flying";
+    }
 }

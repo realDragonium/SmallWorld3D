@@ -1,4 +1,4 @@
-package Firebase;
+package Objects;
 
 public class ShopCombination {
 

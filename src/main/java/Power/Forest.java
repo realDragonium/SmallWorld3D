@@ -1,5 +1,9 @@
 package Power;
 
 public class Forest implements Power {
-    public String name = "forest";
+
+    @Override
+    public String getName() {
+        return "forest";
+    }
 }

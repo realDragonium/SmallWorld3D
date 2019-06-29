@@ -1,5 +1,9 @@
 package Power;
 
 public class Underworld implements Power {
-    public String name = "underworld";
+
+    @Override
+    public String getName() {
+        return "underworld";
+    }
 }

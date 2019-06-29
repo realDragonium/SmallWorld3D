@@ -1,5 +1,9 @@
 package Power;
 
 public class Swamp implements Power {
-    public String name = "swamp";
+
+    @Override
+    public String getName() {
+        return "swamp";
+    }
 }

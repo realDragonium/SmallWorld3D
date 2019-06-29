@@ -2,5 +2,8 @@ package Race;
 
 public class Trolls implements Race {
 
-    public String name = "trolls";
+    @Override
+    public String getName() {
+        return "trolls";
+    }
 }

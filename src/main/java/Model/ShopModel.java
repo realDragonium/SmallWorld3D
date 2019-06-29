@@ -1,6 +1,6 @@
 package Model;
 
-import Controller.CombinationController;
+import Objects.ShopCombination;
 import Observable.ShopObservable;
 import Observer.ShopObserver;
 
@@ -10,14 +10,14 @@ import java.util.List;
 
 public class ShopModel implements ShopObservable {
 
-    private List<CombinationController> shopItems = new LinkedList<>();
+    private List<ShopCombination> shopItems = new LinkedList<>();
     private List<ShopObserver> observers = new ArrayList<>();
 
-    public List<CombinationController> getShopItems(){
+    public List<ShopCombination> getShopItems(){
         return shopItems;
     }
 
-    public void addShopItem(CombinationController item){
+    public void addShopItem(ShopCombination item){
         shopItems.add(item);
         notifyObservers();
     }
@@ -47,7 +47,7 @@ public class ShopModel implements ShopObservable {
     @Override
     public String getRace(int item) {
         if(shopItems.size() > item) {
-            return shopItems.get(item).getRace().getId();
+            return shopItems.get(item).getRace();
         }
         else{
             return "none";
@@ -57,7 +57,7 @@ public class ShopModel implements ShopObservable {
     @Override
     public String getPower(int item) {
         if(shopItems.size() > item) {
-            return shopItems.get(item).getPowerOld().getId();
+            return shopItems.get(item).getPower();
         }
         else{
             return "none";

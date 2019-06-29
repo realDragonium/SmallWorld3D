@@ -55,7 +55,7 @@ public class AttackController {
             if (player.hasActiveCombination()) {
                 if (player.hasEnoughFiches(fichesNeeded)) {
                     if (player.getActiveCombination().getRace().getAllAreas().size() == 0) {
-                        if (area.firstAttackArea()) {
+                        if (area.isBorderArea()) {
                             return true;
                         }
                         else{

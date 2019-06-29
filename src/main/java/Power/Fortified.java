@@ -1,5 +1,9 @@
 package Power;
 
 public class Fortified implements Power {
-    public String name = "fortified";
+
+    @Override
+    public String getName() {
+        return "fortified";
+    }
 }

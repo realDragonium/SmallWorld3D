@@ -181,7 +181,9 @@ public class GameController {
     }
 
     public PlayerController getCurrentPlayer(){
-        return currentPlayer;
+        return players.get("player1");
+//        return currentPlayer;
+
     }
 
     RoundController getRoundCon(){

@@ -20,9 +20,9 @@ public class ButtonController {
     }
 
     public void nextPhase(){
-//        gameCon.nextPhase();
-        FirebaseAction action = new FirebaseAction(FirebaseTurnActionEnum.nextphase);
-        gameCon.getFireBase().placeTurnAction(action);
+        gameCon.nextPhase();
+//        FirebaseAction action = new FirebaseAction(FirebaseTurnActionEnum.nextphase);
+//        gameCon.getFireBase().placeTurnAction(action);
     }
 
     public void nextTurn() {

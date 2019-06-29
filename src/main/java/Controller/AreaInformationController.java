@@ -22,7 +22,8 @@ public class AreaInformationController {
     }
 
     public void AttackArea() {
-        gameCon.getAttCon().attackArea(model.getArea());
+//        gameCon.getAttCon().attackArea(model.getArea());
+        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(model.getArea());
     }
 
     public void registerObserver(AreaInformationObserver ob) {

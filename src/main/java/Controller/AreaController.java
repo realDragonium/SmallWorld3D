@@ -134,11 +134,11 @@ public class AreaController{
         return model.getAreaType();
     }
 
-    boolean firstAttackArea() {
+    public boolean isBorderArea() {
         return model.firstAttackArea();
     }
 
-    boolean isAttackAble() {
+    public boolean isAttackAble() {
         return model.isAttackAble();
     }
 

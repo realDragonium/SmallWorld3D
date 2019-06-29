@@ -1,5 +1,9 @@
 package Power;
 
 public class Stout implements Power {
-    public String name = "stout";
+
+    @Override
+    public String getName() {
+        return "stout";
+    }
 }

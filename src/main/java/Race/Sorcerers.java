@@ -1,6 +1,9 @@
 package Race;
 
 public class Sorcerers implements Race {
-    public String name = "sorcerers";
 
+    @Override
+    public String getName() {
+        return "sorcerers";
+    }
 }

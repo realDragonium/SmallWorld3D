@@ -2,6 +2,7 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
+import Objects.ShopCombination;
 import Observer.PlayerObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.transform.Translate;
@@ -27,10 +28,11 @@ public class PlayerController implements FirebaseGameObserver {
         model.setPlayerPos(pos);
     }
 
-    void buyFromShop(CombinationController combo, int costs) {
+    void buyFromShop(ShopCombination combo, int costs) {
         model.removePoints(costs);
-        combinations.add(combo);
-        combo.setPlayer(this);
+        CombinationController combi = new CombinationController(combo.getRace(), combo.getPower());
+        combinations.add(combi);
+        combi.setPlayer(this);
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getRaceFichesAmount());
         info.put("points", model.getPoints());

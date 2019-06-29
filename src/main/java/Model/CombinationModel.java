@@ -13,21 +13,33 @@ import Observer.CombinationObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.IntStream;
+import Enum.RaceEnum;
+import Enum.PowerEnum;
+import Power.Power;
+import Race.Race;
 
 public class CombinationModel implements CombinationObservable {
 
     private List<CombinationObserver> observers = new ArrayList<>();
-    private String raceId;
-    private String powerId;
+    private Race race;
+    private Power power;
     private boolean active = true;
     private Stack<FicheController> availableFiches = new Stack<>();
+    private List<AreaController> areas = new ArrayList<>();
+
     private AttackType attack;
+    private Object pointsCounter;
+    private Object defends;
+    private Object specialAction;
 
     public CombinationModel(String raceId, String powerId){
-        this.raceId = raceId;
-        this.powerId = powerId;
+        this.race = RaceEnum.valueOf(raceId).getRace();
+        this.power = PowerEnum.valueOf(powerId).getPower();
         attack = new FirstAttack();
+    }
+
+    public void addArea(AreaController area) {
+        areas.add(area);
     }
 
     public boolean isActive(){
@@ -62,12 +74,12 @@ public class CombinationModel implements CombinationObservable {
 
     @Override
     public String getRaceId() {
-        return raceId;
+        return race.getName();
     }
 
     @Override
     public String getPowerId() {
-        return powerId;
+        return power.getName();
     }
 
     public void setToNonActive() {

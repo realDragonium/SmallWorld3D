@@ -1,5 +1,9 @@
 package Power;
 
 public class Mounted implements Power {
-    public String name = "mounted";
+
+    @Override
+    public String getName() {
+        return "mounted";
+    }
 }

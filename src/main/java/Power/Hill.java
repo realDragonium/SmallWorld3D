@@ -1,5 +1,9 @@
 package Power;
 
 public class Hill implements Power {
-    public String name = "hill";
+
+    @Override
+    public String getName() {
+        return "hill";
+    }
 }

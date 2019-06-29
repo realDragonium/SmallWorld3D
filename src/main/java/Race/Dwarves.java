@@ -2,5 +2,8 @@ package Race;
 
 public class Dwarves implements Race {
 
-    public String name = "dwarves";
+    @Override
+    public String getName() {
+        return "dwarves";
+    }
 }
