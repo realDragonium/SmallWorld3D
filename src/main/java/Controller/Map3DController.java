@@ -21,7 +21,7 @@ public class Map3DController {
 
     public void createArea(Node area, String areaId) {
         AreaController areaCon = new AreaController(areaId, this,areaPoints.get(area.getId()) , gameCon);
-        new Area3dView(area, areaCon, con3D);
+//        new Area3dView(area, areaCon);
     }
 
     private void setupAreaPoints(){

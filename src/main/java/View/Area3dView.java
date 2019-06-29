@@ -26,16 +26,16 @@ import java.io.IOException;
 
 public class Area3dView implements AreaObserver {
 
-    MeshView area;
-    AreaController areaCon;
-    Group number = new Group();
-    Controller3D con3d;
-    int currentNumber;
+    private MeshView area;
+    private AreaController areaCon;
+    private Group number = new Group();
+    private int currentNumber;
+    private Group map;
 
-    public Area3dView(Node area, AreaController areaCon, Controller3D con3d){
+    public Area3dView(Node area, AreaController areaCon, Group map){
         this.area = (MeshView) area;
         this.areaCon = areaCon;
-        this.con3d = con3d;
+        this.map = map;
         init();
         areaCon.register(this);
     }
@@ -60,9 +60,8 @@ public class Area3dView implements AreaObserver {
             areaCon.hoverExited();
         });
         areaCon.createNumber(number);
-
+        map.getChildren().add(number);
 //        con3d.add3dObject(number);
-
     }
 
     private void showNumber() {

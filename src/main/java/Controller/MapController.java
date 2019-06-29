@@ -29,12 +29,13 @@ public class MapController {
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
 		loadInAreaInfo();
+		setupAreaPoints();
 		createAreaControllers();
 	}
 
-	public void createAreaView(Node area, String areaId){
+	public void createAreaView(Node area, Group map){
 //		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
-		new Area3dView(area, areas.get(areaId), con3D);
+		new Area3dView(area, areas.get(area.getId()), map);
 	}
 
 	public void createAreaView(Group area){

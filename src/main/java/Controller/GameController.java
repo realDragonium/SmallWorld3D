@@ -72,8 +72,7 @@ public class GameController {
     }
 
     public void create3dView(Group group){
-        con3d = new Controller3D(this, group);
-
+        new Map3DView(mapCon, group);
     }
 
     public void createMap2DView(Group group){
