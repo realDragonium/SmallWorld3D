@@ -13,13 +13,14 @@ import java.util.Map;
 
 public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
-    private FirebaseGameController fbGame = gameCon.getFireBase();
+    private FirebaseGameController fbGame;
     private PlayerModel model;
     private List<CombinationController> combinations = new ArrayList<>();
 
     public PlayerController(String playerID, GameController gameCon) {
         model = new PlayerModel(playerID);
         this.gameCon = gameCon;
+        fbGame = gameCon.getFireBase();
     }
 
     public void setPlayerPosition(Translate pos){

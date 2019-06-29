@@ -42,9 +42,10 @@ public class AreaController{
 //        getAreaInfo(id);
     }
 
-    public AreaController(AreaInfo info, MapController map){
+    public AreaController(AreaInfo info, MapController map,  GameController gameCon){
         mapCon = map;
         model = new AreaModel(info);
+        this.gameCon = gameCon;
     }
 
 //    private void listenToFirebase(){

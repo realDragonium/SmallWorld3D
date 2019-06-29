@@ -64,7 +64,7 @@ public class MapController {
 
 	private void createAreaControllers(){
 		Map<String, AreaInfo> infoMap = model.areaInfos;
-		infoMap.forEach((s, info) -> areas.put(s, new AreaController(info, this)));
+		infoMap.forEach((s, info) -> areas.put(s, new AreaController(info, this, gameCon)));
 	}
 
 	public Translate getTranslate(String areaId){

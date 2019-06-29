@@ -2,10 +2,14 @@ package Controller;
 
 import View.CameraView;
 import View.Map3DView;
+import View.TableView;
 import View.fiche3dView;
 import javafx.application.Application;
 import javafx.scene.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Controller3D{
 
@@ -14,14 +18,18 @@ public class Controller3D{
     Group map = new Group();
     Group camera = new Group();
     Group fiches = new Group();
+    Group table = new Group();
     GameController gameCon;
 
     public Controller3D(GameController gameCon, Group group){
         this.gameCon = gameCon;
-        scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
+        scene = new SubScene(world, 1920, 1080, true, SceneAntialiasing.BALANCED);
         createMap();
         createCamera();
+        createTable();
+
         group.getChildren().add(scene);
+        scene.setFill(Color.rgb(116, 144, 153));
         world.getChildren().add(fiches);
     }
 
@@ -42,6 +50,11 @@ public class Controller3D{
         MapController mapCon = gameCon.getMapCon();
         new Map3DView(mapCon, map);
         world.getChildren().add(map);
+    }
+
+    public void createTable(){
+        new TableView(table);
+        world.getChildren().add(table);
     }
 
     public FicheController createRaceFiche(String race){

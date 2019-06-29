@@ -4,6 +4,7 @@ import Controller.*;
 import Objects.Xform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -19,13 +20,16 @@ public class Map3DView {
     private Group camera = new Group();
     private Group fiches = new Group();
     private GameController gameCon;
+    private Group table = new Group();
 
     public Map3DView(MapController mapCon, Group map) {
         scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
+        scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
         map.getChildren().add(scene);
         loadMap();
         createCamera();
+        createTable();
         world.getChildren().addAll(fiches);
     }
 
@@ -67,6 +71,11 @@ public class Map3DView {
         CameraView cameraView = new CameraView(cameraCon, camera);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
+    }
+
+    public void createTable(){
+        new TableView(table);
+        world.getChildren().add(table);
     }
 
     public FicheController createRaceFiche(String race){
