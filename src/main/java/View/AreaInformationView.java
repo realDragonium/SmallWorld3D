@@ -16,19 +16,17 @@ public class AreaInformationView implements AreaInformationObserver {
     private Group group;
 
     public Pane pane;
-    @FXML
     public Text areaType, areaDefenceValue, areaOwner;
     public ImageView area_picture;
 
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
         this.group = group;
-
     }
 
     public void initialize(){
         group.getChildren().add(pane);
-        areaInfoCon.registerObserver(this);
+//        areaInfoCon.registerObserver(this);
         group.setVisible(false);
     }
 
@@ -54,12 +52,15 @@ public class AreaInformationView implements AreaInformationObserver {
     }
 
     public void addFiche() {
+        System.out.println("test");
     }
 
     public void removeFiche() {
+        System.out.println("test");
     }
 
     public void leaveArea() {
+        System.out.println("test");
     }
 
     public void exitScreen() {
