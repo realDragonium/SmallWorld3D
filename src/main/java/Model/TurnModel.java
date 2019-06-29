@@ -10,8 +10,8 @@ public class TurnModel implements TurnObservable {
 
 
     private List<TurnObserver> observers = new ArrayList<>();
-    public int currentTurn;
-    private int turnPerRound;
+    public int currentTurn = 0;
+    private int turnPerRound = 0;
     private List<String> players = new ArrayList<>();
     public String currentPlayerId = "player1";
     private int indexcurrentplayer = 0;

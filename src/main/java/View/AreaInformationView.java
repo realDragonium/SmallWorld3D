@@ -16,7 +16,7 @@ public class AreaInformationView implements AreaInformationObserver {
     private Group group;
 
     public Pane pane;
-    public Text areaType, areaDefenceValue, areaOwner;
+    public Text areaType, areaDefenceValue, areaOwner, areaSpecial;
     public ImageView area_picture;
 
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
@@ -40,10 +40,11 @@ public class AreaInformationView implements AreaInformationObserver {
            areaOwner.setText("Owner: none");
         }
 
-        Image image = new Image(getClass().getResourceAsStream("/Images/" + ao.getArea().getAreaType() + "_info.jpg"));
+                Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());
         areaType.setText(ao.getArea().getAreaType().toString().toUpperCase());
         area_picture.setImage(image);
+        areaSpecial.setText("Special properties: " + ao.getArea().getSpecialProp());
     }
 
     public void attackCountry() {
@@ -52,15 +53,12 @@ public class AreaInformationView implements AreaInformationObserver {
     }
 
     public void addFiche() {
-        System.out.println("test");
     }
 
     public void removeFiche() {
-        System.out.println("test");
     }
 
     public void leaveArea() {
-        System.out.println("test");
     }
 
     public void exitScreen() {

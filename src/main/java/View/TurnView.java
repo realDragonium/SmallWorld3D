@@ -33,6 +33,7 @@ public class TurnView implements TurnObserver {
     }
 
     private void setTextFields(int getal, TurnFase fase){
+        if(fase == null || getal != 0) return;
         turnField.setText("Turn: Player" + getal);
         faseField.setText("" + fase.toString().toUpperCase());
     }

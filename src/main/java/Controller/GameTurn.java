@@ -36,7 +36,7 @@ public class GameTurn implements FirebaseGameObserver {
         this.gameCon = gameCon;
         phase = new PhaseNone();
         fb = gameCon.getFireBase();
-        fb.register("turn", this);
+        fb.register("phase", this);
     }
 
     public void nextPhase(){
@@ -47,6 +47,8 @@ public class GameTurn implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-
+        if(ds.getString("action").equals("nextPhase")){
+            nextPhase();
+        }
     }
 }

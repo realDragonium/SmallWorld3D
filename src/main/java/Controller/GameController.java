@@ -1,19 +1,22 @@
 package Controller;
 
+import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.FXMLLOADER;
 import Observer.GameObserver;
 import View.*;
+import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.Group;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 import Enum.GameViewEnum;
 import javafx.scene.transform.Translate;
 
-public class GameController {
+public class GameController implements FirebaseGameObserver {
 
     private FirebaseGameController fbGame;
     Translate player1Pos = new Translate(600, 0, 0);
@@ -50,124 +53,114 @@ public class GameController {
         myPlayerId = playerID;
         model = new GameModel(8, 8);
         this.lobbyName = lobbyName;
-        setMuFirebaseStufF();
         startGame();
     }
 
-    public GameController(ApplicationController appCon){
+    public GameController(ApplicationController appCon) {
         this.appCon = appCon;
-        fbGame = new FirebaseGameController("test", this);
         model = new GameModel(8, 8);
-        gameTurn = new GameTurn(this);
-
-        mapCon = new MapController(this);
+        createControllers();
+        fbGame.register("currentplayer", this);
 //        startGame();
     }
 
 
-    public void setPlayerPositions(){
+    public void setPlayerPositions() {
         players.get("player1").setPlayerPosition(player1Pos);
         players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
         players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
 
-    public void create3dView(Group group){
+    public void create3dView(Group group) {
         new Map3DView(mapCon, group);
     }
 
-    public void createMap2DView(Group group){
-        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+    public void createMap2DView(Group group) {
+        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>) () -> new Map2DView(mapCon, group));
     }
 
-    public void createPlayerView(Group group, String id){
+    public void createPlayerView(Group group, String id) {
         PlayerController player = new PlayerController(id, this);
         players.put(id, player);
-        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
+        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>) () -> new PlayerView(id, group, player));
     }
 
     public void createUIOverlay(Group group) {
-        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
+        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(group));
     }
 
-
     public void createRoundView(Group group) {
-        roundCon = new RoundController(this);
-        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
+        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>) () -> new RoundView(group, roundCon));
     }
 
     public void createAreaInfoView(Group group) {
-        areaInfoCon = new AreaInformationController(this);
-        fxmlLoader.loader("/AreaInfoView.fxml", (Callable<AreaInformationView>)() -> new AreaInformationView(group, areaInfoCon));
+        fxmlLoader.loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(group, areaInfoCon));
     }
 
     public void createTurnView(Group group) {
-        turnCon = new TurnController(this);
-        fxmlLoader.loader("/TurnView.fxml", (Callable<TurnView>)() -> new TurnView(group, turnCon));
+        fxmlLoader.loader("/TurnView.fxml", (Callable<TurnView>) () -> new TurnView(group, turnCon));
     }
 
     public void createButtonView(Group group) {
-        buttonCon = new ButtonController(this);
-        fxmlLoader.loader("/ButtonView.fxml", (Callable<ButtonView>)() -> new ButtonView(group, buttonCon));
+        fxmlLoader.loader("/ButtonView.fxml", (Callable<ButtonView>) () -> new ButtonView(group, buttonCon));
     }
 
     public void createShopView(Group group) {
-        shopCon = new ShopController(this);
-        fxmlLoader.loader("/ShopView.fxml", (Callable<ShopView>)() -> new ShopView(group, shopCon));
+        fxmlLoader.loader("/ShopView.fxml", (Callable<ShopView>) () -> new ShopView(group, shopCon));
     }
 
     public void createTimerView(Group group) {
-        timerCon = new TimerController(this);
-        fxmlLoader.loader("/TimerView.fxml", (Callable<TimerView>)() -> new TimerView(group, timerCon));
+        fxmlLoader.loader("/TimerView.fxml", (Callable<TimerView>) () -> new TimerView(group, timerCon));
     }
 
     public void createVervalView(Group group) {
-        vervalCon = new VervallenController(this);
-        fxmlLoader.loader("/VervallenView.fxml", (Callable<VervallenView>)() -> new VervallenView(group, vervalCon));
+        fxmlLoader.loader("/VervallenView.fxml", (Callable<VervallenView>) () -> new VervallenView(group, vervalCon));
     }
 
     public void createDiceView(Group group) {
-        diceCon = new DiceController(this);
-        fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>)() -> new DiceView(group, diceCon));
+        fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(group, diceCon));
     }
 
     public void createRedeployView(Group group) {
-        redCon = new RedeployingController(this);
-        fxmlLoader.loader("/RedeployingView.fxml", (Callable<RedeployingView>)() -> new  RedeployingView(group, redCon));
+        fxmlLoader.loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(group, redCon));
     }
 
     public void createInfoView(Group group) {
-        infoCon = new InfoController(this);
-        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>)() -> new InfoView(group, infoCon));
+        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>) () -> new InfoView(group, infoCon));
     }
 
     public void createAttackView(Group group) {
+        fxmlLoader.loader("/AttackView.fxml", (Callable<AttackView>) () -> new AttackView(group, attCon));
+    }
+
+
+    private void createControllers() {
+        fbGame = new FirebaseGameController("test", this);
         attCon = new AttackController(this);
-        fxmlLoader.loader("/AttackView.fxml", (Callable<AttackView>)() -> new AttackView(group, attCon));
+        redCon = new RedeployingController(this);
+        infoCon = new InfoController(this);
+        diceCon = new DiceController(this);
+        vervalCon = new VervallenController(this);
+        timerCon = new TimerController(this);
+        shopCon = new ShopController(this);
+        buttonCon = new ButtonController(this);
+        roundCon = new RoundController(this);
+        areaInfoCon = new AreaInformationController(this);
+        gameTurn = new GameTurn(this);
+        mapCon = new MapController(this);
+        turnCon = new TurnController(this);
     }
 
 
-
-
-    private void setMuFirebaseStufF(){
-//        fb.setGame(lobbyName);
-//        Map<String, Object> info = new HashMap<>();
-//        info.put("Name", app.getAccountCon().getAccountName());
-//        info.put("fiches", 0);
-//        info.put("points", 5);
-//        fb.registerPlayer(myPlayerId, info);
-    }
-
-
-
-    String getMyPlayerId(){
+    String getMyPlayerId() {
         return myPlayerId;
     }
 
-    public PlayerController getPlayer(){
+    public PlayerController getPlayer() {
         return currentPlayer;
     }
 
-    void changePlayerTurn(String player){
+    void changePlayerTurn(String player) {
         currentPlayer = players.get(player);
 //        setGameTurn();
     }
@@ -177,53 +170,61 @@ public class GameController {
 //        gameTurn.newTurn(currentPlayer);
 //    }
 
-    private PlayerController getPlayer(String id){
+    private PlayerController getPlayer(String id) {
         return players.get(id);
     }
 
-    public PlayerController getCurrentPlayer(){
+    public PlayerController getCurrentPlayer() {
         return players.get("player1");
 //        return currentPlayer;
 
     }
 
-    RoundController getRoundCon(){
+    RoundController getRoundCon() {
         return roundCon;
     }
 
-    public ShopController getShopCon(){return shopCon;}
+    public ShopController getShopCon() {
+        return shopCon;
+    }
 
-    TurnController getTurnCon(){
+    TurnController getTurnCon() {
         return turnCon;
     }
 
-    MapController getMapCon(){
+    MapController getMapCon() {
         return mapCon;
     }
 
-    public VervallenController getVervCon(){return vervCon;}
+    public VervallenController getVervCon() {
+        return vervCon;
+    }
 
-    public AttackController getAttCon(){
+    public AttackController getAttCon() {
         return attCon;
     }
 
-    DiceController getDiceCon() {return diceCon;}
+    DiceController getDiceCon() {
+        return diceCon;
+    }
 
-    GameTurn getGameTurn() { return gameTurn;}
+    GameTurn getGameTurn() {
+        return gameTurn;
+    }
 
-    void endGame(){
+    void endGame() {
         model.gameEnded = true;
     }
 
-    boolean isGameOver(){
+    boolean isGameOver() {
         return model.gameEnded;
     }
 
-    private void startGame(){
+    private void startGame() {
         gameTurn = new GameTurn(this, currentPlayer);
     }
 
-    private void createGameTimer(){
+    private void createGameTimer() {
         gameTimer = new GameTimer(this, 30);
     }
 
@@ -232,7 +233,7 @@ public class GameController {
         System.out.println("next Turn!");
     }
 
-    public void nextRound(){
+    public void nextRound() {
         roundCon.nextRound();
         System.out.println("next Round!");
     }
@@ -249,27 +250,27 @@ public class GameController {
         return gameTimer;
     }
 
-    TimerController getTimer(){
+    TimerController getTimer() {
         return timeCon;
     }
 
-    public String getLobbyname(){
+    public String getLobbyname() {
         return lobbyName;
     }
 
-    public void addToGameView(GameViewEnum go){
+    public void addToGameView(GameViewEnum go) {
         model.addActiveView(go);
     }
 
-    public void removeFromGameView(GameViewEnum go){
+    public void removeFromGameView(GameViewEnum go) {
         model.removeActiveView(go);
     }
 
-    void changeGameView(List<GameViewEnum> views){
+    void changeGameView(List<GameViewEnum> views) {
         model.changeGameView(views);
     }
 
-    public void nextPhase(){
+    public void nextPhase() {
         gameTurn.nextPhase();
     }
 
@@ -277,7 +278,7 @@ public class GameController {
         return areaInfoCon;
     }
 
-    public void register(GameObserver go){
+    public void register(GameObserver go) {
         model.register(go);
     }
 
@@ -286,4 +287,8 @@ public class GameController {
     }
 
 
+    @Override
+    public void update(DocumentSnapshot ds) {
+
+    }
 }
