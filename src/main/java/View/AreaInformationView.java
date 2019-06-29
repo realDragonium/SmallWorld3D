@@ -6,6 +6,8 @@ import Observer.AreaInformationObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -16,6 +18,7 @@ public class AreaInformationView implements AreaInformationObserver {
     public Pane pane;
     @FXML
     public Text areaType, areaDefenceValue, areaOwner;
+    public ImageView area_picture;
 
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
@@ -39,9 +42,10 @@ public class AreaInformationView implements AreaInformationObserver {
            areaOwner.setText("Owner: none");
         }
 
+        Image image = new Image(getClass().getResourceAsStream("/Images/" + ao.getArea().getAreaType() + "_info.jpg"));
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());
-        areaType.setText("Type: " + ao.getArea().getAreaType());
-
+        areaType.setText(ao.getArea().getAreaType().toString().toUpperCase());
+        area_picture.setImage(image);
     }
 
     public void attackCountry() {
