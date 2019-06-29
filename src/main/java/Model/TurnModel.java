@@ -6,11 +6,6 @@ import Observer.TurnObserver;
 
 import java.util.*;
 
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
-
 public class TurnModel implements TurnObservable {
 
 
@@ -20,7 +15,7 @@ public class TurnModel implements TurnObservable {
     private List<String> players = new ArrayList<>();
     public String currentPlayerId = "player1";
     private int indexcurrentplayer = 0;
-    private  TurnFase fase;
+    private TurnFase fase;
     private Queue<TurnFase> fases = new LinkedList<>();
 
 

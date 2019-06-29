@@ -68,7 +68,7 @@ public class GameView implements GameObserver {
 //        gameCon.createTurnView(groups.get("turn"));
         gameCon.createButtonView(groups.get("button"));
         gameCon.createShopView(groups.get("shop"));
-//        gameCon.createTimerView(groups.get("timer"));
+        gameCon.createTimerView(groups.get("timer"));
         gameCon.createVervalView(groups.get("verval"));
         gameCon.createDiceView(groups.get("dice"));
         gameCon.createRedeployView(groups.get("redeploy"));
