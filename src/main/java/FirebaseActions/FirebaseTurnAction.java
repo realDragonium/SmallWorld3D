@@ -1,8 +1,9 @@
 package FirebaseActions;
 
-import Controller.GameTurn;
+
+import Controller.GameController;
 
 public interface FirebaseTurnAction {
 
-    void doAction(GameTurn gameTurn);
+    void doAction(GameController gameCon);
 }

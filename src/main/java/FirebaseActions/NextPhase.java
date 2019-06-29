@@ -1,11 +1,11 @@
 package FirebaseActions;
 
-import Controller.GameTurn;
+import Controller.GameController;
 
-public class NextPhase implements  FirebaseTurnAction {
+public class NextPhase implements FirebaseTurnAction {
 
     @Override
-    public void doAction(GameTurn gameTurn) {
-        gameTurn.nextPhase();
+    public void doAction(GameController gameCon) {
+        gameCon.nextPhase();
     }
 }

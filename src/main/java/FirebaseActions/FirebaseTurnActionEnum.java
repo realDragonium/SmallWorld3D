@@ -1,5 +1,6 @@
 package FirebaseActions;
 
+import Controller.GameController;
 import Controller.GameTurn;
 import javafx.application.Platform;
 
@@ -15,7 +16,7 @@ public enum FirebaseTurnActionEnum {
         this.action = action;
     }
 
-    public void doAction(GameTurn gameTurn){
-        Platform.runLater(() -> action.doAction(gameTurn));
+    public void doAction(GameController gameCon){
+        Platform.runLater(() -> action.doAction(gameCon));
     }
 }

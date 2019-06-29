@@ -26,7 +26,7 @@ public class AreaInformationView implements AreaInformationObserver {
 
     public void initialize(){
         group.getChildren().add(pane);
-//        areaInfoCon.registerObserver(this);
+        areaInfoCon.registerObserver(this);
         group.setVisible(false);
     }
 

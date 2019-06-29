@@ -2,16 +2,18 @@ package Controller;
 
 import Enum.TurnFase;
 import Firebase.FirebaseActionObserver;
+import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseServiceOwn;
 import FirebaseActions.FirebaseAction;
 import Phase.*;
 import com.google.cloud.firestore.DocumentChange;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 
 import java.util.List;
 
-public class GameTurn implements FirebaseActionObserver {
+public class GameTurn implements FirebaseGameObserver {
 
     private Phase phase;
     GameController gameCon;
@@ -28,14 +30,13 @@ public class GameTurn implements FirebaseActionObserver {
         this.gameCon = gameCon;
         currentPlayer = player;
         phase = new PhaseNone();
-
     }
 
     GameTurn(GameController gameCon){
         this.gameCon = gameCon;
         phase = new PhaseNone();
         fb = gameCon.getFireBase();
-//        fb.turnActionListener(this);
+        fb.register("turn", this);
     }
 
     public void nextPhase(){
@@ -44,78 +45,8 @@ public class GameTurn implements FirebaseActionObserver {
 
     }
 
-    private void endPhase() {
-        switch (currentPhase) {
-            case none:
-                startPreperationPhase();
-                break;
-            case preparing:
-                startAttackPhase();
-                break;
-            case conquering:
-                startEndingPhase();
-                break;
-            case redeploying:
-                currentPhase = TurnFase.none;
-                gameCon.nextTurn();
-                break;
-        }
-    }
-
-    private void startPreperationPhase() {
-        currentPhase = TurnFase.preparing;
-        gameCon.getTurnCon().setFase(currentPhase);
-
-        if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
-
-            if (currentPlayer.hasActiveCombination()) {
-                currentPlayer.getActiveCombination().checkForSpecialActions(currentPhase);
-
-            } else {
-            }
-        }
-
-    }
-
-    private void startAttackPhase() {
-        currentPhase = TurnFase.conquering;
-        gameCon.getTurnCon().setFase(currentPhase);
-        if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
-            if (currentPlayer.hasActiveCombination()) {
-            } else {
-                endTurn();
-            }
-        }
-    }
-
-    private void startEndingPhase() {
-        currentPhase = TurnFase.redeploying;
-        gameCon.getTurnCon().setFase(currentPhase);
-        if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
-            currentPlayer.addRoundPoints();
-            if (currentPlayer.hasActiveCombination()) {
-                currentPlayer.getActiveCombination().checkForSpecialActions(currentPhase);
-            }
-        }
-    }
-
-
-    void newTurn(PlayerController currentPlayer) {
-        this.currentPlayer = currentPlayer;
-        endPhase();
-    }
-
     @Override
-    public void update(QuerySnapshot qs) {
-        List<DocumentChange> testList = qs.getDocumentChanges();
-//        System.out.println(testList.get(0).getDocument().getId());
-        FirebaseAction action = testList.get(0).getDocument().toObject(FirebaseAction.class);
-        action.doAction(this);
+    public void update(DocumentSnapshot ds) {
 
-//        List<QueryDocumentSnapshot> docs = qs.getDocuments();
-//        QueryDocumentSnapshot qDoc = docs.get(docs.size()-1);
-//        System.out.println(qDoc.getId());
-//        FirebaseAction action = qDoc.toObject(FirebaseAction.class);
-//        action.doAction(this);
     }
 }

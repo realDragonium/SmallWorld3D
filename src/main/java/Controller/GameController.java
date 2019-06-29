@@ -56,9 +56,10 @@ public class GameController {
 
     public GameController(ApplicationController appCon){
         this.appCon = appCon;
+        fbGame = new FirebaseGameController("test", this);
         model = new GameModel(8, 8);
         gameTurn = new GameTurn(this);
-        fbGame = new FirebaseGameController("test");
+
         mapCon = new MapController(this);
 //        startGame();
     }
@@ -168,13 +169,13 @@ public class GameController {
 
     void changePlayerTurn(String player){
         currentPlayer = players.get(player);
-        setGameTurn();
+//        setGameTurn();
     }
 
 
-    private void setGameTurn(){
-        gameTurn.newTurn(currentPlayer);
-    }
+//    private void setGameTurn(){
+//        gameTurn.newTurn(currentPlayer);
+//    }
 
     private PlayerController getPlayer(String id){
         return players.get(id);
@@ -226,7 +227,15 @@ public class GameController {
         gameTimer = new GameTimer(this, 30);
     }
 
-    void nextTurn() { turnCon.nextTurn(); }
+    public void nextTurn() {
+        turnCon.nextTurn();
+        System.out.println("next Turn!");
+    }
+
+    public void nextRound(){
+        roundCon.nextRound();
+        System.out.println("next Round!");
+    }
 
     PlayerController getMyPlayer() {
         return myPlayer;

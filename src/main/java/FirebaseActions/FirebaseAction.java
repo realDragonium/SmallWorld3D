@@ -1,6 +1,6 @@
 package FirebaseActions;
 
-import Controller.GameTurn;
+import Controller.GameController;
 
 public class FirebaseAction {
 
@@ -14,8 +14,8 @@ public class FirebaseAction {
 
     public FirebaseTurnActionEnum getAction(){ return action; }
 
-    public void doAction(GameTurn gameTurn){
-        action.doAction(gameTurn);
+    public void doAction(GameController gameCon){
+        action.doAction(gameCon);
     }
 
 
