@@ -7,9 +7,6 @@ import Controller.GameController;
 import Objects.FXMLLOADER;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.PickResult;
@@ -45,7 +42,7 @@ public class Area3DView implements AreaObserver {
         area.setOnMouseClicked(e -> {
             PickResult pr = e.getPickResult();
             areaCon.showInfo();
-            //areaCon.createFiche();
+            createRaceFiche("ratten");
             //System.out.println(area.getId());
             //System.out.println("areaPoints.put(" + area.getId() + " ,new Translate(" + Math.round(pr.getIntersectedPoint().getX() * 100) + "," + Math.round(pr.getIntersectedPoint().getY() * 100) + "," + Math.round( pr.getIntersectedPoint().getZ()* 100) + "));");
         });
@@ -70,6 +67,12 @@ public class Area3DView implements AreaObserver {
 
     private void hideNumber(){
         number.setVisible(false);
+    }
+
+    public FicheController createRaceFiche(String race){
+        FicheController ficheCon = new FicheController(1, "Ghost");
+        new fiche3dView(ficheCon, map, race);
+        return ficheCon;
     }
 
     @Override

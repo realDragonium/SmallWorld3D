@@ -23,7 +23,7 @@ public class Map3DView {
     private Group table = new Group();
 
     public Map3DView(MapController mapCon, Group map) {
-        scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
+        scene = new SubScene(world, 1920, 1080, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
         map.getChildren().add(scene);
@@ -77,6 +77,7 @@ public class Map3DView {
         new TableView(table);
         world.getChildren().add(table);
     }
+
 
     public FicheController createRaceFiche(String race){
         FicheController ficheCon = new FicheController(1, race);

@@ -1,5 +1,6 @@
 package View;
 
+import Controller.FicheController;
 import Controller.GameController;
 import Observable.GameObservable;
 import Observer.GameObserver;
@@ -81,10 +82,10 @@ public class GameView implements GameObserver {
     private void basicViewLayout() {
         root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
 //        root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
-//        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
-//        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
-//        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
-//        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
 
@@ -95,6 +96,8 @@ public class GameView implements GameObserver {
         notBasicRoot.getChildren().clear();
         views.forEach(s -> notBasicRoot.getChildren().add(groups.get(s.getStringValue())));
     }
+
+
 
 
     @Override
