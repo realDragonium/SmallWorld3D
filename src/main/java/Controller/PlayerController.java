@@ -38,6 +38,11 @@ public class PlayerController implements FirebaseGameObserver {
         info.put("points", model.getPoints());
     }
 
+    public void buyFromShop(ShopController shop, int number){
+//        combinations.add(shop.buyItem(number));
+        model.removePoints(number);
+    }
+
     void showActiveCombiFichesLeft() {
         for (CombinationController combiCon : combinations) {
             combiCon.getRace().fichesOver();

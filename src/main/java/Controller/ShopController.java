@@ -27,6 +27,7 @@ public class ShopController implements FirebaseGameObserver {
 
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
+        gameCon.getFireBase().register("shop", this);
     }
 
     public void makeItems(){
@@ -48,6 +49,8 @@ public class ShopController implements FirebaseGameObserver {
 //            gameCon.getGameTurn().endTurn();
         }
     }
+
+
 
     public void registerObserver(ShopObserver obs) {
         model.register(obs);
@@ -92,7 +95,11 @@ public class ShopController implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-        if(ds.get("bought")==null) return;
-        Platform.runLater(()-> removeItem(ds.getDouble("bought")));
+        if(ds.getString("id").equals("buy")){
+
+        }
+        else if(ds.getString("id").equals("add")){
+
+        }
     }
 }

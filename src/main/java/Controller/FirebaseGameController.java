@@ -26,11 +26,6 @@ public class FirebaseGameController implements FirebaseActionObserver {
         turnActionListener(this);
     }
 
-
-    public void placeTurnAction(Object object) {
-        service.placeAction(object);
-    }
-
     private void placeAction(Map<String, Object> map) {
         service.placeAction(map);
     }
