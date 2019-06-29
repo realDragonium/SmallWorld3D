@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<Pane fx:id="pane" prefWidth="800" style="-fx-background-color: rgb(46, 59, 69); -fx-border-color: black;" prefHeight="500" layoutX="500" layoutY="300" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AreaInformationView">
 
-    <ImageView fx:id="area_picture" translateY="70" preserveRatio="true" fitWidth="800" fitHeight="200">
+<Pane fx:id="pane" layoutX="500" layoutY="200" prefHeight="600" prefWidth="900" style="-fx-background-color: rgb(46, 59, 69); -fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AreaInformationView">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d4e7c" height="500.0" layoutX="50.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#212a32" height="71.0" layoutX="50.0" layoutY="51.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+
+    <ImageView fx:id="area_picture" fitHeight="200" fitWidth="798.0" layoutX="50.0" layoutY="51.0" preserveRatio="true" translateY="70">
         <image>
-            <Image  url="/Images/Hill_info.jpg">
+            <Image url="/Images/Hill_info.jpg">
             </Image>
         </image>
     </ImageView>
-        <Text fx:id="areaType" fill="#fcfcfc" layoutX="300" layoutY="40" >
+        <Text fx:id="areaType" fill="#fcfcfc" layoutX="400.0" layoutY="100.0" textAlignment="CENTER">
             <font>
-                <Font size="36.0"/>
+                <Font size="36.0" />
             </font>
         </Text>
 
-        <Text fx:id="areaDefenceValue" layoutX="50" layoutY="300" >
+        <Text fx:id="areaDefenceValue" fill="#fcfcfc" layoutX="70" layoutY="370">
             <font>
-                <Font size="21.0"/>
+                <Font size="21.0" />
             </font>
         </Text>
 
-        <Text fx:id="areaOwner" layoutX="50" layoutY="350" >
+        <Text fx:id="areaOwner"  fill="#fcfcfc" layoutX="70" layoutY="420">
             <font>
-                <Font size="21.0"/>
+                <Font size="21.0" />
             </font>
         </Text>
-
-        <Button layoutY="400.0" layoutX="50" mnemonicParsing="false" onAction="#attackCountry"
-                style="-fx-background-color: rgb(224, 158, 145);" text="Attack">
-            <font>
-                <Font size="21.0"/>
-            </font>
-        </Button>
-
-        <Button layoutY="300.0" layoutX="600" mnemonicParsing="false" onAction="#addFiche"
-                style="-fx-background-color: rgb(224, 158, 145);" text="Add">
-            <font>
-                <Font size="21.0"/>
-            </font>
-        </Button>
-
-        <Button layoutY="300.0" layoutX="500" mnemonicParsing="false" onAction="#removeFiche"
-                style="-fx-background-color: rgb(42, 112, 77);" text="Remove">
-            <font>
-                <Font size="21.0"/>
-            </font>
-        </Button>
-
-        <Button layoutY="400.0" layoutX="500" mnemonicParsing="false" onAction="#leaveArea"
-                style="-fx-background-color: rgb(224, 158, 145);" text="Leave">
-            <font>
-                <Font size="21.0"/>
-            </font>
-        </Button>
-
-    <Button layoutY="400.0" layoutX="700" mnemonicParsing="false" onAction="#exitScreen"
-            style="-fx-background-color: rgb(224, 158, 145);" text="Close">
+    <Text fx:id="areaSpecial" fill="#fcfcfc" layoutX="70" layoutY="470">
         <font>
-            <Font size="21.0"/>
+            <Font size="21.0" />
+        </font>
+    </Text>
+
+        <Button layoutX="50" layoutY="400.0" mnemonicParsing="false" onAction="#attackCountry" style="-fx-background-color: rgb(224, 158, 145);" text="Attack">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Button>
+
+        <Button layoutX="600" layoutY="300.0" mnemonicParsing="false" onAction="#addFiche" style="-fx-background-color: rgb(224, 158, 145);" text="Add">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Button>
+
+        <Button layoutX="500" layoutY="300.0" mnemonicParsing="false" onAction="#removeFiche" style="-fx-background-color: rgb(42, 112, 77);" text="Remove">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Button>
+
+        <Button layoutX="500" layoutY="400.0" mnemonicParsing="false" onAction="#leaveArea" style="-fx-background-color: rgb(224, 158, 145);" text="Leave">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Button>
+
+    <Button layoutX="700" layoutY="400.0" mnemonicParsing="false" onAction="#exitScreen" style="-fx-background-color: rgb(224, 158, 145);" text="Close">
+        <font>
+            <Font size="21.0" />
         </font>
     </Button>
 </Pane>

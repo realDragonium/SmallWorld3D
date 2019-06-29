@@ -17,7 +17,7 @@ public class AreaInformationView implements AreaInformationObserver {
 
     public Pane pane;
     @FXML
-    public Text areaType, areaDefenceValue, areaOwner;
+    public Text areaType, areaDefenceValue, areaOwner, areaSpecial;
     public ImageView area_picture;
 
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
@@ -42,10 +42,11 @@ public class AreaInformationView implements AreaInformationObserver {
            areaOwner.setText("Owner: none");
         }
 
-        Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
+                Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());
         areaType.setText(ao.getArea().getAreaType().toString().toUpperCase());
         area_picture.setImage(image);
+        areaSpecial.setText("Special properties: " + ao.getArea().getSpecialProp());
     }
 
     public void attackCountry() {
