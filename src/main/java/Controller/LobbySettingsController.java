@@ -1,7 +1,5 @@
 package Controller;
 
-import Firebase.FirebaseServiceOwn;
-import Managers.SceneManager;
 import Model.LobbySettingsModel;
 import Observer.LobbySettingsObserver;
 
@@ -10,7 +8,7 @@ public class LobbySettingsController {
 
 
     LobbySettingsController(){
-//        SceneManager.getInstance().createLobbySettingsView(this);
+
     }
 
     public void lobbyView(){

@@ -10,10 +10,8 @@ import javafx.scene.transform.Translate;
 public class CameraController implements Animatable {
 
     CameraModel model = new CameraModel();
-    Controller3D worldCon;
 
-    public CameraController(Controller3D worldCon){
-        this.worldCon = worldCon;
+    public CameraController(){
         //AnimationsManager.getInstance().createUpAndDownAnimation(this, -10, 5);
         moveToPosition(new Translate(0, -800, -700), 12);
         rotateToAngle(-55, 0, 8);

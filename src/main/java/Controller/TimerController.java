@@ -1,6 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.TimerModel;
 import Observer.TimerObserver;
 
@@ -21,7 +20,6 @@ public class TimerController {
 
     TimerController(GameTurn gameTurn){
         this.gameTurn = gameTurn;
-//        SceneManager.getInstance().loadTimer(this);
     }
 
     public long getElapsedTime(){

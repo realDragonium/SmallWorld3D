@@ -61,6 +61,7 @@ public class ShopView implements ShopObserver {
 
     @Override
     public void update(ShopObservable so) {
+        System.out.println("test");
         for(int i = 0; i < 6; i++) {
             ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getRace(i));
             ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(1)).setText(so.getPower(i));

@@ -6,6 +6,7 @@ import Observable.TurnObservable;
 import Observer.TurnObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class TurnView implements TurnObserver {
@@ -17,6 +18,7 @@ public class TurnView implements TurnObserver {
 
     @FXML
     public Group groupFXML;
+    public Pane pane;
     public Text turnField;
     public Text faseField;
 
@@ -26,7 +28,7 @@ public class TurnView implements TurnObserver {
     }
 
     public void initialize() {
-        group.getChildren().add(groupFXML);
+        group.getChildren().add(pane);
         turnCon.register(this);
     }
 

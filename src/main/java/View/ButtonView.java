@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ButtonController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -31,4 +32,12 @@ public class ButtonView {
         buttonCon.fichesOver();
     }
     public void nextPhase(){ buttonCon.nextPhase(); }
+
+    public void nextRound() {
+        buttonCon.nextRound();
+    }
+
+    public void nextTurn() {
+        buttonCon.nextTurn();
+    }
 }

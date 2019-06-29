@@ -1,24 +1,36 @@
 package View;
 
-import Controller.Map3DController;
+import Controller.*;
 import Objects.Xform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.shape.MeshView;
+import javafx.scene.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
 public class Map3DView {
 
-    Group root;
-    Xform xForm = new Xform();
-    Map3DController mapCon;
+    private Group root;
+    private Xform xForm = new Xform();
+    private MapController mapCon;
 
-    public Map3DView(Map3DController mapCon, Group map) {
-        root = map;
+    private Group world = new Group();
+    private SubScene scene;
+    private Group map = new Group();
+    private Group camera = new Group();
+    private Group fiches = new Group();
+    private GameController gameCon;
+    private Group table = new Group();
+
+    public Map3DView(MapController mapCon, Group map) {
+        scene = new SubScene(world, 1600, 900, true, SceneAntialiasing.BALANCED);
+        scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
+        map.getChildren().add(scene);
         loadMap();
+        createCamera();
+        createTable();
+        world.getChildren().addAll(fiches);
     }
 
     public void loadMap(){
@@ -26,12 +38,13 @@ public class Map3DView {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/map.fxml"));
             Group map = fxmlLoader.load();
-            for(Node area : map.getChildren()){
+            int numberOfElements = map.getChildren().size()-1;
+            for(int i = 0; i < numberOfElements; i++){
+                Node area = map.getChildren().get(i);
                 if(!area.getId().equals("nope")) {
                     String areaId = area.getId().substring(14);
                     area.setId(areaId);
-                    mapCon.createArea(area, areaId);
-
+                    mapCon.createAreaView(area, map);
                 }
             }
             map.setScaleX(100);
@@ -39,7 +52,7 @@ public class Map3DView {
             map.setScaleZ(100);
             xForm.getChildren().add(map);
 //            xForm.setRotateX(180);
-            root.getChildren().add(xForm);
+            world.getChildren().add(xForm);
 
             // ...
         }
@@ -47,4 +60,28 @@ public class Map3DView {
             // exception handling
         }
     }
+
+    public void setCamera(PerspectiveCamera camera){
+        scene.setCamera(camera);
+    }
+
+    public void createCamera(){
+        System.out.println("creating camera...");
+        CameraController cameraCon = new CameraController();
+        CameraView cameraView = new CameraView(cameraCon, camera);
+        world.getChildren().add(camera);
+        setCamera(cameraView.getCamera());
+    }
+
+    public void createTable(){
+        new TableView(table);
+        world.getChildren().add(table);
+    }
+
+    public FicheController createRaceFiche(String race){
+        FicheController ficheCon = new FicheController(1, race);
+        new fiche3dView(ficheCon, fiches, race);
+        return ficheCon;
+    }
+
 }

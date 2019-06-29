@@ -2,64 +2,80 @@ package Controller;
 
 import Enum.AreaProperty;
 import Enum.AreaType;
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
 import Model.AreaModel;
-import Objects.RaceFiche;
+import Fiches.RaceFiche;
+import Objects.AreaInfo;
 import Observer.AreaObserver;
 import View.NumberView;
-import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Stack;
 
-/**
- * This Controller-class handles the logic for all the functions that can be called for areas
- *
- * @author beau
- * @version June 2019
- */
-
-public class AreaController implements FirebaseControllerObserver {
+public class AreaController{
 
 
-    private Map2DController map2DCon;
+    private MapController mapCon;
     private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
     private NumberController numberCon;
-//    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
-
-//    public AreaController(Group area, Map2DController mapCon, GameController gameCon) {
-//        model = new AreaModel(area.getChildren().get(0).getId());
-//        map2DCon = mapCon;
-//        this.gameCon = gameCon;
-//        getAreaInfo();
-////        SceneManager.getInstance().createAreaView(this, area);
-////        fb.AreaListener(model.getId(), this);
-//    }
+    private FirebaseGameController fb;
 
     public AreaController(String id, Map3DController mapCon, Translate areaPoint , GameController gameCon){
         model = new AreaModel(id, areaPoint);
         map3DCon = mapCon;
         this.gameCon = gameCon;
+        fb = gameCon.getFireBase();
+//        loadAreaInFirebase();
+//        listenToFirebase();
     }
 
-    public AreaController(Group area, Map2DController map2DController, GameController gameCon) {
-        model = new AreaModel(area.getChildren().get(0).getId());
-        map2DCon = map2DController;
+    public AreaController(Group area, MapController mapController, GameController gameCon) {
+        String id = area.getChildren().get(0).getId();
+        model = new AreaModel(id);
+        mapCon = mapController;
+        this.gameCon = gameCon;
+        fb = gameCon.getFireBase();
+
+//        getAreaInfo(id);
+    }
+
+    public AreaController(AreaInfo info, MapController map,  GameController gameCon){
+        mapCon = map;
+        model = new AreaModel(info);
         this.gameCon = gameCon;
     }
+
+//    private void listenToFirebase(){
+//        fb.areaListener(this);
+//    }
+//
+//    private void loadAreaInFirebase(){
+//        model.setFiches(1);
+//        fb.areaUpdate(this);
+//    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    public void addFiche(){}
+    public void removeFiche(){}
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     public void createFiche(){
         FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
         map3DCon.placeFiche(this, fiche);
         //fiche.moveToPosition(model.getAreaPoint());
-
     }
 
     public void putFiche(FicheController fiche){
@@ -74,16 +90,12 @@ public class AreaController implements FirebaseControllerObserver {
         return model.getId();
     }
 
-    int numbersNeeded() {
-        return model.numbersNeeded();
-    }
-
-    void attackArea(Stack<RaceFiche> fiches) {
+    public void attackArea(Stack<FicheController> fiches) {
         model.setFiches(fiches);
 //        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
     }
 
-    void setPlayerOwner(PlayerController player) {
+    public void setPlayerOwner(PlayerController player) {
         model.player = player;
     }
 
@@ -91,14 +103,6 @@ public class AreaController implements FirebaseControllerObserver {
         return model.player;
     }
 
-    Stack<RaceFiche> removeFiches() {
-//        fb.areaUpdateFiches(model.getId(), 0);
-        return model.getAllFiches();
-    }
-
-    RaceFiche getOneFiche() {
-        return model.getOneFiche();
-    }
 
     void changeActive() {
         model.changeActive();
@@ -109,47 +113,12 @@ public class AreaController implements FirebaseControllerObserver {
     }
 
     public void selectActive() {
-        map2DCon.selectSingleArea(this);
+        mapCon.selectSingleArea(this);
     }
 
     public void makeActive(){ model.changeActive();}
 
-    public void destroyAllButOne() {
-        model.getAllButOne();
-//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
-    }
-
-    void returnAllButOne(RaceController raceController) {
-        raceController.pushFiches(model.getAllButOne());
-//        fb.areaUpdateFiches("fiches", model.getNumberOfFiches());
-    }
-
-    private void getAreaInfo() {
-//        DocumentSnapshot ds = fb.getAreaInfo(model.getId());
-//        Platform.runLater(() -> {
-//            model.setFiches((int) Math.round(ds.getDouble("fiches")));
-//            model.setAreaType(ds.getString("type"));
-//            model.setBorderArea(ds.getBoolean("borderArea"));
-//            model.setNeighbours((List<String>) ds.get("neighbours"));
-//            model.setAttackAble(ds.getBoolean("attackAble"));
-//            model.notifyObserver();
-//        });
-    }
-
-    @Override
-    public void update(DocumentSnapshot ds) {
-        if (gameCon.getCurrentPlayer() == gameCon.getMyPlayer()) return;
-        Platform.runLater(() -> {
-            if (model.getPlayer() == gameCon.getMyPlayer()) {
-                model.getPlayer().getActiveCombination().getRace().pushFiches(removeFiches());
-                model.player = null;
-                model.setFiches((int) Math.round(ds.getDouble("fiches")));
-            }
-            model.setFiches((int) Math.round(ds.getDouble("fiches")));
-        });
-    }
-
-    public AreaProperty getSpecialProp() {
+    public String getSpecialProp() {
         return model.getSpecialProp();
     }
 
@@ -161,16 +130,15 @@ public class AreaController implements FirebaseControllerObserver {
         return model.getNumberOfFiches();
     }
 
-
     public AreaType getAreaType() {
         return model.getAreaType();
     }
 
-    boolean firstAttackArea() {
+    public boolean isBorderArea() {
         return model.firstAttackArea();
     }
 
-    boolean isAttackAble() {
+    public boolean isAttackAble() {
         return model.isAttackAble();
     }
 

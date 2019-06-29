@@ -38,7 +38,7 @@ public class PlayerView implements PlayerObserver {
 
     @Override
     public void update(PlayerObservable po) {
-        updateFields(po.getRaceFichesAmount(), po.getPunten());
+        updateFields(po.getRaceFichesAmount(), po.getPoints());
     }
 
     private void updateFields(int fiches, int punten){

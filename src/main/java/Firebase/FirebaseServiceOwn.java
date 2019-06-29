@@ -30,7 +30,7 @@ public class FirebaseServiceOwn {
         return firestore;
     }
 
-    public void listen(String documentId, final FirebaseControllerObserver controller) {
+    public void listen(String documentId, final FirebaseGameObserver controller) {
         DocumentReference docRef = this.colRef.document(documentId);
         docRef.addSnapshotListener((new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException e) {
@@ -47,7 +47,7 @@ public class FirebaseServiceOwn {
         }));
     }
 
-    public void playerListen(String player, final FirebaseControllerObserver controller) {
+    public void playerListen(String player, final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Players").document(player);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -62,7 +62,7 @@ public class FirebaseServiceOwn {
         });
     }
 
-    public void timerListen(final FirebaseControllerObserver controller) {
+    public void timerListen(final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Extras").document("Timer");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -79,7 +79,7 @@ public class FirebaseServiceOwn {
     }
 
     //AreaRegister
-    public void AreaListener(String areaId, final FirebaseControllerObserver controller) {
+    public void AreaListener(String areaId, final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Areas").document(areaId);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -150,7 +150,7 @@ public class FirebaseServiceOwn {
 
 
     //InLobbyListener
-    public void inLobbyListener(String lobbyName, final FirebaseControllerObserver controller) {
+    public void inLobbyListener(String lobbyName, final FirebaseGameObserver controller) {
         DocumentReference docRef = firestore.collection("Lobby").document(lobbyName);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -166,7 +166,7 @@ public class FirebaseServiceOwn {
     }
 
     //InLobbyListener
-    public void shopListener(final FirebaseControllerObserver controller) {
+    public void shopListener(final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Extras").document("Shop");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -243,7 +243,7 @@ public class FirebaseServiceOwn {
     }
 
     public void changePointsPlayer(String id, int amount){
-        gameRef.collection("Players").document(id).update("punten", amount);
+        gameRef.collection("Players").document(id).update("points", amount);
     }
 
     //Areas setten in firebase
@@ -296,12 +296,12 @@ public class FirebaseServiceOwn {
         gameRef.collection("Extras").document("Timer").set(info);
     }
 
-    // Ophalen caan de speler naam samen met het aantal punten die de speler heeft gehaald.
+    // Ophalen caan de speler naam samen met het aantal points die de speler heeft gehaald.
     public TreeMap<Double, String> getTop3Player(){
         TreeMap<Double, String> map = new TreeMap<>();
         QuerySnapshot players = getQuerySnapshot(gameRef.collection("Players").get());
         for(QueryDocumentSnapshot qDoc: players.getDocuments()){
-            map.put(qDoc.getDouble("punten"), qDoc.getString("Name"));
+            map.put(qDoc.getDouble("points"), qDoc.getString("Name"));
         }
         return map;
     }

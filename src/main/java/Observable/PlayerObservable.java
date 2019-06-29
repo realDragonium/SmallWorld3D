@@ -28,5 +28,5 @@ public interface PlayerObservable {
     /**
      * @return the amount of points a player has.
      */
-    int getPunten();
+    int getPoints();
 }

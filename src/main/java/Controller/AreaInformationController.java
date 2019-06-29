@@ -2,7 +2,6 @@ package Controller;
 
 import Model.AreaInformationModel;
 import Observer.AreaInformationObserver;
-import View.AreaInformationView;
 
 public class AreaInformationController {
 
@@ -23,7 +22,8 @@ public class AreaInformationController {
     }
 
     public void AttackArea() {
-        gameCon.getAttCon().attackArea(model.getArea());
+//        gameCon.getAttCon().attackArea(model.getArea());
+        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(model.getArea());
     }
 
     public void registerObserver(AreaInformationObserver ob) {

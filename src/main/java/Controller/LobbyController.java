@@ -1,11 +1,7 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.LobbyModel;
 import Observer.LobbyObserver;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class LobbyController {
 	private LobbyModel lobbymodel = new LobbyModel();
@@ -13,7 +9,7 @@ public class LobbyController {
 
 
 	public LobbyController(){
-//		SceneManager.getInstance().createLobbyView(this);
+
 	}
 
 
@@ -29,7 +25,7 @@ public class LobbyController {
 	}
 
 
-	// Creates a new LobbySettingsController which gets its corresponding view in the SceneManager, by giving itself along
+	// Creates a new LobbySettingsController which gets its corresponding view in the , by giving itself along
 	public void lobbyEdit(){
 		new LobbySettingsController();
 	}

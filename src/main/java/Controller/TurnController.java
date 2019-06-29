@@ -1,14 +1,8 @@
 package Controller;
 
 import Enum.TurnFase;
-import Managers.SceneManager;
 import Model.TurnModel;
 import Observer.TurnObserver;
-
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
 
 public class TurnController {
 
@@ -21,7 +15,6 @@ public class TurnController {
     TurnController(GameController gameCon){
         model = new TurnModel(4);
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadTurn(this);
         decideStartingPlayer();
     }
 

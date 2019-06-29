@@ -24,21 +24,20 @@ import javafx.scene.transform.Translate;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-public class Area3dView implements AreaObserver {
+public class Area3DView implements AreaObserver {
 
-    MeshView area;
-    AreaController areaCon;
-    Group number = new Group();
-    Controller3D con3d;
-    int currentNumber;
+    private MeshView area;
+    private AreaController areaCon;
+    private Group number = new Group();
+    private int currentNumber;
+    private Group map;
 
-    public Area3dView(Node area, AreaController areaCon, Controller3D con3d){
+    public Area3DView(Node area, AreaController areaCon, Group map){
         this.area = (MeshView) area;
         this.areaCon = areaCon;
-        this.con3d = con3d;
+        this.map = map;
         init();
         areaCon.register(this);
-
     }
 
 
@@ -52,6 +51,7 @@ public class Area3dView implements AreaObserver {
         });
         area.setOnMouseEntered(e -> {
             if(currentNumber != 0) showNumber();
+
             areaCon.hoverEntered();
         });
 
@@ -59,11 +59,9 @@ public class Area3dView implements AreaObserver {
             hideNumber();
             areaCon.hoverExited();
         });
-
         areaCon.createNumber(number);
-
-        con3d.add3dObject(number);
-
+        map.getChildren().add(number);
+//        con3d.add3dObject(number);
     }
 
     private void showNumber() {

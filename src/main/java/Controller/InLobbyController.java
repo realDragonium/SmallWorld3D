@@ -1,28 +1,26 @@
 package Controller;
 
-import Firebase.FirebaseControllerObserver;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.InLobbyModel;
 import Observer.InLobbyObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
 
 import java.util.Map;
 
-public class InLobbyController implements FirebaseControllerObserver { ;
+public class InLobbyController implements FirebaseGameObserver { ;
     private InLobbyModel mod = new InLobbyModel();
 
     public InLobbyController(){
-//        SceneManager.getInstance().createInLobbyView(this);
+
     }
 
     InLobbyController(String lobbyNaam, int id){
-//        SceneManager.getInstance().createInLobbyView(this);
+;
         setLobbyNaam(lobbyNaam);
     }
 
     public InLobbyController(String lobbyNaam){
-//        SceneManager.getInstance().createInLobbyView(this);
+
         setLobbyNaam(lobbyNaam);
     }
 
@@ -31,7 +29,6 @@ public class InLobbyController implements FirebaseControllerObserver { ;
     }
 
     public void start(){            // start button
-//        SceneManager.getInstance().getApp().getFirebaseService().startGame(mod.getLobbyNaam());
         //new GameController(mod.getLobbyNaam(), app.getAccountCon().getPlayerId());  // starten van het spel
     }
 

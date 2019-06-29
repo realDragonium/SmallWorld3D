@@ -32,9 +32,9 @@ public class InfoModel implements infoObservable {
             "of 1 Triton token is still required.";
     public String Ratmen = "No Race benefit; their sheer number of " +
             "tokens is enough!";
-    public String pickRace = "The player selects one Race and Special Power combo, from" +
+    public String pickRace = "The player selects one Race and Special PowerOld combo, from" +
             "among the six that are visible on the table (including the " +
-            "combo made of the Race banner and Special Power badge " +
+            "combo made of the Race banner and Special PowerOld badge " +
             "sitting on top of the stacks at the bottom of the column). " +
             "The cost of each combo is determined by its position in the " +
             "column. The first combo - located at the top of the column - is " +
@@ -50,11 +50,11 @@ public class InfoModel implements infoObservable {
             "The player places his combo selection face up in front of him, " +
             "and picks a number of matching Race tokens in the removable " +
             "storage tray equal to the sum of the values indicated on the " +
-            "Race banner and its associated Special Power badge. " +
+            "Race banner and its associated Special PowerOld badge. " +
             "Unless stated otherwise (for example, Skeletons or Sorcerers) " +
             "these Race tokens are the only ones the player will be able to " +
             "deploy for this race during the course of the game. " +
-            "If, on the other hand, a Special Power (or Race power) lets " +
+            "If, on the other hand, a Special PowerOld (or Race power) lets " +
             "you take additional Race tokens from the storage tray during " +
             "the course of the game, you are still limited by the total " +
             "number of tokens physically available. So a player with 18 " +
@@ -66,7 +66,7 @@ public class InfoModel implements infoObservable {
             "in the column, so as to fill the void, and revealing a new combo " +
             "from the top of the stack, if appropriate. There should thus " +
             "always be 6 combos visible to all players, on the table (within " +
-            "the limit of Race banners and Special Power badges available " +
+            "the limit of Race banners and Special PowerOld badges available " +
             "in the pile, once reshuffled if need be, of course).";
     public String firstConquest = "A player's race deploying on the map for the first time must " +
             "enter it by conquering one of its border Regions (i.e. a Region " +
@@ -114,7 +114,7 @@ public class InfoModel implements infoObservable {
             "Each of the newly conquered Regions must be adjacent to " +
             "(i.e. sharing a border with) a Region already occupied by his " +
             "active Race tokens, unless permitted otherwise by his Race and " +
-            "Special Power combo.";
+            "Special PowerOld combo.";
     public String finalConquest = "During the final conquest attempt of his turn, a player may " +
             "find himself with not enough Race tokens left to conquer " +
             "another Region outright. Provided he still has at least one " +
@@ -141,15 +141,15 @@ public class InfoModel implements infoObservable {
     public String victoryCoins = "His turn now complete, the player receives 1 coin from the " +
             "Victory stash for each Region his Race tokens occupy on the " +
             "map. The player may also collect additional Victory coins as a " +
-            "result of his Race and/or Special Power benefit. " +
+            "result of his Race and/or Special PowerOld benefit. " +
             "As the game progresses, a player will likely have some tokens " +
             "from another race on the map. These tokens are the remnants " +
             "of an earlier race he chose to put In Decline previously (see " +
             "Entering into Decline, p. 6). " +
             "The Regions these In Decline tokens occupy also each contribute " +
             "1 Victory coin to the player; Though the Race banner and Special " +
-            "Power benefits no longer contribute any bonus coins, unless " +
-            "explicitly stated otherwise in said Race or Special Power benefit. " +
+            "PowerOld benefits no longer contribute any bonus coins, unless " +
+            "explicitly stated otherwise in said Race or Special PowerOld benefit. " +
             "Players keep their Victory coins stacked together, their value " +
             "hidden from other players at all times; final scores are not " +
             "revealed until the end of the game. If necessary, a player may " +
@@ -157,13 +157,13 @@ public class InfoModel implements infoObservable {
     public String decline = "Once a player thinks that his Active race is overextended and no longer has the impetus required to" +
             "continue expanding successfully or defend itself from " +
             "increasingly threatening neighbors, he may choose to put it In " +
-            "Decline by selecting a new Race and Special Power combo from " +
+            "Decline by selecting a new Race and Special PowerOld combo from " +
             "those available on the table at the start of his next turn. " +
             "To do so, the player flips his current Race banner upside down, " +
             "so that the grayed-out In Decline side becomes visible to all, " +
-            "and discards the Special Power badge that was associated with " +
-            "it as that Special Power badge is no longer in effect, unless " +
-            "dictated otherwise (e.g. Spirit Special Power). " +
+            "and discards the Special PowerOld badge that was associated with " +
+            "it as that Special PowerOld badge is no longer in effect, unless " +
+            "dictated otherwise (e.g. Spirit Special PowerOld). " +
             "He also flips a single Race token onto its In Decline side in " +
             "each Region those tokens occupied and removes all other " +
             "tokens of this Race from the map, placing them back into the " +
@@ -183,9 +183,9 @@ public class InfoModel implements infoObservable {
             "gains 1 Victory coin for each Region his newly In Decline tokens " +
             "occupy, but unless stated otherwise, he scores no Victory coins " +
             "from his now In Decline Race banner power or discarded Special " +
-            "Power benefits. " +
+            "PowerOld benefits. " +
             "On his next turn, the player will select a new Race and Special " +
-            "Power combo from among those now available to him. He then " +
+            "PowerOld combo from among those now available to him. He then " +
             "follows the same rules used during the first turn of the game. " +
             "The only difference, but it's a sizeable one, is that the player " +
             "will now likely collect Victory coins from his new race as well as " +
@@ -196,10 +196,10 @@ public class InfoModel implements infoObservable {
             "placed back at the bottom of the pile. " +
             "SW Rules EN_Mise en page 1 19/05/15 13:49 Page7 " +
             "7 " +
-            "In the unlikely event there are not enough Special Power " +
+            "In the unlikely event there are not enough Special PowerOld " +
             "badges left in the Special Powers stack to keep putting new " +
-            "Race and Special Power combos on the table, shuffle previously " +
-            "discarded Special Power badges into a new stack.";
+            "Race and Special PowerOld combos on the table, shuffle previously " +
+            "discarded Special PowerOld badges into a new stack.";
     public String endGame = "Once the Game Turn marker has reached its final spot on the " +
             "Game Turn track and all players have had a chance to play a " +
             "final turn, the Victory coins held by each player are revealed " +

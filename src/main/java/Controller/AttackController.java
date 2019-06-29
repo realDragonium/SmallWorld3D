@@ -1,11 +1,5 @@
 package Controller;
 
-import Enum.TurnFase;
-import Managers.SceneManager;
-
-import java.awt.geom.Area;
-import java.util.List;
-
 public class AttackController {
 
     private GameController gameCon;
@@ -16,7 +10,6 @@ public class AttackController {
     AttackController(GameController gameCon) {
 
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadAttack(this);
     }
 
     public void removeFichesNeeded(int amount){
@@ -28,7 +21,7 @@ public class AttackController {
     }
 
     private void getTargetArea() {
-        targetArea = gameCon.getMapCon().getActiveAreas().get(0);
+        targetArea = gameCon.getMapCon().getActiveArea();
     }
 
     private void attackAreaLocal() {
@@ -37,13 +30,13 @@ public class AttackController {
 
     private void attack(PlayerController player, AreaController area, int fiches){
         player.getActiveCombination().getRace().addArea(area);
-        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
+//        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
         area.setPlayerOwner(player);
     }
 
     public void attackCountry() {
-        getTargetArea();
-        attackAreaLocal();
+        AreaController area = gameCon.getMapCon().getActiveArea();
+        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(area);
     }
 
     private boolean isNeighbour(AreaController area, PlayerController player){
@@ -62,7 +55,7 @@ public class AttackController {
             if (player.hasActiveCombination()) {
                 if (player.hasEnoughFiches(fichesNeeded)) {
                     if (player.getActiveCombination().getRace().getAllAreas().size() == 0) {
-                        if (area.firstAttackArea()) {
+                        if (area.isBorderArea()) {
                             return true;
                         }
                         else{
@@ -103,4 +96,6 @@ public class AttackController {
         }
         System.out.println("not able to attack");
     }
+
+
 }

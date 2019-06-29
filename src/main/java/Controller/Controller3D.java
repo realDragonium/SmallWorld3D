@@ -39,14 +39,15 @@ public class Controller3D{
 
     public void createCamera(){
         System.out.println("creating camera...");
-        CameraController cameraCon = new CameraController(this);
+        CameraController cameraCon = new CameraController();
         CameraView cameraView = new CameraView(cameraCon, camera);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
     }
 
     public void createMap(){
-        Map3DController mapCon = new Map3DController(this, gameCon);
+        System.out.println("creating map...");
+        MapController mapCon = gameCon.getMapCon();
         new Map3DView(mapCon, map);
         world.getChildren().add(map);
     }
@@ -57,11 +58,12 @@ public class Controller3D{
     }
 
     public FicheController createRaceFiche(String race){
-        FicheController ficheCon = new FicheController(gameCon, 1);
+        FicheController ficheCon = new FicheController(1, "Ghost");
         new fiche3dView(ficheCon, fiches, race);
         return ficheCon;
     }
 
+    //deze staat nu in area3DView
     public void add3dObject(Node number) {
         map.getChildren().add(number);
     }

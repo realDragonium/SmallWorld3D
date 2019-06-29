@@ -1,14 +1,22 @@
 package Controller;
 
 import Enum.TurnFase;
+import Fiches.RaceFiche;
 import Model.CombinationModel;
-import Objects.Power;
+import Objects.PowerOld;
 import Observer.CombinationObserver;
+import Enum.RaceEnum;
+import Enum.PowerEnum;
+import Race.Race;
+import Power.Power;
+
+import java.util.Stack;
+
 
 public class CombinationController {
 
     private RaceController race;
-    private Power power;
+    private PowerOld powerOld;
     private PlayerController player;
     private CombinationModel model;
 
@@ -20,13 +28,31 @@ public class CombinationController {
         return model.isActive();
     }
 
-    public CombinationController(RaceController race, Power power){
+    public CombinationController(RaceController race, PowerOld powerOld){
         this.race = race;
-        this.power = power;
-        power.setCombiCon(this);
-        model = new CombinationModel(race.getId(), power.getId());
-        //SceneManager.getInstance().loadCombination(this);
+        this.powerOld = powerOld;
+        powerOld.setCombiCon(this);
+        model = new CombinationModel(race.getId(), powerOld.getId());
     }
+
+    public CombinationController(String race, String power){
+        model = new CombinationModel(race, power);
+    }
+
+
+    public void addArea(AreaController area){
+        model.addArea(area);
+    }
+
+    public void attackThisArea(AreaController area){
+        model.getAttack().Attack(area, this);
+    }
+
+    public Stack<FicheController> getFiches(int count){
+        Stack<FicheController> tempFiches = model.removeFiches(count);
+        return tempFiches;
+    }
+
 
     public void setPlayer(PlayerController player){
         this.player = player;
@@ -40,8 +66,8 @@ public class CombinationController {
         if(race.checkPhaseActoin(curPhase)){
             race.doKractAction();
         }
-        if(power.checkPhaseAction(curPhase)){
-            power.doAction();
+        if(powerOld.checkPhaseAction(curPhase)){
+            powerOld.doAction();
         }
     }
 
@@ -49,24 +75,12 @@ public class CombinationController {
         return race;
     }
 
-    public Power getPower(){
-        return power;
+    public PowerOld getPowerOld(){
+        return powerOld;
     }
 
-
-
-    void returnFiches() {
-            race.returnFiches();
-    }
 
     void setToNonActive() {
         model.setToNonActive();
-        for(AreaController area: getRace().getAllAreas()){
-            area.destroyAllButOne();
-        }
-    }
-
-    void destroyAllFichesButOne() {
-        race.destroyAllFichesButOne();
     }
 }

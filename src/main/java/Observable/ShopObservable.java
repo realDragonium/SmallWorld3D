@@ -32,7 +32,7 @@ public interface ShopObservable {
     String getRace(int item);
 
     /**
-     * @param item is given to the method getPower to add the racecombo
+     * @param item is given to the method getPowerOld to add the racecombo
      * @return a String of the power
      */
     String getPower(int item);

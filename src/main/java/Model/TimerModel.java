@@ -23,9 +23,7 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     @Override
     public void register(TimerObserver to) {
-        System.out.println(to);
         observer = to;
-        System.out.println(to);
     }
 
     @Override
@@ -35,7 +33,6 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     @Override
     public void notifyAllObservers() {
-        System.out.println(observer);
         observer.update(this);
     }
 

@@ -3,19 +3,16 @@ package Objects;
 import Controller.CombinationController;
 import Enum.TurnFase;
 
-public class WelthPower implements Power {
+public class AlchemistPowerOld implements PowerOld {
 
-    private String id = "Welth";
-    private boolean used = false;
-    private TurnFase usablePhase = TurnFase.redeploying;
+
+    private TurnFase usingPhase = TurnFase.redeploying;
+    private String id = "alchemist";
     private CombinationController combiCon;
 
     @Override
     public void doAction(){
-        if(!used){
-            combiCon.getPlayer().addPoints(7);
-            used = true;
-        }
+        combiCon.getPlayer().addPoints(2);
     }
 
     @Override
@@ -25,7 +22,7 @@ public class WelthPower implements Power {
 
     @Override
     public boolean checkPhaseAction(TurnFase phase) {
-        return phase.equals(usablePhase);
+        return phase.equals(usingPhase);
     }
 
     @Override

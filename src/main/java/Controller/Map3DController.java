@@ -1,10 +1,8 @@
 package Controller;
 
-import View.Area3dView;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
-import java.awt.geom.Area;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +12,7 @@ public class Map3DController {
     GameController gameCon;
     Map<String, Translate> areaPoints = new HashMap<>();
 
-    public Map3DController(Controller3D con3D, GameController gameCon){
+    Map3DController(Controller3D con3D, GameController gameCon){
         this.gameCon = gameCon;
         this.con3D = con3D;
         setupAreaPoints();
@@ -22,12 +20,10 @@ public class Map3DController {
 
     public void createArea(Node area, String areaId) {
         AreaController areaCon = new AreaController(areaId, this,areaPoints.get(area.getId()) , gameCon);
-        new Area3dView(area, areaCon, con3D);
+//        new Area3DView(area, areaCon);
     }
 
-
-
-    public void setupAreaPoints(){
+    private void setupAreaPoints(){
         areaPoints.put("farm_005" ,new Translate(402,-1,363));
         areaPoints.put("hill_004" ,new Translate(409,-1,217));
         areaPoints.put("mountain_004" ,new Translate(343,-74,94));
@@ -78,7 +74,7 @@ public class Map3DController {
         areaPoints.put("swamp_005" ,new Translate(-147,-1,437));
     }
 
-    public void placeFiche(AreaController areaCon, FicheController fiche) {
+    void placeFiche(AreaController areaCon, FicheController fiche) {
         areaCon.putFiche(fiche);
     }
 }

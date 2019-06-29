@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<Group fx:id="groupFXML" layoutX="0.0" layoutY="0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TurnView">
-    <ImageView fitHeight="72.0" fitWidth="289.0" layoutX="1210.0" layoutY="25.0">
+
+<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TimerView">
+    <ImageView fitHeight="72.0" fitWidth="154.0" layoutX="1680.0" layoutY="23.0">
         <image>
             <Image url="@Phaseindicator.png" />
         </image>
     </ImageView>
-        <Text fx:id="turnField" fill="#fcfcfc" layoutX="1270.0" layoutY="73.0" text="Turn: ">
-         <font>
+    <Text fx:id="timer" fill="#fcfcfc" layoutX="1730.0" layoutY="72.0" opacity="0.9" strokeWidth="2.0" text="0:00" textAlignment="CENTER">
+        <font>
             <Font size="32.0" />
-         </font></Text>
-    <ImageView fitHeight="100" fitWidth="400" layoutX="760.0" layoutY="25.0">
-        <Image url="@Phaseindicator.png">
-        </Image>
-    </ImageView>
-        <Text fx:id="faseField" fill="#e8dede" layoutX="830.0" layoutY="89.0" text="PREPERATION">
-         <font>
-            <Font size="40.0" />
-         </font></Text>
-</Group>
+        </font>
+    </Text>
+</Pane>

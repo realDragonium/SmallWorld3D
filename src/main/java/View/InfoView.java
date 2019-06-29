@@ -1,8 +1,6 @@
 package View;
 
 import Controller.InfoController;
-import Controller.TurnController;
-import Managers.SceneManager;
 import Observable.infoObservable;
 import Observer.infoObserver;
 import javafx.fxml.FXML;
@@ -144,6 +142,6 @@ public class InfoView implements infoObserver {
     }
 
     public void exitInfoScreen() {
-//        SceneManager.getInstance().removeFromStandardScene("infoGroup");
+        infoCon.exit();
     }
 }

@@ -35,7 +35,7 @@ public class GameView implements GameObserver {
         createViews();
         basicViewLayout();
         gameCon.register(this);
-        gameCon.setPlayerPositions();
+//        gameCon.setPlayerPositions();
 
     }
 
@@ -65,7 +65,7 @@ public class GameView implements GameObserver {
         gameCon.createPlayerView(groups.get("players"), "player3");
         gameCon.createPlayerView(groups.get("players"), "player4");
         gameCon.createRoundView(groups.get("round"));
-        gameCon.createTurnView(groups.get("turn"));
+//        gameCon.createTurnView(groups.get("turn"));
         gameCon.createButtonView(groups.get("button"));
         gameCon.createShopView(groups.get("shop"));
         gameCon.createTimerView(groups.get("timer"));
@@ -80,11 +80,11 @@ public class GameView implements GameObserver {
 
     private void basicViewLayout() {
         root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
-        //root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
+//        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
 
