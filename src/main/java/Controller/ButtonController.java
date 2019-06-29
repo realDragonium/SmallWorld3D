@@ -9,7 +9,6 @@ public class ButtonController {
 
     ButtonController(GameController gameCon){
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadButtons(this);
     }
 
     public void showInfo() {

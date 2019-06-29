@@ -20,8 +20,6 @@ public class ShopController implements FirebaseGameObserver {
 
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadShop(this);
-//        SceneManager.getInstance().getApp().getFirebaseService().shopListener(this);
     }
 
     public void makeItems(){
@@ -40,7 +38,6 @@ public class ShopController implements FirebaseGameObserver {
     public void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItems().get(item), item);
-//            SceneManager.getInstance().getApp().getFirebaseService().boughShop(item);
 //            gameCon.getGameTurn().endTurn();
         }
     }

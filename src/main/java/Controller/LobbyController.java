@@ -9,7 +9,7 @@ public class LobbyController {
 
 
 	public LobbyController(){
-//		SceneManager.getInstance().createLobbyView(this);
+
 	}
 
 
@@ -25,7 +25,7 @@ public class LobbyController {
 	}
 
 
-	// Creates a new LobbySettingsController which gets its corresponding view in the SceneManager, by giving itself along
+	// Creates a new LobbySettingsController which gets its corresponding view in the , by giving itself along
 	public void lobbyEdit(){
 		new LobbySettingsController();
 	}

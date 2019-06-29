@@ -1,12 +1,8 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.LeaderboardModel;
 import Observer.LeaderboardObserver;
 
-import java.util.Set;
-import java.util.Stack;
-import java.util.TreeMap;
 
 public class LeaderboardController {
     private LeaderboardModel leaderboardModel = new LeaderboardModel();

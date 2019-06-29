@@ -12,14 +12,14 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 
-public class AreaView implements AreaObserver {
+public class Area2DView implements AreaObserver {
 
     private Shape shape;
     private AreaController areaCon;
     private AreaColor color;
     private Text text;
 
-    public AreaView(Node group, AreaController areaCon){
+    public Area2DView(Node group, AreaController areaCon){
         this.shape = (Shape) ((Group)group).getChildren().get(0);
         this.text = (Text) ((Group)group).getChildren().get(1);
         color = AreaColor.valueOf(shape.getId().split("_")[0]);

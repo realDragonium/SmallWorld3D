@@ -1,20 +1,13 @@
 package Controller;
 
-/** This controller-class controlls the logic of the methods that can be called in the Redeploying phase
- *
- * @author yoran
- * @version June 2019
- *
- */
-
 public class RedeployingController {
 
     GameController gameCon;
-//    private FirebaseServiceOwn fb = SceneManager.getInstance().getApp().getFirebaseService();
+    private FirebaseGameController fbGame;
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadRedeploying(this);
+        fbGame = gameCon.getFireBase();
 
     }
 
@@ -29,8 +22,6 @@ public class RedeployingController {
                         player.addPoints(-1);
                         player.getActiveCombination().getRace().removeArea(activeArea);
                     }
-//                    player.getActiveCombination().getRace().addFiche(activeArea.getOneFiche());
-//                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
                 }
             }
         }
@@ -43,17 +34,11 @@ public class RedeployingController {
         if(activeArea != null){
             if(activeArea.getOwnerPlayer().getId().equals(player.getId())){
                 if(player.getActiveCombination().getRace().hasEnoughFiches(1)){
-                    //activeArea.addFiche(player.getActiveCombination().getRace().removeFiche());
-//                    fb.areaUpdateFiches(activeArea.getId(), activeArea.getFichesAmount());
+
                 }
             }
         }
     }
-
-    /**
-     *
-     * @return returns the selected area
-     */
 
     private AreaController getActiveArea(){
         AreaController activeArea = gameCon.getMapCon().getActiveArea();

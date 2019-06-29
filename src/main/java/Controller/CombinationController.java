@@ -36,7 +36,6 @@ public class CombinationController {
         this.powerOld = powerOld;
         powerOld.setCombiCon(this);
         model = new CombinationModel(race.getId(), powerOld.getId());
-        //SceneManager.getInstance().loadCombination(this);
     }
 
     public CombinationController(){}

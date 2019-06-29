@@ -13,16 +13,13 @@ import java.util.Map;
 
 public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
-//    private Applicatie app = SceneManager.getInstance().getApp();
-//    private FirebaseServiceOwn fb = app.getFirebaseService();
+    private FirebaseGameController fbGame = gameCon.getFireBase();
     private PlayerModel model;
     private List<CombinationController> combinations = new ArrayList<>();
 
     public PlayerController(String playerID, GameController gameCon) {
         model = new PlayerModel(playerID);
         this.gameCon = gameCon;
-//        SceneManager.getInstance().loadPlayer(playerID, this);
-//        fb.playerListen(playerID, this);
     }
 
     public void setPlayerPosition(Translate pos){
@@ -36,7 +33,6 @@ public class PlayerController implements FirebaseGameObserver {
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getRaceFichesAmount());
         info.put("points", model.getPoints());
-//        fb.playerUpdate(gameCon.getRace().getId(), info);
     }
 
     void showActiveCombiFichesLeft() {
@@ -60,7 +56,6 @@ public class PlayerController implements FirebaseGameObserver {
 
     public void addRaceFiche(FicheController fiche) {
         model.addRaceFiche(fiche);
-//        fb.playerUpdateFiches(model.getId(), fiches);
     }
 
     public FicheController removeRaceFiche(){
@@ -81,8 +76,6 @@ public class PlayerController implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-//        if(gameCon.getCurrentPlayer()==this) return;
-//        model.fiches = (int) Math.round(ds.getDouble("fiches"));
         model.points = (int) Math.round(ds.getDouble("points"));
         model.notifyObserver();
     }
@@ -100,7 +93,6 @@ public class PlayerController implements FirebaseGameObserver {
 
     public void addPoints(int i) {
         model.addPunten(i);
-//        fb.changePointsPlayer(model.getId(), model.getPoints());
     }
 
     int getPoints(){

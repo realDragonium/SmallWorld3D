@@ -50,6 +50,7 @@ public class Controller3D{
         return ficheCon;
     }
 
+    //deze staat nu in area3DView
     public void add3dObject(Node number) {
         map.getChildren().add(number);
     }

@@ -2,8 +2,8 @@ package Controller;
 
 import Model.MapModel;
 import Objects.AreaInfo;
-import View.Area3dView;
-import View.AreaView;
+import View.Area2DView;
+import View.Area3DView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.scene.Group;
@@ -34,12 +34,12 @@ public class MapController {
 	}
 
 	public void createAreaView(Node area, Group map){
-//		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
-		new Area3dView(area, areas.get(area.getId()), map);
+//		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
+		new Area3DView(area, areas.get(area.getId()), map);
 	}
 
 	public void createAreaView(Group area){
-		new AreaView(area, areas.get(area.getChildren().get(0).getId()));
+		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
 	}
 
 

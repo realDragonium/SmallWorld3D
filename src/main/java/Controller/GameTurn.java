@@ -56,7 +56,6 @@ public class GameTurn implements FirebaseActionObserver {
                 startEndingPhase();
                 break;
             case redeploying:
-//                SceneManager.getInstance().switchToSpectatingView();
                 currentPhase = TurnFase.none;
                 gameCon.nextTurn();
                 break;
@@ -68,14 +67,11 @@ public class GameTurn implements FirebaseActionObserver {
         gameCon.getTurnCon().setFase(currentPhase);
 
         if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
-//            SceneManager.getInstance().switchToPreperationPhase();
 
             if (currentPlayer.hasActiveCombination()) {
                 currentPlayer.getActiveCombination().checkForSpecialActions(currentPhase);
 
-//                SceneManager.getInstance().addToScene("vervalGroup");
             } else {
-//                SceneManager.getInstance().addToScene("shopGroup");
             }
         }
 
@@ -86,7 +82,6 @@ public class GameTurn implements FirebaseActionObserver {
         gameCon.getTurnCon().setFase(currentPhase);
         if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
             if (currentPlayer.hasActiveCombination()) {
-//                SceneManager.getInstance().switchToAttackPhase();
             } else {
                 endTurn();
             }
@@ -97,7 +92,6 @@ public class GameTurn implements FirebaseActionObserver {
         currentPhase = TurnFase.redeploying;
         gameCon.getTurnCon().setFase(currentPhase);
         if (currentPlayer.getId().equals(gameCon.getMyPlayerId())) {
-//            SceneManager.getInstance().switchToEndingPhase();
             currentPlayer.addRoundPoints();
             if (currentPlayer.hasActiveCombination()) {
                 currentPlayer.getActiveCombination().checkForSpecialActions(currentPhase);

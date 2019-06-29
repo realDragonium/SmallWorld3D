@@ -24,7 +24,7 @@ import javafx.scene.transform.Translate;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-public class Area3dView implements AreaObserver {
+public class Area3DView implements AreaObserver {
 
     private MeshView area;
     private AreaController areaCon;
@@ -32,7 +32,7 @@ public class Area3dView implements AreaObserver {
     private int currentNumber;
     private Group map;
 
-    public Area3dView(Node area, AreaController areaCon, Group map){
+    public Area3DView(Node area, AreaController areaCon, Group map){
         this.area = (MeshView) area;
         this.areaCon = areaCon;
         this.map = map;

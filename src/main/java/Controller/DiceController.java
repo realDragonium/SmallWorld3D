@@ -1,6 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.DiceModel;
 import Observer.DiceObserver;
 
@@ -11,7 +10,6 @@ public class DiceController {
 
     int ClickedDice() {
         int uitkomst = RollDice();
-//        SceneManager.getInstance().addToScene("diceGroup");
         diceModel.play(uitkomst);
         return diceModel.giveValue(uitkomst);
     }
@@ -19,7 +17,6 @@ public class DiceController {
 
     DiceController(GameController gameController) {
         gameCon = gameController;
-//        SceneManager.getInstance().loadDice(this);
     }
 
     private int RollDice() {

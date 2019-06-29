@@ -1,6 +1,5 @@
 package Controller;
 
-import View.Area3dView;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
@@ -21,7 +20,7 @@ public class Map3DController {
 
     public void createArea(Node area, String areaId) {
         AreaController areaCon = new AreaController(areaId, this,areaPoints.get(area.getId()) , gameCon);
-//        new Area3dView(area, areaCon);
+//        new Area3DView(area, areaCon);
     }
 
     private void setupAreaPoints(){
