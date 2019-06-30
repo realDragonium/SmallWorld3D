@@ -36,8 +36,7 @@ public class GameView implements GameObserver {
         createViews();
         basicViewLayout();
         gameCon.register(this);
-//        gameCon.setPlayerPositions();
-
+        gameCon.setPlayerPositions();
     }
 
     private void createViews(){
@@ -64,13 +63,16 @@ public class GameView implements GameObserver {
     private void basicViewLayout() {
         root.getChildren().add(GameViewEnum.MAP3D.getGroup());
 //        root.getChildren().add(GameViewEnum.UIOVERLAY.getGroup());
-        root.getChildren().add(GameViewEnum.TURN.getGroup());
-        root.getChildren().add(GameViewEnum.PHASE.getGroup());
         root.getChildren().add(GameViewEnum.TIMER.getGroup());
         root.getChildren().add(GameViewEnum.PLAYER.getGroup());
+        root.getChildren().add(GameViewEnum.TURN.getGroup());
+        root.getChildren().add(GameViewEnum.SHOP.getGroup());
+        root.getChildren().add(GameViewEnum.ROUND.getGroup());
         root.getChildren().add(GameViewEnum.BUTTON.getGroup());
         root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
-        root.getChildren().add(GameViewEnum.ROUND.getGroup());
+        root.getChildren().add(GameViewEnum.PHASE.getGroup());
+
+
 
         root.getChildren().add(notBasicRoot);
     }

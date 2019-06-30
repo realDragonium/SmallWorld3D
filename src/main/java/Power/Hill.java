@@ -6,4 +6,9 @@ public class Hill implements Power {
     public String getName() {
         return "hill";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

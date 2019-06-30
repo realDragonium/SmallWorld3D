@@ -6,4 +6,9 @@ public class Merchant implements Power {
     public String getName() {
         return "merchant";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

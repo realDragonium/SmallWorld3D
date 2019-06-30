@@ -72,11 +72,11 @@ public class AreaController{
 
 
 
-    public void createFiche(){
-        FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
-        map3DCon.placeFiche(this, fiche);
-        //fiche.moveToPosition(model.getAreaPoint());
-    }
+//    public void createFiche(){
+//        FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
+//        map3DCon.placeFiche(this, fiche);
+//        //fiche.moveToPosition(model.getAreaPoint());
+//    }
 
     public void putFiche(FicheController fiche){
         model.addFiche(fiche);
@@ -172,6 +172,7 @@ public class AreaController{
     }
 
     public void showInfo() {
+        System.out.println("showing: " + getAreaType());
         gameCon.getAreaInfoCon().putAreaInformationScreen(this);
     }
 }

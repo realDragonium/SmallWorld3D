@@ -1,6 +1,7 @@
 package Observable;
 
 import Observer.CombinationObserver;
+import javafx.scene.transform.Translate;
 
 /**
  * This interface is the CombinationObservable which is implemented by the CombinationModel class.
@@ -37,5 +38,5 @@ public interface CombinationObservable {
      */
     String getPowerId();
 
-
+    Translate getPosition();
 }

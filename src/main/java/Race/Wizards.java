@@ -6,4 +6,9 @@ public class Wizards implements Race {
     public String getName() {
         return "wizards";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 8;
+    }
 }

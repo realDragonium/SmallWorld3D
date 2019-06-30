@@ -6,4 +6,9 @@ public class Commando implements Power {
     public String getName() {
         return "commando";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

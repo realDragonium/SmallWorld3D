@@ -6,4 +6,9 @@ public class Diplomat implements Power {
     public String getName() {
         return "diplomat";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

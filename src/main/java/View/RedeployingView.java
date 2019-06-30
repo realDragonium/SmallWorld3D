@@ -26,10 +26,10 @@ public class RedeployingView {
     }
 
     public void removeButton() {
-        redCon.removeFiche();
+        //redCon.removeFiche();
     }
 
     public void addButton() {
-        redCon.addFiche();
+        //redCon.addFiche();
     }
 }

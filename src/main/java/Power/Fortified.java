@@ -6,4 +6,9 @@ public class Fortified implements Power {
     public String getName() {
         return "fortified";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

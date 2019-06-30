@@ -24,30 +24,30 @@ public class PlayerController implements FirebaseGameObserver {
         fbGame = gameCon.getFireBase();
     }
 
-    public void setPlayerPosition(Translate pos){
-        model.setPlayerPos(pos);
+    public void setPlayer3dPosition(Translate pos){
+        model.setPlayer3dPos(pos);
     }
 
-    void buyFromShop(ShopCombination combo, int costs) {
+    public Translate get3dPos(){
+        return model.get3dPos();
+    }
+
+    void buyFromShop(CombinationController combo, int costs) {
         model.removePoints(costs);
-        CombinationController combi = new CombinationController(combo.getRace(), combo.getPower());
-        combinations.add(combi);
-        combi.setPlayer(this);
+        combinations.add(combo);
+        combo.moveToPosition(model.get2dPos());
+        combo.setPlayer(this);
+        combo.createRaceFiches();
         Map<String, Object> info = new HashMap<>();
         info.put("fiches", model.getRaceFichesAmount());
         info.put("points", model.getPoints());
     }
 
-    public void buyFromShop(ShopController shop, int number){
-//        combinations.add(shop.buyItem(number));
-        model.removePoints(number);
-    }
-
-    void showActiveCombiFichesLeft() {
-        for (CombinationController combiCon : combinations) {
-            combiCon.getRace().fichesOver();
-        }
-    }
+//    void showActiveCombiFichesLeft() {
+//        for (CombinationController combiCon : combinations) {
+//            combiCon.getRace().fichesOver();
+//        }
+//    }
 
     CombinationController getActiveCombination() {
         if (combinations.size() > 0) return combinations.get(0);
@@ -88,12 +88,12 @@ public class PlayerController implements FirebaseGameObserver {
         model.notifyObserver();
     }
 
-    void addRoundPoints() {
-        if(hasCombination()){
-            for(CombinationController combi : combinations)
-            model.addPunten(combi.getRace().getAreasAmount());
-        }
-    }
+//    void addRoundPoints() {
+//        if(hasCombination()){
+//            for(CombinationController combi : combinations)
+//            model.addPunten(combi.getRace().getAreasAmount());
+//        }
+//    }
 
     public GameController getGameCon() {
         return gameCon;
@@ -123,5 +123,9 @@ public class PlayerController implements FirebaseGameObserver {
     public boolean hasEnoughFiches(int fichesNeeded) {
         System.out.println(model.getRaceFichesAmount());
         return model.getRaceFichesAmount() >= fichesNeeded;
+    }
+
+    public void setPlayer2dPosition(Translate position) {
+        model.setPlayer2dPos(position);
     }
 }

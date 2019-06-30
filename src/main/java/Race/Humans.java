@@ -6,4 +6,9 @@ public class Humans implements Race {
     public String getName() {
         return "humans";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 7;
+    }
 }

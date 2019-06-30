@@ -6,4 +6,9 @@ public class Halflings implements Race {
     public String getName() {
         return "halflings";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 9;
+    }
 }

@@ -1,6 +1,10 @@
 package Observable;
 
+import Controller.CombinationController;
 import Observer.ShopObserver;
+import javafx.scene.transform.Translate;
+
+import java.util.List;
 
 /**
  * This interface is the ShopObservable which is implemented by the RoundModel class.
@@ -25,15 +29,7 @@ public interface ShopObservable {
      */
     int getRound();
 
-    /**
-     * @param item is given to the method getRace to add the racecombo
-     * @return a String of the player
-     */
-    String getRace(int item);
+    List<CombinationController> getShopItems();
 
-    /**
-     * @param item is given to the method getPowerOld to add the racecombo
-     * @return a String of the power
-     */
-    String getPower(int item);
+    Translate getItemPosition(int i);
 }

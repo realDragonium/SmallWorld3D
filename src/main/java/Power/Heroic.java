@@ -6,4 +6,9 @@ public class Heroic implements Power {
     public String getName() {
         return "heroic";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

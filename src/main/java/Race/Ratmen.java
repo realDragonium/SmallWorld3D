@@ -6,4 +6,9 @@ public class Ratmen implements Race {
     public String getName() {
         return "ratmen";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 11;
+    }
 }

@@ -18,8 +18,11 @@ import javafx.scene.transform.Translate;
 
 public class GameController implements FirebaseGameObserver {
 
+    private Group addable3d;
+
     private FirebaseGameController fbGame;
     Translate player1Pos = new Translate(600, 0, 0);
+    Translate player1Pos2d = new Translate(600, 900);
 
     private Controller3D con3d;
     private ApplicationController appCon;
@@ -56,32 +59,34 @@ public class GameController implements FirebaseGameObserver {
     }
 
 
-    public void setPlayerPositions() {
-        players.get("player1").setPlayerPosition(player1Pos);
-        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
-        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+    public void setPlayerPositions(){
+        players.get("player1").setPlayer3dPosition(player1Pos);
+        players.get("player1").setPlayer2dPosition(player1Pos2d);
+//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
 
-    public void create3dView(Group group) {
+    public void create3dView(Group group){
         new Map3DView(mapCon, group);
     }
 
-    public void createMap2DView(Group group) {
-        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>) () -> new Map2DView(mapCon, group));
+    public void createMap2DView(Group group){
+        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
-    public void createPlayerView(Group group, String id) {
+    public void createPlayerView(Group group, String id){
         PlayerController player = new PlayerController(id, this);
         players.put(id, player);
-        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>) () -> new PlayerView(id, group, player));
+        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
 
     public void createUIOverlay(Group group) {
-        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(group));
+        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
     }
 
     public void createRoundView(Group group) {
-        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>) () -> new RoundView(group, roundCon));
+        roundCon = new RoundController(this);
+        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
     }
 
     public void createAreaInfoView(Group group) {
@@ -117,7 +122,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void createInfoView(Group group) {
-        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>) () -> new InfoView(group, infoCon));
+        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>)() -> new InfoView(group, infoCon));
     }
 
     public void createPhaseView(Group group) {
@@ -142,13 +147,21 @@ public class GameController implements FirebaseGameObserver {
         turnCon = new TurnController(this);
     }
 
+    public void createCombinationView(Group group, CombinationController combiCon) {
+        fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
+    }
+
+    public void createRaceFiche(FicheController con){
+        new fiche3dView(con, addable3d);
+    }
 
 
-    public PlayerController getPlayer() {
+
+    public PlayerController getPlayer(){
         return currentPlayer;
     }
 
-    void changePlayerTurn(String player) {
+    void changePlayerTurn(String player){
         currentPlayer = players.get(player);
 //        setGameTurn();
     }
@@ -158,11 +171,11 @@ public class GameController implements FirebaseGameObserver {
 //        phaseController.newTurn(currentPlayer);
 //    }
 
-    private PlayerController getPlayer(String id) {
+    private PlayerController getPlayer(String id){
         return players.get(id);
     }
 
-    public PlayerController getCurrentPlayer() {
+    public PlayerController getCurrentPlayer(){
         return players.get("player1");
 //        return currentPlayer;
     }
@@ -171,7 +184,7 @@ public class GameController implements FirebaseGameObserver {
         return model.getNumberOfPlayers();
     }
 
-    RoundController getRoundCon() {
+    RoundController getRoundCon(){
         return roundCon;
     }
 
@@ -179,43 +192,43 @@ public class GameController implements FirebaseGameObserver {
         return shopCon;
     }
 
-    TurnController getTurnCon() {
+    TurnController getTurnCon(){
         return turnCon;
     }
 
-    MapController getMapCon() {
+    MapController getMapCon(){
         return mapCon;
     }
 
-    public VervallenController getVervCon() {
+    public VervallenController getVervCon(){
         return vervCon;
     }
 
-    public AttackController getAttCon() {
+    public AttackController getAttCon(){
         return attCon;
     }
 
-    DiceController getDiceCon() {
+    DiceController getDiceCon(){
         return diceCon;
     }
 
-    PhaseController getPhaseController() {
+    PhaseController getPhaseController(){
         return phaseCon;
     }
 
-    void endGame() {
+    void endGame(){
         model.gameEnded = true;
     }
 
-    boolean isGameOver() {
+    boolean isGameOver(){
         return model.gameEnded;
     }
 
-    private void startGame() {
+    private void startGame(){
         phaseCon = new PhaseController(this);
     }
 
-    private void createGameTimer() {
+    private void createGameTimer(){
         gameTimer = new GameTimer(this, 30);
     }
 
@@ -237,27 +250,31 @@ public class GameController implements FirebaseGameObserver {
         return gameTimer;
     }
 
-    TimerController getTimer() {
+    TimerController getTimer(){
         return timeCon;
     }
 
-    public String getLobbyname() {
+    public String getLobbyname(){
         return lobbyName;
     }
 
-    public void addToGameView(GameViewEnum go) {
+    public void set3dGroup(Group group){
+        addable3d = group;
+    }
+
+    public void addToGameView(GameViewEnum go){
         model.addActiveView(go);
     }
 
-    public void removeFromGameView(GameViewEnum go) {
+    public void removeFromGameView(GameViewEnum go){
         model.removeActiveView(go);
     }
 
-    void changeGameView(List<GameViewEnum> views) {
+    void changeGameView(List<GameViewEnum> views){
         model.changeGameView(views);
     }
 
-    public void nextPhase() {
+    public void nextPhase(){
         phaseCon.nextPhase();
     }
 
@@ -265,7 +282,7 @@ public class GameController implements FirebaseGameObserver {
         return areaInfoCon;
     }
 
-    public void register(GameObserver go) {
+    public void register(GameObserver go){
         model.register(go);
     }
 

@@ -6,4 +6,9 @@ public class Pillaging implements Power {
     public String getName() {
         return "pillaging";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 4;
+    }
 }

@@ -7,4 +7,9 @@ public class Orcs implements Race {
     public String getName() {
         return "orcs";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 4;
+    }
 }

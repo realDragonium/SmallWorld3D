@@ -6,4 +6,9 @@ public class Berserk implements Power {
     public String getName() {
         return "berserk";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

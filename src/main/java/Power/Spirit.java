@@ -6,4 +6,9 @@ public class Spirit implements Power {
     public String getName() {
         return "spirit";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

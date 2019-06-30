@@ -6,4 +6,9 @@ public class Forest implements Power {
     public String getName() {
         return "forest";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

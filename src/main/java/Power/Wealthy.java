@@ -6,4 +6,9 @@ public class Wealthy implements Power {
     public String getName() {
         return "wealthy";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

@@ -6,4 +6,9 @@ public class Skeletons implements Race {
     public String getName() {
         return "skeletons";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 8;
+    }
 }

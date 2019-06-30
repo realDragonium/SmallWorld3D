@@ -2,14 +2,12 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
-
-import Objects.ShopCombination;
 import Observer.ShopObserver;
-
 import com.google.cloud.firestore.DocumentSnapshot;
-
 import Enum.RaceEnum;
 import Enum.PowerEnum;
+import javafx.scene.Group;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,11 @@ public class ShopController implements FirebaseGameObserver {
     public void makeItems(){
         createShopItems();
         makeNewCombination();
+        makeNewCombination();
+        makeNewCombination();
+        makeNewCombination();
+        makeNewCombination();
+        makeNewCombination();
 
 
 //        gameCon.getFireBase().shopUpdate(this);
@@ -41,12 +44,24 @@ public class ShopController implements FirebaseGameObserver {
 
     public void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
-            gameCon.getCurrentPlayer().buyFromShop(model.getShopItems().get(item), item);
-//            gameCon.getPhaseController().endTurn();
+            gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
+//            gameCon.getGameTurn().endTurn();
         }
     }
 
+    public void setShopPosition(double xPos, double yPos){
+        model.setShopPosition(new Translate(xPos, yPos));
+        setShopItemPositions();
+    }
 
+    public void setShopItemPositions(){
+
+        for(int i = 0; i < 6; i++){
+            Translate pos = new Translate(model.getPosition().getX(), model.getPosition().getY() + i*100);
+            model.addItemPosition(pos);
+
+        }
+    }
 
     public void registerObserver(ShopObserver obs) {
         model.register(obs);
@@ -66,7 +81,7 @@ public class ShopController implements FirebaseGameObserver {
         String race = getRandomRace();
         String power = getRandomPower();
         if (race != null && power != null) {
-            ShopCombination combi = new ShopCombination(race, power);
+            CombinationController combi = new CombinationController(race, power);
             model.addShopItem(combi);
         }
     }
@@ -85,7 +100,7 @@ public class ShopController implements FirebaseGameObserver {
         return null;
     }
 
-    public List<ShopCombination> getShopItems(){
+    public List<CombinationController> getShopItems(){
         return model.getShopItems();
     }
 
@@ -97,5 +112,9 @@ public class ShopController implements FirebaseGameObserver {
         else if(ds.getString("id").equals("add")){
 
         }
+    }
+
+    public void createCombinationView(int index, Group group) {
+        gameCon.createCombinationView(group, model.getShopItems().get(index));
     }
 }
