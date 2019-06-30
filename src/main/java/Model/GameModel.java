@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.PlayerController;
 import Observable.GameObservable;
 import Observer.GameObserver;
 import Enum.GameViewEnum;
@@ -9,22 +10,28 @@ import java.util.List;
 
 public class GameModel implements GameObservable {
     private GameObserver observer;
-    private int numberOfRounds;
-    private int turnsARound;
+    private final int numberOfRounds;
+    private int imPlayer = 0;
     public boolean gameEnded = false;
-    List<GameViewEnum> activeViews = new ArrayList<>();
+    private List<GameViewEnum> activeViews = new ArrayList<>();
+    private final List<PlayerController> players;
 
-    public GameModel(int rounds, int turn){
+    public GameModel(int rounds, List<PlayerController> players){
         numberOfRounds = rounds;
-        turnsARound = turn;
+        this.players = players;
+    }
+
+
+    public int imPlayer(){
+        return imPlayer;
     }
 
     public int getNumberOfRounds(){
         return numberOfRounds;
     }
 
-    public int getTurnsARound(){
-        return turnsARound;
+    public int getNumberOfPlayers() {
+        return players.size();
     }
 
     public void addActiveView(GameViewEnum view){
@@ -42,6 +49,9 @@ public class GameModel implements GameObservable {
         notifyObserver();
     }
 
+    public PlayerController getPlayer(int id){
+        return players.get(id);
+    }
 
 
     @Override
@@ -58,5 +68,10 @@ public class GameModel implements GameObservable {
     @Override
     public List<GameViewEnum> getCurrenViews() {
         return activeViews;
+    }
+
+
+    public List<PlayerController> getPlayers() {
+        return players;
     }
 }

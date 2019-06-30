@@ -3,18 +3,9 @@ package Objects;
 import Controller.AreaController;
 import Controller.RaceController;
 import Enum.AreaProperty;
-import Enum.TurnFase;
-
-/** this handles the logic for the dwarven kracht
- *
- * @author yoran
- * @version June 2019
- *
- */
 
 public class DwarvesKracht implements Kracht{
 
-    private TurnFase phase = TurnFase.redeploying;
     private RaceController raceCon;
 
     @Override
@@ -36,8 +27,4 @@ public class DwarvesKracht implements Kracht{
         }
     }
 
-    @Override
-    public boolean checkPhaseAction(TurnFase curPhase) {
-        return curPhase.equals(phase);
-    }
 }

@@ -1,13 +1,11 @@
 package Objects;
 
 import Controller.CombinationController;
-import Enum.TurnFase;
 
 public class WelthPowerOld implements PowerOld {
 
     private String id = "wealthy";
     private boolean used = false;
-    private TurnFase usablePhase = TurnFase.redeploying;
     private CombinationController combiCon;
 
     @Override
@@ -21,11 +19,6 @@ public class WelthPowerOld implements PowerOld {
     @Override
     public String getId() {
         return id;
-    }
-
-    @Override
-    public boolean checkPhaseAction(TurnFase phase) {
-        return phase.equals(usablePhase);
     }
 
     @Override

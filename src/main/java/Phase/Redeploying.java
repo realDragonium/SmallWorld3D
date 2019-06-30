@@ -1,27 +1,30 @@
 package Phase;
+import Controller.PhaseController;
 import Enum.GameViewEnum;
 import java.util.ArrayList;
 import java.util.List;
+import Enum.PhaseEnum;
+
 
 public class Redeploying implements Phase {
     List<GameViewEnum> views = new ArrayList<>();
 
     public Redeploying(){
-        views.add(GameViewEnum.REDEPLOY);
+
     }
 
     @Override
-    public Phase nextPhase() {
-        return new PhaseNone();
+    public void nextPhase(PhaseController phaseCon) {
+        phaseCon.nextTurn();
     }
 
     @Override
-    public List<GameViewEnum> changeView() {
-        return views;
+    public String getName() {
+        return "Redeploying";
     }
 
     @Override
-    public void resetTimer() {
-
+    public List<GameViewEnum> getView() {
+        return null;
     }
 }

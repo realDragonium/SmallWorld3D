@@ -1,22 +1,22 @@
 package Phase;
 
 import Controller.PhaseController;
-import Enum.GameViewEnum;
 import Enum.PhaseEnum;
+import Enum.GameViewEnum;
+
 import java.util.ArrayList;
 import java.util.List;
 
+public class SpectatePreparing implements Phase {
 
-public class Preparing implements Phase{
     List<GameViewEnum> views = new ArrayList<>();
 
-    public Preparing(){
-        views.add(GameViewEnum.SHOP);
+    public SpectatePreparing(){
     }
 
     @Override
     public void nextPhase(PhaseController phaseCon) {
-        phaseCon.setPhase(PhaseEnum.CONQUERING);
+        phaseCon.setPhase(PhaseEnum.SPECTATERECONQUERING);
     }
 
     @Override
@@ -28,4 +28,5 @@ public class Preparing implements Phase{
     public List<GameViewEnum> getView() {
         return views;
     }
+
 }

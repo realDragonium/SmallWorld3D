@@ -16,14 +16,12 @@ public class AreaInformationView implements AreaInformationObserver {
     private Group group;
 
     public Pane pane;
-    @FXML
     public Text areaType, areaDefenceValue, areaOwner, areaSpecial;
     public ImageView area_picture;
 
     public AreaInformationView(Group group, AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
         this.group = group;
-
     }
 
     public void initialize(){

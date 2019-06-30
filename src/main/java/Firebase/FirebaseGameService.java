@@ -18,13 +18,13 @@ public class FirebaseGameService {
         gameRef = fb.collection("Games").document(gameName);
     }
 
-    public void placeAction(Object object){
-        gameRef.collection("Actions").document(getLastestActionNumber()).set(object);
+    public void placeAction(String number, Object object){
+        gameRef.collection("Actions").document(number).set(object);
     }
 
-    public String getLastestActionNumber(){
+    public int getLastestEventNumber(){
         List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Actions")).getDocuments();
-        return String.valueOf(list.size());
+        return list.size();
     }
 
     public void actionListener(final FirebaseActionObserver controller) {

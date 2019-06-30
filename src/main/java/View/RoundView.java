@@ -7,12 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
 
-
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
-
 public class RoundView implements RoundObserver {
 
 
@@ -29,24 +23,16 @@ public class RoundView implements RoundObserver {
         this.roundCon = roundCon;
     }
 
-
-    /**
-     * In the method initialize
-     */
-
     public void initialize() {
         group.getChildren().add(groupFXML);
         roundCon.register(this);
     }
+
     @Override
     public void update(RoundObservable ro) {
         setTextRoundField(ro.getRound());
     }
 
-
-    /**
-     * @param getal is meegegeven integer om de juiste ronde te zetten.
-     */
     private void setTextRoundField(int getal){
         roundField.setText("Round: "+ getal);
     }

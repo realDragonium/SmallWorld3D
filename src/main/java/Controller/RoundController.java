@@ -3,14 +3,8 @@ package Controller;
 import Model.RoundModel;
 import Observer.RoundObserver;
 
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
 
 public class RoundController {
-
-
 
     private RoundModel model;
     private GameController gameCon;
@@ -25,6 +19,7 @@ public class RoundController {
             gameCon.endGame();
             return;
         }
+        gameCon.getTurnCon().newRound();
         model.nextRound();
     }
 

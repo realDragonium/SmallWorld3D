@@ -3,18 +3,9 @@ package Objects;
 import Controller.AreaController;
 import Controller.RaceController;
 import Enum.AreaProperty;
-import Enum.TurnFase;
 
-/** This handles the logic for the wizzard kracht
- *
- * @author yoran
- * @version June 2019
- *
- */
 
 public class WizzardsKracht implements Kracht{
-
-    private TurnFase phase = TurnFase.redeploying;
     private RaceController raceCon;
 
     @Override
@@ -34,10 +25,5 @@ public class WizzardsKracht implements Kracht{
                 raceCon.getCombiCon().getPlayer().addPoints(1);
             }
         }
-    }
-
-    @Override
-    public boolean checkPhaseAction(TurnFase curPhase) {
-        return curPhase.equals(phase);
     }
 }

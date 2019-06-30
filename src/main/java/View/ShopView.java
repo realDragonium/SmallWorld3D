@@ -22,7 +22,6 @@ public class ShopView implements ShopObserver {
     public Button buy5;
     public Button buy6;
 
-
     private Button lastActiveButton;
     private ShopController shopCon;
     Group group;
@@ -34,7 +33,7 @@ public class ShopView implements ShopObserver {
 
     @FXML
     public void buyItem(){
-        shopCon.buyingItem(Integer.parseInt(lastActiveButton.getId()));
+        shopCon.buyToFirebase(Integer.parseInt(lastActiveButton.getId()));
     }
 
     @FXML
@@ -47,7 +46,7 @@ public class ShopView implements ShopObserver {
         group.getChildren().add(pane);
         shopCon.registerObserver(this);
         shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
-        shopCon.makeItems();
+//        shopCon.makeItems();
 
     }
 

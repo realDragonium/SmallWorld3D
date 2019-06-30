@@ -1,7 +1,5 @@
 package Controller;
 
-import FirebaseActions.FirebaseAction;
-import FirebaseActions.FirebaseTurnActionEnum;
 
 public class ButtonController {
 
@@ -20,12 +18,11 @@ public class ButtonController {
     }
 
     public void nextPhase(){
-        gameCon.nextPhase();
-//        FirebaseAction action = new FirebaseAction(FirebaseTurnActionEnum.nextphase);
-//        gameCon.getFireBase().placeTurnAction(action);
+        gameCon.getFireBase().nextPhaseAction();
     }
 
     public void nextTurn() {
+        gameCon.createRandomShopItem();
     }
 
     public void nextRound() {

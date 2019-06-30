@@ -1,13 +1,14 @@
 package Model;
 
 import Controller.CombinationController;
-import Objects.ShopCombination;
+import Enum.PowerEnum;
+import Enum.RaceEnum;
 import Observable.ShopObservable;
 import Observer.ShopObserver;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShopModel implements ShopObservable {
@@ -16,6 +17,28 @@ public class ShopModel implements ShopObservable {
     private List<CombinationController> shopItems = new ArrayList<>();
     private List<ShopObserver> observers = new ArrayList<>();
     private Translate position;
+    private List<String> races = new ArrayList<>();
+    private List<String> powers = new ArrayList<>();
+
+    public ShopModel(){
+        creatNewRaceList();
+        createNewPowerList();
+    }
+
+    private void creatNewRaceList(){
+        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
+    }
+    private void createNewPowerList(){
+        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
+    }
+
+    public String getRandomRace(){
+        return races.remove((int) (Math.random() * races.size()));
+    }
+
+    public String getRandomPower(){
+        return powers.remove((int) (Math.random() * powers.size()));
+    }
 
 
     public void addItemPosition(Translate pos ){

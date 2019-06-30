@@ -1,49 +1,37 @@
 package Model;
 
-import Enum.TurnFase;
+import Controller.PlayerController;
 import Observable.TurnObservable;
 import Observer.TurnObserver;
+import Turn.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TurnModel implements TurnObservable {
-
-
     private List<TurnObserver> observers = new ArrayList<>();
-    public int currentTurn;
-    private int turnPerRound;
-    private List<String> players = new ArrayList<>();
-    public String currentPlayerId = "player1";
-    private int indexcurrentplayer = 0;
-    private TurnFase fase;
-    private Queue<TurnFase> fases = new LinkedList<>();
+    public int currentTurn = 0;
+    public PlayerController currentPlayer;
+    public List<PlayerController> players;
+    private LinkedList<Turn> turns = new LinkedList<>();
+    private int myPlayerId;
 
-
-    public TurnModel(int turnPerRound){
-        this.turnPerRound = turnPerRound;
-        currentTurn = 1;
-        makeStack();
-        players.add("player1");
-        players.add("player2");
-        players.add("player3");
-        players.add("player4");
-
+    public TurnModel(List<PlayerController> players, int myPlayerId){
+        this.myPlayerId = myPlayerId;
+        this.players = players;
+        currentTurn = 0;
     }
 
-    public int getTurnPerRound(){
-        return turnPerRound;
+    public LinkedList<Turn> getTurns(){
+        return turns;
     }
 
-    private void makeStack(){
-        Collections.addAll(fases, TurnFase.values());
-        fase = fases.remove();
-    }
-
-    public void nextTurn(){
-        indexcurrentplayer++;
-        if(indexcurrentplayer > 3)indexcurrentplayer = 0;
-        currentPlayerId = players.get(indexcurrentplayer);
-        notifyObservers();
+    public void newRound(){
+        this.turns.add(new NotMyTurn());
+        this.turns.add(new NotMyTurn());
+        this.turns.add(new NotMyTurn());
+        this.turns.add(myPlayerId, new MyTurn());
     }
 
     @Override
@@ -58,17 +46,7 @@ public class TurnModel implements TurnObservable {
     }
 
     @Override
-    public int getTurn() {
-        return Integer.parseInt(currentPlayerId.split("yer")[1]);
-    }
-
-    @Override
-    public TurnFase getFase() {
-        return fase;
-    }
-
-    public void setFase(TurnFase currentPhase) {
-        fase = currentPhase;
-        notifyObservers();
+    public String getPlayerName() {
+        return currentPlayer.getId();
     }
 }

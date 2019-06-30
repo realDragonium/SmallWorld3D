@@ -6,14 +6,7 @@ import Observer.RoundObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
-
 public class RoundModel implements RoundObservable {
-
-
 
     private int maxRounds;
     public int currentRound = 1;

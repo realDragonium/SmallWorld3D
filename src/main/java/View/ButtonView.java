@@ -32,12 +32,12 @@ public class ButtonView {
         buttonCon.fichesOver();
     }
     public void nextPhase(){ buttonCon.nextPhase(); }
-
+    public void nextTurn() {
+        buttonCon.nextTurn();
+    }
     public void nextRound() {
         buttonCon.nextRound();
     }
 
-    public void nextTurn() {
-        buttonCon.nextTurn();
-    }
+
 }
