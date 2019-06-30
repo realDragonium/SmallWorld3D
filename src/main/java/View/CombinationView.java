@@ -1,23 +1,24 @@
 package View;
 
 import Controller.CombinationController;
-import Controller.FicheController;
 import Observable.CombinationObservable;
 import Observer.CombinationObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.image.ImageView;
 
 public class CombinationView implements CombinationObserver {
 
     private CombinationController comboCon;
     private Group group;
+    private boolean initialize = true;
 
     @FXML
     public Pane root;
-    public Text Race;
-    public Text Power;
+
+    public ImageView race, power;
 
     public CombinationView(Group group, CombinationController combiCon){
         this.group = group;
@@ -32,15 +33,18 @@ public class CombinationView implements CombinationObserver {
 
     @Override
     public void update(CombinationObservable co) {
-//        System.out.println(comboCon.getRace());
-//        System.out.println(co.getPosition());
         if(co.getPosition() != null) {
             root.setTranslateX(co.getPosition().getX());
             root.setTranslateY(co.getPosition().getY());
         }
-        Race.setText(co.getRaceId());
-        Power.setText(co.getPowerId());
-
-
+        if(initialize) {
+            System.out.println(co.getPowerId() + ".png");
+            System.out.println(co.getRaceId() + ".png");
+            Image powerImage = new Image("/Images/Powers/" + co.getPowerId() + ".png");
+            Image raceImage = new Image("/Images/Races/" + co.getRaceId() + ".png");
+            power.setImage(powerImage);
+            race.setImage(raceImage);
+            initialize = false;
+        }
     }
 }

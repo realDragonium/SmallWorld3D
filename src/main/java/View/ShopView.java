@@ -60,10 +60,8 @@ public class ShopView implements ShopObserver {
 
     @Override
     public void update(ShopObservable so) {
-        //Stest");ystem.out.println("
         if(so.getShopItems().size() < combinationViews){
             combinationViews = so.getShopItems().size();
-
         }
 
         if(so.getShopItems().size() > combinationViews){

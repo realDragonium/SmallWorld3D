@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <Pane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CombinationView">
-   <Text fx:id="Race" text="yo">
-      <font>
-         <Font size="32.0" />
-      </font>
-   </Text>
-   <Text fx:id="Power" text="ni" layoutX="100">
-      <font>
-         <Font size="32.0" />
-      </font>
-</Text>
+   <ImageView fx:id="power" fitHeight="100" fitWidth="100">
+   </ImageView>
+
+   <ImageView fx:id="race" fitHeight="100" fitWidth="200" layoutX="100">
+   </ImageView>
 </Pane>

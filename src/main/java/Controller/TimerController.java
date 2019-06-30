@@ -14,7 +14,6 @@ public class TimerController {
     }
 
     public void registerObs(TimerObserver timerObs){
-
         model.register(timerObs);
     }
 

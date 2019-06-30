@@ -40,7 +40,7 @@ public class AreaInformationView implements AreaInformationObserver {
            areaOwner.setText("Owner: none");
         }
 
-                Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
+        Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());
         areaType.setText(ao.getArea().getAreaType().toString().toUpperCase());
         area_picture.setImage(image);
