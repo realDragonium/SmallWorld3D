@@ -4,6 +4,7 @@ import Enum.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
 import Observer.PhaseObserver;
+import Phase.Phase;
 import com.google.cloud.firestore.DocumentSnapshot;
 
 public class PhaseController implements FirebaseGameObserver {
@@ -13,9 +14,9 @@ public class PhaseController implements FirebaseGameObserver {
     private FirebaseGameController fb;
     private PhaseModel model;
 
-    PhaseController(GameController gameCon) {
+    PhaseController(GameController gameCon, Phase phase) {
         this.gameCon = gameCon;
-        model = new PhaseModel();
+        model = new PhaseModel(phase);
         fb = gameCon.getFireBase();
         fb.register("phase", this);
     }
@@ -26,6 +27,15 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void setPhase(PhaseEnum phase){
         model.setPhase(phase);
+        changeView();
+    }
+
+    public void myTurn(){
+        setPhase(PhaseEnum.PREPARING);
+    }
+
+    public void notMyTurn(){
+        setPhase(PhaseEnum.SPECTATEPREPARING);
     }
 
     public void changeView(){

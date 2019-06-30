@@ -11,23 +11,27 @@ import java.util.List;
 public class GameModel implements GameObservable {
     private GameObserver observer;
     private final int numberOfRounds;
-    private final int numberOfPlayers;
+    private int imPlayer = 1;
     public boolean gameEnded = false;
     private List<GameViewEnum> activeViews = new ArrayList<>();
-    private List<PlayerController> players = new ArrayList<>();
+    private final List<PlayerController> players;
 
-    public GameModel(int rounds, int players){
+    public GameModel(int rounds, List<PlayerController> players){
         numberOfRounds = rounds;
-        numberOfPlayers = players;
+        this.players = players;
     }
 
+
+    public int imPlayer(){
+        return imPlayer;
+    }
 
     public int getNumberOfRounds(){
         return numberOfRounds;
     }
 
     public int getNumberOfPlayers() {
-        return numberOfPlayers;
+        return players.size();
     }
 
     public void addActiveView(GameViewEnum view){
@@ -45,6 +49,9 @@ public class GameModel implements GameObservable {
         notifyObserver();
     }
 
+    public PlayerController getPlayer(int id){
+        return players.get(id);
+    }
 
 
     @Override
@@ -64,4 +71,7 @@ public class GameModel implements GameObservable {
     }
 
 
+    public List<PlayerController> getPlayers() {
+        return players;
+    }
 }

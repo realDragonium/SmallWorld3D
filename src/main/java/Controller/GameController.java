@@ -4,10 +4,12 @@ import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.FXMLLOADER;
 import Observer.GameObserver;
+import Phase.Preparing;
 import View.*;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.Group;
-
+import Enum.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,10 +54,20 @@ public class GameController implements FirebaseGameObserver {
 
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
-        model = new GameModel(8, 4);
+        int numberOfPlayers = 4;
+        model = new GameModel(8, createPlayers(numberOfPlayers));
+
         createControllers();
-        fbGame.register("currentplayer", this);
+//        fbGame.register("currentplayer", this);
 //        startGame();
+    }
+
+    private List<PlayerController> createPlayers(int numberOfPlayers){
+        List<PlayerController> players = new ArrayList<>();
+        for(int i = 0; i < numberOfPlayers; i++)
+            players.add(new PlayerController("player"+i, this));
+
+        return players;
     }
 
 
@@ -85,7 +97,6 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void createRoundView(Group group) {
-        roundCon = new RoundController(this);
         fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
     }
 
@@ -139,7 +150,7 @@ public class GameController implements FirebaseGameObserver {
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
+        fbGame = new FirebaseGameController("test2", this);
         attCon = new AttackController(this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
@@ -150,32 +161,18 @@ public class GameController implements FirebaseGameObserver {
         buttonCon = new ButtonController(this);
         roundCon = new RoundController(this);
         areaInfoCon = new AreaInformationController(this);
-        phaseCon = new PhaseController(this);
+        phaseCon = new PhaseController(this, new Preparing());
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
     }
 
-    public PlayerController getPlayer(){
-        return currentPlayer;
-    }
 
-    void changePlayerTurn(String player){
-        currentPlayer = players.get(player);
-//        setGameTurn();
-    }
-
-
-//    private void setGameTurn(){
-//        phaseController.newTurn(currentPlayer);
-//    }
-
-    private PlayerController getPlayer(String id){
-        return players.get(id);
+    public PlayerController getPlayer(int id){
+        return model.getPlayer(id);
     }
 
     public PlayerController getCurrentPlayer(){
-        return players.get("player1");
-//        return currentPlayer;
+        return turnCon.getCurrentPlayer();
     }
 
     int getNumberOfPlayers(){
@@ -210,7 +207,7 @@ public class GameController implements FirebaseGameObserver {
         return diceCon;
     }
 
-    PhaseController getPhaseController(){
+    PhaseController getPhaseCon(){
         return phaseCon;
     }
 
@@ -220,10 +217,6 @@ public class GameController implements FirebaseGameObserver {
 
     boolean isGameOver(){
         return model.gameEnded;
-    }
-
-    private void startGame(){
-        phaseCon = new PhaseController(this);
     }
 
     private void createGameTimer(){
@@ -238,10 +231,6 @@ public class GameController implements FirebaseGameObserver {
     public void nextRound() {
         roundCon.nextRound();
         System.out.println("next Round!");
-    }
-
-    void setCurrentPlayer(int i) {
-        currentPlayer = getPlayer("player" + i);
     }
 
     GameTimer getGameTimer() {
@@ -288,9 +277,24 @@ public class GameController implements FirebaseGameObserver {
         return fbGame;
     }
 
+    void createRandomShopItem(){
+        shopCon.createRandomShopItem();
+    }
 
     @Override
     public void update(DocumentSnapshot ds) {
 
+    }
+
+    public List<PlayerController> getPlayers() {
+        return model.getPlayers();
+    }
+
+    public int imPlayer(){
+        return model.imPlayer();
+    }
+
+    public void setPhase(PhaseEnum phase){
+        phaseCon.setPhase(phase);
     }
 }

@@ -3,7 +3,6 @@ package Model;
 import Observable.PhaseObservable;
 import Observer.PhaseObserver;
 import Phase.Phase;
-import Phase.PhaseNone;
 import java.util.ArrayList;
 import java.util.List;
 import Enum.PhaseEnum;
@@ -12,8 +11,8 @@ public class PhaseModel implements PhaseObservable {
     private List<PhaseObserver> observers = new ArrayList<>();
     private Phase phase;
 
-    public PhaseModel(){
-        phase = new PhaseNone();
+    public PhaseModel(Phase phase){
+        this.phase = phase;
     }
 
     public void setPhase(PhaseEnum phase){

@@ -3,8 +3,10 @@ package Enum;
 import Phase.*;
 
 public enum PhaseEnum {
-    PREPARING(new Preparing()), NONE(new PhaseNone()), CONQUERING(new Conquering()),
-    REDEPLOYING(new Redeploying());
+    PREPARING(new Preparing()), CONQUERING(new Conquering()),
+    REDEPLOYING(new Redeploying()), SPECTATEPREPARING(new SpectatePreparing()),
+    SPECTATERECONQUERING(new SpectateConquering()),
+    SPECTATEREDEPLOYING(new SpectateRedeploying());
 
     private Phase phase;
     PhaseEnum(Phase phase){

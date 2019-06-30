@@ -66,7 +66,7 @@ public class GameView implements GameObserver {
         root.getChildren().add(GameViewEnum.TIMER.getGroup());
         root.getChildren().add(GameViewEnum.PLAYER.getGroup());
         root.getChildren().add(GameViewEnum.TURN.getGroup());
-        root.getChildren().add(GameViewEnum.SHOP.getGroup());
+//        root.getChildren().add(GameViewEnum.SHOP.getGroup());
         root.getChildren().add(GameViewEnum.ROUND.getGroup());
         root.getChildren().add(GameViewEnum.BUTTON.getGroup());
         root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
@@ -79,6 +79,7 @@ public class GameView implements GameObserver {
 
     private void setActive(List<GameViewEnum> views){
         notBasicRoot.getChildren().clear();
+        if(views == null) return;
         views.forEach(s -> notBasicRoot.getChildren().add(s.getGroup()));
     }
 

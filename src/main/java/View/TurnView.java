@@ -24,12 +24,12 @@ public class TurnView implements TurnObserver {
         turnCon.register(this);
     }
 
-    private void setTextFields(int getal){
-        turnField.setText("Turn: " + getal);
+    private void setTextFields(String name){
+        turnField.setText("Turn: " + name);
     }
 
     @Override
     public void update(TurnObservable to) {
-        setTextFields(to.getTurn());
+        setTextFields(to.getPlayerName());
     }
 }

@@ -1,34 +1,37 @@
 package Model;
 
+import Controller.PlayerController;
 import Observable.TurnObservable;
 import Observer.TurnObserver;
+import Turn.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class TurnModel implements TurnObservable {
-
     private List<TurnObserver> observers = new ArrayList<>();
     public int currentTurn = 0;
-    private int turnPerRound = 0;
-    private List<String> players = new ArrayList<>();
-    public String currentPlayerId = "player1";
-    private int indexcurrentplayer = 0;
+    public PlayerController currentPlayer;
+    public List<PlayerController> players;
+    private Stack<Turn> turns = new Stack<>();
+    private int myPlayerId;
 
-
-    public TurnModel(int turnPerRound){
-        this.turnPerRound = turnPerRound;
-        currentTurn = 1;
-        players.add("player1");
-        players.add("player2");
-        players.add("player3");
-        players.add("player4");
-
+    public TurnModel(List<PlayerController> players, int myPlayerId){
+        this.myPlayerId = myPlayerId;
+        this.players = players;
+        currentTurn = 0;
     }
 
-    public void nextTurn(){
-        currentTurn++;
-        notifyObservers();
+    public Stack<Turn> getTurns(){
+        return turns;
+    }
+
+    public void newRound(){
+        this.turns.add(new NotMyTurn());
+        this.turns.add(new NotMyTurn());
+        this.turns.add(new NotMyTurn());
+        this.turns.add(myPlayerId, new MyTurn());
     }
 
     @Override
@@ -43,7 +46,7 @@ public class TurnModel implements TurnObservable {
     }
 
     @Override
-    public int getTurn() {
-        return currentTurn;
+    public String getPlayerName() {
+        return currentPlayer.getId();
     }
 }

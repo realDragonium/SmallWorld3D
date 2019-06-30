@@ -46,7 +46,7 @@ public class ShopView implements ShopObserver {
         group.getChildren().add(pane);
         shopCon.registerObserver(this);
         shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
-        shopCon.makeItems();
+//        shopCon.makeItems();
 
     }
 

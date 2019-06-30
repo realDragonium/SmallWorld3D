@@ -22,7 +22,7 @@ public class ButtonController {
     }
 
     public void nextTurn() {
-
+        gameCon.createRandomShopItem();
     }
 
     public void nextRound() {
