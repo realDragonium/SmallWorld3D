@@ -40,7 +40,7 @@ public class ApplicationController {
     public void createGameController(Group group) {
         gameCon = new GameController(this);
 //        new GameView(gameCon, group);
-        fxmlLoader.loader("/UI/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
+        fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
     }
 
 }

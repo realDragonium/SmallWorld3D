@@ -22,7 +22,6 @@ public class ShopView implements ShopObserver {
     public Button buy5;
     public Button buy6;
 
-
     private Button lastActiveButton;
     private ShopController shopCon;
     Group group;

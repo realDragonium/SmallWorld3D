@@ -11,7 +11,7 @@
             <Font size="30.0"/>
         </font>
     </Text>
-    <Group fx:id="item1">
+    <Group >
         <Button id="0" fx:id="buy1" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 1">
             <font>
@@ -19,7 +19,7 @@
             </font>
         </Button>
     </Group>
-    <Group fx:id="item2" layoutY="50.0">
+    <Group layoutY="50.0">
         <Button id="1" fx:id="buy2" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 2">
             <font>
@@ -27,7 +27,7 @@
             </font>
         </Button>
     </Group>
-    <Group fx:id="item3" layoutY="100.0">
+    <Group  layoutY="100.0">
         <Button id="2" fx:id="buy3" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 3">
             <font>
@@ -35,7 +35,7 @@
             </font>
         </Button>
     </Group>
-    <Group fx:id="item4" layoutY="150.0">
+    <Group layoutY="150.0">
         <Button id="3" fx:id="buy4" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 4">
             <font>
@@ -43,7 +43,7 @@
             </font>
         </Button>
     </Group>
-    <Group fx:id="item5" layoutY="200.0">
+    <Group layoutY="200.0">
         <Button id="4" fx:id="buy5" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 5">
             <font>
@@ -52,7 +52,7 @@
         </Button>
     </Group>
 
-    <Group fx:id="item6" layoutY="250.0">
+    <Group layoutY="250.0">
         <Button id="5" fx:id="buy6" layoutX="300.0" mnemonicParsing="false" onAction="#buyItem"
                 onMouseEntered="#setActive" style="-fx-background-color: rgb(224, 158, 145);" text="Buy 6">
             <font>

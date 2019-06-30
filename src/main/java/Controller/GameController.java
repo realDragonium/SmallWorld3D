@@ -129,6 +129,14 @@ public class GameController implements FirebaseGameObserver {
         fxmlLoader.loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(group, phaseCon));
     }
 
+    public void createCombinationView(Group group, CombinationController combiCon) {
+        fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
+    }
+
+    public void createRaceFiche(FicheController con){
+        new fiche3dView(con, addable3d);
+    }
+
 
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
@@ -146,16 +154,6 @@ public class GameController implements FirebaseGameObserver {
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
     }
-
-    public void createCombinationView(Group group, CombinationController combiCon) {
-        fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
-    }
-
-    public void createRaceFiche(FicheController con){
-        new fiche3dView(con, addable3d);
-    }
-
-
 
     public PlayerController getPlayer(){
         return currentPlayer;
