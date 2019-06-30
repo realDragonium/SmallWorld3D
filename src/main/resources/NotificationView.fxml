@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 
-<Group fx:id="root" layoutY="500.0" layoutX="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.NotificationView">
+
+<Group fx:id="root" layoutY="500.0" layoutX="300.0"  xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.NotificationView">
 
 </Group>

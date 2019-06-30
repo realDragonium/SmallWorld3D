@@ -1,5 +1,6 @@
 package Controller;
 
+import Enum.NotificationEnum;
 
 public class ButtonController {
 
@@ -26,6 +27,6 @@ public class ButtonController {
     }
 
     public void nextRound() {
-
+        gameCon.setMessage(NotificationEnum.DRAGON);
     }
 }

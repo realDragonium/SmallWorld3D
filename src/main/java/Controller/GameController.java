@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import Enum.GameViewEnum;
+import Enum.*;
 import javafx.scene.transform.Translate;
 
 public class GameController implements FirebaseGameObserver {
@@ -305,4 +305,8 @@ public class GameController implements FirebaseGameObserver {
     }
 
 
+    public void setMessage(NotificationEnum message) {
+        notiCon.setMessage(message);
+        System.out.println("MESSAGE");
+    }
 }
