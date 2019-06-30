@@ -1,24 +1,22 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.DiceModel;
 import Observer.DiceObserver;
 
 public class DiceController {
 
     private DiceModel diceModel = new DiceModel();
-
+    private GameController gameCon;
 
     int ClickedDice() {
         int uitkomst = RollDice();
-        SceneManager.getInstance().addToScene("diceGroup");
         diceModel.play(uitkomst);
         return diceModel.giveValue(uitkomst);
     }
 
 
-    DiceController() {
-        SceneManager.getInstance().loadDice(this);
+    DiceController(GameController gameController) {
+        gameCon = gameController;
     }
 
     private int RollDice() {

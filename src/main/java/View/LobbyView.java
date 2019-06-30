@@ -1,6 +1,5 @@
 package View;
 
-import Controller.HomeScreenController;
 import Controller.LobbyController;
 import Observable.ObservableLobby;
 import Observer.LobbyObserver;
@@ -32,7 +31,7 @@ public class LobbyView implements LobbyObserver {
         group.getChildren().add(root);
         lobbyCon.register(this);
         panel.setVgap(10);
-        List<String> lijst = lobbyCon.getFirebaseLobbyNamen();   // Gets lobbynames from firebase and puts in a list
+        List<String> lijst = null;   // Gets lobbynames from firebase and puts in a list
 
         for(String lobbyNaam: lijst) {
             Button btn = new Button(lobbyNaam);
@@ -49,10 +48,6 @@ public class LobbyView implements LobbyObserver {
                 activeButton = btn;
             });
         }
-    }
-
-    public void terug() {
-        new HomeScreenController();
     }
 
     public void join() {
@@ -74,17 +69,17 @@ public class LobbyView implements LobbyObserver {
         } else {
             ((Node) t.getSource()).setOpacity(0);
             root.getChildren().remove(t.getSource());
-            System.out.println("Max aantal lobbies");
         }
     }
 
     @Override
     public void update(ObservableLobby lo) {
         List<String> lobbynamen =  lo.getLobbyName();
-        System.out.println(lobbynamen.size());
         for(String test:lobbynamen){
-            System.out.println(test);
             addLobbyFirebase(test);
         }
+    }
+
+    public void terug(ActionEvent actionEvent) {
     }
 }

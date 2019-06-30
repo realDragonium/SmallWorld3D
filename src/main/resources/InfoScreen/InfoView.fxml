@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<Group fx:id="pane" layoutX="150" layoutY="100" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+       fx:controller="View.InfoView">
+    <ImageView fitHeight="800.0" fitWidth="1600.0">
+        <Image url="@background.png"/>
+    </ImageView>
+    <Button fx:id="exit" text="exit" layoutX="100" layoutY="700" onAction="#exitInfoScreen"/>
+    <MenuBar fx:id="infoMenu" layoutY="2.0" prefHeight="25.0" prefWidth="1600.0">
+        <Menu mnemonicParsing="false" text="Races">
+            <MenuItem mnemonicParsing="false" onAction="#showHumans" text="Humans"/>
+            <MenuItem mnemonicParsing="false" onAction="#showWizards" text="Wizards"/>
+            <MenuItem mnemonicParsing="false" onAction="#showDwarves" text="Dwarves"/>
+            <MenuItem mnemonicParsing="false" onAction="#showGiants" text="Giants"/>
+            <MenuItem mnemonicParsing="false" onAction="#showTritons" text="Tritons"/>
+            <MenuItem mnemonicParsing="false" onAction="#showRatmen" text="Ratmen"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="First Turn">
+            <MenuItem mnemonicParsing="false" onAction="#showPickRace" text="Picking a Race and Special Power Combo"/>
+            <Menu mnemonicParsing="false" text="Conquering Regions">
+                <MenuItem mnemonicParsing="false" onAction="#showFirstConquest" text="First Conquest"/>
+                <MenuItem mnemonicParsing="false" onAction="#showConqueringRegion" text="Conquering a Region"/>
+                <MenuItem mnemonicParsing="false" onAction="#showEnemyLosses" text="Enemy Losses &amp; Withdrawals"/>
+                <MenuItem mnemonicParsing="false" onAction="#showFollowingConquests" text="Following Conquests"/>
+                <MenuItem mnemonicParsing="false" onAction="#showFinalConquest"
+                          text="Final Conquest Attempt/ReinforcementDie Roll"/>
+                <MenuItem mnemonicParsing="false" onAction="#showTroopRedeployment" text="Troop Redeployment"/>
+            </Menu>
+            <MenuItem mnemonicParsing="false" onAction="#showVictoryCoins" text="Scoring Victory Coins"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text=" Following turns">
+            <MenuItem mnemonicParsing="false" onAction="#showDecline" text="Entering In Decline"/>
+            <MenuItem mnemonicParsing="false" onAction="#showEndGame" text="End of the Game"/>
+            <Menu mnemonicParsing="false" text="Expanding through new Conquests">
+                <MenuItem mnemonicParsing="false" onAction="#showReadyTroops" text="Ready your Troops"/>
+                <MenuItem mnemonicParsing="false" onAction="#showConquer" text="Conquer"/>
+                <MenuItem mnemonicParsing="false" onAction="#showAbandoningRegion" text="Abandoning a Region"/>
+            </Menu>
+        </Menu>
+    </MenuBar>
+    <TextArea fx:id="infoText" layoutX="301.0" layoutY="159.0" prefHeight="482.0" prefWidth="998.0"/>
+</Group>

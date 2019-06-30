@@ -1,33 +1,17 @@
 package Controller;
 
-import Enum.TurnFase;
-import Managers.SceneManager;
 import Model.TurnModel;
 import Observer.TurnObserver;
 
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
-
 public class TurnController {
-
 
     private TurnModel model;
     private GameController gameCon;
-    private int currentPlayer;
 
 
     TurnController(GameController gameCon){
-        model = new TurnModel(4);
+        model = new TurnModel(gameCon.getNumberOfPlayers());
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadTurn(this);
-        decideStartingPlayer();
-    }
-
-    private void decideStartingPlayer(){
-        currentPlayer = 1;
-        gameCon.setCurrentPlayer(currentPlayer);
 
     }
 
@@ -54,7 +38,4 @@ public class TurnController {
         return "player" + model.currentTurn;
     }
 
-    void setFase(TurnFase currentPhase) {
-        model.setFase(currentPhase);
-    }
 }

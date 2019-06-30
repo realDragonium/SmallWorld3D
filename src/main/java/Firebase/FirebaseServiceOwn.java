@@ -30,7 +30,7 @@ public class FirebaseServiceOwn {
         return firestore;
     }
 
-    public void listen(String documentId, final FirebaseControllerObserver controller) {
+    public void listen(String documentId, final FirebaseGameObserver controller) {
         DocumentReference docRef = this.colRef.document(documentId);
         docRef.addSnapshotListener((new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException e) {
@@ -47,7 +47,7 @@ public class FirebaseServiceOwn {
         }));
     }
 
-    public void playerListen(String player, final FirebaseControllerObserver controller) {
+    public void playerListen(String player, final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Players").document(player);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -62,7 +62,7 @@ public class FirebaseServiceOwn {
         });
     }
 
-    public void timerListen(final FirebaseControllerObserver controller) {
+    public void timerListen(final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Extras").document("Timer");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -79,7 +79,7 @@ public class FirebaseServiceOwn {
     }
 
     //AreaRegister
-    public void AreaListener(String areaId, final FirebaseControllerObserver controller) {
+    public void AreaListener(String areaId, final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Areas").document(areaId);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -115,7 +115,6 @@ public class FirebaseServiceOwn {
         for (int i = 1; i < 5; i++) {
             if (lobbySet.get("player" + i) == null) {
                 docRef.update("player" + i, Name);
-                System.out.println("join lobby");
                 return i;
             }
         }
@@ -123,7 +122,6 @@ public class FirebaseServiceOwn {
     }
 
     public void resetTimer(Map<String, Object> info) {
-        System.out.println(info.toString());
         gameRef.collection("Extras").document("Timer").set(info);
     }
 
@@ -152,7 +150,7 @@ public class FirebaseServiceOwn {
 
 
     //InLobbyListener
-    public void inLobbyListener(String lobbyName, final FirebaseControllerObserver controller) {
+    public void inLobbyListener(String lobbyName, final FirebaseGameObserver controller) {
         DocumentReference docRef = firestore.collection("Lobby").document(lobbyName);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -168,7 +166,7 @@ public class FirebaseServiceOwn {
     }
 
     //InLobbyListener
-    public void shopListener(final FirebaseControllerObserver controller) {
+    public void shopListener(final FirebaseGameObserver controller) {
         DocumentReference docRef = gameRef.collection("Extras").document("Shop");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirestoreException error) {
@@ -196,7 +194,6 @@ public class FirebaseServiceOwn {
                 }
                 List<String> buttonLijst = new ArrayList<>();
                 for (DocumentSnapshot doc : snapshot.getDocuments()) {
-                    //System.out.println("fb: "+doc.getId());
                     buttonLijst.add(doc.getId());
                 }
                 controller.update(buttonLijst);
@@ -246,14 +243,14 @@ public class FirebaseServiceOwn {
     }
 
     public void changePointsPlayer(String id, int amount){
-        gameRef.collection("Players").document(id).update("punten", amount);
+        gameRef.collection("Players").document(id).update("points", amount);
     }
 
     //Areas setten in firebase
     private void setAreas(String lobbyName) {
         List<QueryDocumentSnapshot> list = null;
         list = getQuerySnapshot(firestore.collection("Maps").document("4PlayerMap").collection("Areas").get()).getDocuments();
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         for(QueryDocumentSnapshot iets : list){
             map.put("fiches", iets.get("fiches"));
             colRef.document(lobbyName).collection("Areas").document(iets.getId()).set(map);
@@ -299,12 +296,12 @@ public class FirebaseServiceOwn {
         gameRef.collection("Extras").document("Timer").set(info);
     }
 
-    // Ophalen caan de speler naam samen met het aantal punten die de speler heeft gehaald.
+    // Ophalen caan de speler naam samen met het aantal points die de speler heeft gehaald.
     public TreeMap<Double, String> getTop3Player(){
         TreeMap<Double, String> map = new TreeMap<>();
         QuerySnapshot players = getQuerySnapshot(gameRef.collection("Players").get());
         for(QueryDocumentSnapshot qDoc: players.getDocuments()){
-            map.put(qDoc.getDouble("punten"), qDoc.getString("Name"));
+            map.put(qDoc.getDouble("points"), qDoc.getString("Name"));
         }
         return map;
     }
@@ -320,7 +317,6 @@ public class FirebaseServiceOwn {
         DocumentSnapshot document = getDocSnapshot(docRef);
 
         if (document.exists()) return document;
-        else System.out.println("No such document!");
         return null;
 
     }

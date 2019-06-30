@@ -2,17 +2,20 @@ package View;
 
 import Controller.RedeployingController;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 public class RedeployingView {
 
+    public Button remove;
+    public Button add;
     Group group;
 
     public Pane pane;
 
     private RedeployingController redCon;
 
-    public RedeployingView(RedeployingController redCon, Group group){
+    public RedeployingView(Group group, RedeployingController redCon){
         this.redCon = redCon;
         this.group = group;
     }
@@ -23,10 +26,10 @@ public class RedeployingView {
     }
 
     public void removeButton() {
-        redCon.removeFiche();
+        //redCon.removeFiche();
     }
 
     public void addButton() {
-        redCon.addFiche();
+        //redCon.addFiche();
     }
 }

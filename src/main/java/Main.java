@@ -1,4 +1,4 @@
-import Applicatie.Applicatie;
+import View.ApplicationView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -6,7 +6,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		new Applicatie(primaryStage);
+		new ApplicationView(primaryStage);
 	}
 	
 	public static void main(String[] args) {

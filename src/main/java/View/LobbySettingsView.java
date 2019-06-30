@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class LobbySettingsView implements LobbySettingsObserver{
+    public Button terug;
     private ObservableList list = FXCollections.observableArrayList("2 players", "3 players", "4 players");
     private LobbySettingsController con;
     private Group group;

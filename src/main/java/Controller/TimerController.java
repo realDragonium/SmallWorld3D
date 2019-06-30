@@ -1,21 +1,25 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.TimerModel;
 import Observer.TimerObserver;
 
 public class TimerController {
 
-    private GameTurn gameTurn;
+    private PhaseController phaseController;
     private TimerModel model = new TimerModel();
+    private GameController gameCon;
+
+    public TimerController(GameController gameController) {
+        gameCon = gameController;
+    }
 
     public void registerObs(TimerObserver timerObs){
+
         model.register(timerObs);
     }
 
-    TimerController(GameTurn gameTurn){
-        this.gameTurn = gameTurn;
-        SceneManager.getInstance().loadTimer(this);
+    TimerController(PhaseController phaseController){
+        this.phaseController = phaseController;
     }
 
     public long getElapsedTime(){

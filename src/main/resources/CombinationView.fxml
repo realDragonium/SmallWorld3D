@@ -2,9 +2,16 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
-<Pane fx:id="root" layoutX="0" layoutY="0" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CombinationView">
-   <children>
-      <Text fx:id = "Race" layoutX="0"></Text>
-      <Text fx:id = "Power" layoutX="100"></Text>
-   </children>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CombinationView">
+   <Text fx:id="Race" text="yo">
+      <font>
+         <Font size="32.0" />
+      </font>
+   </Text>
+   <Text fx:id="Power" text="ni" layoutX="100">
+      <font>
+         <Font size="32.0" />
+      </font>
+</Text>
 </Pane>

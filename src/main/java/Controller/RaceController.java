@@ -1,9 +1,8 @@
 package Controller;
 
-import Enum.TurnFase;
+import Fiches.RaceFiche;
 import Model.RaceModel;
 import Objects.Kracht;
-import Objects.RaceFiche;
 
 import java.util.List;
 import java.util.Stack;
@@ -34,13 +33,11 @@ public class RaceController {
 
 	Stack<RaceFiche> getFiches(int count){
 		Stack<RaceFiche> tempFiches = model.removeFiches(count);
-		updatePlayerFicheAmount();
 		return tempFiches;
 	}
 
 	void pushFiches(Stack<RaceFiche> fiches){
 		model.pushFiches(fiches);
-		updatePlayerFicheAmount();
 	}
 
 	boolean hasEnoughFiches(int count){
@@ -48,31 +45,14 @@ public class RaceController {
 	}
 
 	void fichesOver(){
-		System.out.println(combiCon.getPlayer().getId() + " heeft " + model.getFichesCount() + " fiches.");
 	}
 
 	void doKractAction(){
 		kracht.doAction();
 	}
 
-    void returnFiches() {
-		for(AreaController area : model.getAreas()){
-			area.returnAllButOne(this);
-		}
-		updatePlayerFicheAmount();
-    }
-
-	void destroyAllFichesButOne(){
-		model.removeAllFichesButOne();
-		updatePlayerFicheAmount();
-	}
-
-    void addArea(AreaController area){
+    public void addArea(AreaController area){
 		model.addArea(area);
-	}
-
-	private void updatePlayerFicheAmount(){
-		combiCon.getPlayer().setFiches(model.getFichesCount());
 	}
 
 	void removeArea(AreaController area) {
@@ -87,9 +67,6 @@ public class RaceController {
 		return model.getId();
 	}
 
-	boolean checkPhaseActoin(TurnFase curPhase) {
-		return kracht.checkPhaseAction(curPhase);
-	}
 
     public CombinationController getCombiCon() {
 		return combiCon;
@@ -97,12 +74,10 @@ public class RaceController {
 
     void addFiche(RaceFiche oneFiche) {
 		model.addFiche(oneFiche);
-		updatePlayerFicheAmount();
     }
 
 	RaceFiche removeFiche() {
 		RaceFiche tempFiche = model.getFiche();
-		updatePlayerFicheAmount();
 		return tempFiche;
 
 	}

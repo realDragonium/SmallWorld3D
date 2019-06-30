@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CombinationController;
+import Controller.FicheController;
 import Observable.CombinationObservable;
 import Observer.CombinationObserver;
 import javafx.fxml.FXML;
@@ -18,9 +19,9 @@ public class CombinationView implements CombinationObserver {
     public Text Race;
     public Text Power;
 
-    public CombinationView(Group group, CombinationController comboCon){
-        this.comboCon = comboCon;
+    public CombinationView(Group group, CombinationController combiCon){
         this.group = group;
+        this.comboCon = combiCon;
     }
 
     public void initialize(){
@@ -31,7 +32,15 @@ public class CombinationView implements CombinationObserver {
 
     @Override
     public void update(CombinationObservable co) {
+//        System.out.println(comboCon.getRace());
+//        System.out.println(co.getPosition());
+        if(co.getPosition() != null) {
+            root.setTranslateX(co.getPosition().getX());
+            root.setTranslateY(co.getPosition().getY());
+        }
         Race.setText(co.getRaceId());
         Power.setText(co.getPowerId());
+
+
     }
 }

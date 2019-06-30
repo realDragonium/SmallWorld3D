@@ -1,15 +1,20 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.InfoModel;
 import Observer.infoObserver;
+import Enum.GameViewEnum;
 
 public class InfoController {
 
     private InfoModel infoModel = new InfoModel();
+    private GameController gameCon;
 
-    InfoController() {
-        SceneManager.getInstance().loadInfoscreen(this);
+    InfoController(GameController gameController) {
+        gameCon = gameController;
+    }
+
+    public void exit(){
+        gameCon.removeFromGameView(GameViewEnum.INFO);
     }
 
     public void register(infoObserver ob) {

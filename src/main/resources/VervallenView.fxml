@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
-<Pane fx:id="root" layoutX="0" layoutY="0" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VervallenView">
-   <children>
+<Pane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VervallenView">
       <Button fx:id="vervalButton" layoutY="238.0" mnemonicParsing="false" onAction="#inVerval" text="vervallen" />
-   </children>
 </Pane>

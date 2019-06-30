@@ -1,6 +1,5 @@
 package Controller;
 
-import Managers.SceneManager;
 import Model.RoundModel;
 import Observer.RoundObserver;
 
@@ -19,7 +18,6 @@ public class RoundController {
     RoundController(GameController gameCon){
         model = new RoundModel(8);
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadRound(this);
     }
 
     void nextRound() {

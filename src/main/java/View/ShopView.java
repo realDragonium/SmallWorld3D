@@ -8,16 +8,10 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-
-/**
- *  Gemaakt door Yoran op 17-6-2019.
- *  ShopView class weergeeft a.h.v. een FXML tag de buttons, waardoor de speler een ras kan kopen.
- *
- */
-
 
 public class ShopView implements ShopObserver {
+
+    private int combinationViews = 0;
 
     @FXML
     public Pane pane;
@@ -28,14 +22,6 @@ public class ShopView implements ShopObserver {
     public Button buy5;
     public Button buy6;
 
-    public Group item1;
-    public Group item2;
-    public Group item3;
-    public Group item4;
-    public Group item5;
-    public Group item6;
-
-
     private Button lastActiveButton;
     private ShopController shopCon;
     Group group;
@@ -43,7 +29,6 @@ public class ShopView implements ShopObserver {
     public ShopView(Group group, ShopController shopCon){
         this.shopCon = shopCon;
         this.group = group;
-        shopCon.registerObserver(this);
     }
 
     @FXML
@@ -59,8 +44,15 @@ public class ShopView implements ShopObserver {
 
     public void initialize() {
         group.getChildren().add(pane);
+        shopCon.registerObserver(this);
+        shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
+        shopCon.makeItems();
+
     }
 
+    public void createCombinationView(int index){
+        shopCon.createCombinationView(index, group);
+    }
 
     public void showCombination(){
 
@@ -68,9 +60,21 @@ public class ShopView implements ShopObserver {
 
     @Override
     public void update(ShopObservable so) {
-        for(int i = 0; i < 6; i++) {
-            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(0)).setText(so.getPlayer(i));
-            ((Text) ((Group)pane.getChildren().get(i+1)).getChildren().get(1)).setText(so.getPower(i));
+        //Stest");ystem.out.println("
+        if(so.getShopItems().size() < combinationViews){
+            combinationViews = so.getShopItems().size();
+
+        }
+
+        if(so.getShopItems().size() > combinationViews){
+            combinationViews++;
+            createCombinationView(combinationViews - 1);
+            System.out.println("creating shop view for index: " + combinationViews);
+        }
+
+        for(int i = 0; i < so.getShopItems().size(); i++) {
+            if(so.getItemPosition(i) != null)
+            so.getShopItems().get(i).moveToPosition(so.getItemPosition(i));
         }
     }
 }

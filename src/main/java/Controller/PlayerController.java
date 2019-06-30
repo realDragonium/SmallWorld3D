@@ -1,56 +1,60 @@
 package Controller;
 
-import Applicatie.Applicatie;
-import Firebase.FirebaseControllerObserver;
-import Firebase.FirebaseServiceOwn;
-import Managers.SceneManager;
+import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
+import Objects.ShopCombination;
 import Observer.PlayerObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlayerController implements FirebaseControllerObserver {
+public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
-    private Applicatie app = SceneManager.getInstance().getApp();
-    private FirebaseServiceOwn fb = app.getFirebaseService();
+    private FirebaseGameController fbGame;
     private PlayerModel model;
     private List<CombinationController> combinations = new ArrayList<>();
 
     public PlayerController(String playerID, GameController gameCon) {
         model = new PlayerModel(playerID);
         this.gameCon = gameCon;
-        SceneManager.getInstance().loadPlayer(playerID, this);
-        fb.playerListen(playerID, this);
+        fbGame = gameCon.getFireBase();
+    }
+
+    public void setPlayer3dPosition(Translate pos){
+        model.setPlayer3dPos(pos);
+    }
+
+    public Translate get3dPos(){
+        return model.get3dPos();
     }
 
     void buyFromShop(CombinationController combo, int costs) {
-        System.out.println(getId() + " voegt combinatie toe");
         model.removePoints(costs);
         combinations.add(combo);
+        combo.moveToPosition(model.get2dPos());
         combo.setPlayer(this);
-        setFiches(combo.getRace().fichesCount());
+        combo.createRaceFiches();
         Map<String, Object> info = new HashMap<>();
-        info.put("fiches", model.getFiches());
-        info.put("punten", model.getPunten());
-        fb.playerUpdate(gameCon.getPlayer().getId(), info);
+        info.put("fiches", model.getRaceFichesAmount());
+        info.put("points", model.getPoints());
     }
 
-    void showActiveCombiFichesLeft() {
-        for (CombinationController combiCon : combinations) {
-            combiCon.getRace().fichesOver();
-        }
-    }
+//    void showActiveCombiFichesLeft() {
+//        for (CombinationController combiCon : combinations) {
+//            combiCon.getRace().fichesOver();
+//        }
+//    }
 
     CombinationController getActiveCombination() {
         if (combinations.size() > 0) return combinations.get(0);
         return null;
     }
 
-    String getId() {
+    public String getId() {
         return model.getId();
     }
 
@@ -58,10 +62,12 @@ public class PlayerController implements FirebaseControllerObserver {
         model.register(po);
     }
 
-    public void setFiches(int fiches) {
-        model.fiches = fiches;
-        model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), fiches);
+    public void addRaceFiche(FicheController fiche) {
+        model.addRaceFiche(fiche);
+    }
+
+    public FicheController removeRaceFiche(){
+        return model.removeRaceFiche();
     }
 
     private boolean hasCombination(){
@@ -70,44 +76,24 @@ public class PlayerController implements FirebaseControllerObserver {
 
     boolean hasActiveCombination(){
         if(hasCombination()) {
-            if(combinations.get(0).isActive()){
-                return true;
-            }
+            return combinations.get(0).isActive();
         }
         return false;
     }
 
-    void lowerFiches(int count) {
-        model.fiches -= count;
-        model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), model.fiches);
-    }
-
-    void higherFiches(int count) {
-        model.fiches += count;
-        model.notifyObserver();
-        fb.playerUpdateFiches(model.getId(), model.fiches);
-    }
 
     @Override
     public void update(DocumentSnapshot ds) {
-        System.out.println(ds.getData());
-//        if(gameCon.getCurrentPlayer()==this) return;
-        model.fiches = (int) Math.round(ds.getDouble("fiches"));
-        model.punten = (int) Math.round(ds.getDouble("punten"));
+        model.points = (int) Math.round(ds.getDouble("points"));
         model.notifyObserver();
     }
 
-    void returnFiches() {
-        getActiveCombination().returnFiches();
-    }
-
-    void addRoundPoints() {
-        if(hasCombination()){
-            for(CombinationController combi : combinations)
-            model.addPunten(combi.getRace().getAreasAmount());
-        }
-    }
+//    void addRoundPoints() {
+//        if(hasCombination()){
+//            for(CombinationController combi : combinations)
+//            model.addPunten(combi.getRace().getAreasAmount());
+//        }
+//    }
 
     public GameController getGameCon() {
         return gameCon;
@@ -115,6 +101,31 @@ public class PlayerController implements FirebaseControllerObserver {
 
     public void addPoints(int i) {
         model.addPunten(i);
-        fb.changePointsPlayer(model.getId(), model.getPunten());
+    }
+
+    int getPoints(){
+        return model.points;
+    }
+
+    boolean isConnected(){
+        return model.connected;
+    }
+
+    public void disconnect(){
+        model.connected = false;
+    }
+
+    public void connect(){
+        model.connected = true;
+    }
+
+
+    public boolean hasEnoughFiches(int fichesNeeded) {
+        System.out.println(model.getRaceFichesAmount());
+        return model.getRaceFichesAmount() >= fichesNeeded;
+    }
+
+    public void setPlayer2dPosition(Translate position) {
+        model.setPlayer2dPos(position);
     }
 }

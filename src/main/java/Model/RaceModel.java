@@ -1,7 +1,7 @@
 package Model;
 
 import Controller.AreaController;
-import Objects.RaceFiche;
+import Fiches.RaceFiche;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class RaceModel {
 	}
 
 	private void createFiches(int amount){
-		IntStream.range(0,amount).forEach(i -> availableFiches.push(new RaceFiche()));
+		IntStream.range(0,amount).forEach(i -> availableFiches.push(new RaceFiche("")));
 	}
 
 	public RaceFiche getFiche(){
@@ -66,12 +66,6 @@ public class RaceModel {
 		areas.remove(area);
 	}
 
-    public void removeAllFichesButOne() {
-		for(AreaController area : areas){
-			area.destroyAllButOne();
-		}
-		availableFiches = new Stack<>();
-    }
 
     public void addFiche(RaceFiche oneFiche) {
 		availableFiches.add(oneFiche);

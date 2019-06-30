@@ -1,7 +1,6 @@
 package View;
 
 import Controller.HomeScreenController;
-import Controller.LobbyController;
 import Observable.HomeScreenObservable;
 import Observer.HomeScreenObserver;
 import javafx.animation.TranslateTransition;
@@ -37,7 +36,8 @@ public class HomeScreenView implements HomeScreenObserver{
 
 		//new LeaderboardController();
     	//new GameController("First", "player1");
-		new LobbyController();
+//		new LobbyController();
+		hsCon.startGame();
 	}
 
 	@FXML
@@ -95,7 +95,6 @@ public class HomeScreenView implements HomeScreenObserver{
 
 	@Override
 	public void update(HomeScreenObservable mvo) {
-		System.out.println("mvo test message");
 	}
 
 	public void setPane(Pane pane) {

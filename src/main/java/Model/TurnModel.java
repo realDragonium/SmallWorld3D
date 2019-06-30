@@ -1,33 +1,24 @@
 package Model;
 
-import Enum.TurnFase;
 import Observable.TurnObservable;
 import Observer.TurnObserver;
 
-import java.util.*;
-
-/**
- * @author : Martijn van der Steen
- * @version : Juni 2019
- */
+import java.util.ArrayList;
+import java.util.List;
 
 public class TurnModel implements TurnObservable {
 
-
     private List<TurnObserver> observers = new ArrayList<>();
-    public int currentTurn;
-    private int turnPerRound;
+    public int currentTurn = 0;
+    private int turnPerRound = 0;
     private List<String> players = new ArrayList<>();
     public String currentPlayerId = "player1";
     private int indexcurrentplayer = 0;
-    private  TurnFase fase;
-    private Queue<TurnFase> fases = new LinkedList<>();
 
 
     public TurnModel(int turnPerRound){
         this.turnPerRound = turnPerRound;
         currentTurn = 1;
-        makeStack();
         players.add("player1");
         players.add("player2");
         players.add("player3");
@@ -35,19 +26,8 @@ public class TurnModel implements TurnObservable {
 
     }
 
-    public int getTurnPerRound(){
-        return turnPerRound;
-    }
-
-    private void makeStack(){
-        Collections.addAll(fases, TurnFase.values());
-        fase = fases.remove();
-    }
-
     public void nextTurn(){
-        indexcurrentplayer++;
-        if(indexcurrentplayer > 3)indexcurrentplayer = 0;
-        currentPlayerId = players.get(indexcurrentplayer);
+        currentTurn++;
         notifyObservers();
     }
 
@@ -64,16 +44,6 @@ public class TurnModel implements TurnObservable {
 
     @Override
     public int getTurn() {
-        return Integer.parseInt(currentPlayerId.split("yer")[1]);
-    }
-
-    @Override
-    public TurnFase getFase() {
-        return fase;
-    }
-
-    public void setFase(TurnFase currentPhase) {
-        fase = currentPhase;
-        notifyObservers();
+        return currentTurn;
     }
 }
