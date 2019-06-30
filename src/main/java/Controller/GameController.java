@@ -149,7 +149,7 @@ public class GameController implements FirebaseGameObserver {
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test2", this);
+        fbGame = new FirebaseGameController("test", this);
         attCon = new AttackController(this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);

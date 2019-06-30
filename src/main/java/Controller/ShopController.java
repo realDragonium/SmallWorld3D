@@ -79,14 +79,14 @@ public class ShopController implements FirebaseGameObserver {
         System.out.println("[SHOPCON UPDATE] Als je deze iets, dan wordt deze nog gebruikt helaas. ");
     }
 
-    void addUpdate(DocumentSnapshot ds) {
+    private void addUpdate(DocumentSnapshot ds) {
         String race = ds.getString("race");
         String power = ds.getString("power");
         createSpecificShopItems(race, power);
 
     }
 
-    void buyUpdate(DocumentSnapshot ds) {
+    private void buyUpdate(DocumentSnapshot ds) {
         buyingItem(ds.getDouble("item").intValue());
     }
 
