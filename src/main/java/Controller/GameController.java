@@ -4,18 +4,21 @@ import Model.GameModel;
 import Objects.FXMLLOADER;
 import Observer.GameObserver;
 import View.*;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import Enum.GameViewEnum;
+import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
 public class GameController {
 
-    private Group addable3d;
+    private Group addable3d = new Group();
 
     private FirebaseGameController fbGame;
     Translate player1Pos = new Translate(600, 0, 0);
@@ -131,6 +134,23 @@ public class GameController {
     public void createDiceView(Group group) {
         diceCon = new DiceController(this);
         fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>)() -> new DiceView(group, diceCon));
+    }
+
+
+    public Group createSpecialPropFiche(String specialProp) {
+        Group group = new Group();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/" + specialProp + ".fxml"));
+            Node node = fxmlLoader.load();
+            group.getChildren().add(node);
+
+            addable3d.getChildren().add(group);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return group;
+
     }
 
     public void createRedeployView(Group group) {
@@ -261,7 +281,7 @@ public class GameController {
     }
 
     public void set3dGroup(Group group){
-        addable3d = group;
+        group.getChildren().add(addable3d);
     }
 
     public void addToGameView(GameViewEnum go){
