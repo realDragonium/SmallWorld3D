@@ -23,14 +23,17 @@ public class Map3DView {
     private Group table = new Group();
 
     public Map3DView(MapController mapCon, Group map) {
+        System.out.println("creating the map");
         scene = new SubScene(world, 1920, 1080, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
         map.getChildren().add(scene);
+        System.out.println("setting the 3d group");
+        mapCon.getGameCon().set3dGroup(fiches);
+        System.out.println("loading the map");
         loadMap();
         createCamera();
         createTable();
-        mapCon.getGameCon().set3dGroup(fiches);
         world.getChildren().addAll(fiches);
     }
 

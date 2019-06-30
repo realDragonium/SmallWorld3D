@@ -22,11 +22,11 @@ public class ButtonController {
         gameCon.getFireBase().nextPhaseAction();
     }
 
-    public void nextTurn() {
+    public void createShopItem() {
         gameCon.createRandomShopItem();
     }
 
-    public void nextRound() {
+    public void previewNotification() {
         gameCon.setMessage(NotificationEnum.DRAGON);
     }
 }

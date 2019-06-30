@@ -27,7 +27,8 @@ public class AreaModel implements AreaObservable {
     public PlayerController player;
     private boolean hovering = false;
     private Stack<FicheController> fiches = new Stack<>();
-    private Translate areaPoint;
+    public Translate areaPoint;
+    public Translate specialPropPoint;
 
 
     public AreaModel(String id, Translate areaPoint) {
@@ -44,6 +45,7 @@ public class AreaModel implements AreaObservable {
         lostTribe = info.lostTribe;
         specialProperty = info.property;
         nextToWater = info.nextToWater;
+
         type = AreaType.valueOf(id.split("_")[0]);
     }
 
@@ -54,6 +56,10 @@ public class AreaModel implements AreaObservable {
     @Override
     public Translate getAreaPoint(){
         return areaPoint;
+    }
+
+    public Translate getSpecialPropPoint(){
+        return specialPropPoint;
     }
 
     public void addFiche(FicheController fiche){

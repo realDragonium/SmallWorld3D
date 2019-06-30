@@ -512,7 +512,7 @@
     ],
     "nextToWater": true,
     "borderArea": false,
-    "property": "Cave, Mine",
+    "property": "Cave",
     "lostTribe": false,
     "attackable": true
   },

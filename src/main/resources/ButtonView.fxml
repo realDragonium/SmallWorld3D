@@ -6,7 +6,7 @@
       <Button fx:id="infoButton"  mnemonicParsing="false" onAction="#showInfo" text="Info" />
       <Button fx:id="availableButton" layoutX="100.0" mnemonicParsing="false" onAction="#fichesOver" text="Available" />
       <Button fx:id="nextFaseButton" layoutX="200.0" mnemonicParsing="false" onAction="#nextPhase" text="next Fase" />
-      <Button  layoutX="300.0" mnemonicParsing="false" onAction="#nextTurn" text="create shop item" />
-      <Button  layoutX="500.0" mnemonicParsing="false" onAction="#nextRound" text="next round" />
+      <Button layoutX="300.0" mnemonicParsing="false" onAction="#createShopItem" text="create shop item" />
+      <Button layoutX="500.0" mnemonicParsing="false" onAction="#previewNotification" text="preview notfication" />
 
 </Pane>

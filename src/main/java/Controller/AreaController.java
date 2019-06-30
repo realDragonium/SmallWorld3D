@@ -8,10 +8,12 @@ import Objects.AreaInfo;
 import Observer.AreaObserver;
 import View.NumberView;
 import javafx.scene.Group;
+import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AreaController{
 
@@ -28,6 +30,7 @@ public class AreaController{
         map3DCon = mapCon;
         this.gameCon = gameCon;
         fb = gameCon.getFireBase();
+
 //        loadAreaInFirebase();
 //        listenToFirebase();
     }
@@ -37,12 +40,13 @@ public class AreaController{
         model = new AreaModel(id);
         mapCon = mapController;
         this.gameCon = gameCon;
-        fb = gameCon.getFireBase();
 
+        fb = gameCon.getFireBase();
+        //createSpecialPropFiche();
 //        getAreaInfo(id);
     }
 
-    public AreaController(AreaInfo info, MapController map,  GameController gameCon){
+    public AreaController(AreaInfo info, MapController map, GameController gameCon){
         mapCon = map;
         model = new AreaModel(info);
         this.gameCon = gameCon;
@@ -171,8 +175,38 @@ public class AreaController{
         numberCon.setNumber(number);
     }
 
+    public void createSpecialPropFiche(){
+        if(!model.getSpecialProp().equals("None")) {
+            Group group = gameCon.createSpecialPropFiche(model.getSpecialProp());
+            int scale = 5;
+
+            group.setRotationAxis(Rotate.Y_AXIS);
+            group.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
+
+            group.setTranslateX(model.getSpecialPropPoint().getX());
+            group.setTranslateY(model.getSpecialPropPoint().getY());
+            group.setTranslateZ(model.getSpecialPropPoint().getZ());
+            if(model.getSpecialProp().equals("Magical")){
+                scale = 8;
+                group.setTranslateY(model.getSpecialPropPoint().getY() - 10);
+            }
+            group.setScaleX(scale);
+            group.setScaleY(scale);
+            group.setScaleZ(scale);
+        }
+    }
+
     public void showInfo() {
         System.out.println("showing: " + getAreaType());
         gameCon.getAreaInfoCon().putAreaInformationScreen(this);
+    }
+
+    public void setAreaPoint(Translate translate) {
+        model.areaPoint = translate;
+    }
+
+    public void setPropPoint(Translate translate) {
+        model.specialPropPoint = translate;
+        createSpecialPropFiche();
     }
 }

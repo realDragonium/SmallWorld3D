@@ -15,4 +15,5 @@ public class MapModel {
     public Map<String, AreaInfo> areaInfos;
     public Map<String, Translate> areaPoints;
 
+    public Map<String, Translate> propPoints;
 }

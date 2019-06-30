@@ -6,6 +6,8 @@ import Observer.NotificationObserver;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -34,7 +36,9 @@ public class NotificationView implements NotificationObserver {
 
     private void showMessage(String message){
         Text text = new Text(message);
-        messages.add(text);
+        root.getChildren().add(text);
+        text.setFont(new Font(48));
+        text.setFill(Color.RED);
         makeFancierMessage(text);
     }
 
@@ -42,24 +46,22 @@ public class NotificationView implements NotificationObserver {
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> text.setY(text.getLayoutY() + 10));
+                text.setY(text.getY() - 10);
             }
         };
 
         Timer animTimer = new Timer();
-        animTimer.scheduleAtFixedRate(start, 0, 500);
+        animTimer.scheduleAtFixedRate(start, 500, 50);
 
         TimerTask deleteMessage = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> {
-                    messages.remove(text);
-                    animTimer.cancel();
-                });
+                animTimer.cancel();
+                Platform.runLater(() -> root.getChildren().remove(text));
             }
         };
         Timer timer = new Timer();
-        timer.schedule(deleteMessage, 5000);
+        timer.schedule(deleteMessage, 2500);
     }
 
     @Override
