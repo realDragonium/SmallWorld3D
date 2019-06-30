@@ -1,14 +1,8 @@
 package Controller;
 
-import Enum.TurnFase;
-import Fiches.RaceFiche;
 import Model.CombinationModel;
 import Objects.PowerOld;
 import Observer.CombinationObserver;
-import Enum.RaceEnum;
-import Enum.PowerEnum;
-import Race.Race;
-import Power.Power;
 
 import java.util.Stack;
 
@@ -62,14 +56,6 @@ public class CombinationController {
         return this.player;
     }
 
-    void checkForSpecialActions(TurnFase curPhase){
-        if(race.checkPhaseActoin(curPhase)){
-            race.doKractAction();
-        }
-        if(powerOld.checkPhaseAction(curPhase)){
-            powerOld.doAction();
-        }
-    }
 
     public RaceController getRace(){
         return race;

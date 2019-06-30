@@ -49,7 +49,7 @@ public class AttackController {
     private boolean isAbleToAttack(PlayerController player, int fichesNeeded, AreaController area){
 
         if(area.getOwnerPlayer() != null) {
-            if (area.getOwnerPlayer().equals(gameCon.getMyPlayer())) return false;
+//            if (area.getOwnerPlayer().equals(gameCon.getMyPlayer())) return false;
         }
         if(area.isAttackAble()) {
             if (player.hasActiveCombination()) {

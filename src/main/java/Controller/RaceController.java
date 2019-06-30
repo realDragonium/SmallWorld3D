@@ -1,9 +1,8 @@
 package Controller;
 
-import Enum.TurnFase;
+import Fiches.RaceFiche;
 import Model.RaceModel;
 import Objects.Kracht;
-import Fiches.RaceFiche;
 
 import java.util.List;
 import java.util.Stack;
@@ -68,9 +67,6 @@ public class RaceController {
 		return model.getId();
 	}
 
-	boolean checkPhaseActoin(TurnFase curPhase) {
-		return kracht.checkPhaseAction(curPhase);
-	}
 
     public CombinationController getCombiCon() {
 		return combiCon;

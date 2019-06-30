@@ -3,13 +3,11 @@ package Controller;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseGameService;
-import FirebaseActions.FirebaseAction;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +25,14 @@ public class FirebaseGameController implements FirebaseActionObserver {
     }
 
     private void placeAction(Map<String, Object> map) {
-        service.placeAction(map);
+        service.placeAction(getEventNumber(), map);
+    }
+    //Met 3 is het grootste aantal
+    private String getEventNumber(){
+        String id = String.valueOf(service.getLastestEventNumber());
+        StringBuilder str = new StringBuilder(id);
+        while(str.length() < 3) str.insert(0, "0");
+        return str.toString();
     }
 
     public void nextPhaseAction() {
@@ -106,10 +111,10 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     @Override
     public void update(QuerySnapshot qs) {
-        System.out.println("update received!");
         List<DocumentChange> updateList = qs.getDocumentChanges();
         for (DocumentChange documentChange : updateList) {
             DocumentSnapshot doc = documentChange.getDocument();
+            System.out.println("Id: " + doc.getId());
             System.out.println(doc.getData());
             Platform.runLater(() -> observers.get(doc.getString("division")).update(doc));
         }

@@ -6,15 +6,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TimerView">
-    <ImageView fitHeight="72.0" fitWidth="154.0" layoutX="1680.0" layoutY="23.0">
-        <image>
-            <Image url="@Phaseindicator.png" />
-        </image>
+<Pane fx:id="pane" layoutX="1480.0" layoutY="23.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TurnView">
+    <ImageView fitHeight="72.0" fitWidth="154.0">
+            <Image url="@Phaseindicator.png"/>
     </ImageView>
-    <Text fx:id="timer" fill="#fcfcfc" layoutX="1730.0" layoutY="72.0" opacity="0.9" strokeWidth="2.0" text="0:00" textAlignment="CENTER">
+    <Text fx:id="turnField" fill="#fcfcfc" layoutX="10" layoutY="49.0" opacity="0.9" strokeWidth="2.0" text="0"
+          textAlignment="CENTER">
         <font>
-            <Font size="32.0" />
+            <Font size="32.0"/>
         </font>
     </Text>
 </Pane>

@@ -5,7 +5,7 @@ import Observer.TimerObserver;
 
 public class TimerController {
 
-    private GameTurn gameTurn;
+    private PhaseController phaseController;
     private TimerModel model = new TimerModel();
     private GameController gameCon;
 
@@ -18,8 +18,8 @@ public class TimerController {
         model.register(timerObs);
     }
 
-    TimerController(GameTurn gameTurn){
-        this.gameTurn = gameTurn;
+    TimerController(PhaseController phaseController){
+        this.phaseController = phaseController;
     }
 
     public long getElapsedTime(){

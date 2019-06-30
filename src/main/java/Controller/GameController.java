@@ -43,22 +43,13 @@ public class GameController implements FirebaseGameObserver {
     private GameTimer gameTimer;
     private AttackController attCon;
     private ShopController shopCon;
-    private GameTurn gameTurn;
-    private PlayerController myPlayer;
+    private PhaseController phaseCon;
     private RedeployingController redCon;
-    private String myPlayerId;
     private DiceController diceCon;
-
-    public GameController(String lobbyName, String playerID) {
-        myPlayerId = playerID;
-        model = new GameModel(8, 8);
-        this.lobbyName = lobbyName;
-        startGame();
-    }
 
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
-        model = new GameModel(8, 8);
+        model = new GameModel(8, 4);
         createControllers();
         fbGame.register("currentplayer", this);
 //        startGame();
@@ -129,8 +120,8 @@ public class GameController implements FirebaseGameObserver {
         fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>) () -> new InfoView(group, infoCon));
     }
 
-    public void createAttackView(Group group) {
-        fxmlLoader.loader("/AttackView.fxml", (Callable<AttackView>) () -> new AttackView(group, attCon));
+    public void createPhaseView(Group group) {
+        fxmlLoader.loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(group, phaseCon));
     }
 
 
@@ -146,15 +137,12 @@ public class GameController implements FirebaseGameObserver {
         buttonCon = new ButtonController(this);
         roundCon = new RoundController(this);
         areaInfoCon = new AreaInformationController(this);
-        gameTurn = new GameTurn(this);
+        phaseCon = new PhaseController(this);
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
     }
 
 
-    String getMyPlayerId() {
-        return myPlayerId;
-    }
 
     public PlayerController getPlayer() {
         return currentPlayer;
@@ -167,7 +155,7 @@ public class GameController implements FirebaseGameObserver {
 
 
 //    private void setGameTurn(){
-//        gameTurn.newTurn(currentPlayer);
+//        phaseController.newTurn(currentPlayer);
 //    }
 
     private PlayerController getPlayer(String id) {
@@ -177,7 +165,10 @@ public class GameController implements FirebaseGameObserver {
     public PlayerController getCurrentPlayer() {
         return players.get("player1");
 //        return currentPlayer;
+    }
 
+    int getNumberOfPlayers(){
+        return model.getNumberOfPlayers();
     }
 
     RoundController getRoundCon() {
@@ -208,8 +199,8 @@ public class GameController implements FirebaseGameObserver {
         return diceCon;
     }
 
-    GameTurn getGameTurn() {
-        return gameTurn;
+    PhaseController getPhaseController() {
+        return phaseCon;
     }
 
     void endGame() {
@@ -221,7 +212,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
     private void startGame() {
-        gameTurn = new GameTurn(this, currentPlayer);
+        phaseCon = new PhaseController(this);
     }
 
     private void createGameTimer() {
@@ -236,10 +227,6 @@ public class GameController implements FirebaseGameObserver {
     public void nextRound() {
         roundCon.nextRound();
         System.out.println("next Round!");
-    }
-
-    PlayerController getMyPlayer() {
-        return myPlayer;
     }
 
     void setCurrentPlayer(int i) {
@@ -271,7 +258,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void nextPhase() {
-        gameTurn.nextPhase();
+        phaseCon.nextPhase();
     }
 
     AreaInformationController getAreaInfoCon() {

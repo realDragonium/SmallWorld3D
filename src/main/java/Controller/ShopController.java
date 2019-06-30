@@ -5,17 +5,13 @@ import Model.ShopModel;
 
 import Objects.ShopCombination;
 import Observer.ShopObserver;
-import Objects.PowerOld;
-import Power.Power;
-import Race.Race;
+
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
 
 import Enum.RaceEnum;
 import Enum.PowerEnum;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShopController implements FirebaseGameObserver {
@@ -46,7 +42,7 @@ public class ShopController implements FirebaseGameObserver {
     public void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItems().get(item), item);
-//            gameCon.getGameTurn().endTurn();
+//            gameCon.getPhaseController().endTurn();
         }
     }
 

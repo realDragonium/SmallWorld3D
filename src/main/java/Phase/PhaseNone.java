@@ -1,7 +1,8 @@
 package Phase;
 
+import Controller.PhaseController;
 import Enum.GameViewEnum;
-
+import Enum.PhaseEnum;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,18 @@ public class PhaseNone implements Phase {
 
 
     @Override
-    public Phase nextPhase() {
-        return new Preparing();
+    public void nextPhase(PhaseController phaseCon) {
+        phaseCon.setPhase(PhaseEnum.PREPARING);
+        phaseCon.changeView();
     }
 
     @Override
-    public List<GameViewEnum> changeView() {
+    public String getName() {
+        return "None";
+    }
+
+    @Override
+    public List<GameViewEnum> getView() {
         return views;
-    }
-
-    @Override
-    public void resetTimer() {
-
     }
 }

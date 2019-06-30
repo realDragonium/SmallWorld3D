@@ -32,7 +32,7 @@ public class GameView implements GameObserver {
     }
 
     public void initialize() {
-        createGroups();
+        root.getChildren().add(headPane);
         createViews();
         basicViewLayout();
         gameCon.register(this);
@@ -40,65 +40,45 @@ public class GameView implements GameObserver {
 
     }
 
-    private void createGroups(){
-        groups.put("map2D", new Group());
-        groups.put("map3D", new Group());
-        groups.put("players", new Group());
-        groups.put("round", new Group());
-        groups.put("turn", new Group());
-        groups.put("button", new Group());
-        groups.put("shop", new Group());
-        groups.put("timer", new Group());
-        groups.put("verval", new Group());
-        groups.put("dice", new Group());
-        groups.put("redeploy", new Group());
-        groups.put("info", new Group());
-        groups.put("attack", new Group());
-        groups.put("areaInfo", new Group());
-        groups.put("uiOverlay", new Group());
-    }
-
     private void createViews(){
-        gameCon.createMap2DView(groups.get("map2D"));
-        gameCon.create3dView(groups.get("map3D"));
-        gameCon.createPlayerView(groups.get("players"), "player1");
-        gameCon.createPlayerView(groups.get("players"), "player2");
-        gameCon.createPlayerView(groups.get("players"), "player3");
-        gameCon.createPlayerView(groups.get("players"), "player4");
-        gameCon.createRoundView(groups.get("round"));
-        gameCon.createTurnView(groups.get("turn"));
-        gameCon.createButtonView(groups.get("button"));
-        gameCon.createShopView(groups.get("shop"));
-        gameCon.createTimerView(groups.get("timer"));
-        gameCon.createVervalView(groups.get("verval"));
-        gameCon.createDiceView(groups.get("dice"));
-        gameCon.createRedeployView(groups.get("redeploy"));
-        gameCon.createInfoView(groups.get("info"));
-        gameCon.createAttackView(groups.get("attack"));
-        gameCon.createAreaInfoView(groups.get("areaInfo"));
-        gameCon.createUIOverlay(groups.get("uiOverlay"));
+        gameCon.createMap2DView(GameViewEnum.MAP2D.getGroup());
+        gameCon.create3dView(GameViewEnum.MAP3D.getGroup());
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player0");
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player1");
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player2");
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player3");
+        gameCon.createRoundView(GameViewEnum.ROUND.getGroup());
+        gameCon.createTurnView(GameViewEnum.TURN.getGroup());
+        gameCon.createButtonView(GameViewEnum.BUTTON.getGroup());
+        gameCon.createShopView(GameViewEnum.SHOP.getGroup());
+        gameCon.createTimerView(GameViewEnum.TIMER.getGroup());
+        gameCon.createVervalView(GameViewEnum.VERVAL.getGroup());
+        gameCon.createDiceView(GameViewEnum.DICE.getGroup());
+        gameCon.createRedeployView(GameViewEnum.REDEPLOY.getGroup());
+        gameCon.createInfoView(GameViewEnum.INFO.getGroup());
+        gameCon.createAreaInfoView(GameViewEnum.AREAINFO.getGroup());
+        gameCon.createUIOverlay(GameViewEnum.UIOVERLAY.getGroup());
+        gameCon.createPhaseView(GameViewEnum.PHASE.getGroup());
     }
 
     private void basicViewLayout() {
-        root.getChildren().add(groups.get(GameViewEnum.MAP3D.getStringValue()));
-//        root.getChildren().add(groups.get(GameViewEnum.UIOVERLAY.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
-        root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
+        root.getChildren().add(GameViewEnum.MAP3D.getGroup());
+//        root.getChildren().add(GameViewEnum.UIOVERLAY.getGroup());
+        root.getChildren().add(GameViewEnum.TURN.getGroup());
+        root.getChildren().add(GameViewEnum.PHASE.getGroup());
+        root.getChildren().add(GameViewEnum.TIMER.getGroup());
+        root.getChildren().add(GameViewEnum.PLAYER.getGroup());
+        root.getChildren().add(GameViewEnum.BUTTON.getGroup());
+        root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
+        root.getChildren().add(GameViewEnum.ROUND.getGroup());
 
         root.getChildren().add(notBasicRoot);
     }
 
     private void setActive(List<GameViewEnum> views){
         notBasicRoot.getChildren().clear();
-        views.forEach(s -> notBasicRoot.getChildren().add(groups.get(s.getStringValue())));
+        views.forEach(s -> notBasicRoot.getChildren().add(s.getGroup()));
     }
-
-
-
 
     @Override
     public void update(GameObservable go) {

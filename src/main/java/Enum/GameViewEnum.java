@@ -1,16 +1,20 @@
 package Enum;
 
-public enum GameViewEnum {
-    MAP2D("map2D"), SHOP("shop"), MAP3D("map3D"), PLAYER("players"), ROUND("round"), TURN("turn"),
-    BUTTON("button"), TIMER("timer"), VERVAL("verval"), DICE("dice"), REDEPLOY("redeploy"), INFO("info"),
-    ATTACK("attack"), AREAINFO("areaInfo"), UIOVERLAY("uiOverlay") ;
-    private String view;
+import javafx.scene.Group;
 
-    GameViewEnum(String view){
+public enum GameViewEnum {
+    MAP2D(new Group()), SHOP(new Group()), MAP3D(new Group()), PLAYER(new Group()),
+    ROUND(new Group()), TURN(new Group()), PHASE(new Group()), BUTTON(new Group()),
+    TIMER(new Group()), VERVAL(new Group()), DICE(new Group()),
+    REDEPLOY(new Group()), INFO(new Group()),AREAINFO(new Group()),
+    UIOVERLAY(new Group());
+    private Group view;
+
+    GameViewEnum(Group view){
         this.view = view;
     }
 
-    public String getStringValue(){
+    public Group getGroup(){
         return view;
     }
 }

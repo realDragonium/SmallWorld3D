@@ -37,14 +37,14 @@ public class GameTimer {
     private void timerAction(){
         timeLeft--;
         gameCon.getTimer().setTime(timeLeft);
-        if (timeLeft == 0 && gameCon.getCurrentPlayer().getId().equals(gameCon.getMyPlayerId()) && timerAvailable) {
+//        if (timeLeft == 0 && gameCon.getCurrentPlayer().getId().equals(gameCon.getMyPlayerId()) && timerAvailable) {
             Map<String, Object> info = new HashMap<>();
             current = !current;
             info.put("endPhase", current);
             info.put("time", maxTime);
             timerAvailable = false;
 //            fb.resetTimer(info);
-        }
+//        }
     }
 
     void resetTimer(boolean current){
