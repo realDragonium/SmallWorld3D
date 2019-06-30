@@ -33,7 +33,7 @@ public class ShopView implements ShopObserver {
 
     @FXML
     public void buyItem(){
-        shopCon.buyingItem(Integer.parseInt(lastActiveButton.getId()));
+        shopCon.buyToFirebase(Integer.parseInt(lastActiveButton.getId()));
     }
 
     @FXML

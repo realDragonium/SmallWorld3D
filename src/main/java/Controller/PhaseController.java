@@ -18,7 +18,7 @@ public class PhaseController implements FirebaseGameObserver {
         this.gameCon = gameCon;
         model = new PhaseModel(phase);
         fb = gameCon.getFireBase();
-        fb.register("phase", this);
+        fb.register("phase", this::update);
     }
 
      void nextPhase(){
@@ -51,13 +51,9 @@ public class PhaseController implements FirebaseGameObserver {
         model.register(po);
     }
 
+
     @Override
     public void update(DocumentSnapshot ds) {
-        //Is niet persee nodig maar just in case.
-        if(ds.getString("action").equals("nextPhase")){
-            nextPhase();
-        }
+        nextPhase();
     }
-
-
 }

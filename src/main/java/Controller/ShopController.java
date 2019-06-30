@@ -18,33 +18,39 @@ public class ShopController implements FirebaseGameObserver {
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
-        fbGame.register("shop", this);
+        fbGame.register("add", this::addUpdate);
+        fbGame.register("buy", this::buyUpdate);
     }
 
-    public void makeItems(){
+    public void makeItems() {
 
     }
 
-    private void removeItem(double item){
-        model.removeItem((int)item);
+    private void removeItem(double item) {
+        model.removeItem((int) item);
     }
 
-    public void buyingItem(int item) {
+    private void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
+
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
 //            gameCon.getGameTurn().endTurn();
         }
     }
 
-    public void setShopPosition(double xPos, double yPos){
+    public void buyToFirebase(int item){
+        fbGame.buyCombiAction(item);
+    }
+
+    public void setShopPosition(double xPos, double yPos) {
         model.setShopPosition(new Translate(xPos, yPos));
         setShopItemPositions();
     }
 
-    public void setShopItemPositions(){
+    private void setShopItemPositions() {
 
-        for(int i = 0; i < 6; i++){
-            Translate pos = new Translate(model.getPosition().getX(), model.getPosition().getY() + i*100);
+        for (int i = 0; i < 6; i++) {
+            Translate pos = new Translate(model.getPosition().getX(), model.getPosition().getY() + i * 100);
             model.addItemPosition(pos);
 
         }
@@ -54,33 +60,34 @@ public class ShopController implements FirebaseGameObserver {
         model.register(obs);
     }
 
-    public void createRandomShopItem(){
+    void createRandomShopItem() {
         String race = model.getRandomRace();
         String power = model.getRandomPower();
-        model.addShopItem(new CombinationController(race, power));
-
+        fbGame.addCombiAction(race, power);
     }
 
     private void createSpecificShopItems(String race, String power) {
         model.addShopItem(new CombinationController(race, power));
     }
 
-    public List<CombinationController> getShopItems(){
+    public List<CombinationController> getShopItems() {
         return model.getShopItems();
     }
 
     @Override
     public void update(DocumentSnapshot ds) {
-        if(ds.getString("id").equals("buy")){
+        System.out.println("[SHOPCON UPDATE] Als je deze iets, dan wordt deze nog gebruikt helaas. ");
+    }
 
-            return;
-        }
-        if(ds.getString("id").equals("add")){
-            String race = ds.getString("race");
-            String power = ds.getString("power");
-            createSpecificShopItems(race, power);
-            return;
-        }
+    void addUpdate(DocumentSnapshot ds) {
+        String race = ds.getString("race");
+        String power = ds.getString("power");
+        createSpecificShopItems(race, power);
+
+    }
+
+    void buyUpdate(DocumentSnapshot ds) {
+        buyingItem(ds.getDouble("item").intValue());
     }
 
     public void createCombinationView(int index, Group group) {

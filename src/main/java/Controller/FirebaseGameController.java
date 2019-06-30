@@ -37,15 +37,13 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     public void nextPhaseAction() {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "phase");
-        map.put("id", "nextPhase");
+        map.put("id", "phase");
         map.put("action", "nextPhase");
         placeAction(map);
     }
 
     public void buyCombiAction(int number) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "shop");
         map.put("id", "buy");
         map.put("item", number);
         placeAction(map);
@@ -53,7 +51,6 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     public void addCombiAction(String race, String power) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "shop");
         map.put("id", "add");
         map.put("race", race);
         map.put("power", power);
@@ -62,7 +59,6 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     public void attackAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "currentplayer");
         map.put("id", "attack");
         map.put("areaId", areaId);
         placeAction(map);
@@ -70,23 +66,20 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     public void addsFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "currentplayer");
-        map.put("id", "add");
+        map.put("id", "addFiche");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
     public void removeFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "currentplayer");
-        map.put("id", "remove");
+        map.put("id", "removeFiche");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
     public void leavesFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "currentplayer");
         map.put("id", "leaves");
         map.put("areaId", areaId);
         placeAction(map);
@@ -94,7 +87,6 @@ public class FirebaseGameController implements FirebaseActionObserver {
 
     public void declineAction() {
         Map<String, Object> map = new HashMap<>();
-        map.put("division", "currentplayer");
         map.put("id", "decline");
         map.put("action", "decline");
         placeAction(map);
@@ -116,7 +108,7 @@ public class FirebaseGameController implements FirebaseActionObserver {
             DocumentSnapshot doc = documentChange.getDocument();
             System.out.println("Id: " + doc.getId());
             System.out.println(doc.getData());
-            Platform.runLater(() -> observers.get(doc.getString("division")).update(doc));
+            Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
     }
 }

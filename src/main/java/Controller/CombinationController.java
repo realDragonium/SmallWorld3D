@@ -47,6 +47,7 @@ public class CombinationController {
         Stack<FicheController> tempFiches = model.removeFiches(count);
         return tempFiches;
     }
+
     public void addRaceFiche(FicheController fiche) {
         Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((model.getFichesAmount() - 1) * 10)), player.get3dPos().getZ());
         model.addFiche(fiche);

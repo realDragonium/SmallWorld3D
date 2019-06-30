@@ -6,15 +6,15 @@ import Observer.TurnObserver;
 import Turn.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class TurnModel implements TurnObservable {
     private List<TurnObserver> observers = new ArrayList<>();
     public int currentTurn = 0;
     public PlayerController currentPlayer;
     public List<PlayerController> players;
-    private Stack<Turn> turns = new Stack<>();
+    private LinkedList<Turn> turns = new LinkedList<>();
     private int myPlayerId;
 
     public TurnModel(List<PlayerController> players, int myPlayerId){
@@ -23,7 +23,7 @@ public class TurnModel implements TurnObservable {
         currentTurn = 0;
     }
 
-    public Stack<Turn> getTurns(){
+    public LinkedList<Turn> getTurns(){
         return turns;
     }
 

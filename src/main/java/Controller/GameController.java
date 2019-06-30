@@ -72,8 +72,8 @@ public class GameController implements FirebaseGameObserver {
 
 
     public void setPlayerPositions(){
-        players.get("player1").setPlayer3dPosition(player1Pos);
-        players.get("player1").setPlayer2dPosition(player1Pos2d);
+        model.getPlayer(0).setPlayer3dPosition(player1Pos);
+        model.getPlayer(0).setPlayer2dPosition(player1Pos2d);
 //        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
 //        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
@@ -86,9 +86,8 @@ public class GameController implements FirebaseGameObserver {
         fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
-    public void createPlayerView(Group group, String id){
-        PlayerController player = new PlayerController(id, this);
-        players.put(id, player);
+    public void createPlayerView(Group group, int id){
+        PlayerController player = model.getPlayer(id);
         fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
     }
 

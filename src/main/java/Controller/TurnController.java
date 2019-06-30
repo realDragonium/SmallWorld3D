@@ -2,10 +2,6 @@ package Controller;
 
 import Model.TurnModel;
 import Observer.TurnObserver;
-import Enum.PhaseEnum;
-import Turn.*;
-
-import java.util.Stack;
 
 public class TurnController {
 
@@ -38,17 +34,6 @@ public class TurnController {
 
         model.currentPlayer = model.players.get(3 - model.getTurns().size());
         model.notifyObservers();
-
-//        if(model.currentPlayerId.equals("player1")){
-//            gameCon.getRoundCon().nextRound();
-//        }
-//        if(gameCon.isGameOver()) return;
-//        model.nextTurn();
-//        currentPlayer++;
-//        if(currentPlayer == 5){
-//            currentPlayer = 1;
-//        }
-//        gameCon.changePlayerTurn("player"+currentPlayer);
     }
 
     PlayerController getCurrentPlayer() {

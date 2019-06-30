@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class PlayerView implements PlayerObserver {
 
-    private String id;
+    private int id;
     private Group group;
     private PlayerController playerCon;
 
@@ -20,19 +20,17 @@ public class PlayerView implements PlayerObserver {
     private Text playerId, fiches, punten;
 
 
-    public PlayerView(String id, Group group, PlayerController playerCon){
+    public PlayerView(int id, Group group, PlayerController playerCon) {
         this.group = group;
         this.playerCon = playerCon;
         this.id = id;
     }
 
     public void initialize() {
-        if(Integer.parseInt(id.split("yer")[1]) != 0){
-            playerId.setText(id);
-            playerCon.register(this);
-            pane.setLayoutY((100 + 150*Integer.parseInt(id.split("yer")[1])));
-            group.getChildren().add(pane);
-        }
+        playerId.setText(""+id);
+        playerCon.register(this);
+        pane.setLayoutY(100 + 150 * id);
+        group.getChildren().add(pane);
 
     }
 
@@ -41,8 +39,8 @@ public class PlayerView implements PlayerObserver {
         updateFields(po.getRaceFichesAmount(), po.getPoints());
     }
 
-    private void updateFields(int fiches, int punten){
-        this.fiches.setText("" +fiches);
+    private void updateFields(int fiches, int punten) {
+        this.fiches.setText("" + fiches);
         this.punten.setText("" + punten);
     }
 }

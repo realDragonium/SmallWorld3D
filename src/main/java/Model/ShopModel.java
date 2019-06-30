@@ -10,7 +10,6 @@ import javafx.scene.transform.Translate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 public class ShopModel implements ShopObservable {
 
@@ -39,14 +38,6 @@ public class ShopModel implements ShopObservable {
 
     public String getRandomPower(){
         return powers.remove((int) (Math.random() * powers.size()));
-    }
-
-    public void removePower(String power){
-        powers.remove(power);
-    }
-
-    public void removeRace(String race){
-        races.remove(race);
     }
 
 

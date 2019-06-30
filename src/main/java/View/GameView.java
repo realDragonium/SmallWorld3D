@@ -42,10 +42,10 @@ public class GameView implements GameObserver {
     private void createViews(){
         gameCon.createMap2DView(GameViewEnum.MAP2D.getGroup());
         gameCon.create3dView(GameViewEnum.MAP3D.getGroup());
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player0");
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player1");
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player2");
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), "player3");
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 0);
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 1);
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 2);
+        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 3);
         gameCon.createRoundView(GameViewEnum.ROUND.getGroup());
         gameCon.createTurnView(GameViewEnum.TURN.getGroup());
         gameCon.createButtonView(GameViewEnum.BUTTON.getGroup());
