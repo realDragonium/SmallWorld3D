@@ -36,7 +36,7 @@ public class GameView implements GameObserver {
         createViews();
         basicViewLayout();
         gameCon.register(this);
-//        gameCon.setPlayerPositions();
+        gameCon.setPlayerPositions();
 
     }
 
@@ -85,9 +85,11 @@ public class GameView implements GameObserver {
         root.getChildren().add(groups.get(GameViewEnum.TIMER.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.PLAYER.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.TURN.getStringValue()));
+        root.getChildren().add(groups.get(GameViewEnum.SHOP.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.ROUND.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.BUTTON.getStringValue()));
         root.getChildren().add(groups.get(GameViewEnum.AREAINFO.getStringValue()));
+
 
         root.getChildren().add(notBasicRoot);
     }

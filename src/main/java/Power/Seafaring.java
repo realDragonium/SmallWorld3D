@@ -6,4 +6,9 @@ public class Seafaring implements Power {
     public String getName() {
         return "seafaring";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

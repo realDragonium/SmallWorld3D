@@ -6,4 +6,9 @@ public class Elves implements Race {
     public String getName() {
         return "elves";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 8;
+    }
 }

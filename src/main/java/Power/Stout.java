@@ -6,4 +6,9 @@ public class Stout implements Power {
     public String getName() {
         return "stout";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

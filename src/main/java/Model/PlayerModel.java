@@ -9,7 +9,8 @@ import javafx.scene.transform.Translate;
 import java.util.Stack;
 
 public class PlayerModel implements PlayerObservable {
-    private Translate playerPos;
+    private Translate player3dPos;
+    private Translate player2dPos;
     private PlayerObserver observer;
     private final String NAME;
     private String playerID;
@@ -29,14 +30,14 @@ public class PlayerModel implements PlayerObservable {
         NAME = playerId;
     }
 
-    public void setPlayerPos(Translate position){
-        playerPos = position;
+    public void setPlayer3dPos(Translate position){
+        player3dPos = position;
     }
 
+    public void setPlayer2dPos(Translate position) { player2dPos = position;}
+
     public void addRaceFiche(FicheController fiche){
-        Translate fichePos = new Translate(playerPos.getX(), (playerPos.getY() + ((raceFiches.size() - 1) * 10)), playerPos.getZ());
-        raceFiches.add(fiche);
-        fiche.moveToPosition(fichePos);
+
     }
 
     public FicheController removeRaceFiche(){
@@ -75,5 +76,13 @@ public class PlayerModel implements PlayerObservable {
     public void addPunten(int amount) {
         points += amount;
         notifyObserver();
+    }
+
+    public Translate get3dPos() {
+        return player3dPos;
+    }
+
+    public Translate get2dPos() {
+        return player2dPos;
     }
 }

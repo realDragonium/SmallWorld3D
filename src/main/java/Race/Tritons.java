@@ -6,4 +6,9 @@ public class Tritons implements Race {
     public String getName() {
         return "tritons";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 8;
+    }
 }

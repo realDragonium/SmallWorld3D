@@ -30,6 +30,7 @@ public class Map3DView {
         loadMap();
         createCamera();
         createTable();
+        mapCon.getGameCon().set3dGroup(fiches);
         world.getChildren().addAll(fiches);
     }
 
@@ -79,10 +80,10 @@ public class Map3DView {
     }
 
 
-    public FicheController createRaceFiche(String race){
-        FicheController ficheCon = new FicheController(1, race);
-        new fiche3dView(ficheCon, fiches, race);
-        return ficheCon;
-    }
+//    public FicheController createRaceFiche(String race){
+//        FicheController ficheCon = new FicheController(1, race);
+//        new fiche3dView(ficheCon, fiches, race);
+//        return ficheCon;
+//    }
 
 }

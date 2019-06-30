@@ -150,4 +150,8 @@ public class MapController {
 	public void placeFiche(AreaController areaCon, FicheController fiche) {
 		areaCon.putFiche(fiche);
 	}
+
+    public GameController getGameCon() {
+		return gameCon;
+    }
 }

@@ -16,7 +16,7 @@ public class ButtonController {
     }
 
     public void fichesOver() {
-        gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
+        //gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
     }
 
     public void nextPhase(){

@@ -69,11 +69,11 @@ public class Area3DView implements AreaObserver {
         number.setVisible(false);
     }
 
-    public FicheController createRaceFiche(String race){
-        FicheController ficheCon = new FicheController(1, "Ghost");
-        new fiche3dView(ficheCon, map, race);
-        return ficheCon;
-    }
+//    public FicheController createRaceFiche(String race){
+//        FicheController ficheCon = new FicheController(1, "Ghost");
+//        new fiche3dView(ficheCon, map, race);
+//        return ficheCon;
+//    }
 
     @Override
     public void update(AreaObservable ao) {

@@ -6,4 +6,9 @@ public class Mounted implements Power {
     public String getName() {
         return "mounted";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

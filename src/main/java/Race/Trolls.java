@@ -6,4 +6,9 @@ public class Trolls implements Race {
     public String getName() {
         return "trolls";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 8;
+    }
 }

@@ -6,4 +6,9 @@ public class Alchemist implements Power {
     public String getName() {
         return "alchemist";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

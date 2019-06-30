@@ -15,8 +15,11 @@ import javafx.scene.transform.Translate;
 
 public class GameController {
 
+    private Group addable3d;
+
     private FirebaseGameController fbGame;
     Translate player1Pos = new Translate(600, 0, 0);
+    Translate player1Pos2d = new Translate(600, 900);
 
     private Controller3D con3d;
     private ApplicationController appCon;
@@ -65,9 +68,10 @@ public class GameController {
 
 
     public void setPlayerPositions(){
-        players.get("player1").setPlayerPosition(player1Pos);
-        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
-        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+        players.get("player1").setPlayer3dPosition(player1Pos);
+        players.get("player1").setPlayer2dPosition(player1Pos2d);
+//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
+//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
 
     public void create3dView(Group group){
@@ -142,6 +146,14 @@ public class GameController {
     public void createAttackView(Group group) {
         attCon = new AttackController(this);
         fxmlLoader.loader("/AttackView.fxml", (Callable<AttackView>)() -> new AttackView(group, attCon));
+    }
+
+    public void createCombinationView(Group group, CombinationController combiCon) {
+        fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
+    }
+
+    public void createRaceFiche(FicheController con){
+        new fiche3dView(con, addable3d);
     }
 
 
@@ -246,6 +258,10 @@ public class GameController {
 
     public String getLobbyname(){
         return lobbyName;
+    }
+
+    public void set3dGroup(Group group){
+        addable3d = group;
     }
 
     public void addToGameView(GameViewEnum go){

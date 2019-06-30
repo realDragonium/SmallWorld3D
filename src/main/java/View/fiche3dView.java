@@ -14,14 +14,14 @@ public class fiche3dView implements FicheObserver {
     Group fiches;
     Group fiche;
 
-    public fiche3dView(FicheController ficheCon, Group fiches, String race){
+    public fiche3dView(FicheController ficheCon, Group fiches){
         this.ficheCon = ficheCon;
         this.fiches = fiches;
         ficheCon.registerObserver(this);
-        loadFiche(race);
+        loadFiche();
     }
 
-    public void loadFiche(String race){
+    public void loadFiche(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/raceFiche.fxml"));

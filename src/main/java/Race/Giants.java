@@ -6,4 +6,9 @@ public class Giants implements Race {
     public String getName() {
         return "ghouls";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 7;
+    }
 }

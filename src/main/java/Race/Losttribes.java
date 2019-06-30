@@ -6,4 +6,9 @@ public class Losttribes implements Race {
     public String getName() {
         return "losttribes";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 1;
+    }
 }

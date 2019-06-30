@@ -6,4 +6,9 @@ public class Bivouacking implements Power {
     public String getName() {
         return "bivouacking";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

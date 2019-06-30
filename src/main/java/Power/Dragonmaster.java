@@ -6,4 +6,9 @@ public class Dragonmaster implements Power {
     public String getName() {
         return "dragonmaster";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }

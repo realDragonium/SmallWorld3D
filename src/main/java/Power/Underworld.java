@@ -6,4 +6,9 @@ public class Underworld implements Power {
     public String getName() {
         return "underworld";
     }
+
+    @Override
+    public int getFicheAmount() {
+        return 0;
+    }
 }
