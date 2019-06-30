@@ -34,6 +34,8 @@ public class GameController implements FirebaseGameObserver {
     private TimerController timerCon;
     private VervallenController vervalCon;
     private InfoController infoCon;
+    private NotificationController notiCon;
+
 
     private GameModel model;
     private Map<String, PlayerController> players = new HashMap<>();
@@ -143,13 +145,17 @@ public class GameController implements FirebaseGameObserver {
         fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
     }
 
+    public void createNotifiView(Group group) {
+        fxmlLoader.loader("/NotificationView.fxml", (Callable<NotificationView>) () -> new NotificationView(group, notiCon));
+    }
+
     public void createRaceFiche(FicheController con){
         new fiche3dView(con, addable3d);
     }
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
+        fbGame = new FirebaseGameController("test2", this);
         attCon = new AttackController(this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
@@ -163,6 +169,7 @@ public class GameController implements FirebaseGameObserver {
         phaseCon = new PhaseController(this, new Preparing());
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
+        notiCon = new NotificationController(this);
     }
 
 
@@ -296,4 +303,6 @@ public class GameController implements FirebaseGameObserver {
     public void setPhase(PhaseEnum phase){
         phaseCon.setPhase(phase);
     }
+
+
 }

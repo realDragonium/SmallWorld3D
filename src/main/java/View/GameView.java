@@ -58,6 +58,7 @@ public class GameView implements GameObserver {
         gameCon.createAreaInfoView(GameViewEnum.AREAINFO.getGroup());
         gameCon.createUIOverlay(GameViewEnum.UIOVERLAY.getGroup());
         gameCon.createPhaseView(GameViewEnum.PHASE.getGroup());
+        gameCon.createNotifiView(GameViewEnum.NOTIFICATION.getGroup());
     }
 
     private void basicViewLayout() {
@@ -71,6 +72,7 @@ public class GameView implements GameObserver {
         root.getChildren().add(GameViewEnum.BUTTON.getGroup());
         root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
         root.getChildren().add(GameViewEnum.PHASE.getGroup());
+        root.getChildren().add(GameViewEnum.NOTIFICATION.getGroup());
 
 
 
