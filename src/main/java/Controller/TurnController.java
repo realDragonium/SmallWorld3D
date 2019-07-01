@@ -4,6 +4,7 @@ import Firebase.FirebaseGameObserver;
 import Model.TurnModel;
 import Observer.TurnObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.transform.Translate;
 
 public class TurnController implements FirebaseGameObserver {
 
@@ -34,10 +35,27 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     void nextTurn(){
+
         if(model.getTurns().size() == 0) roundCon.nextRound();
 
         model.getTurns().pop().nextTurn(phaseCon);
         model.currentPlayer = model.players.get(3 - model.getTurns().size());
+        PlayerController player = model.currentPlayer;
+        Translate cameraPos = new Translate(player.get3dPos().getX(), -700, player.get3dPos().getZ());
+        gameCon.getCameraCon().moveToPosition(cameraPos, 5);
+        int rotationY = 0;
+        if(player.get3dPos().getX() == -600){
+            rotationY = 90;
+        }
+        else if(player.get3dPos().getZ() == 600){
+            rotationY = 180;
+        }
+
+        else if(player.get3dPos().getX() == 600){
+            rotationY = 270;
+        }
+
+        gameCon.getCameraCon().rotateToAngle(-60, rotationY , 5);
         model.notifyObservers();
     }
 

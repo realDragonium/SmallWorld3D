@@ -23,8 +23,12 @@ public class GameController {
     private Group addable3d = new Group();
 
     private FirebaseGameController fbGame;
-    Translate player1Pos = new Translate(600, 0, 0);
-    Translate player1Pos2d = new Translate(600, 900);
+    Translate playerPos2d = new Translate(600, 900);
+
+    Translate player1Pos = new Translate(0, 0, -600);
+    Translate player2Pos = new Translate(-600, 0, 0);
+    Translate player3Pos = new Translate(0, 0, 600);
+    Translate player4Pos = new Translate(600, 0, 0);
 
     private Controller3D con3d;
     private ApplicationController appCon;
@@ -43,6 +47,7 @@ public class GameController {
     private RoundController roundCon;
     private TurnController turnCon;
     private AreaInformationController areaInfoCon;
+    private CameraController cameraCon;
 
     private String lobbyName;
     private VervallenController vervCon;
@@ -76,7 +81,13 @@ public class GameController {
 
     public void setPlayerPositions(){
         model.getPlayer(0).setPlayer3dPosition(player1Pos);
-        model.getPlayer(0).setPlayer2dPosition(player1Pos2d);
+        model.getPlayer(0).setPlayer2dPosition(playerPos2d);
+        model.getPlayer(1).setPlayer3dPosition(player2Pos);
+        model.getPlayer(1).setPlayer2dPosition(playerPos2d);
+        model.getPlayer(2).setPlayer3dPosition(player3Pos);
+        model.getPlayer(2).setPlayer2dPosition(playerPos2d);
+        model.getPlayer(3).setPlayer3dPosition(player4Pos);
+        model.getPlayer(3).setPlayer2dPosition(playerPos2d);
 //        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
 //        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
@@ -168,6 +179,11 @@ public class GameController {
 
     public void createRaceFiche(FicheController con){
         new fiche3dView(con, addable3d);
+    }
+
+    public CameraView createCamera(Group camera) {
+        cameraCon = new CameraController();
+        return new CameraView(cameraCon, camera);
     }
 
 
@@ -304,5 +320,14 @@ public class GameController {
 
     public void setMessage(NotificationEnum message) {
         notiCon.setMessage(message);
+    }
+
+
+    public CameraController getCameraCon() {
+        return cameraCon;
+    }
+
+    public Translate getPlayerPos(PlayerController player){
+        return player.get3dPos();
     }
 }

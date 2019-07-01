@@ -51,7 +51,6 @@ public class PhaseController implements FirebaseGameObserver {
         model.register(po);
     }
 
-
     @Override
     public void update(DocumentSnapshot ds) {
         nextPhase();

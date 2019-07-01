@@ -6,10 +6,11 @@ import Phase.Phase;
 import java.util.ArrayList;
 import java.util.List;
 import Enum.PhaseEnum;
+import Phase.SpectatePreparing;
 
 public class PhaseModel implements PhaseObservable {
     private List<PhaseObserver> observers = new ArrayList<>();
-    private Phase phase;
+    private Phase phase = new SpectatePreparing();
 
     public PhaseModel(){
 

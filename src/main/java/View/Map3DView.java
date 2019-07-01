@@ -27,6 +27,7 @@ public class Map3DView {
         scene = new SubScene(world, 1920, 1000, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
+        this.gameCon = mapCon.getGameCon();
         map.getChildren().add(scene);
         System.out.println("setting the 3d group");
         mapCon.getGameCon().set3dGroup(fiches);
@@ -71,8 +72,7 @@ public class Map3DView {
 
     public void createCamera(){
         System.out.println("creating camera...");
-        CameraController cameraCon = new CameraController();
-        CameraView cameraView = new CameraView(cameraCon, camera);
+        CameraView cameraView = gameCon.createCamera(camera);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
     }
