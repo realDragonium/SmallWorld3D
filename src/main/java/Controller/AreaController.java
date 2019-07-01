@@ -177,22 +177,24 @@ public class AreaController{
 
     public void createSpecialPropFiche(){
         if(!model.getSpecialProp().equals("None")) {
-            Group group = gameCon.createSpecialPropFiche(model.getSpecialProp());
-            int scale = 5;
 
-            group.setRotationAxis(Rotate.Y_AXIS);
-            group.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
-
-            group.setTranslateX(model.getSpecialPropPoint().getX());
-            group.setTranslateY(model.getSpecialPropPoint().getY());
-            group.setTranslateZ(model.getSpecialPropPoint().getZ());
             if(model.getSpecialProp().equals("Magical")){
-                scale = 8;
-                group.setTranslateY(model.getSpecialPropPoint().getY() - 10);
+                gameCon.createCrystal().setPosition(model.getSpecialPropPoint());
             }
-            group.setScaleX(scale);
-            group.setScaleY(scale);
-            group.setScaleZ(scale);
+            else {
+                Group group = gameCon.createSpecialPropFiche(model.getSpecialProp());
+                int scale = 5;
+
+                group.setRotationAxis(Rotate.Y_AXIS);
+                group.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
+
+                group.setTranslateX(model.getSpecialPropPoint().getX());
+                group.setTranslateY(model.getSpecialPropPoint().getY());
+                group.setTranslateZ(model.getSpecialPropPoint().getZ());
+                group.setScaleX(scale);
+                group.setScaleY(scale);
+                group.setScaleZ(scale);
+            }
         }
     }
 

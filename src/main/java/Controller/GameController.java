@@ -141,6 +141,10 @@ public class GameController implements FirebaseGameObserver {
         fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(group, diceCon));
     }
 
+    public Crystal createCrystal(){
+        Crystal crystal = new Crystal(addable3d);
+        return crystal;
+    }
 
     public Group createSpecialPropFiche(String specialProp) {
         Group group = new Group();

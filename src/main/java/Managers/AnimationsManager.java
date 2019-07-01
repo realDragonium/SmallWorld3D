@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class AnimationsManager {
     private static AnimationsManager animManager;
-    int animationFPS = 20;
+    int animationFPS = 30;
     List<AnimationController> animations = new ArrayList<>();
 
     public static AnimationsManager getInstance(){
@@ -46,13 +46,32 @@ public class AnimationsManager {
         double yDelta = height / frames;
         System.out.println(yDelta);
         for(int x = 1; x <= frames / 2; x++) {
-            System.out.println("omhoog: " + x);
             Translate point = new Translate(0, yDelta, 0);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
         for(int x = frames / 2 + 1; x <= frames; x++) {
-            System.out.println("omlaag: " + x);
             Translate point = new Translate(0, -yDelta, 0);
+            newAnim.addAnimationPoint(x, new AnimationPoint(point));
+        }
+        animations.add(newAnim);
+    }
+
+    public void createMoveToAnimationArch(Animatable animObj, Translate newPosition, int seconds){
+        AnimationController newAnim = new AnimationController(animObj, false);
+
+        int frames = seconds * animationFPS;
+
+        double deltaX = newPosition.getX() - animObj.getCurrentPosition().getX();
+        double deltaY = newPosition.getY() - animObj.getCurrentPosition().getY();
+        double deltaZ = newPosition.getZ() - animObj.getCurrentPosition().getZ();
+
+
+        double lastHeight = 0.4 * ((0 - frames/2) * (0 - frames/2)) - 100;
+        for(int x = 1; x <= frames; x++) {
+            double height = 0.4 * ((x - frames/2) * (x -frames/2)) - 100;
+            double deltaHeight = height - lastHeight;
+            lastHeight = height;
+            Translate point = new Translate(deltaX / frames, deltaY / frames + deltaHeight, deltaZ / frames);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
         animations.add(newAnim);
