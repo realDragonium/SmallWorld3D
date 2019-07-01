@@ -1,8 +1,13 @@
 package Controller;
 
 import Model.AreaInformationModel;
+import Objects.FXMLLOADER;
 import Observer.AreaInformationObserver;
 import Enum.GameViewEnum;
+import View.AreaInformationView;
+import javafx.scene.Group;
+
+import java.util.concurrent.Callable;
 
 public class AreaInformationController {
 
@@ -13,7 +18,14 @@ public class AreaInformationController {
     public AreaInformationController(GameController gameCon){
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
+        createAreaInfoView();
     }
+
+
+    private void createAreaInfoView() {
+        new FXMLLOADER().loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(this));
+    }
+
 
     public void putAreaInformationScreen(AreaController area){
         model.setArea(area);

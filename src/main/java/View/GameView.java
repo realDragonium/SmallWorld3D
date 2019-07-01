@@ -31,28 +31,13 @@ public class GameView implements GameObserver {
         gameCon.register(this);
         gameCon.setPlayerPositions();
         gameCon.startGame();
+
     }
 
     private void createViews(){
         gameCon.createMap2DView(GameViewEnum.MAP2D.getGroup());
         gameCon.create3dView(GameViewEnum.MAP3D.getGroup());
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 0);
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 1);
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 2);
-        gameCon.createPlayerView(GameViewEnum.PLAYER.getGroup(), 3);
-        gameCon.createRoundView(GameViewEnum.ROUND.getGroup());
-        gameCon.createTurnView(GameViewEnum.TURN.getGroup());
-        gameCon.createButtonView(GameViewEnum.BUTTON.getGroup());
-        gameCon.createShopView(GameViewEnum.SHOP.getGroup());
-        gameCon.createTimerView(GameViewEnum.TIMER.getGroup());
-        gameCon.createVervalView(GameViewEnum.VERVAL.getGroup());
-        gameCon.createDiceView(GameViewEnum.DICE.getGroup());
-        gameCon.createRedeployView(GameViewEnum.REDEPLOY.getGroup());
-        gameCon.createInfoView(GameViewEnum.INFO.getGroup());
-        gameCon.createAreaInfoView(GameViewEnum.AREAINFO.getGroup());
         gameCon.createUIOverlay(GameViewEnum.UIOVERLAY.getGroup());
-        gameCon.createPhaseView(GameViewEnum.PHASE.getGroup());
-        gameCon.createNotifiView(GameViewEnum.NOTIFICATION.getGroup());
     }
 
     private void basicViewLayout() {
@@ -63,6 +48,7 @@ public class GameView implements GameObserver {
         root.getChildren().add(GameViewEnum.ROUND.getGroup());
         root.getChildren().add(GameViewEnum.BUTTON.getGroup());
         root.getChildren().add(GameViewEnum.PHASE.getGroup());
+        root.getChildren().add(GameViewEnum.COMBINATION.getGroup());
         root.getChildren().add(GameViewEnum.NOTIFICATION.getGroup());
 
         root.getChildren().add(notBasicRoot);

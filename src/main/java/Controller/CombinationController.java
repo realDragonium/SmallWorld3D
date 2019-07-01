@@ -2,10 +2,14 @@ package Controller;
 
 import Attacks.AttackType;
 import Model.CombinationModel;
+import Objects.FXMLLOADER;
 import Observer.CombinationObserver;
+import View.CombinationView;
+import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.Stack;
+import java.util.concurrent.Callable;
 
 
 public class CombinationController {
@@ -16,8 +20,12 @@ public class CombinationController {
 
     public CombinationController(String race, String power){
         model = new CombinationModel(race, power);
+        createCombinationView();
     }
 
+    private void createCombinationView() {
+        new FXMLLOADER().loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(this));
+    }
 
     public void registerObserver(CombinationObserver obs){
         model.register(obs);

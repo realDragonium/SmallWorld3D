@@ -32,11 +32,10 @@ public class GameController {
 
     private Controller3D con3d;
     private ApplicationController appCon;
-    private FXMLLOADER fxmlLoader = new FXMLLOADER();
     private MapController mapCon;
     private ButtonController buttonCon;
     private TimerController timerCon;
-    private VervallenController vervalCon;
+    private DeclineController declineCon;
     private InfoController infoCon;
     private NotificationController notiCon;
 
@@ -50,7 +49,7 @@ public class GameController {
     private CameraController cameraCon;
 
     private String lobbyName;
-    private VervallenController vervCon;
+    private DeclineController vervCon;
     private TimerController timeCon;
     private GameTimer gameTimer;
     private ShopController shopCon;
@@ -69,7 +68,7 @@ public class GameController {
     private List<PlayerController> createPlayers(int numberOfPlayers){
         List<PlayerController> players = new ArrayList<>();
         for(int i = 0; i < numberOfPlayers; i++)
-            players.add(new PlayerController("player"+i, this));
+            players.add(new PlayerController(i, this));
 
         return players;
     }
@@ -97,49 +96,18 @@ public class GameController {
     }
 
     public void createMap2DView(Group group){
-        fxmlLoader.loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        new FXMLLOADER().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
-    public void createPlayerView(Group group, int id){
-        PlayerController player = model.getPlayer(id);
-        fxmlLoader.loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, group, player));
-    }
+
 
     public void createUIOverlay(Group group) {
-        fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
+        new FXMLLOADER().loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
     }
 
-    public void createRoundView(Group group) {
-        fxmlLoader.loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(group, roundCon));
-    }
 
-    public void createAreaInfoView(Group group) {
-        fxmlLoader.loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(group, areaInfoCon));
-    }
 
-    public void createTurnView(Group group) {
-        fxmlLoader.loader("/TurnView.fxml", (Callable<TurnView>) () -> new TurnView(group, turnCon));
-    }
 
-    public void createButtonView(Group group) {
-        fxmlLoader.loader("/ButtonView.fxml", (Callable<ButtonView>) () -> new ButtonView(group, buttonCon));
-    }
-
-    public void createShopView(Group group) {
-        fxmlLoader.loader("/ShopView.fxml", (Callable<ShopView>) () -> new ShopView(group, shopCon));
-    }
-
-    public void createTimerView(Group group) {
-        fxmlLoader.loader("/TimerView.fxml", (Callable<TimerView>) () -> new TimerView(group, timerCon));
-    }
-
-    public void createVervalView(Group group) {
-        fxmlLoader.loader("/VervallenView.fxml", (Callable<VervallenView>) () -> new VervallenView(group, vervalCon));
-    }
-
-    public void createDiceView(Group group) {
-        fxmlLoader.loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(group, diceCon));
-    }
 
     public Crystal createCrystal(){
         Crystal crystal = new Crystal(addable3d);
@@ -161,26 +129,6 @@ public class GameController {
         return group;
     }
 
-    public void createRedeployView(Group group) {
-        fxmlLoader.loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(group, redCon));
-    }
-
-    public void createInfoView(Group group) {
-        fxmlLoader.loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>)() -> new InfoView(group, infoCon));
-    }
-
-    public void createPhaseView(Group group) {
-        fxmlLoader.loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(group, phaseCon));
-    }
-
-    public void createCombinationView(Group group, CombinationController combiCon) {
-        fxmlLoader.loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(group, combiCon));
-    }
-
-    public void createNotifiView(Group group) {
-        fxmlLoader.loader("/NotificationView.fxml", (Callable<NotificationView>) () -> new NotificationView(group, notiCon));
-    }
-
     void createRaceFiche(FicheController con){
         new fiche3dView(con, addable3d);
     }
@@ -193,10 +141,11 @@ public class GameController {
 
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
+        new Thread(fbGame).start();
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
-        vervalCon = new VervallenController(this);
+        declineCon = new DeclineController(this);
         timerCon = new TimerController(this);
         shopCon = new ShopController(this);
         buttonCon = new ButtonController(this);
@@ -206,7 +155,6 @@ public class GameController {
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
         notiCon = new NotificationController(this);
-        activateFirebase();
     }
 
 
@@ -238,7 +186,7 @@ public class GameController {
         return mapCon;
     }
 
-    public VervallenController getVervCon(){
+    public DeclineController getVervCon(){
         return vervCon;
     }
 
@@ -334,7 +282,5 @@ public class GameController {
         return player.get3dPos();
     }
 
-    void activateFirebase() {
-        fbGame.run();
-    }
+
 }

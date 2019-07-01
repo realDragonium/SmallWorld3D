@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
+import Enum.GameViewEnum;
 
 public class CombinationView implements CombinationObserver {
 
@@ -20,8 +21,8 @@ public class CombinationView implements CombinationObserver {
 
     public ImageView race, power;
 
-    public CombinationView(Group group, CombinationController combiCon){
-        this.group = group;
+    public CombinationView(CombinationController combiCon){
+        this.group = GameViewEnum.COMBINATION.getGroup();
         this.comboCon = combiCon;
     }
 
@@ -37,7 +38,7 @@ public class CombinationView implements CombinationObserver {
             root.setTranslateX(co.getPosition().getX());
             root.setTranslateY(co.getPosition().getY());
         }
-        if(initialize) {
+        if(initialize && !co.getRaceId().equals("losttribes")) {
             System.out.println(co.getPowerId() + ".png");
             System.out.println(co.getRaceId() + ".png");
             Image powerImage = new Image("/Images/Powers/" + co.getPowerId() + ".png");

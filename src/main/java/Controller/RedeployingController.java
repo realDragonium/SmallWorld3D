@@ -1,5 +1,11 @@
 package Controller;
 
+import Objects.FXMLLOADER;
+import View.RedeployingView;
+import javafx.scene.Group;
+
+import java.util.concurrent.Callable;
+
 public class RedeployingController {
 
     GameController gameCon;
@@ -7,8 +13,11 @@ public class RedeployingController {
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
-        fbGame = gameCon.getFireBase();
+        createRedeployView();
+    }
 
+    private void createRedeployView() {
+        new FXMLLOADER().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
     }
 
     //DEPRECATED

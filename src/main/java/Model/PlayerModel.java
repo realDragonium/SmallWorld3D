@@ -19,11 +19,15 @@ public class PlayerModel implements PlayerObservable {
     private String playerID;
     public Stack<FicheController> raceFiches = new Stack<>();
     private List<CombinationController> combinations = new ArrayList<>();
-    private Stack<CombinationController> useableCombies = new Stack<>();
     private CombinationController currentCombi;
     public int points;
-
     public boolean connected = true;
+
+    public PlayerModel(String playerId) {
+        playerID = playerId;
+        points = 5;
+        NAME = playerId;
+    }
 
     public List<CombinationController> getCombies(){
         return combinations;
@@ -33,15 +37,6 @@ public class PlayerModel implements PlayerObservable {
         combinations.add(combi);
     }
 
-    public void nextCombi(){
-        currentCombi = useableCombies.pop();
-    }
-
-    public PlayerModel(String playerId) {
-        playerID = playerId;
-        points = 5;
-        NAME = playerId;
-    }
 
     public void setPlayer3dPos(Translate position){
         player3dPos = position;

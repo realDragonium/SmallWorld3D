@@ -7,7 +7,7 @@ import Phase.Phase;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
+import Enum.GameViewEnum;
 public class PhaseView implements PhaseObserver {
 
     private Group group;
@@ -16,8 +16,8 @@ public class PhaseView implements PhaseObserver {
     public Pane pane;
     public Text phaseField;
 
-    public PhaseView(Group group, PhaseController phaseCon){
-        this.group = group;
+    public PhaseView(PhaseController phaseCon){
+        this.group = GameViewEnum.PHASE.getGroup();
         this.phaseCon = phaseCon;
     }
 

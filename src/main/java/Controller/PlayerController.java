@@ -2,14 +2,18 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
+import Objects.FXMLLOADER;
 import Observer.PlayerObserver;
+import View.PlayerView;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
@@ -17,10 +21,19 @@ public class PlayerController implements FirebaseGameObserver {
     private PlayerModel model;
 
 
-    public PlayerController(String playerID, GameController gameCon) {
-        model = new PlayerModel(playerID);
+    public PlayerController(int playerID, GameController gameCon) {
+        model = new PlayerModel("player"+playerID);
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
+        createPlayerView(playerID);
+    }
+
+    public PlayerController(String id){
+        model = new PlayerModel(id);
+    }
+
+    private void createPlayerView(int id){
+        new FXMLLOADER().loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, this));
     }
 
     public void setPlayer3dPosition(Translate pos){

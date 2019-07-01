@@ -6,6 +6,7 @@ import Observer.TurnObserver;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import Enum.GameViewEnum;
 
 public class TurnView implements TurnObserver {
     private Group group;
@@ -14,8 +15,8 @@ public class TurnView implements TurnObserver {
     public Pane pane;
     public Text turnField;
 
-    public TurnView(Group group, TurnController turnCon){
-        this.group = group;
+    public TurnView(TurnController turnCon){
+        this.group = GameViewEnum.TURN.getGroup();
         this.turnCon = turnCon;
     }
 

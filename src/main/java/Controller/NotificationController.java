@@ -1,8 +1,13 @@
 package Controller;
 
 import Model.NotificationModel;
+import Objects.FXMLLOADER;
 import Observer.NotificationObserver;
 import Enum.NotificationEnum;
+import View.NotificationView;
+import javafx.scene.Group;
+
+import java.util.concurrent.Callable;
 
 public class NotificationController {
 
@@ -12,6 +17,11 @@ public class NotificationController {
     public NotificationController(GameController gameCon){
         model = new NotificationModel();
         this.gameCon = gameCon;
+        createNotifiView();
+    }
+
+    private void createNotifiView() {
+        new FXMLLOADER().loader("/NotificationView.fxml", (Callable<NotificationView>) () -> new NotificationView(this));
     }
 
     public void register(NotificationObserver no){

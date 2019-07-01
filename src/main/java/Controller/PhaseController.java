@@ -3,9 +3,14 @@ package Controller;
 import Enum.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
+import Objects.FXMLLOADER;
 import Observer.PhaseObserver;
 import Phase.Phase;
+import View.PhaseView;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.Group;
+
+import java.util.concurrent.Callable;
 
 public class PhaseController implements FirebaseGameObserver {
 
@@ -19,9 +24,14 @@ public class PhaseController implements FirebaseGameObserver {
         model = new PhaseModel();
         fb = gameCon.getFireBase();
         fb.register("phase", this::update);
+        createPhaseView();
     }
 
-     void nextPhase(){
+    private void createPhaseView() {
+        new FXMLLOADER().loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(this));
+    }
+
+    void nextPhase(){
         model.getPhase().nextPhase(this);
     }
 
