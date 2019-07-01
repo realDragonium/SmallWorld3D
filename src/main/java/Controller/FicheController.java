@@ -25,7 +25,7 @@ public class FicheController implements Animatable {
     }
 
     public void moveToPosition(Translate pos){
-        AnimationsManager.getInstance().createMoveToAnimation(this, pos, 3);
+        AnimationsManager.getInstance().createMoveToAnimationArch(this, pos, 3);
     }
 
     @Override
