@@ -37,7 +37,6 @@ public class TurnController implements FirebaseGameObserver {
         if(model.getTurns().size() == 0) roundCon.nextRound();
 
         model.getTurns().pop().nextTurn(phaseCon);
-
         model.currentPlayer = model.players.get(3 - model.getTurns().size());
         model.notifyObservers();
     }

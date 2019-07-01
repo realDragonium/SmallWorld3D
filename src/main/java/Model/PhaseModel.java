@@ -11,8 +11,8 @@ public class PhaseModel implements PhaseObservable {
     private List<PhaseObserver> observers = new ArrayList<>();
     private Phase phase;
 
-    public PhaseModel(Phase phase){
-        this.phase = phase;
+    public PhaseModel(){
+
     }
 
     public void setPhase(PhaseEnum phase){

@@ -14,9 +14,9 @@ public class PhaseController implements FirebaseGameObserver {
     private FirebaseGameController fb;
     private PhaseModel model;
 
-    PhaseController(GameController gameCon, Phase phase) {
+    PhaseController(GameController gameCon) {
         this.gameCon = gameCon;
-        model = new PhaseModel(phase);
+        model = new PhaseModel();
         fb = gameCon.getFireBase();
         fb.register("phase", this::update);
     }

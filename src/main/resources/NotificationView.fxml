@@ -3,6 +3,6 @@
 <?import javafx.scene.Group?>
 
 
-<Group fx:id="root" layoutX="500.0" layoutY="500.0" xmlns="http://javafx.com/javafx/11.0.1"
+<Group fx:id="root" layoutX="500.0" layoutY="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
        xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.NotificationView">
 </Group>

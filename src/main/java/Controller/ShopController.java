@@ -38,7 +38,10 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     public void buyToFirebase(int item){
-        if (model.getShopItems().size() > item) fbGame.buyCombiAction(item);
+        if (model.getShopItems().size() > item) {
+            fbGame.buyCombiAction(item);
+            createRandomShopItem();
+        }
     }
 
     public void setShopPosition(double xPos, double yPos) {
@@ -59,7 +62,6 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     void createRandomShopItem() {
-        System.out.println("creating shop item...");
         String race = model.getRandomRace();
         String power = model.getRandomPower();
         fbGame.addCombiAction(race, power);

@@ -1,13 +1,10 @@
 package Controller;
 
-import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.FXMLLOADER;
 import Observer.GameObserver;
-import Phase.Preparing;
 import View.*;
 import javafx.fxml.FXMLLoader;
-import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.Group;
 import Enum.*;
 import java.util.ArrayList;
@@ -17,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import Enum.*;
 import Enum.GameViewEnum;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
@@ -63,8 +59,6 @@ public class GameController {
         model = new GameModel(8, createPlayers(numberOfPlayers));
 
         createControllers();
-//        fbGame.register("currentplayer", this);
-//        startGame();
     }
 
     private List<PlayerController> createPlayers(int numberOfPlayers){
@@ -75,6 +69,10 @@ public class GameController {
         return players;
     }
 
+
+    public void startGame(){
+        turnCon.nextTurn();
+    }
 
     public void setPlayerPositions(){
         model.getPlayer(0).setPlayer3dPosition(player1Pos);
@@ -146,7 +144,6 @@ public class GameController {
             e.printStackTrace();
         }
         return group;
-
     }
 
     public void createRedeployView(Group group) {
@@ -185,7 +182,7 @@ public class GameController {
         buttonCon = new ButtonController(this);
         roundCon = new RoundController(this);
         areaInfoCon = new AreaInformationController(this);
-        phaseCon = new PhaseController(this, new Preparing());
+        phaseCon = new PhaseController(this);
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
         notiCon = new NotificationController(this);
