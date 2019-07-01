@@ -51,7 +51,6 @@ public class ShopController implements FirebaseGameObserver {
         for (int i = 0; i < 6; i++) {
             Translate pos = new Translate(model.getPosition().getX(), model.getPosition().getY() + i * 100);
             model.addItemPosition(pos);
-
         }
     }
 
@@ -60,6 +59,7 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     void createRandomShopItem() {
+        System.out.println("creating shop item...");
         String race = model.getRandomRace();
         String power = model.getRandomPower();
         fbGame.addCombiAction(race, power);
@@ -82,7 +82,6 @@ public class ShopController implements FirebaseGameObserver {
         String race = ds.getString("race");
         String power = ds.getString("power");
         createSpecificShopItems(race, power);
-
     }
 
     private void buyUpdate(DocumentSnapshot ds) {
