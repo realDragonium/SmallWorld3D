@@ -69,7 +69,10 @@ public class AreaController{
     public void addFiche(FicheController fiche){
         model.addFiche(fiche);
     }
+
     public void removeFiche(){
+        FicheController fiche = model.removeFiche();
+        fiche.getCombiCon().addRaceFiche(fiche);
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////

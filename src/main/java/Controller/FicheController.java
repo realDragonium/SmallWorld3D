@@ -10,10 +10,11 @@ import javafx.scene.transform.Translate;
 public class FicheController implements Animatable {
 
     FicheModel model;
+    CombinationController combiCon;
 
-
-    public FicheController(int defenceValue, String name){
-        model = new FicheModel(defenceValue, name);
+    public FicheController(int defenceValue, CombinationController combi){
+        combiCon = combi;
+        model = new FicheModel(defenceValue, combiCon.getRace());
     }
 
     public void registerObserver(FicheObserver fo){
@@ -56,5 +57,9 @@ public class FicheController implements Animatable {
 
     public int getDefenceValue() {
         return model.getDefenceValue();
+    }
+
+    public CombinationController getCombiCon() {
+        return combiCon;
     }
 }
