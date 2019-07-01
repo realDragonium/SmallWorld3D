@@ -84,7 +84,7 @@ public class AreaController{
     }
 
     public void leaveArea(){
-        
+
     }
 
 
@@ -185,6 +185,7 @@ public class AreaController{
     }
 
     public void setNumber(int number){
+        System.out.println("test");
         numberCon.setNumber(number);
     }
 

@@ -8,9 +8,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.application.Platform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FirebaseGameController implements FirebaseActionObserver {
 
@@ -111,5 +109,12 @@ public class FirebaseGameController implements FirebaseActionObserver {
             System.out.println(doc.getData());
             Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
+//        updateQue(qs.getDocumentChanges());
+//        LinkedList<DocumentChange> list = (LinkedList) updateList;
+
+    }
+
+    private void updateQue(Collection<DocumentChange> list){
+
     }
 }

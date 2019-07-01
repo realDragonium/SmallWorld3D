@@ -43,13 +43,14 @@ public class Map3DView {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/map.fxml"));
             Group map = fxmlLoader.load();
+            Group numbers = new Group();
             int numberOfElements = map.getChildren().size()-1;
             for(int i = 0; i < numberOfElements; i++){
                 Node area = map.getChildren().get(i);
                 if(!area.getId().equals("nope")) {
                     String areaId = area.getId().substring(14);
                     area.setId(areaId);
-                    mapCon.createAreaView(area, map);
+                    mapCon.createAreaView(area, numbers);
                 }
             }
             map.setScaleX(100);
@@ -58,7 +59,7 @@ public class Map3DView {
             xForm.getChildren().add(map);
 //            xForm.setRotateX(180);
             world.getChildren().add(xForm);
-
+            world.getChildren().add(numbers);
             // ...
         }
         catch (IOException e) {

@@ -79,7 +79,6 @@ public class CombinationController {
     public void createRaceFiches(){
         int fiches = model.getRace().getFicheAmount() + model.getPower().getFicheAmount();
         for(int i = 0; i < fiches; i++){
-            System.out.println("fiche Created!");
             FicheController ficheCon = new FicheController(1, model.getRaceId());
             player.getGameCon().createRaceFiche(ficheCon);
             addRaceFiche(ficheCon);

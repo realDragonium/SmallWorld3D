@@ -49,7 +49,6 @@ public class Area3DView implements AreaObserver {
         });
         area.setOnMouseEntered(e -> {
             if(currentNumber != 0) showNumber();
-
             areaCon.hoverEntered();
         });
 
@@ -89,7 +88,6 @@ public class Area3DView implements AreaObserver {
             material.setDiffuseColor(Color.WHITE);
             area.setMaterial(material);
         }
-
         else if(ao.isShowing()){
             Color color = ((PhongMaterial)area.getMaterial()).getSpecularColor().darker();
             PhongMaterial material = (PhongMaterial)area.getMaterial();
@@ -101,7 +99,6 @@ public class Area3DView implements AreaObserver {
             material.setDiffuseColor(AreaColor.valueOf(area.getId().substring(0, (area.getId().length() - 4))).getColor());
             area.setMaterial(material);
         }
-
 
         if(ao.getNumberOfFiches() == 0){
             number.setVisible(false);

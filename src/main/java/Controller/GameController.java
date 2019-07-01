@@ -192,7 +192,7 @@ public class GameController {
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test2", this);
+        fbGame = new FirebaseGameController("test", this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
