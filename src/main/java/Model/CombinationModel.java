@@ -27,7 +27,6 @@ public class CombinationModel implements CombinationObservable {
     private int newFiches = 0;
     private boolean active = true;
     private Stack<FicheController> raceFiches = new Stack<>();
-    private Stack<FicheController> availableFiches = new Stack<>();
     private List<AreaController> areas = new ArrayList<>();
     private Translate position;
 
@@ -58,8 +57,9 @@ public class CombinationModel implements CombinationObservable {
     public Stack<FicheController> removeFiches(int count) {
         Stack<FicheController> tempFiches = new Stack<>();
         for (int i = 0; i < count; i++) {
-            tempFiches.add(availableFiches.pop());
+            tempFiches.add(raceFiches.pop());
         }
+        System.out.println("Available: "+raceFiches.size());
         return tempFiches;
     }
     public void goIntoDecline() {

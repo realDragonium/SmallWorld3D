@@ -4,10 +4,13 @@ import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
 import Observer.ShopObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ShopController implements FirebaseGameObserver {
 
@@ -40,7 +43,13 @@ public class ShopController implements FirebaseGameObserver {
     public void buyToFirebase(int item){
         if (model.getShopItems().size() > item) {
             fbGame.buyCombiAction(item);
-            createRandomShopItem();
+            TimerTask start = new TimerTask() {
+                @Override
+                public void run() {
+                    createRandomShopItem();
+                }
+            };
+            new Timer().schedule(start, 1000);
         }
     }
 

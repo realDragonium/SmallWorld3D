@@ -25,14 +25,14 @@ public class FirebaseGameController implements FirebaseActionObserver {
     }
 
     private void placeAction(Map<String, Object> map) {
+        System.out.println("send message");
         service.placeAction(getEventNumber(), map);
     }
 
-    //Met 3 is het grootste aantal
     private String getEventNumber(){
         String id = String.valueOf(service.getLastestEventNumber());
         StringBuilder str = new StringBuilder(id);
-        while(str.length() < 3) str.insert(0, "0");
+        while(str.length() < 4) str.insert(0, "0");
         return str.toString();
     }
 

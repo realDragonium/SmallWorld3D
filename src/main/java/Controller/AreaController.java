@@ -66,21 +66,29 @@ public class AreaController{
     ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    public void addFiche(){}
-    public void removeFiche(){}
+    public void addFiche(FicheController fiche){
+        model.addFiche(fiche);
+    }
+    public void removeFiche(){
+
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    public void attackArea(Stack<FicheController> fiches) {
+        model.getOwningCombi().retreat(this);
+        fiches.forEach(fiche -> addFiche(fiche));
+    }
+
+    public void leaveArea(){
+        
+    }
 
 
-//    public void createFiche(){
-//        FicheController fiche = map3DCon.con3D.createRaceFiche("ratten");
-//        map3DCon.placeFiche(this, fiche);
-//        //fiche.moveToPosition(model.getAreaPoint());
-//    }
+
 
     public void putFiche(FicheController fiche){
         model.addFiche(fiche);
@@ -94,11 +102,7 @@ public class AreaController{
         return model.getId();
     }
 
-    public void attackArea(Stack<FicheController> fiches) {
-        model.getOwningCombi().retreat(this);
-        model.setFiches(fiches);
-//        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
-    }
+
 
     public void changeCombiOwner(CombinationController combi){
         removeOwner();
@@ -168,7 +172,7 @@ public class AreaController{
     }
 
     public int getDefenceValue() {
-        int value = 0;
+        int value = 2;
         for(FicheController fiche : model.getFiches()){
             value += fiche.getDefenceValue();
         }

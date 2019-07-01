@@ -2,7 +2,10 @@ package Attacks;
 
 import Controller.AreaController;
 import Controller.CombinationController;
+import Controller.FicheController;
 import Controller.PlayerController;
+
+import java.util.Stack;
 
 public class FirstAttack implements  AttackType{
 

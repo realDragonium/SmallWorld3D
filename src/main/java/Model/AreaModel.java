@@ -97,9 +97,11 @@ public class AreaModel implements AreaObservable {
     }
 
     public void setFiches(Stack<FicheController> fiches) {
-        fiches = fiches;
+        this.fiches = fiches;
         notifyObserver();
     }
+
+
 
     public Stack<FicheController> getFiches() {
         return fiches;
