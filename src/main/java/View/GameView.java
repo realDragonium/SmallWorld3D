@@ -37,7 +37,6 @@ public class GameView implements GameObserver {
     private void createViews(){
         gameCon.createMap2DView(GameViewEnum.MAP2D.getGroup());
         gameCon.create3dView(GameViewEnum.MAP3D.getGroup());
-        gameCon.createUIOverlay(GameViewEnum.UIOVERLAY.getGroup());
     }
 
     private void basicViewLayout() {

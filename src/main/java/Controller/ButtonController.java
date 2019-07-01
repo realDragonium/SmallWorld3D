@@ -35,6 +35,6 @@ public class ButtonController {
     }
 
     public void activeListener() {
-        gameCon.getFireBase().activateListener();
+//        gameCon.getFireBase().activateListener();
     }
 }

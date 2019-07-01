@@ -61,7 +61,7 @@ public class GameController {
         this.appCon = appCon;
         int numberOfPlayers = 4;
         model = new GameModel(8, createPlayers(numberOfPlayers));
-
+        createUIOverlay();
         createControllers();
     }
 
@@ -76,6 +76,7 @@ public class GameController {
 
     public void startGame(){
         turnCon.nextTurn();
+        fbGame.activateListener();
     }
 
     public void setPlayerPositions(){
@@ -101,8 +102,8 @@ public class GameController {
 
 
 
-    public void createUIOverlay(Group group) {
-        new FXMLLOADER().loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
+    private void createUIOverlay() {
+        new FXMLLOADER().loader("/UI/UIView.fxml", (Callable<UIView>) UIView::new);
     }
 
 
