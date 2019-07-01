@@ -73,7 +73,7 @@ public class MapController {
 			AreaController areaCon = new AreaController(info, this, gameCon);
 			areaCon.setAreaPoint(model.areaPoints.get(info.id));
 			areaCon.setPropPoint(model.propPoints.get(info.id));
-			areaCon.setPlayerOwner(model.getMapPlayer());
+			areaCon.changeCombiOwner(model.getCombi());
 			areas.put(s, areaCon);
 		});
 	}

@@ -6,16 +6,16 @@ import Controller.PlayerController;
 
 public class FirstAttack implements  AttackType{
 
-
     @Override
     public void Attack(AreaController area, CombinationController combi) {
-        if(!area.isBorderArea()) {
-            System.out.println("Verkeerd land gekozen!");
-            return;
+        if(area.isBorderArea()) {
+            combi.addArea(area);
+            area.attackArea(combi.getFiches(area.getDefenceValue()));
+            area.changeCombiOwner(combi);
+            combi.setAttackType(new NormalAttack());
         }
-        final PlayerController player = combi.getPlayer();
-        combi.addArea(area);
-        area.attackArea(combi.getFiches(area.getDefenceValue()));
-        area.setPlayerOwner(player);
+        else {
+            System.out.println("Verkeerd land gekozen!");
+        }
     }
 }

@@ -99,14 +99,22 @@ public class AreaController{
 //        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
     }
 
-    public void setPlayerOwner(PlayerController player) {
-        model.player = player;
+    public void changeCombiOwner(CombinationController combi){
+        removeOwner();
+        model.setOwningCombi(combi);
+    }
+
+    public void removeOwner(){
+        if(model.getOwningCombi()!= null) model.getOwningCombi().removeArea(this);
     }
 
     public PlayerController getOwnerPlayer() {
-        return model.player;
+        return getOwnerCombi().getPlayer();
     }
 
+    public CombinationController getOwnerCombi(){
+        return model.getOwningCombi();
+    }
 
     void changeActive() {
         model.changeActive();

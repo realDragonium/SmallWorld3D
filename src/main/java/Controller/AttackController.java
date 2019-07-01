@@ -8,36 +8,27 @@ public class AttackController {
     private boolean diceUsed = false;
 
     AttackController(GameController gameCon) {
-
         this.gameCon = gameCon;
     }
 
-    public void removeFichesNeeded(int amount){
-        fichesCountNeeded -= amount;
-    }
+//    public void removeFichesNeeded(int amount){
+//        fichesCountNeeded -= amount;
+//    }
 
-    public AreaController getAttackArea(){
-        return targetArea;
-    }
+//    public AreaController getAttackArea(){
+//        return targetArea;
+//    }
 
-    private void getTargetArea() {
-        targetArea = gameCon.getMapCon().getActiveArea();
-    }
-
-    private void attackAreaLocal() {
-
-    }
-
-    private void attack(PlayerController player, AreaController area, int fiches){
-        player.getActiveCombination().addArea(area);
+//    private void attack(PlayerController player, AreaController area, int fiches){
+//        player.getActiveCombination().addArea(area);
 //        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
-        area.setPlayerOwner(player);
-    }
+//        area.setPlayerOwner(player);
+//    }
 
-    public void attackCountry() {
-        AreaController area = gameCon.getMapCon().getActiveArea();
-        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(area);
-    }
+//    public void attackCountry() {
+//        AreaController area = gameCon.getMapCon().getActiveArea();
+//        gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(area);
+//    }
 
     //DEPRECATED
 //    private boolean isNeighbour(AreaController area, PlayerController player){

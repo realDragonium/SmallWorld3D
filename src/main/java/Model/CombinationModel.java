@@ -49,17 +49,56 @@ public class CombinationModel implements CombinationObservable {
         areas.add(area);
     }
 
+    public void removeArea(AreaController area) {areas.remove(area);}
+
     public boolean isActive(){
         return active;
     }
 
     public Stack<FicheController> removeFiches(int count) {
         Stack<FicheController> tempFiches = new Stack<>();
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             tempFiches.add(availableFiches.pop());
         }
         return tempFiches;
     }
+    public void goIntoDecline() {
+        active = false;
+    }
+
+    public AttackType getAttack(){
+        return attack;
+    }
+
+    public void setPosition(Translate pos) {
+        position = pos;
+        notifyAllObservers();
+    }
+
+    public void addFiche(FicheController fiche) {
+        raceFiches.add(fiche);
+    }
+
+    public FicheController removeFiche() {
+        return raceFiches.pop();
+    }
+
+    public int getFichesAmount() {
+        return raceFiches.size();
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public Power getPower(){
+        return power;
+    }
+
+    public void setAttackType(AttackType attack) {
+        this.attack = attack;
+    }
+
 
     @Override
     public void register(CombinationObserver mvo) {
@@ -93,39 +132,4 @@ public class CombinationModel implements CombinationObservable {
     public Translate getPosition() {
         return position;
     }
-
-
-    public void setToNonActive() {
-        active = false;
-    }
-
-    public AttackType getAttack(){
-        return attack;
-    }
-
-    public void setPosition(Translate pos) {
-        position = pos;
-        notifyAllObservers();
-    }
-
-    public void addFiche(FicheController fiche) {
-        raceFiches.add(fiche);
-    }
-
-    public FicheController removeFiche() {
-        return raceFiches.pop();
-    }
-
-    public int getFichesAmount() {
-        return raceFiches.size();
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public Power getPower(){
-        return power;
-    }
-
 }

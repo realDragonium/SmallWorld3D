@@ -27,6 +27,7 @@ public class ShopModel implements ShopObservable {
 
     private void creatNewRaceList(){
         Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
+        races.remove("losttribes");
     }
     private void createNewPowerList(){
         Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));

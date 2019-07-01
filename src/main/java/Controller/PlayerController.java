@@ -2,7 +2,6 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.PlayerModel;
-import Objects.ShopCombination;
 import Observer.PlayerObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.transform.Translate;
@@ -16,7 +15,7 @@ public class PlayerController implements FirebaseGameObserver {
     private GameController gameCon;
     private FirebaseGameController fbGame;
     private PlayerModel model;
-    private List<CombinationController> combinations = new ArrayList<>();
+
 
     public PlayerController(String playerID, GameController gameCon) {
         model = new PlayerModel(playerID);
@@ -34,13 +33,10 @@ public class PlayerController implements FirebaseGameObserver {
 
     void buyFromShop(CombinationController combo, int costs) {
         model.removePoints(costs);
-        combinations.add(combo);
+        model.getCombies().add(combo);
         combo.moveToPosition(model.get2dPos());
         combo.setPlayer(this);
         combo.createRaceFiches();
-        Map<String, Object> info = new HashMap<>();
-        info.put("fiches", model.getRaceFichesAmount());
-        info.put("points", model.getPoints());
     }
 
 //    void showActiveCombiFichesLeft() {
@@ -50,7 +46,7 @@ public class PlayerController implements FirebaseGameObserver {
 //    }
 
     CombinationController getActiveCombination() {
-        if (combinations.size() > 0) return combinations.get(0);
+        if (model.getCombies().size() > 0) return model.getCombies().get(0);
         return null;
     }
 
@@ -71,16 +67,20 @@ public class PlayerController implements FirebaseGameObserver {
     }
 
     private boolean hasCombination(){
-        return (combinations.size() > 0);
+        return (model.getCombies().size() > 0);
     }
 
     boolean hasActiveCombination(){
         if(hasCombination()) {
-            return combinations.get(0).isActive();
+            return model.getCombies().get(0).isActive();
         }
         return false;
     }
 
+
+    public CombinationController getCurrentCombi(){
+        return model.getCurrenCombi();
+    }
 
     @Override
     public void update(DocumentSnapshot ds) {

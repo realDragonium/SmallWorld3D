@@ -27,7 +27,7 @@ import javafx.scene.layout.Pane;
 
         @FXML
         public void attackCountry(){
-            attackCon.attackCountry();
+//            attackCon.attackCountry();
         }
 
 

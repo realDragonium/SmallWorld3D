@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.PlayerController;
 import Enum.AreaType;
@@ -24,6 +25,7 @@ public class AreaModel implements AreaObservable {
 
     private boolean active = false;
     private AreaObserver observer;
+    private CombinationController owningCombination;
     public PlayerController player;
     private boolean hovering = false;
     private Stack<FicheController> fiches = new Stack<>();
@@ -111,6 +113,14 @@ public class AreaModel implements AreaObservable {
 
     public AreaType getAreaType() {
         return type;
+    }
+
+    public void setOwningCombi(CombinationController combi){
+        owningCombination = combi;
+    }
+
+    public CombinationController getOwningCombi(){
+        return owningCombination;
     }
 
     public boolean isAttackAble(){return attackAble; }

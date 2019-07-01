@@ -7,5 +7,4 @@ public interface AreaInformationObservable {
     void register(AreaInformationObserver ob);
     void notifyAllObs();
     AreaController getArea();
-    boolean isActive();
 }

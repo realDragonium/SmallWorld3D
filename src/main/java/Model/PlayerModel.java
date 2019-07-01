@@ -1,11 +1,14 @@
 package Model;
 
+import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.RaceController;
 import Observable.PlayerObservable;
 import Observer.PlayerObserver;
 import javafx.scene.transform.Translate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class PlayerModel implements PlayerObservable {
@@ -15,8 +18,18 @@ public class PlayerModel implements PlayerObservable {
     private final String NAME;
     private String playerID;
     public Stack<FicheController> raceFiches = new Stack<>();
+    private List<CombinationController> combinations = new ArrayList<>();
+    private CombinationController currentCombi;
     public int points;
     public boolean connected = true;
+
+    public List<CombinationController> getCombies(){
+        return combinations;
+    }
+
+    public void addCombi(CombinationController combi){
+        combinations.add(combi);
+    }
 
     public PlayerModel(String playerId, String name) {
         playerID = playerId;
@@ -84,5 +97,9 @@ public class PlayerModel implements PlayerObservable {
 
     public Translate get2dPos() {
         return player2dPos;
+    }
+
+    public CombinationController getCurrenCombi() {
+        return currentCombi;
     }
 }

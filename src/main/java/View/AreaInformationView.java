@@ -42,7 +42,7 @@ public class AreaInformationView implements AreaInformationObserver {
 
     public void attackCountry() {
         areaInfoCon.AttackArea();
-        areaInfoCon.closeAreaInformation();
+        exitScreen();
     }
 
     public void addFiche() {

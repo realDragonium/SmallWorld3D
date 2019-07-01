@@ -22,7 +22,7 @@ import Enum.GameViewEnum;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
-public class GameController implements FirebaseGameObserver {
+public class GameController {
 
     private Group addable3d = new Group();
 
@@ -52,7 +52,6 @@ public class GameController implements FirebaseGameObserver {
     private VervallenController vervCon;
     private TimerController timeCon;
     private GameTimer gameTimer;
-    private AttackController attCon;
     private ShopController shopCon;
     private PhaseController phaseCon;
     private RedeployingController redCon;
@@ -177,7 +176,6 @@ public class GameController implements FirebaseGameObserver {
 
     private void createControllers() {
         fbGame = new FirebaseGameController("test2", this);
-        attCon = new AttackController(this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
@@ -226,10 +224,6 @@ public class GameController implements FirebaseGameObserver {
         return vervCon;
     }
 
-    public AttackController getAttCon(){
-        return attCon;
-    }
-
     DiceController getDiceCon(){
         return diceCon;
     }
@@ -255,21 +249,12 @@ public class GameController implements FirebaseGameObserver {
         System.out.println("next Turn!");
     }
 
-    public void nextRound() {
-        roundCon.nextRound();
-        System.out.println("next Round!");
-    }
-
     GameTimer getGameTimer() {
         return gameTimer;
     }
 
     TimerController getTimer(){
         return timeCon;
-    }
-
-    public String getLobbyname(){
-        return lobbyName;
     }
 
     public void set3dGroup(Group group){
@@ -308,11 +293,6 @@ public class GameController implements FirebaseGameObserver {
         shopCon.createRandomShopItem();
     }
 
-    @Override
-    public void update(DocumentSnapshot ds) {
-
-    }
-
     public List<PlayerController> getPlayers() {
         return model.getPlayers();
     }
@@ -324,7 +304,6 @@ public class GameController implements FirebaseGameObserver {
     public void setPhase(PhaseEnum phase){
         phaseCon.setPhase(phase);
     }
-
 
     public void setMessage(NotificationEnum message) {
         notiCon.setMessage(message);

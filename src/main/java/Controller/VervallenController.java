@@ -14,7 +14,7 @@ public class VervallenController {
     }
 
     private void makeCombinationNonActive(){
-        gameCon.getCurrentPlayer().getActiveCombination().setToNonActive();
+        gameCon.getCurrentPlayer().getActiveCombination().goIntoDecline();
     }
 
 

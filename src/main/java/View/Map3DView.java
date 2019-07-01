@@ -24,7 +24,7 @@ public class Map3DView {
 
     public Map3DView(MapController mapCon, Group map) {
         System.out.println("creating the map");
-        scene = new SubScene(world, 1920, 1080, true, SceneAntialiasing.BALANCED);
+        scene = new SubScene(world, 1920, 1000, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
         map.getChildren().add(scene);

@@ -1,7 +1,7 @@
 package Controller;
 
+import Attacks.AttackType;
 import Model.CombinationModel;
-import Objects.PowerOld;
 import Observer.CombinationObserver;
 import javafx.scene.transform.Translate;
 
@@ -10,10 +10,14 @@ import java.util.Stack;
 
 public class CombinationController {
 
-    //private RaceController race;
-    private PowerOld powerOld;
     private PlayerController player;
     private CombinationModel model;
+
+
+    public CombinationController(String race, String power){
+        model = new CombinationModel(race, power);
+    }
+
 
     public void registerObserver(CombinationObserver obs){
         model.register(obs);
@@ -23,21 +27,12 @@ public class CombinationController {
         return model.isActive();
     }
 
-    public CombinationController(RaceController race, PowerOld powerOld){
-        //this.race = race;
-        this.powerOld = powerOld;
-        powerOld.setCombiCon(this);
-        model = new CombinationModel(race.getId(), powerOld.getId());
-    }
-
-    public CombinationController(String race, String power){
-        model = new CombinationModel(race, power);
-    }
-
 
     public void addArea(AreaController area){
         model.addArea(area);
     }
+
+    public void removeArea(AreaController area) {model.removeArea(area);}
 
     public void attackThisArea(AreaController area){
         model.getAttack().Attack(area, this);
@@ -63,18 +58,14 @@ public class CombinationController {
         return this.player;
     }
 
-
     public String getRace(){
         return model.getRaceId();
     }
 
-    public PowerOld getPowerOld(){
-        return powerOld;
-    }
+    public String getPower(){return model.getPowerId();}
 
-
-    void setToNonActive() {
-        model.setToNonActive();
+    void goIntoDecline() {
+        model.goIntoDecline();
     }
 
     public void moveToPosition(Translate pos) {
@@ -88,5 +79,9 @@ public class CombinationController {
             player.getGameCon().createRaceFiche(ficheCon);
             addRaceFiche(ficheCon);
         }
+    }
+
+    public void setAttackType(AttackType attack) {
+        model.setAttackType(attack);
     }
 }

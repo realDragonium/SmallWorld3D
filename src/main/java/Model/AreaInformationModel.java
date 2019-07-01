@@ -6,20 +6,8 @@ import Observer.AreaInformationObserver;
 
 public class AreaInformationModel implements AreaInformationObservable {
 
-    AreaInformationObserver observer;
-    AreaController area;
-    boolean active = false;
-
-
-    public void setActive(){
-        active = true;
-        notifyAllObs();
-    }
-
-    public void setNonActive(){
-        active = false;
-        notifyAllObs();
-    }
+    private AreaInformationObserver observer;
+    private AreaController area;
 
     public void setArea(AreaController area){
         this.area = area;
@@ -41,8 +29,4 @@ public class AreaInformationModel implements AreaInformationObservable {
         return area;
     }
 
-    @Override
-    public boolean isActive() {
-        return active;
-    }
 }
