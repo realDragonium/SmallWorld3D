@@ -14,10 +14,6 @@ public class ButtonController {
 
     }
 
-    public void fichesOver() {
-        //gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
-    }
-
     public void nextPhase(){
         gameCon.getFireBase().nextPhaseAction();
     }
@@ -28,5 +24,9 @@ public class ButtonController {
 
     public void previewNotification() {
         gameCon.setMessage(NotificationEnum.DRAGON);
+    }
+
+    public void activeListener() {
+        gameCon.activateFirebase();
     }
 }

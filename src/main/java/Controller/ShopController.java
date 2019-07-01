@@ -25,14 +25,6 @@ public class ShopController implements FirebaseGameObserver {
         fbGame.register("buy", this::buyUpdate);
     }
 
-    public void makeItems() {
-
-    }
-
-    private void removeItem(double item) {
-        model.removeItem((int) item);
-    }
-
     private void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);

@@ -181,7 +181,7 @@ public class GameController {
         fxmlLoader.loader("/NotificationView.fxml", (Callable<NotificationView>) () -> new NotificationView(group, notiCon));
     }
 
-    public void createRaceFiche(FicheController con){
+    void createRaceFiche(FicheController con){
         new fiche3dView(con, addable3d);
     }
 
@@ -192,7 +192,7 @@ public class GameController {
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test2", this);
+        fbGame = new FirebaseGameController("test", this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
@@ -206,6 +206,7 @@ public class GameController {
         mapCon = new MapController(this);
         turnCon = new TurnController(this);
         notiCon = new NotificationController(this);
+        activateFirebase();
     }
 
 
@@ -213,7 +214,7 @@ public class GameController {
         return model.getPlayer(id);
     }
 
-    public PlayerController getCurrentPlayer(){
+    PlayerController getCurrentPlayer(){
         return turnCon.getCurrentPlayer();
     }
 
@@ -261,9 +262,8 @@ public class GameController {
         gameTimer = new GameTimer(this, 30);
     }
 
-    public void nextTurn() {
+    void nextTurn() {
         turnCon.nextTurn();
-        System.out.println("next Turn!");
     }
 
     GameTimer getGameTimer() {
@@ -278,11 +278,11 @@ public class GameController {
         group.getChildren().add(addable3d);
     }
 
-    public void addToGameView(GameViewEnum go){
+    void addToGameView(GameViewEnum go){
         model.addActiveView(go);
     }
 
-    public void removeFromGameView(GameViewEnum go){
+    void removeFromGameView(GameViewEnum go){
         model.removeActiveView(go);
     }
 
@@ -310,11 +310,11 @@ public class GameController {
         shopCon.createRandomShopItem();
     }
 
-    public List<PlayerController> getPlayers() {
+    List<PlayerController> getPlayers() {
         return model.getPlayers();
     }
 
-    public int imPlayer(){
+    int imPlayer(){
         return model.imPlayer();
     }
 
@@ -322,16 +322,19 @@ public class GameController {
         phaseCon.setPhase(phase);
     }
 
-    public void setMessage(NotificationEnum message) {
+    void setMessage(NotificationEnum message) {
         notiCon.setMessage(message);
     }
 
-
-    public CameraController getCameraCon() {
+    CameraController getCameraCon() {
         return cameraCon;
     }
 
     public Translate getPlayerPos(PlayerController player){
         return player.get3dPos();
+    }
+
+    void activateFirebase() {
+        fbGame.run();
     }
 }

@@ -10,21 +10,42 @@ import javafx.application.Platform;
 
 import java.util.*;
 
-public class FirebaseGameController implements FirebaseActionObserver {
+public class FirebaseGameController implements FirebaseActionObserver, Runnable {
 
     private GameController gameCon;
     private FirebaseGameService service;
     private Map<String, FirebaseGameObserver> observers = new HashMap<>();
+    private Queue<Map<String, Object>> queue = new LinkedList<>();
 
     public FirebaseGameController(String gameName, GameController gameCon) {
         this.gameCon = gameCon;
         service = new FirebaseGameService(gameName);
+    }
+
+    @Override
+    public void run() {
+        service.startFBService();
+        placeActionQueue();
         turnActionListener(this);
     }
 
+
     private void placeAction(Map<String, Object> map) {
-        System.out.println("send message");
-        service.placeAction(getEventNumber(), map);
+//        service.placeAction(getEventNumber(), map);
+        queue.add(map);
+    }
+
+    private void placeActionQueue(){
+        TimerTask start = new TimerTask() {
+            @Override
+            public void run() {
+                if(queue.peek()!= null){
+                    service.placeAction(getEventNumber(), queue.remove());
+                }
+            }
+        };
+        Timer animTimer = new Timer();
+        animTimer.scheduleAtFixedRate(start, 0, 250);
     }
 
     private String getEventNumber(){

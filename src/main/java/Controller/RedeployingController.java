@@ -10,6 +10,7 @@ public class RedeployingController {
         fbGame = gameCon.getFireBase();
 
     }
+
     //DEPRECATED
 //    public void removeFiche() {
 //        AreaController activeArea = getActiveArea();
@@ -41,8 +42,8 @@ public class RedeployingController {
 //        }
 //    }
 
-    private AreaController getActiveArea(){
-        AreaController activeArea = gameCon.getMapCon().getActiveArea();
-        return activeArea;
-    }
+//    private AreaController getActiveArea(){
+//        AreaController activeArea = gameCon.getMapCon().getActiveArea();
+//        return activeArea;
+//    }
 }
