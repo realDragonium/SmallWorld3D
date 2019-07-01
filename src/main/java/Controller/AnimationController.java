@@ -36,4 +36,7 @@ public class AnimationController{
         model.setToFrameOne();
     }
 
+    public Animatable getAnimObject() {
+        return animatingObject;
+    }
 }

@@ -14,7 +14,8 @@ import java.util.TimerTask;
 public class AnimationsManager {
     private static AnimationsManager animManager;
     int animationFPS = 20;
-    List<AnimationController> animations = new ArrayList<>();
+    List<AnimationController> translateAnimations = new ArrayList<>();
+    List<AnimationController> rotateAnimations = new ArrayList<>();
 
     public static AnimationsManager getInstance(){
         if(animManager == null) animManager = new AnimationsManager();
@@ -29,14 +30,38 @@ public class AnimationsManager {
                 Platform.runLater(() -> playAnimations());
             }
         };
-
         Timer animTimer = new Timer();
         animTimer.scheduleAtFixedRate(start, 0, 1000/animationFPS);
     }
 
+    private void addToAnimationsRot(AnimationController newAnim){
+
+        for(int i =0; i < rotateAnimations.size(); i++){
+            if( rotateAnimations.get(i).getAnimObject().equals(newAnim.getAnimObject())){
+                rotateAnimations.remove(i);
+                System.out.println("found a animation with this animatable");
+            }
+        }
+        rotateAnimations.add(newAnim);
+    }
+
+    private void addToAnimationsTrans(AnimationController newAnim){
+
+        for(int i =0; i < translateAnimations.size(); i++){
+            if( translateAnimations.get(i).getAnimObject().equals(newAnim.getAnimObject())){
+                translateAnimations.remove(i);
+                System.out.println("found a animation with this animatable");
+            }
+        }
+        translateAnimations.add(newAnim);
+    }
+
     private void playAnimations(){
-        for(int x = 0; x < animations.size(); x++){
-            animations.get(x).nextFrame();
+        for(int x = 0; x <  rotateAnimations.size(); x++){
+            rotateAnimations.get(x).nextFrame();
+        }
+        for(int x = 0; x <  translateAnimations.size(); x++){
+            translateAnimations.get(x).nextFrame();
         }
     }
 
@@ -53,7 +78,7 @@ public class AnimationsManager {
             Translate point = new Translate(0, -yDelta, 0);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
-        animations.add(newAnim);
+        addToAnimationsTrans(newAnim);
     }
 
     public void createMoveToAnimationArch(Animatable animObj, Translate newPosition, int seconds){
@@ -74,7 +99,7 @@ public class AnimationsManager {
             Translate point = new Translate(deltaX / frames, deltaY / frames + deltaHeight, deltaZ / frames);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
-        animations.add(newAnim);
+        addToAnimationsTrans(newAnim);
     }
 
     public void createMoveToAnimation(Animatable animObj, Translate newPosition, int seconds){
@@ -89,11 +114,12 @@ public class AnimationsManager {
             Translate point = new Translate(deltaX / frames, deltaY / frames, deltaZ / frames);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));
         }
-        animations.add(newAnim);
+        addToAnimationsTrans(newAnim);
     }
 
     public void removeAnimation(AnimationController animCon) {
-        animations.remove(animCon);
+        rotateAnimations.remove(animCon);
+        translateAnimations.remove(animCon);
     }
 
     public void createRotateToAnimation(Animatable animObj, double xAngle, double yAngle, int seconds, boolean b) {
@@ -106,6 +132,6 @@ public class AnimationsManager {
         for(int x = 1; x <= frames; x++) {
             newAnim.addAnimationPoint(x, new AnimationPoint(deltaX / frames, deltaY / frames));
         }
-        animations.add(newAnim);
+        addToAnimationsRot(newAnim);
     }
 }

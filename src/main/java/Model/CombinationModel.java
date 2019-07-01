@@ -133,4 +133,5 @@ public class CombinationModel implements CombinationObservable {
     public Translate getPosition() {
         return position;
     }
+
 }

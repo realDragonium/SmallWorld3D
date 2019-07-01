@@ -46,12 +46,15 @@ public class AreaInformationView implements AreaInformationObserver {
     }
 
     public void addFiche() {
+        areaInfoCon.addFiche();
     }
 
     public void removeFiche() {
+        areaInfoCon.removeFiche();
     }
 
     public void leaveArea() {
+        areaInfoCon.leaveArea();
     }
 
     public void exitScreen() {

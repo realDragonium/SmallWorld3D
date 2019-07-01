@@ -153,4 +153,7 @@ public class AreaModel implements AreaObservable {
     }
 
 
+    public FicheController removeFiche() {
+        return fiches.pop();
+    }
 }

@@ -24,6 +24,9 @@ public class TurnController implements FirebaseGameObserver {
         model.currentPlayer = gameCon.getPlayer(0);
         fbGame.register("attack", this::attackUpdate);
         fbGame.register("decline", this::update);
+        fbGame.register("addFiche", this::addFicheUpdate);
+        fbGame.register("removeFiche", this::removeFicheUpdate);
+        fbGame.register("leaves", this::leaveAreaUpdate);
     }
 
     public void register(TurnObserver to){
@@ -69,9 +72,25 @@ public class TurnController implements FirebaseGameObserver {
         getCurrentPlayer().getCurrentCombi().goIntoDecline();
     }
 
-    public void attackUpdate(DocumentSnapshot ds){
+    private void attackUpdate(DocumentSnapshot ds){
         AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
         getCurrentPlayer().getActiveCombination().attackThisArea(area);
+    }
+
+    public void addFicheUpdate(DocumentSnapshot ds){
+        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        area.addFiche();
+    }
+
+    public void removeFicheUpdate(DocumentSnapshot ds){
+        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        area.removeFiche();
+
+    }
+
+    public void leaveAreaUpdate(DocumentSnapshot ds){
+        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        area.leaveArea();
     }
 
 }
