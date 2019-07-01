@@ -95,6 +95,7 @@ public class AreaController{
     }
 
     public void attackArea(Stack<FicheController> fiches) {
+        model.getOwningCombi().retreat(this);
         model.setFiches(fiches);
 //        fb.areaUpdateFiches(model.getId(), model.getNumberOfFiches());
     }

@@ -49,6 +49,10 @@ public class CombinationController {
         fiche.moveToPosition(fichePos);
     }
 
+    public void retreat(AreaController areaCon){
+        
+    }
+
 
     public void setPlayer(PlayerController player){
         this.player = player;
