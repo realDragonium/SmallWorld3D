@@ -58,7 +58,7 @@ public class Area3DView implements AreaObserver {
         });
         areaCon.createNumber(number);
         map.getChildren().add(number);
-//        con3d.add3dObject(number);
+
     }
 
     private void showNumber() {
@@ -68,13 +68,6 @@ public class Area3DView implements AreaObserver {
     private void hideNumber(){
         number.setVisible(false);
     }
-
-//    public FicheController createRaceFiche(String race){
-//        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new fiche3dView(ficheCon, map, race);
-//        return ficheCon;
-//    }
-
 
     @Override
     public void update(AreaObservable ao) {

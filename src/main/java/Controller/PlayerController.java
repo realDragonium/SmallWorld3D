@@ -58,14 +58,6 @@ public class PlayerController implements FirebaseGameObserver {
         model.register(po);
     }
 
-    public void addRaceFiche(FicheController fiche) {
-        model.addRaceFiche(fiche);
-    }
-
-    public FicheController removeRaceFiche(){
-        return model.removeRaceFiche();
-    }
-
     private boolean hasCombination(){
         return (model.getCombies().size() > 0);
     }

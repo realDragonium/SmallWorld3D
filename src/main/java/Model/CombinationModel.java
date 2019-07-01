@@ -62,6 +62,7 @@ public class CombinationModel implements CombinationObservable {
         System.out.println("Available: "+raceFiches.size());
         return tempFiches;
     }
+
     public void goIntoDecline() {
         active = false;
     }

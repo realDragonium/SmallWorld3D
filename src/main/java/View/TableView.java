@@ -1,10 +1,8 @@
 package View;
 
-import Controller.Map3DController;
 import Objects.Xform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
@@ -13,13 +11,11 @@ import java.io.IOException;
 
 public class TableView {
 
-    Group root;
-    Xform xForm = new Xform();
-    Map3DController mapCon;
+    private Group root;
+    private Xform xForm = new Xform();
 
     public TableView(Group map) {
         root = map;
-        this.mapCon = mapCon;
         loadTable();
     }
 

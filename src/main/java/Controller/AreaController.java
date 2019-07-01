@@ -1,9 +1,7 @@
 package Controller;
 
-import Enum.AreaProperty;
 import Enum.AreaType;
 import Model.AreaModel;
-import Fiches.RaceFiche;
 import Objects.AreaInfo;
 import Observer.AreaObserver;
 import View.NumberView;
@@ -19,32 +17,9 @@ public class AreaController{
 
 
     private MapController mapCon;
-    private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
     private NumberController numberCon;
-    private FirebaseGameController fb;
-
-    public AreaController(String id, Map3DController mapCon, Translate areaPoint , GameController gameCon){
-        model = new AreaModel(id, areaPoint);
-        map3DCon = mapCon;
-        this.gameCon = gameCon;
-        fb = gameCon.getFireBase();
-
-//        loadAreaInFirebase();
-//        listenToFirebase();
-    }
-
-    public AreaController(Group area, MapController mapController, GameController gameCon) {
-        String id = area.getChildren().get(0).getId();
-        model = new AreaModel(id);
-        mapCon = mapController;
-        this.gameCon = gameCon;
-
-        fb = gameCon.getFireBase();
-        //createSpecialPropFiche();
-//        getAreaInfo(id);
-    }
 
     public AreaController(AreaInfo info, MapController map, GameController gameCon){
         mapCon = map;
@@ -52,14 +27,6 @@ public class AreaController{
         this.gameCon = gameCon;
     }
 
-//    private void listenToFirebase(){
-//        fb.areaListener(this);
-//    }
-//
-//    private void loadAreaInFirebase(){
-//        model.setFiches(1);
-//        fb.areaUpdate(this);
-//    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,8 +36,8 @@ public class AreaController{
     public void addFiche(FicheController fiche){
         model.addFiche(fiche);
     }
-    public void removeFiche(){
-
+    public void removeFiche(FicheController fiche){
+        model.removeFiche(fiche);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,8 +46,8 @@ public class AreaController{
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     public void attackArea(Stack<FicheController> fiches) {
-        model.getOwningCombi().retreat(this);
-        fiches.forEach(fiche -> addFiche(fiche));
+        model.getOwningCombi().retreat(model.getFiches());
+        fiches.forEach(this::addFiche);
     }
 
     public void leaveArea(){
