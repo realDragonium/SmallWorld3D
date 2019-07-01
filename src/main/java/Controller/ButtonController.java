@@ -27,6 +27,6 @@ public class ButtonController {
     }
 
     public void activeListener() {
-        gameCon.activateFirebase();
+        //gameCon.activateFirebase();
     }
 }
