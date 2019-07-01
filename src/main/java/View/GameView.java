@@ -70,7 +70,7 @@ public class GameView implements GameObserver {
 //        root.getChildren().add(GameViewEnum.SHOP.getGroup());
         root.getChildren().add(GameViewEnum.ROUND.getGroup());
         root.getChildren().add(GameViewEnum.BUTTON.getGroup());
-        root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
+//        root.getChildren().add(GameViewEnum.AREAINFO.getGroup());
         root.getChildren().add(GameViewEnum.PHASE.getGroup());
         root.getChildren().add(GameViewEnum.NOTIFICATION.getGroup());
 

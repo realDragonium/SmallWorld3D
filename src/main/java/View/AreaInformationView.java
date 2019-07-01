@@ -27,18 +27,11 @@ public class AreaInformationView implements AreaInformationObserver {
     public void initialize(){
         group.getChildren().add(pane);
         areaInfoCon.registerObserver(this);
-        group.setVisible(false);
     }
 
     @Override
     public void update(AreaInformationObservable ao) {
-        group.setVisible(ao.isActive());
-        if(ao.getArea().getOwnerPlayer() != null){
-            areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
-        }
-        else{
-           areaOwner.setText("Owner: none");
-        }
+        areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
 
         Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());

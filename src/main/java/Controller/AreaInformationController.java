@@ -2,6 +2,7 @@ package Controller;
 
 import Model.AreaInformationModel;
 import Observer.AreaInformationObserver;
+import Enum.GameViewEnum;
 
 public class AreaInformationController {
 
@@ -14,15 +15,14 @@ public class AreaInformationController {
 
     public void putAreaInformationScreen(AreaController area){
         model.setArea(area);
-        model.setActive();
+        gameCon.addToGameView(GameViewEnum.AREAINFO);
     }
 
     public void closeAreaInformation(){
-        model.setNonActive();
+        gameCon.removeFromGameView(GameViewEnum.AREAINFO);
     }
 
     public void AttackArea() {
-//        gameCon.getAttCon().attackArea(model.getArea());
         gameCon.getCurrentPlayer().getActiveCombination().attackThisArea(model.getArea());
     }
 

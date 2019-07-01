@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.AreaController;
+import Controller.PlayerController;
 import Objects.AreaInfo;
 import javafx.scene.transform.Translate;
 
@@ -14,6 +15,15 @@ public class MapModel {
     public AreaController activeArea;
     public Map<String, AreaInfo> areaInfos;
     public Map<String, Translate> areaPoints;
-
     public Map<String, Translate> propPoints;
+    private PlayerController mapPlayer;
+
+    public MapModel(PlayerController player){
+        mapPlayer = player;
+    }
+
+    public PlayerController getMapPlayer(){
+        return mapPlayer;
+    }
+
 }

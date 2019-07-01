@@ -24,11 +24,13 @@ import java.util.Map;
 public class MapController {
 	private Map<String, AreaController> areas = new HashMap<>();
 	private GameController gameCon;
-	private MapModel model = new MapModel();
+	private MapModel model;
 	private Controller3D con3D;
 
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
+		PlayerController player = new PlayerController("None", gameCon);
+		model = new MapModel(player);
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();
@@ -71,7 +73,8 @@ public class MapController {
 			AreaController areaCon = new AreaController(info, this, gameCon);
 			areaCon.setAreaPoint(model.areaPoints.get(info.id));
 			areaCon.setPropPoint(model.propPoints.get(info.id));
-			areas.put(s, new AreaController(info, this, gameCon));
+			areaCon.setPlayerOwner(model.getMapPlayer());
+			areas.put(s, areaCon);
 		});
 	}
 
