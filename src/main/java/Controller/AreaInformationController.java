@@ -26,6 +26,7 @@ public class AreaInformationController {
 
     public void AttackArea() {
         fbGame.attackAction(model.getArea().getId());
+        closeAreaInformation();
     }
 
     public void registerObserver(AreaInformationObserver ob) {
@@ -42,5 +43,6 @@ public class AreaInformationController {
 
     public void leaveArea() {
         fbGame.leavesFicheAction(model.getArea().getId());
+        closeAreaInformation();
     }
 }

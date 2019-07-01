@@ -61,14 +61,15 @@ public class AreaModel implements AreaObservable {
         notifyObserver();
     }
 
-    public void removeFiche(FicheController fiche){
-        fiches.remove(fiche);
+    public FicheController removeFiche() {
+        FicheController fiche = fiches.pop();
+        notifyObserver();
+        return fiche;
     }
 
     public PlayerController getPlayer(){
         return player;
     }
-
 
     public boolean firstAttackArea(){
         return borderArea && attackAble;
@@ -86,17 +87,6 @@ public class AreaModel implements AreaObservable {
     public void changeActive() {
         active = !active;
         notifyObserver();
-    }
-
-    public void setFiches(Stack<FicheController> fiches) {
-        this.fiches = fiches;
-        notifyObserver();
-    }
-
-
-
-    public Stack<FicheController> getFiches() {
-        return fiches;
     }
 
     public String getSpecialProp(){
@@ -152,8 +142,4 @@ public class AreaModel implements AreaObservable {
         return false;
     }
 
-
-    public FicheController removeFiche() {
-        return fiches.pop();
-    }
 }

@@ -85,7 +85,6 @@ public class TurnController implements FirebaseGameObserver {
     public void removeFicheUpdate(DocumentSnapshot ds){
         AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
         area.removeFiche();
-
     }
 
     public void leaveAreaUpdate(DocumentSnapshot ds){

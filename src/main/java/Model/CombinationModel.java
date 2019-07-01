@@ -59,7 +59,6 @@ public class CombinationModel implements CombinationObservable {
         for (int i = 0; i < count; i++) {
             tempFiches.add(raceFiches.pop());
         }
-        System.out.println("Available: "+raceFiches.size());
         return tempFiches;
     }
 

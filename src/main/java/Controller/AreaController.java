@@ -38,19 +38,22 @@ public class AreaController{
     public void removeFiche(){
         FicheController fiche = model.removeFiche();
         fiche.getCombiCon().addRaceFiche(fiche);
-
     }
 
     public void attackArea(Stack<FicheController> fiches) {
-        model.getOwningCombi().retreat(model.getFiches());
+        returnAllFiches();
         fiches.forEach(this::addFiche);
     }
 
     public void leaveArea(){
-        model.getOwningCombi().retreat(model.getFiches());
+        returnAllFiches();
         model.setOwningCombi(mapCon.getLostTribeCombi());
     }
 
+    private void returnAllFiches(){
+        int number = model.getNumberOfFiches();
+        for(int i = 0; i < number; i++) removeFiche();
+    }
 
     public void putFiche(FicheController fiche){
         model.addFiche(fiche);
@@ -63,8 +66,6 @@ public class AreaController{
     String getId() {
         return model.getId();
     }
-
-
 
     public void changeCombiOwner(CombinationController combi){
         removeOwner();
@@ -134,11 +135,7 @@ public class AreaController{
     }
 
     public int getDefenceValue() {
-        int value = 2;
-        for(FicheController fiche : model.getFiches()){
-            value += fiche.getDefenceValue();
-        }
-        return value;
+        return 2 + model.getNumberOfFiches();
     }
 
     public void createNumber(Group group){

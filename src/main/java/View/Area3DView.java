@@ -96,7 +96,6 @@ public class Area3DView implements AreaObserver {
         if(ao.getNumberOfFiches() == 0){
             number.setVisible(false);
         }
-
         else{
             if(ao.getNumberOfFiches() != currentNumber) {
                 currentNumber = ao.getNumberOfFiches();
