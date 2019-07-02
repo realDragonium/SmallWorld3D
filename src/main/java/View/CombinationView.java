@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
 import Enum.GameViewEnum;
+import Enum.RaceEnum;
 
 public class CombinationView implements CombinationObserver {
 
@@ -22,8 +23,10 @@ public class CombinationView implements CombinationObserver {
     public ImageView race, power;
 
     public CombinationView(CombinationController combiCon){
-        this.group = GameViewEnum.COMBINATION.getGroup();
+        group = RaceEnum.valueOf(combiCon.getRace()).getGroup();
+        GameViewEnum.COMBINATION.getGroup().getChildren().add(group);
         this.comboCon = combiCon;
+//        group = GameViewEnum.COMBINATION.getGroup();
     }
 
     public void initialize(){

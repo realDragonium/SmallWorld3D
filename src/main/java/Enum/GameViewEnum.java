@@ -7,7 +7,8 @@ public enum GameViewEnum {
     ROUND(new Group()), TURN(new Group()), PHASE(new Group()), BUTTON(new Group()),
     TIMER(new Group()), DECLINE(new Group()), DICE(new Group()),
     REDEPLOY(new Group()), INFO(new Group()),AREAINFO(new Group()),
-    UIOVERLAY(new Group()), NOTIFICATION(new Group()), COMBINATION(new Group());
+    UIOVERLAY(new Group()), NOTIFICATION(new Group()), COMBINATION(new Group()),
+    PLAYERSINFO(new Group());
     private Group view;
 
     GameViewEnum(Group view){

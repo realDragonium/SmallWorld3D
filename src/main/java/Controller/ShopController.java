@@ -34,7 +34,6 @@ public class ShopController implements FirebaseGameObserver {
     private void buyingItem(int item) {
         if (model.getShopItems().size() > item) {
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
-//            gameCon.getGameTurn().endTurn();
         }
     }
 

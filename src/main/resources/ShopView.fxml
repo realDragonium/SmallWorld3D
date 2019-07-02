@@ -3,11 +3,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.Group?>
 <Pane fx:id="pane" layoutX="1570" layoutY="135" prefHeight="860.0" prefWidth="420.0"
       xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShopView">
     <ImageView fitWidth="350" fitHeight="750">
-        <image>
             <Image url="@UI/CombinationShop.png"/>
-        </image>
     </ImageView>
 </Pane>
