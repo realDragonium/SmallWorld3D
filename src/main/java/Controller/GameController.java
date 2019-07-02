@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.GameModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
 import View.*;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +19,6 @@ import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
 public class GameController {
-
-    private Group addable3d = new Group();
 
     private FirebaseGameController fbGame;
     Translate playerPos2d = new Translate(600, 900);
@@ -46,7 +44,7 @@ public class GameController {
     private RoundController roundCon;
     private TurnController turnCon;
     private AreaInformationController areaInfoCon;
-    private CameraController cameraCon;
+
 
     private String lobbyName;
     private DeclineController vervCon;
@@ -88,8 +86,6 @@ public class GameController {
         model.getPlayer(2).setPlayer2dPosition(playerPos2d);
         model.getPlayer(3).setPlayer3dPosition(player4Pos);
         model.getPlayer(3).setPlayer2dPosition(playerPos2d);
-//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
-//        players.get("player1").addRaceFiche(con3d.createRaceFiche("ratten"));
     }
 
     public void create3dView(Group group){
@@ -97,46 +93,13 @@ public class GameController {
     }
 
     public void createMap2DView(Group group){
-        new FXMLLOADER().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+        new SpecialFXMLLoader().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
 
 
     private void createUIOverlay() {
-        new FXMLLOADER().loader("/UI/UIView.fxml", (Callable<UIView>) UIView::new);
-    }
-
-
-
-
-
-    public Crystal createCrystal(){
-        Crystal crystal = new Crystal(addable3d);
-        return crystal;
-    }
-
-    public Group createSpecialPropFiche(String specialProp) {
-        Group group = new Group();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/" + specialProp + ".fxml"));
-            Node node = fxmlLoader.load();
-            group.getChildren().add(node);
-
-            addable3d.getChildren().add(group);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return group;
-    }
-
-    void createRaceFiche(FicheController con){
-        new fiche3dView(con, addable3d);
-    }
-
-    public CameraView createCamera(Group camera) {
-        cameraCon = new CameraController();
-        return new CameraView(cameraCon, camera);
+        new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) UIView::new);
     }
 
 
@@ -223,9 +186,6 @@ public class GameController {
         return timeCon;
     }
 
-    public void set3dGroup(Group group){
-        group.getChildren().add(addable3d);
-    }
 
     void addToGameView(GameViewEnum go){
         model.addActiveView(go);
@@ -276,7 +236,7 @@ public class GameController {
     }
 
     CameraController getCameraCon() {
-        return cameraCon;
+        return mapCon.getCameraCon();
     }
 
     public Translate getPlayerPos(PlayerController player){

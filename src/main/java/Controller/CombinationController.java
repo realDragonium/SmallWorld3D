@@ -2,10 +2,9 @@ package Controller;
 
 import Attacks.AttackType;
 import Model.CombinationModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import View.CombinationView;
-import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.Stack;
@@ -24,7 +23,7 @@ public class CombinationController {
     }
 
     private void createCombinationView() {
-        new FXMLLOADER().loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(this));
+        new SpecialFXMLLoader().loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(this));
     }
 
     public void registerObserver(CombinationObserver obs){
@@ -87,7 +86,6 @@ public class CombinationController {
         int fiches = model.getRace().getFicheAmount() + model.getPower().getFicheAmount();
         for(int i = 0; i < fiches; i++){
             FicheController ficheCon = new FicheController(1, this);
-            player.getGameCon().createRaceFiche(ficheCon);
             addRaceFiche(ficheCon);
         }
     }

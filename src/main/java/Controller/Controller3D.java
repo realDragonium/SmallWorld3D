@@ -3,13 +3,8 @@ package Controller;
 import View.CameraView;
 import View.Map3DView;
 import View.TableView;
-import View.fiche3dView;
-import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class Controller3D{
 
@@ -40,7 +35,7 @@ public class Controller3D{
     public void createCamera(){
         System.out.println("creating camera...");
         CameraController cameraCon = new CameraController();
-        CameraView cameraView = new CameraView(cameraCon, camera);
+        CameraView cameraView = new CameraView(cameraCon);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
     }
@@ -53,13 +48,13 @@ public class Controller3D{
     }
 
     public void createTable(){
-        new TableView(table);
+        new TableView();
         world.getChildren().add(table);
     }
 
 //    public FicheController createRaceFiche(String race){
 //        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new fiche3dView(ficheCon, fiches, race);
+//        new Fiche3DView(ficheCon, fiches, race);
 //        return ficheCon;
 //    }
 

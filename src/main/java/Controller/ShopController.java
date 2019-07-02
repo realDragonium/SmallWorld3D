@@ -2,12 +2,10 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.ShopObserver;
 import View.ShopView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
-import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     private void createShopView() {
-        new FXMLLOADER().loader("/ShopView.fxml", (Callable<ShopView>) () -> new ShopView(this));
+        new SpecialFXMLLoader().loader("/ShopView.fxml", (Callable<ShopView>) () -> new ShopView(this));
     }
 
     private void buyingItem(int item) {

@@ -1,10 +1,9 @@
 package Controller;
 
 import Model.RoundModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.RoundObserver;
 import View.RoundView;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -21,7 +20,7 @@ public class RoundController {
     }
 
     private void createRoundView() {
-        new FXMLLOADER().loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(this));
+        new SpecialFXMLLoader().loader("/RoundView.fxml", (Callable<RoundView>)() -> new RoundView(this));
     }
 
 

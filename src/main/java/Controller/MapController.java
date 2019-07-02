@@ -4,6 +4,7 @@ import Model.MapModel;
 import Objects.AreaInfo;
 import View.Area2DView;
 import View.Area3DView;
+import View.CameraView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.scene.Group;
@@ -26,6 +27,7 @@ public class MapController {
 	private GameController gameCon;
 	private MapModel model;
 	private Controller3D con3D;
+	private CameraController cameraCon;
 
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
@@ -39,6 +41,11 @@ public class MapController {
 	public void createAreaView(Node area, Group map){
 //		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
 		new Area3DView(area, areas.get(area.getId()), map);
+	}
+
+	public CameraView createCamera() {
+		cameraCon = new CameraController();
+		return new CameraView(cameraCon);
 	}
 
 	public CombinationController getLostTribeCombi(){
@@ -86,6 +93,10 @@ public class MapController {
 	private void addActive(AreaController areaCon){
 		model.activeArea = areaCon;
 		areaCon.changeActive();
+	}
+
+	public CameraController getCameraCon(){
+		return cameraCon;
 	}
 
 	public void loadInAreaInfo(){

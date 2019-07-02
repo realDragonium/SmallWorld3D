@@ -1,10 +1,9 @@
 package Controller;
 
 import Model.DiceModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.DiceObserver;
 import View.DiceView;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -19,7 +18,7 @@ public class DiceController {
     }
 
     private void createDiceView() {
-        new FXMLLOADER().loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(this));
+        new SpecialFXMLLoader().loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(this));
     }
 
     int ClickedDice() {

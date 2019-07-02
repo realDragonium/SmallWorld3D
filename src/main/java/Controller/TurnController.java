@@ -2,11 +2,10 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.TurnModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.TurnObserver;
 import View.TurnView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.concurrent.Callable;
@@ -39,7 +38,7 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void createTurnView() {
-        new FXMLLOADER().loader("/TurnView.fxml", (Callable<TurnView>) () -> new TurnView(this));
+        new SpecialFXMLLoader().loader("/TurnView.fxml", (Callable<TurnView>) () -> new TurnView(this));
     }
 
     public void register(TurnObserver to){

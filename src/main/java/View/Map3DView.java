@@ -1,12 +1,12 @@
 package View;
 
-import Controller.*;
+import Controller.GameController;
+import Controller.MapController;
+import Enum.View3DEnum;
+import Objects.NormalFXMLLoader;
 import Objects.Xform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
-
-import java.io.IOException;
 
 public class Map3DView {
 
@@ -16,11 +16,7 @@ public class Map3DView {
 
     private Group world = new Group();
     private SubScene scene;
-    private Group map = new Group();
-    private Group camera = new Group();
-    private Group fiches = new Group();
     private GameController gameCon;
-    private Group table = new Group();
 
     public Map3DView(MapController mapCon, Group map) {
         System.out.println("creating the map");
@@ -30,64 +26,55 @@ public class Map3DView {
         this.gameCon = mapCon.getGameCon();
         map.getChildren().add(scene);
         System.out.println("setting the 3d group");
-        mapCon.getGameCon().set3dGroup(fiches);
         System.out.println("loading the map");
         loadMap();
         createCamera();
         createTable();
-        world.getChildren().addAll(fiches);
+        loadGroups();
     }
 
     public void loadMap(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/map.fxml"));
-            Group map = fxmlLoader.load();
-            Group numbers = new Group();
-            int numberOfElements = map.getChildren().size()-1;
-            for(int i = 0; i < numberOfElements; i++){
-                Node area = map.getChildren().get(i);
-                if(!area.getId().equals("nope")) {
-                    String areaId = area.getId().substring(14);
-                    area.setId(areaId);
-                    mapCon.createAreaView(area, numbers);
-                }
+        Group map = new NormalFXMLLoader("/3dObjects/map.fxml").loadGroup();
+        Group numbers = new Group();
+        int numberOfElements = map.getChildren().size()-1;
+        for(int i = 0; i < numberOfElements; i++){
+            Node area = map.getChildren().get(i);
+            if(!area.getId().equals("nope")) {
+                String areaId = area.getId().substring(14);
+                area.setId(areaId);
+                mapCon.createAreaView(area, numbers);
             }
-            map.setScaleX(100);
-            map.setScaleY(100);
-            map.setScaleZ(100);
-            xForm.getChildren().add(map);
+        }
+        map.setScaleX(100);
+        map.setScaleY(100);
+        map.setScaleZ(100);
+        xForm.getChildren().add(map);
 //            xForm.setRotateX(180);
-            world.getChildren().add(xForm);
-            world.getChildren().add(numbers);
-            // ...
-        }
-        catch (IOException e) {
-            // exception handling
-        }
+        world.getChildren().add(xForm);
+        world.getChildren().add(numbers);
     }
 
-    public void setCamera(PerspectiveCamera camera){
+    private void setCamera(PerspectiveCamera camera){
         scene.setCamera(camera);
     }
 
-    public void createCamera(){
+    private void createCamera(){
         System.out.println("creating camera...");
-        CameraView cameraView = gameCon.createCamera(camera);
-        world.getChildren().add(camera);
+        CameraView cameraView = mapCon.createCamera();
         setCamera(cameraView.getCamera());
     }
 
-    public void createTable(){
-        new TableView(table);
-        world.getChildren().add(table);
+    private void createTable(){
+        new TableView();
     }
 
+    private void loadGroups(){
+        world.getChildren().add(View3DEnum.CAMERA.getGroup());
+        world.getChildren().add(View3DEnum.FICHES.getGroup());
+        world.getChildren().add(View3DEnum.TABLE.getGroup());
+        world.getChildren().add(View3DEnum.CRYSTAL.getGroup());
+        world.getChildren().add(View3DEnum.SPECIALPROP.getGroup());
+    }
 
-//    public FicheController createRaceFiche(String race){
-//        FicheController ficheCon = new FicheController(1, race);
-//        new fiche3dView(ficheCon, fiches, race);
-//        return ficheCon;
-//    }
 
 }

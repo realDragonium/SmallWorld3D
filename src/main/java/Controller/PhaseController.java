@@ -3,12 +3,10 @@ package Controller;
 import Enum.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.PhaseObserver;
-import Phase.Phase;
 import View.PhaseView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -28,7 +26,7 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     private void createPhaseView() {
-        new FXMLLOADER().loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(this));
+        new SpecialFXMLLoader().loader("/PhaseView.fxml", (Callable<PhaseView>) () -> new PhaseView(this));
     }
 
     void nextPhase(){

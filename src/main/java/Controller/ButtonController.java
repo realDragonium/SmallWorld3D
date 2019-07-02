@@ -1,7 +1,7 @@
 package Controller;
 
 import Enum.NotificationEnum;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import View.ButtonView;
 
 import java.util.concurrent.Callable;
@@ -15,7 +15,7 @@ public class ButtonController {
     }
 
     private void createButtonView() {
-        new FXMLLOADER().loader("/ButtonView.fxml", (Callable<ButtonView>) () -> new ButtonView(this));
+        new SpecialFXMLLoader().loader("/ButtonView.fxml", (Callable<ButtonView>) () -> new ButtonView(this));
     }
 
     public void showInfo() {

@@ -2,7 +2,7 @@ package Controller;
 
 import Enum.ApplicationViewEnum;
 import Model.ApplicationModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.ApplicationObserver;
 import View.GameView;
 import View.HomeScreenView;
@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 
 public class ApplicationController {
     private ApplicationModel appModel = new ApplicationModel();
-    private FXMLLOADER fxmlLoader = new FXMLLOADER();
+    private SpecialFXMLLoader fxmlLoader = new SpecialFXMLLoader();
 
     private LoginController loginCon;
     private HomeScreenController hsCon;

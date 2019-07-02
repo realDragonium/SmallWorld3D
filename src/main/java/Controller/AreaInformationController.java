@@ -1,11 +1,10 @@
 package Controller;
 
 import Model.AreaInformationModel;
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import Observer.AreaInformationObserver;
 import Enum.GameViewEnum;
 import View.AreaInformationView;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -23,7 +22,7 @@ public class AreaInformationController {
 
 
     private void createAreaInfoView() {
-        new FXMLLOADER().loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(this));
+        new SpecialFXMLLoader().loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(this));
     }
 
 

@@ -4,8 +4,12 @@ import Enum.AreaType;
 import Model.AreaModel;
 import Objects.AreaInfo;
 import Observer.AreaObserver;
+import View.Crystal;
 import View.NumberView;
+import View.SpecialProperty;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -151,21 +155,21 @@ public class AreaController{
         if(!model.getSpecialProp().equals("None")) {
 
             if(model.getSpecialProp().equals("Magical")){
-                gameCon.createCrystal().setPosition(model.getSpecialPropPoint());
+                new Crystal().setPosition(model.getSpecialPropPoint());
             }
             else {
-                Group group = gameCon.createSpecialPropFiche(model.getSpecialProp());
+                Node mesh = new SpecialProperty(model.getSpecialProp()).create();
                 int scale = 5;
 
-                group.setRotationAxis(Rotate.Y_AXIS);
-                group.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
+                mesh.setRotationAxis(Rotate.Y_AXIS);
+                mesh.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
 
-                group.setTranslateX(model.getSpecialPropPoint().getX());
-                group.setTranslateY(model.getSpecialPropPoint().getY());
-                group.setTranslateZ(model.getSpecialPropPoint().getZ());
-                group.setScaleX(scale);
-                group.setScaleY(scale);
-                group.setScaleZ(scale);
+                mesh.setTranslateX(model.getSpecialPropPoint().getX());
+                mesh.setTranslateY(model.getSpecialPropPoint().getY());
+                mesh.setTranslateZ(model.getSpecialPropPoint().getZ());
+                mesh.setScaleX(scale);
+                mesh.setScaleY(scale);
+                mesh.setScaleZ(scale);
             }
         }
     }

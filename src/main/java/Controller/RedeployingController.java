@@ -1,8 +1,7 @@
 package Controller;
 
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import View.RedeployingView;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -17,7 +16,7 @@ public class RedeployingController {
     }
 
     private void createRedeployView() {
-        new FXMLLOADER().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
+        new SpecialFXMLLoader().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
     }
 
     //DEPRECATED

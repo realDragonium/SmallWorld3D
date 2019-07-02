@@ -1,26 +1,14 @@
 package View;
 
 import Controller.AreaController;
-import Controller.Controller3D;
-import Controller.FicheController;
-import Controller.GameController;
-import Objects.FXMLLOADER;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.input.PickResult;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Mesh;
 import javafx.scene.shape.MeshView;
 import Enum.AreaColor;
-import javafx.scene.shape.TriangleMesh;
-import javafx.scene.transform.Translate;
-
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 public class Area3DView implements AreaObserver {
 

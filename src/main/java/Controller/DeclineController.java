@@ -1,8 +1,7 @@
 package Controller;
 
-import Objects.FXMLLOADER;
+import Objects.SpecialFXMLLoader;
 import View.DeclineView;
-import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
 
@@ -21,7 +20,7 @@ public class DeclineController {
     }
 
     private void createDeclineView() {
-        new FXMLLOADER().loader("/DeclineView.fxml", (Callable<DeclineView>) () -> new DeclineView(this));
+        new SpecialFXMLLoader().loader("/DeclineView.fxml", (Callable<DeclineView>) () -> new DeclineView(this));
     }
 
     private void makeCombinationNonActive(){

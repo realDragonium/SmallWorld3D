@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class FXMLLOADER {
+public class SpecialFXMLLoader {
 
     public void loader(String path, Callable<?> callable) {
         javafx.fxml.FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader();
