@@ -34,7 +34,7 @@ public class RoundView implements RoundObserver {
     }
 
     private void setTextRoundField(int getal){
-        roundField.setText("Round: "+ getal);
+        roundField.setText(Integer.toString(getal));
     }
 
 }

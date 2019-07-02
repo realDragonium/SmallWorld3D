@@ -15,12 +15,6 @@ public class ShopView implements ShopObserver {
 
     @FXML
     public Pane pane;
-    public Button buy1;
-    public Button buy2;
-    public Button buy3;
-    public Button buy4;
-    public Button buy5;
-    public Button buy6;
 
     private Button lastActiveButton;
     private ShopController shopCon;
@@ -31,15 +25,6 @@ public class ShopView implements ShopObserver {
         this.group = group;
     }
 
-    @FXML
-    public void buyItem(){
-        shopCon.buyToFirebase(Integer.parseInt(lastActiveButton.getId()));
-    }
-
-    @FXML
-    public void setActive(MouseEvent e){
-        lastActiveButton = (Button)e.getSource();
-    }
 
 
     public void initialize() {

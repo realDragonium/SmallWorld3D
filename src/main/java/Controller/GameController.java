@@ -106,6 +106,7 @@ public class GameController {
     }
 
     public void createUIOverlay(Group group) {
+        System.out.println("creating ui");
         fxmlLoader.loader("/UI/UIView.fxml", (Callable<UIView>)() -> new UIView(group));
     }
 
@@ -192,7 +193,7 @@ public class GameController {
 
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
+        fbGame = new FirebaseGameController("test1", this);
         redCon = new RedeployingController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);

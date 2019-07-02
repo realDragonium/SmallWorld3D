@@ -44,9 +44,10 @@ public class Map3DView {
             fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/map.fxml"));
             Group map = fxmlLoader.load();
             Group numbers = new Group();
-            int numberOfElements = map.getChildren().size()-1;
+            int numberOfElements = map.getChildren().size();
             for(int i = 0; i < numberOfElements; i++){
                 Node area = map.getChildren().get(i);
+                System.out.println(area.getId());
                 if(!area.getId().equals("nope")) {
                     String areaId = area.getId().substring(14);
                     area.setId(areaId);

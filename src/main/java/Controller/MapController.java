@@ -30,7 +30,7 @@ public class MapController {
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
 		PlayerController player = new PlayerController("None", gameCon);
-		model = new MapModel(player);
+		model = new MapModel(player, gameCon);
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();

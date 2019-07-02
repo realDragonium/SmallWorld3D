@@ -2,6 +2,7 @@ package Model;
 
 import Controller.AreaController;
 import Controller.CombinationController;
+import Controller.GameController;
 import Controller.PlayerController;
 import Objects.AreaInfo;
 import javafx.scene.transform.Translate;
@@ -20,9 +21,9 @@ public class MapModel {
     private PlayerController mapPlayer;
     private CombinationController mapCombi;
 
-    public MapModel(PlayerController player){
+    public MapModel(PlayerController player, GameController gameCon){
         mapPlayer = player;
-        mapCombi = new CombinationController("losttribes", "flying");
+        mapCombi = new CombinationController(gameCon,"losttribes", "flying");
         mapCombi.setPlayer(player);
     }
 

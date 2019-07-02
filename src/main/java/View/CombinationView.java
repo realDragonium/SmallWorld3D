@@ -30,6 +30,10 @@ public class CombinationView implements CombinationObserver {
         comboCon.registerObserver(this);
     }
 
+    public void clickedCombination(){
+        comboCon.clickedCombination();
+    }
+
 
     @Override
     public void update(CombinationObservable co) {

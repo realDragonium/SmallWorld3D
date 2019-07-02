@@ -27,7 +27,7 @@ public class PhaseView implements PhaseObserver {
     }
 
     private void setTextFields(Phase phase){
-        phaseField.setText(phase.getName());
+        phaseField.setText(phase.getName().toUpperCase());
     }
 
     @Override

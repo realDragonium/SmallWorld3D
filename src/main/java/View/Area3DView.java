@@ -109,7 +109,7 @@ public class Area3DView implements AreaObserver {
                 currentNumber = ao.getNumberOfFiches();
                 areaCon.setNumber(currentNumber);
                 number.setTranslateX(ao.getAreaPoint().getX());
-                number.setTranslateY(ao.getAreaPoint().getY() - 100 - ao.getNumberOfFiches() * 10);
+                number.setTranslateY(ao.getAreaPoint().getY() - 50 - ao.getNumberOfFiches() * 10);
                 number.setTranslateZ(ao.getAreaPoint().getZ());
             }
         }

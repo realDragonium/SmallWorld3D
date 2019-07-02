@@ -25,7 +25,7 @@ public class TurnView implements TurnObserver {
     }
 
     private void setTextFields(String name){
-        turnField.setText("Turn: " + name);
+        turnField.setText(name);
     }
 
     @Override

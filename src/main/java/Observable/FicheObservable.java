@@ -8,4 +8,6 @@ public interface FicheObservable {
     void notifyAllObs();
     int getDefenceValue();
     Translate getPosition();
+
+    String getRace();
 }

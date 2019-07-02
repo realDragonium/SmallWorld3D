@@ -12,7 +12,7 @@
 
 <Group id="AddedRootGroup_1561413788381">
   <children>
-    <MeshView id="Circle_RaceColor" cullFace="BACK" drawMode="FILL">
+    <MeshView id="RaceColor" cullFace="BACK" drawMode="FILL">
       <material>
         <PhongMaterial specularPower="96.07843">
           <diffuseColor>

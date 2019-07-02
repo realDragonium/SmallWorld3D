@@ -12,10 +12,12 @@ public class CombinationController {
 
     private PlayerController player;
     private CombinationModel model;
+    private GameController gameCon;
 
 
-    public CombinationController(String race, String power){
+    public CombinationController(GameController gameCon, String race, String power){
         model = new CombinationModel(race, power);
+        this.gameCon = gameCon;
     }
 
 
@@ -87,5 +89,14 @@ public class CombinationController {
 
     public void setAttackType(AttackType attack) {
         model.setAttackType(attack);
+    }
+
+    public void clickedCombination() {
+        if(model.inShop){
+            //if(gameCon.get.equals(player.getGameCon().getCurrentPlayer())){
+                int item = gameCon.getShopCon().getShopItem(this);
+                if(item != 6) gameCon.getShopCon().buyToFirebase(item);
+           }
+        //}
     }
 }

@@ -1,5 +1,7 @@
 package Race;
 
+import javafx.scene.paint.Color;
+
 public class Trolls implements Race {
 
     @Override
@@ -10,5 +12,10 @@ public class Trolls implements Race {
     @Override
     public int getFicheAmount() {
         return 8;
+    }
+
+    @Override
+    public Color getRaceColor() {
+        return Color.rgb(97, 93, 93);
     }
 }

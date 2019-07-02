@@ -61,7 +61,7 @@ public class ShopController implements FirebaseGameObserver {
     private void setShopItemPositions() {
 
         for (int i = 0; i < 6; i++) {
-            Translate pos = new Translate(model.getPosition().getX(), model.getPosition().getY() + i * 100);
+            Translate pos = new Translate(model.getPosition().getX() + 83, model.getPosition().getY() + i * 107.5 + 94);
             model.addItemPosition(pos);
         }
     }
@@ -77,7 +77,7 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     private void createSpecificShopItems(String race, String power) {
-        model.addShopItem(new CombinationController(race, power));
+        model.addShopItem(new CombinationController(gameCon, race, power));
     }
 
     public List<CombinationController> getShopItems() {
@@ -101,5 +101,14 @@ public class ShopController implements FirebaseGameObserver {
 
     public void createCombinationView(int index, Group group) {
         gameCon.createCombinationView(group, model.getShopItems().get(index));
+    }
+
+    public int getShopItem(CombinationController item) {
+        for(int i = 0; i < model.getShopItems().size(); i++){
+            if(model.getShopItems().get(i).equals(item)){
+                return i;
+            }
+        }
+        return 6;
     }
 }

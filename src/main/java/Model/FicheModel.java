@@ -52,4 +52,9 @@ public class FicheModel implements FicheObservable {
     public Translate getPosition() {
         return position;
     }
+
+    @Override
+    public String getRace() {
+        return name;
+    }
 }

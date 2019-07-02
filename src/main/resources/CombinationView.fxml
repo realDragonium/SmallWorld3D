@@ -3,10 +3,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<Pane fx:id="root" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CombinationView">
-   <ImageView fx:id="power" fitHeight="100" fitWidth="100">
+<Pane fx:id="root" onMouseClicked="#clickedCombination" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CombinationView">
+   <ImageView fx:id="power" fitHeight="80" fitWidth="80">
    </ImageView>
 
-   <ImageView fx:id="race" fitHeight="100" fitWidth="200" layoutX="100">
+   <ImageView fx:id="race" fitHeight="80" fitWidth="160" layoutX="80">
    </ImageView>
 </Pane>
