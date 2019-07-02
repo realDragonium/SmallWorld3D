@@ -35,6 +35,7 @@ public class PlayerModel implements PlayerObservable {
 
     public void addCombi(CombinationController combi){
         combinations.add(combi);
+        notifyObserver();
     }
 
 
