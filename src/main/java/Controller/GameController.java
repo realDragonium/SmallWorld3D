@@ -25,7 +25,6 @@ public class GameController {
     Translate player3Pos = new Translate(0, 0, 600);
     Translate player4Pos = new Translate(600, 0, 0);
 
-    private Controller3D con3d;
     private ApplicationController appCon;
     private MapController mapCon;
     private ButtonController buttonCon;
@@ -46,6 +45,7 @@ public class GameController {
     private String lobbyName;
     private DeclineController vervCon;
     private TimerController timeCon;
+    private AttackController attCon;
     private GameTimer gameTimer;
     private ShopController shopCon;
     private PhaseController phaseCon;
@@ -85,13 +85,13 @@ public class GameController {
         model.getPlayer(3).setPlayer2dPosition(playerPos2d);
     }
 
-    public void create3dView(Group group){
-        new Map3DView(mapCon, group);
+    public void create3dView(){
+        new Map3DView(mapCon);
     }
 
-    public void createMap2DView(Group group){
+//    public void createMap2DView(Group group){
 //        new SpecialFXMLLoader().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
-    }
+//    }
 
 
 
@@ -99,11 +99,11 @@ public class GameController {
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
     }
 
-
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
         redCon = new RedeployingController(this);
+        attCon = new AttackController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
         declineCon = new DeclineController(this);

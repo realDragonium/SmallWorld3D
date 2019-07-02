@@ -6,22 +6,22 @@ import Objects.Xform;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
 import Enum.View3DEnum;
+import Enum.GameViewEnum;
 
 public class Map3DView {
 
-    private Group root;
     private Xform xForm = new Xform();
     private MapController mapCon;
 
     private Group world = new Group();
     private SubScene scene;
 
-    public Map3DView(MapController mapCon, Group map) {
+    public Map3DView(MapController mapCon) {
         System.out.println("creating the map");
         scene = new SubScene(world, 1920, 1000, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
-        map.getChildren().add(scene);
+        GameViewEnum.MAP3D.getGroup().getChildren().add(scene);
         System.out.println("loading the map");
         loadMap();
         createCamera();

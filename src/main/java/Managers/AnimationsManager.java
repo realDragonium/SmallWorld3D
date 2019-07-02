@@ -69,7 +69,6 @@ public class AnimationsManager {
         AnimationController newAnim = new AnimationController(animObj, true);
         int frames = (int)seconds * animationFPS;
         double yDelta = height / frames;
-        System.out.println(yDelta);
         for(int x = 1; x <= frames / 2; x++) {
             Translate point = new Translate(0, yDelta, 0);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));

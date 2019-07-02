@@ -26,7 +26,6 @@ public class MapController {
 	private Map<String, AreaController> areas = new HashMap<>();
 	private GameController gameCon;
 	private MapModel model;
-	private Controller3D con3D;
 	private CameraController cameraCon;
 
 	MapController(GameController gameCon){
@@ -41,7 +40,6 @@ public class MapController {
 	}
 
 	public void createAreaView(Node area, Group map){
-//		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
 		new Area3DView(area, areas.get(area.getId()), map);
 	}
 

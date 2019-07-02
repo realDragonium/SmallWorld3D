@@ -75,6 +75,8 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     private void createSpecificShopItems(String race, String power) {
+        model.removePower(power);
+        model.removeRace(race);
         model.addShopItem(new CombinationController(gameCon, race, power));
     }
 

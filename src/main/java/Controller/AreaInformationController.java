@@ -20,11 +20,9 @@ public class AreaInformationController {
         createAreaInfoView();
     }
 
-
     private void createAreaInfoView() {
         new SpecialFXMLLoader().loader("/AreaInfoView.fxml", (Callable<AreaInformationView>) () -> new AreaInformationView(this));
     }
-
 
     public void putAreaInformationScreen(AreaController area){
         model.setArea(area);
