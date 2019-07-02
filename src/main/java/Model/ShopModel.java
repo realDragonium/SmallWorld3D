@@ -9,6 +9,7 @@ import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ShopModel implements ShopObservable {
@@ -53,23 +54,14 @@ public class ShopModel implements ShopObservable {
         notifyObservers();
     }
 
-    @Override
-    public List<CombinationController> getShopItems(){
-        return shopItems;
-    }
-
-    @Override
-    public Translate getItemPosition(int i) {
-        if(itemPositions.size() > i)
-        return itemPositions.get(i);
-        else return null;
-    }
-
     public CombinationController getShopItem(int item){
         CombinationController combo = shopItems.remove(item);
         notifyObservers();
         return combo;
+    }
 
+    public Translate getPosition() {
+        return position;
     }
 
     public void addShopItem(CombinationController item){
@@ -77,10 +69,10 @@ public class ShopModel implements ShopObservable {
         notifyObservers();
     }
 
-    public void removeItem(int item){
-        shopItems.remove(item);
-        notifyObservers();
+    public int getShopItemIndex(CombinationController combi){
+        return shopItems.indexOf(combi);
     }
+
 
     @Override
     public void register(ShopObserver so) {
@@ -99,11 +91,17 @@ public class ShopModel implements ShopObservable {
         return 0;
     }
 
-    public void setShopPosition(Translate translate) {
-        position = translate;
+    @Override
+    public List<CombinationController> getShopItems(){
+        return shopItems;
     }
 
-    public Translate getPosition() {
-        return position;
+    @Override
+    public Translate getItemPosition(int i) {
+        if(itemPositions.size() > i)
+            return itemPositions.get(i);
+        else return null;
     }
+
+
 }

@@ -6,7 +6,6 @@ import Objects.SpecialFXMLLoader;
 import Observer.ShopObserver;
 import View.ShopView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Timer;
@@ -35,6 +34,7 @@ public class ShopController implements FirebaseGameObserver {
         if (model.getShopItems().size() > item) {
             gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
         }
+
     }
 
     public void buyToFirebase(int item){
@@ -86,11 +86,6 @@ public class ShopController implements FirebaseGameObserver {
     }
 
     public int getShopItem(CombinationController item) {
-        for(int i = 0; i < model.getShopItems().size(); i++){
-            if(model.getShopItems().get(i).equals(item)){
-                return i;
-            }
-        }
-        return 6;
+        return model.getShopItemIndex(item);
     }
 }

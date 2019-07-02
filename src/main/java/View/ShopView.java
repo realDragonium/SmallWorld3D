@@ -1,29 +1,23 @@
 package View;
 
 import Controller.ShopController;
+import Enum.GameViewEnum;
+import Enum.RaceEnum;
 import Observable.ShopObservable;
 import Observer.ShopObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import Enum.GameViewEnum;
-import javafx.scene.transform.Translate;
-import Enum.RaceEnum;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ShopView implements ShopObserver {
 
-    private int combinationViews = 0;
-
     @FXML
     public Pane pane;
 
     private Map<String, Group> groups = new HashMap<>();
-    private Button lastActiveButton;
     private ShopController shopCon;
     Group group;
 
@@ -51,14 +45,10 @@ public class ShopView implements ShopObserver {
     @Override
     public void update(ShopObservable so) {
         for(int i = 0; i < so.getShopItems().size(); i++) {
-//            if(so.getItemPosition(i) != null){
-            Group group = RaceEnum.valueOf(so.getShopItems().get(i).getRace()).getGroup();
+            String race = so.getShopItems().get(i).getRace();
+            Group group = RaceEnum.valueOf(race).getGroup();
             groups.get("group" + i).getChildren().clear();
             groups.get("group" + i).getChildren().add(group);
-            System.out.println(i);
-//            }
-//            so.getShopItems().get(i).moveToPosition(so.getItemPosition(i));
-
         }
     }
 }

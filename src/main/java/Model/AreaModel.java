@@ -4,6 +4,7 @@ import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.PlayerController;
 import Enum.AreaType;
+import Enum.AreaInfoEnum;
 import Objects.AreaInfo;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
@@ -31,6 +32,7 @@ public class AreaModel implements AreaObservable {
     private Stack<FicheController> fiches = new Stack<>();
     public Translate areaPoint;
     public Translate specialPropPoint;
+    private AreaInfoEnum areaInfo;
 
     public AreaModel(AreaInfo info) {
         id = info.id;
