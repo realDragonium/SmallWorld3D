@@ -32,7 +32,7 @@ public class Map3DView {
     public void loadMap(){
         Group map = new NormalFXMLLoader("/3dObjects/map.fxml").loadGroup();
         Group numbers = new Group();
-        int numberOfElements = map.getChildren().size()-1;
+        int numberOfElements = map.getChildren().size();
         for(int i = 0; i < numberOfElements; i++){
             Node area = map.getChildren().get(i);
             if(!area.getId().equals("nope")) {

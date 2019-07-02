@@ -11,7 +11,7 @@ public class Preparing implements Phase{
     List<GameViewEnum> views = new ArrayList<>();
 
     public Preparing(){
-        views.add(GameViewEnum.SHOP);
+
     }
 
     @Override
