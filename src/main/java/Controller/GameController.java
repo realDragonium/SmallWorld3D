@@ -4,18 +4,15 @@ import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
 import View.*;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import Enum.*;
 import java.util.ArrayList;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import Enum.GameViewEnum;
-import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
 public class GameController {
@@ -93,13 +90,13 @@ public class GameController {
     }
 
     public void createMap2DView(Group group){
-        new SpecialFXMLLoader().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
+//        new SpecialFXMLLoader().loader("/Map/UglyMap5.fxml", (Callable<Map2DView>)() -> new Map2DView(mapCon, group));
     }
 
 
 
     private void createUIOverlay() {
-        new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) UIView::new);
+        new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
     }
 
 

@@ -5,6 +5,7 @@ import Objects.NormalFXMLLoader;
 import Objects.Xform;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
+import Enum.View3DEnum;
 
 public class Map3DView {
 
@@ -14,16 +15,13 @@ public class Map3DView {
 
     private Group world = new Group();
     private SubScene scene;
-    private GameController gameCon;
 
     public Map3DView(MapController mapCon, Group map) {
         System.out.println("creating the map");
         scene = new SubScene(world, 1920, 1000, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.rgb(116, 144, 153));
         this.mapCon = mapCon;
-        this.gameCon = mapCon.getGameCon();
         map.getChildren().add(scene);
-        System.out.println("setting the 3d group");
         System.out.println("loading the map");
         loadMap();
         createCamera();

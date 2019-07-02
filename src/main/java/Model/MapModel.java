@@ -21,10 +21,10 @@ public class MapModel {
     private PlayerController mapPlayer;
     private CombinationController mapCombi;
 
-    public MapModel(PlayerController player, GameController gameCon){
-        mapPlayer = player;
-        mapCombi = new CombinationController(gameCon,"losttribes", "flying");
-        mapCombi.setPlayer(player);
+    public MapModel(CombinationController combi){
+        mapPlayer = combi.getPlayer();
+        mapCombi = combi;
+        mapCombi.setPlayer(combi.getPlayer());
     }
 
     public PlayerController getMapPlayer(){

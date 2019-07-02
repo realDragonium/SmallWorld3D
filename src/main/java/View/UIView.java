@@ -8,8 +8,8 @@ public class UIView {
     Group group;
     public Pane pane;
 
-    public UIView() {
-        this.group = GameViewEnum.UIOVERLAY.getGroup();
+    public UIView(Group group) {
+        this.group = group;
     }
 
     public void initialize(){

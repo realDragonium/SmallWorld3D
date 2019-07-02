@@ -52,12 +52,6 @@ public class Controller3D{
         world.getChildren().add(table);
     }
 
-//    public FicheController createRaceFiche(String race){
-//        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new Fiche3DView(ficheCon, fiches, race);
-//        new fiche3dView2(ficheCon, fiches, race);
-//        return ficheCon;
-//    }
 
     //deze staat nu in area3DView
     public void add3dObject(Node number) {

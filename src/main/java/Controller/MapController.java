@@ -31,7 +31,9 @@ public class MapController {
 
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
-		model = new MapModel(new PlayerController("None", gameCon));
+        CombinationController combi = new CombinationController(gameCon,"losttribes", "flying");
+        combi.setPlayer(new PlayerController("None"));
+		model = new MapModel(combi);
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();
@@ -42,6 +44,10 @@ public class MapController {
 //		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
 		new Area3DView(area, areas.get(area.getId()), map);
 	}
+
+    public GameController getGameCon() {
+        return gameCon;
+    }
 
 	public CameraView createCamera() {
 		cameraCon = new CameraController();
@@ -218,4 +224,6 @@ public class MapController {
 		areaPoints.put("swamp_005" ,new Translate(-147,-1,437));
 		model.areaPoints = areaPoints;
 	}
+
+
 }

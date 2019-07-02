@@ -4,10 +4,8 @@ import Controller.FicheController;
 import Objects.NormalFXMLLoader;
 import Observable.FicheObservable;
 import Observer.FicheObserver;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 
-import java.io.IOException;
 import Enum.View3DEnum;
 public class Fiche3DView implements FicheObserver {
 
