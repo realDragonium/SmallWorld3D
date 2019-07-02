@@ -1,21 +1,25 @@
 package Controller;
 
 import Enum.NotificationEnum;
+import Objects.SpecialFXMLLoader;
+import View.ButtonView;
+
+import java.util.concurrent.Callable;
 
 public class ButtonController {
-
     private GameController gameCon;
 
     ButtonController(GameController gameCon){
         this.gameCon = gameCon;
+        createButtonView();
+    }
+
+    private void createButtonView() {
+        new SpecialFXMLLoader().loader("/ButtonView.fxml", (Callable<ButtonView>) () -> new ButtonView(this));
     }
 
     public void showInfo() {
 
-    }
-
-    public void fichesOver() {
-        //gameCon.getCurrentPlayer().showActiveCombiFichesLeft();
     }
 
     public void nextPhase(){
@@ -28,5 +32,9 @@ public class ButtonController {
 
     public void previewNotification() {
         gameCon.setMessage(NotificationEnum.DRAGON);
+    }
+
+    public void activeListener() {
+//        gameCon.getFireBase().activateListener();
     }
 }

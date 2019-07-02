@@ -6,7 +6,7 @@ import Observable.CameraObservable;
 import Observer.CameraObserver;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
-
+import Enum.View3DEnum;
 
 public class CameraView implements CameraObserver {
     Group root;
@@ -15,9 +15,9 @@ public class CameraView implements CameraObserver {
     PerspectiveCamera camera;
     CameraController cameraCon;
 
-    public CameraView(CameraController cameraCon, Group root){
+    public CameraView(CameraController cameraCon){
         this.cameraCon = cameraCon;
-        this.root = root;
+        this.root = View3DEnum.CAMERA.getGroup();
         buildCamera();
         cameraCon.registerObserver(this);
     }

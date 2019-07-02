@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import Enum.GameViewEnum;
 public class NotificationView implements NotificationObserver {
 
     private Group group;
@@ -24,8 +24,8 @@ public class NotificationView implements NotificationObserver {
     @FXML
     private Group root;
 
-    public NotificationView(Group group, NotificationController notiCon){
-        this.group = group;
+    public NotificationView(NotificationController notiCon){
+        this.group = GameViewEnum.NOTIFICATION.getGroup();
         this.notiCon = notiCon;
     }
 

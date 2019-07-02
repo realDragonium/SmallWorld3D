@@ -60,9 +60,9 @@ public class CombinationModel implements CombinationObservable {
         for (int i = 0; i < count; i++) {
             tempFiches.add(raceFiches.pop());
         }
-        System.out.println("Available: "+raceFiches.size());
         return tempFiches;
     }
+
     public void goIntoDecline() {
         active = false;
     }
@@ -133,4 +133,5 @@ public class CombinationModel implements CombinationObservable {
     public Translate getPosition() {
         return position;
     }
+
 }

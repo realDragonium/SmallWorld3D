@@ -12,9 +12,9 @@ public class CameraController implements Animatable {
     CameraModel model = new CameraModel();
 
     public CameraController(){
-        //AnimationsManager.getInstance().createUpAndDownAnimation(this, -10, 5);
-        //moveToPosition(new Translate(0, -700, -600), 12);
-        //rotateToAngle(-60, 0, 8);
+//        AnimationsManager.getInstance().createUpAndDownAnimation(this, -10, 5);
+//        moveToPosition(new Translate(0, -700, -600), 12);
+//        rotateToAngle(-60, 0, 8);
     }
 
 

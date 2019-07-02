@@ -35,7 +35,7 @@ public class Controller3D{
     public void createCamera(){
         System.out.println("creating camera...");
         CameraController cameraCon = new CameraController();
-        CameraView cameraView = new CameraView(cameraCon, camera);
+        CameraView cameraView = new CameraView(cameraCon);
         world.getChildren().add(camera);
         setCamera(cameraView.getCamera());
     }
@@ -48,12 +48,13 @@ public class Controller3D{
     }
 
     public void createTable(){
-        new TableView(table);
+        new TableView();
         world.getChildren().add(table);
     }
 
 //    public FicheController createRaceFiche(String race){
 //        FicheController ficheCon = new FicheController(1, "Ghost");
+//        new Fiche3DView(ficheCon, fiches, race);
 //        new fiche3dView2(ficheCon, fiches, race);
 //        return ficheCon;
 //    }

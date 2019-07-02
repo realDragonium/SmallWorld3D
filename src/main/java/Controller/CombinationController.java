@@ -2,10 +2,13 @@ package Controller;
 
 import Attacks.AttackType;
 import Model.CombinationModel;
+import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
+import View.CombinationView;
 import javafx.scene.transform.Translate;
 
 import java.util.Stack;
+import java.util.concurrent.Callable;
 
 
 public class CombinationController {
@@ -17,9 +20,13 @@ public class CombinationController {
 
     public CombinationController(GameController gameCon, String race, String power){
         model = new CombinationModel(race, power);
+        createCombinationView();
         this.gameCon = gameCon;
     }
 
+    private void createCombinationView() {
+        new SpecialFXMLLoader().loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(this));
+    }
 
     public void registerObserver(CombinationObserver obs){
         model.register(obs);
@@ -51,10 +58,9 @@ public class CombinationController {
         fiche.moveToPosition(fichePos);
     }
 
-    public void retreat(AreaController areaCon){
-//        areaCon.get
+    public void retreat(Stack<FicheController> fiches){
+        fiches.forEach(this::addRaceFiche);
     }
-
 
     public void setPlayer(PlayerController player){
         this.player = player;
@@ -82,13 +88,16 @@ public class CombinationController {
         int fiches = model.getRace().getFicheAmount() + model.getPower().getFicheAmount();
         for(int i = 0; i < fiches; i++){
             FicheController ficheCon = new FicheController(1, this);
-            player.getGameCon().createRaceFiche(ficheCon);
             addRaceFiche(ficheCon);
         }
     }
 
     public void setAttackType(AttackType attack) {
         model.setAttackType(attack);
+    }
+
+    public FicheController getFiche() {
+        return getFiches(1).pop();
     }
 
     public void clickedCombination() {

@@ -1,13 +1,15 @@
 package Controller;
 
-import Enum.AreaProperty;
 import Enum.AreaType;
 import Model.AreaModel;
-import Fiches.RaceFiche;
 import Objects.AreaInfo;
 import Observer.AreaObserver;
+import View.Crystal;
 import View.NumberView;
+import View.SpecialProperty;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -19,32 +21,9 @@ public class AreaController{
 
 
     private MapController mapCon;
-    private Map3DController map3DCon;
     private AreaModel model;
     private GameController gameCon;
     private NumberController numberCon;
-    private FirebaseGameController fb;
-
-    public AreaController(String id, Map3DController mapCon, Translate areaPoint , GameController gameCon){
-        model = new AreaModel(id, areaPoint);
-        map3DCon = mapCon;
-        this.gameCon = gameCon;
-        fb = gameCon.getFireBase();
-
-//        loadAreaInFirebase();
-//        listenToFirebase();
-    }
-
-    public AreaController(Group area, MapController mapController, GameController gameCon) {
-        String id = area.getChildren().get(0).getId();
-        model = new AreaModel(id);
-        mapCon = mapController;
-        this.gameCon = gameCon;
-
-        fb = gameCon.getFireBase();
-        //createSpecialPropFiche();
-//        getAreaInfo(id);
-    }
 
     public AreaController(AreaInfo info, MapController map, GameController gameCon){
         mapCon = map;
@@ -52,46 +31,33 @@ public class AreaController{
         this.gameCon = gameCon;
     }
 
-//    private void listenToFirebase(){
-//        fb.areaListener(this);
-//    }
-//
-//    private void loadAreaInFirebase(){
-//        model.setFiches(1);
-//        fb.areaUpdate(this);
-//    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
     public void addFiche(FicheController fiche){
         model.addFiche(fiche);
+    }
+
+    public void addFiche(){
+        model.addFiche(model.getOwningCombi().getFiche());
     }
 
     public void removeFiche(){
         FicheController fiche = model.removeFiche();
         fiche.getCombiCon().addRaceFiche(fiche);
-
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////ALLEEN DEZE TWEE GEBRUIKEN VOOR AANVALLEN///////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     public void attackArea(Stack<FicheController> fiches) {
-        model.getOwningCombi().retreat(this);
-        fiches.forEach(fiche -> addFiche(fiche));
+        returnAllFiches();
+        fiches.forEach(this::addFiche);
     }
 
     public void leaveArea(){
-
+        returnAllFiches();
+        model.setOwningCombi(mapCon.getLostTribeCombi());
     }
 
-
-
+    private void returnAllFiches(){
+        int number = model.getNumberOfFiches();
+        for(int i = 0; i < number; i++) removeFiche();
+    }
 
     public void putFiche(FicheController fiche){
         model.addFiche(fiche);
@@ -104,8 +70,6 @@ public class AreaController{
     String getId() {
         return model.getId();
     }
-
-
 
     public void changeCombiOwner(CombinationController combi){
         removeOwner();
@@ -175,11 +139,7 @@ public class AreaController{
     }
 
     public int getDefenceValue() {
-        int value = 2;
-        for(FicheController fiche : model.getFiches()){
-            value += fiche.getDefenceValue();
-        }
-        return value;
+        return 2 + model.getNumberOfFiches();
     }
 
     public void createNumber(Group group){
@@ -188,7 +148,6 @@ public class AreaController{
     }
 
     public void setNumber(int number){
-        System.out.println("test");
         numberCon.setNumber(number);
     }
 
@@ -196,21 +155,21 @@ public class AreaController{
         if(!model.getSpecialProp().equals("None")) {
 
             if(model.getSpecialProp().equals("Magical")){
-                gameCon.createCrystal().setPosition(model.getSpecialPropPoint());
+                new Crystal().setPosition(model.getSpecialPropPoint());
             }
             else {
-                Group group = gameCon.createSpecialPropFiche(model.getSpecialProp());
+                Node mesh = new SpecialProperty(model.getSpecialProp()).create();
                 int scale = 5;
 
-                group.setRotationAxis(Rotate.Y_AXIS);
-                group.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
+                mesh.setRotationAxis(Rotate.Y_AXIS);
+                mesh.setRotate(ThreadLocalRandom.current().nextInt(0, 360 + 1));
 
-                group.setTranslateX(model.getSpecialPropPoint().getX());
-                group.setTranslateY(model.getSpecialPropPoint().getY());
-                group.setTranslateZ(model.getSpecialPropPoint().getZ());
-                group.setScaleX(scale);
-                group.setScaleY(scale);
-                group.setScaleZ(scale);
+                mesh.setTranslateX(model.getSpecialPropPoint().getX());
+                mesh.setTranslateY(model.getSpecialPropPoint().getY());
+                mesh.setTranslateZ(model.getSpecialPropPoint().getZ());
+                mesh.setScaleX(scale);
+                mesh.setScaleY(scale);
+                mesh.setScaleZ(scale);
             }
         }
     }

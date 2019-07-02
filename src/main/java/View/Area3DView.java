@@ -1,26 +1,14 @@
 package View;
 
 import Controller.AreaController;
-import Controller.Controller3D;
-import Controller.FicheController;
-import Controller.GameController;
-import Objects.FXMLLOADER;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.input.PickResult;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Mesh;
 import javafx.scene.shape.MeshView;
 import Enum.AreaColor;
-import javafx.scene.shape.TriangleMesh;
-import javafx.scene.transform.Translate;
-
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 public class Area3DView implements AreaObserver {
 
@@ -58,7 +46,7 @@ public class Area3DView implements AreaObserver {
         });
         areaCon.createNumber(number);
         map.getChildren().add(number);
-//        con3d.add3dObject(number);
+
     }
 
     private void showNumber() {
@@ -68,13 +56,6 @@ public class Area3DView implements AreaObserver {
     private void hideNumber(){
         number.setVisible(false);
     }
-
-//    public FicheController createRaceFiche(String race){
-//        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new fiche3dView2(ficheCon, map, race);
-//        return ficheCon;
-//    }
-
 
     @Override
     public void update(AreaObservable ao) {
@@ -103,7 +84,6 @@ public class Area3DView implements AreaObserver {
         if(ao.getNumberOfFiches() == 0){
             number.setVisible(false);
         }
-
         else{
             if(ao.getNumberOfFiches() != currentNumber) {
                 currentNumber = ao.getNumberOfFiches();

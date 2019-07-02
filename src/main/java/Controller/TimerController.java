@@ -1,7 +1,11 @@
 package Controller;
 
 import Model.TimerModel;
+import Objects.SpecialFXMLLoader;
 import Observer.TimerObserver;
+import View.TimerView;
+
+import java.util.concurrent.Callable;
 
 public class TimerController {
 
@@ -11,6 +15,11 @@ public class TimerController {
 
     public TimerController(GameController gameController) {
         gameCon = gameController;
+        createTimerView();
+    }
+
+    private void createTimerView() {
+        new SpecialFXMLLoader().loader("/TimerView.fxml", (Callable<TimerView>) () -> new TimerView(this));
     }
 
     public void registerObs(TimerObserver timerObs){

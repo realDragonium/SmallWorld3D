@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-
+import Enum.GameViewEnum;
 
 
 public class InfoView implements infoObserver {
@@ -28,10 +28,19 @@ public class InfoView implements infoObserver {
     @FXML
     private MenuItem button;
 
-    public InfoView(Group groep, InfoController infoController) {
-        infoGroup = groep;
+    public InfoView(InfoController infoController) {
+        infoGroup = GameViewEnum.INFO.getGroup();
         infoCon = infoController;
         infoCon.register(this);
+    }
+
+
+    public void initialize() {
+        infoGroup.getChildren().add(pane);
+    }
+
+    public void exitInfoScreen() {
+        infoCon.exit();
     }
 
     @FXML
@@ -134,14 +143,5 @@ public class InfoView implements infoObserver {
         infoText.setWrapText(true);
         infoText.setText(ob.currentText());
 
-    }
-
-
-    public void initialize() {
-        infoGroup.getChildren().add(pane);
-    }
-
-    public void exitInfoScreen() {
-        infoCon.exit();
     }
 }

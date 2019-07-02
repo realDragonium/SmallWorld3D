@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
+import Enum.GameViewEnum;
 public class AreaInformationView implements AreaInformationObserver {
     private AreaInformationController areaInfoCon;
     private Group group;
@@ -19,9 +19,9 @@ public class AreaInformationView implements AreaInformationObserver {
     public Text areaType, areaDefenceValue, areaOwner, areaSpecial;
     public ImageView area_picture;
 
-    public AreaInformationView(Group group, AreaInformationController areaInfoCon){
+    public AreaInformationView(AreaInformationController areaInfoCon){
         this.areaInfoCon = areaInfoCon;
-        this.group = group;
+        this.group = GameViewEnum.AREAINFO.getGroup();
     }
 
     public void initialize(){
@@ -46,12 +46,15 @@ public class AreaInformationView implements AreaInformationObserver {
     }
 
     public void addFiche() {
+        areaInfoCon.addFiche();
     }
 
     public void removeFiche() {
+        areaInfoCon.removeFiche();
     }
 
     public void leaveArea() {
+        areaInfoCon.leaveArea();
     }
 
     public void exitScreen() {

@@ -4,6 +4,7 @@ import Controller.RedeployingController;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import Enum.GameViewEnum;
 
 public class RedeployingView {
 
@@ -15,9 +16,9 @@ public class RedeployingView {
 
     private RedeployingController redCon;
 
-    public RedeployingView(Group group, RedeployingController redCon){
+    public RedeployingView(RedeployingController redCon){
         this.redCon = redCon;
-        this.group = group;
+        this.group = GameViewEnum.REDEPLOY.getGroup();
     }
 
 

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
+import Enum.GameViewEnum;
 public class TimerView implements TimerObserver {
 
     private TimerController timerCon;
@@ -19,8 +19,8 @@ public class TimerView implements TimerObserver {
     @FXML
     public Text timer;
 
-    public TimerView(Group group, TimerController timerCon){
-        this.group = group;
+    public TimerView(TimerController timerCon){
+        this.group = GameViewEnum.TIMER.getGroup();
         this.timerCon = timerCon;
     }
 

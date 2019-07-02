@@ -4,6 +4,7 @@ import Model.MapModel;
 import Objects.AreaInfo;
 import View.Area2DView;
 import View.Area3DView;
+import View.CameraView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.scene.Group;
@@ -26,11 +27,11 @@ public class MapController {
 	private GameController gameCon;
 	private MapModel model;
 	private Controller3D con3D;
+	private CameraController cameraCon;
 
 	MapController(GameController gameCon){
 		this.gameCon = gameCon;
-		PlayerController player = new PlayerController("None", gameCon);
-		model = new MapModel(player, gameCon);
+		model = new MapModel(new PlayerController("None", gameCon));
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();
@@ -42,40 +43,21 @@ public class MapController {
 		new Area3DView(area, areas.get(area.getId()), map);
 	}
 
+	public CameraView createCamera() {
+		cameraCon = new CameraController();
+		return new CameraView(cameraCon);
+	}
+
+	public CombinationController getLostTribeCombi(){
+		return model.getCombi();
+	}
+
 	public void createAreaView(Group area){
 		new Area2DView(area, areas.get(area.getChildren().get(0).getId()));
 	}
 
-
-	public void loadInAreaInfo(){
-		List<AreaInfo> infoList = null;
-		try(Reader reader = new InputStreamReader(new FileInputStream("src/main/resources/Map/5playerMapInfo.json"))){
-			Type type = new TypeToken<ArrayList<AreaInfo>>(){}.getType();
-			infoList = new Gson().fromJson(reader, type);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Map<String, AreaInfo> infoMap = new HashMap<>();
-		for(AreaInfo info : infoList){
-			infoMap.put(info.id, info);
-		}
-		model.areaInfos = infoMap;
-	}
-
 	public AreaController getAreaCon(String areaId){
 		return areas.get(areaId);
-	}
-
-	private void createAreaControllers(){
-		Map<String, AreaInfo> infoMap = model.areaInfos;
-
-		infoMap.forEach((s, info) -> {
-			AreaController areaCon = new AreaController(info, this, gameCon);
-			areaCon.setAreaPoint(model.areaPoints.get(info.id));
-			areaCon.setPropPoint(model.propPoints.get(info.id));
-			areaCon.changeCombiOwner(model.getCombi());
-			areas.put(s, areaCon);
-		});
 	}
 
 	public Translate getTranslate(String areaId){
@@ -104,6 +86,38 @@ public class MapController {
 		model.activeArea = areaCon;
 		areaCon.changeActive();
 	}
+
+	public CameraController getCameraCon(){
+		return cameraCon;
+	}
+
+	public void loadInAreaInfo(){
+		List<AreaInfo> infoList = null;
+		try(Reader reader = new InputStreamReader(new FileInputStream("src/main/resources/Map/5playerMapInfo.json"))){
+			Type type = new TypeToken<ArrayList<AreaInfo>>(){}.getType();
+			infoList = new Gson().fromJson(reader, type);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Map<String, AreaInfo> infoMap = new HashMap<>();
+		for(AreaInfo info : infoList){
+			infoMap.put(info.id, info);
+		}
+		model.areaInfos = infoMap;
+	}
+
+	private void createAreaControllers(){
+		Map<String, AreaInfo> infoMap = model.areaInfos;
+
+		infoMap.forEach((s, info) -> {
+			AreaController areaCon = new AreaController(info, this, gameCon);
+			areaCon.setAreaPoint(model.areaPoints.get(info.id));
+			areaCon.setPropPoint(model.propPoints.get(info.id));
+			areaCon.changeCombiOwner(model.getCombi());
+			areas.put(s, areaCon);
+		});
+	}
+
 
 	private void setupSpecialPropPoints(){
 		Map<String, Translate> propPoints = new HashMap<>();
@@ -204,12 +218,4 @@ public class MapController {
 		areaPoints.put("swamp_005" ,new Translate(-147,-1,437));
 		model.areaPoints = areaPoints;
 	}
-
-	public void placeFiche(AreaController areaCon, FicheController fiche) {
-		areaCon.putFiche(fiche);
-	}
-
-    public GameController getGameCon() {
-		return gameCon;
-    }
 }

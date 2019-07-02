@@ -11,12 +11,18 @@ public class FirebaseGameService {
 
     private Firestore fb;
     private DocumentReference gameRef;
+    private final String gameName;
 
     public FirebaseGameService(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public void startFBService(){
         Database db = new Database();
         fb = db.getFirestoreDatabase();
         gameRef = fb.collection("Games").document(gameName);
     }
+
 
     public void placeAction(String number, Object object){
         gameRef.collection("Actions").document(number).set(object);

@@ -2,15 +2,16 @@ package Controller;
 
 import Firebase.FirebaseGameObserver;
 import Model.ShopModel;
+import Objects.SpecialFXMLLoader;
 import Observer.ShopObserver;
+import View.ShopView;
 import com.google.cloud.firestore.DocumentSnapshot;
-import javafx.application.Platform;
-import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Callable;
 
 public class ShopController implements FirebaseGameObserver {
 
@@ -23,14 +24,11 @@ public class ShopController implements FirebaseGameObserver {
         fbGame = gameCon.getFireBase();
         fbGame.register("add", this::addUpdate);
         fbGame.register("buy", this::buyUpdate);
+        createShopView();
     }
 
-    public void makeItems() {
-
-    }
-
-    private void removeItem(double item) {
-        model.removeItem((int) item);
+    private void createShopView() {
+        new SpecialFXMLLoader().loader("/ShopView.fxml", (Callable<ShopView>) () -> new ShopView(this));
     }
 
     private void buyingItem(int item) {
@@ -97,10 +95,6 @@ public class ShopController implements FirebaseGameObserver {
 
     private void buyUpdate(DocumentSnapshot ds) {
         buyingItem(ds.getDouble("item").intValue());
-    }
-
-    public void createCombinationView(int index, Group group) {
-        gameCon.createCombinationView(group, model.getShopItems().get(index));
     }
 
     public int getShopItem(CombinationController item) {

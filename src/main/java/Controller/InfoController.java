@@ -1,8 +1,12 @@
 package Controller;
 
 import Model.InfoModel;
+import Objects.SpecialFXMLLoader;
 import Observer.infoObserver;
 import Enum.GameViewEnum;
+import View.InfoView;
+
+import java.util.concurrent.Callable;
 
 public class InfoController {
 
@@ -11,6 +15,12 @@ public class InfoController {
 
     InfoController(GameController gameController) {
         gameCon = gameController;
+        createInfoView();
+    }
+
+
+    private void createInfoView() {
+        new SpecialFXMLLoader().loader("/InfoScreen/InfoView.fxml", (Callable<InfoView>)() -> new InfoView(this));
     }
 
     public void exit(){

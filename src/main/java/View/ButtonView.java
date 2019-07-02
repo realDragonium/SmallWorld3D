@@ -4,7 +4,7 @@ import Controller.ButtonController;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-
+import Enum.GameViewEnum;
 public class ButtonView {
 
     private Group root;
@@ -15,8 +15,8 @@ public class ButtonView {
     public Button availableButton;
     public Button nextFaseButton;
 
-    public ButtonView(Group group, ButtonController buttonCon){
-        root = group;
+    public ButtonView(ButtonController buttonCon){
+        root = GameViewEnum.BUTTON.getGroup();
         this.buttonCon = buttonCon;
     }
 
@@ -27,7 +27,7 @@ public class ButtonView {
 
     public void showInfo(){ buttonCon.showInfo(); }
     public void fichesOver(){
-        buttonCon.fichesOver();
+        buttonCon.activeListener();
     }
     public void nextPhase(){ buttonCon.nextPhase(); }
     public void createShopItem() {

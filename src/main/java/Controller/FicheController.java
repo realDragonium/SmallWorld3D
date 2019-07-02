@@ -5,6 +5,7 @@ import Model.FicheModel;
 import Objects.Animatable;
 import Objects.AnimationPoint;
 import Observer.FicheObserver;
+import View.Fiche3DView;
 import javafx.scene.transform.Translate;
 
 public class FicheController implements Animatable {
@@ -15,6 +16,7 @@ public class FicheController implements Animatable {
     public FicheController(int defenceValue, CombinationController combi){
         combiCon = combi;
         model = new FicheModel(defenceValue, combiCon.getRace());
+        new Fiche3DView(this);
     }
 
     public void registerObserver(FicheObserver fo){

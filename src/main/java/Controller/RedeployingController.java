@@ -1,5 +1,10 @@
 package Controller;
 
+import Objects.SpecialFXMLLoader;
+import View.RedeployingView;
+
+import java.util.concurrent.Callable;
+
 public class RedeployingController {
 
     GameController gameCon;
@@ -7,9 +12,13 @@ public class RedeployingController {
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
-        fbGame = gameCon.getFireBase();
-
+        createRedeployView();
     }
+
+    private void createRedeployView() {
+        new SpecialFXMLLoader().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
+    }
+
     //DEPRECATED
 //    public void removeFiche() {
 //        AreaController activeArea = getActiveArea();
@@ -41,8 +50,8 @@ public class RedeployingController {
 //        }
 //    }
 
-    private AreaController getActiveArea(){
-        AreaController activeArea = gameCon.getMapCon().getActiveArea();
-        return activeArea;
-    }
+//    private AreaController getActiveArea(){
+//        AreaController activeArea = gameCon.getMapCon().getActiveArea();
+//        return activeArea;
+//    }
 }

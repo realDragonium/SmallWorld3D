@@ -6,7 +6,7 @@ import Observer.RoundObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-
+import Enum.GameViewEnum;
 public class RoundView implements RoundObserver {
 
 
@@ -18,8 +18,8 @@ public class RoundView implements RoundObserver {
     public Text roundField;
     public Group groupFXML;
 
-    public RoundView(Group group, RoundController roundCon){
-        this.group = group;
+    public RoundView(RoundController roundCon){
+        this.group = GameViewEnum.ROUND.getGroup();
         this.roundCon = roundCon;
     }
 

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import Enum.GameViewEnum;
 
 public class PlayerView implements PlayerObserver {
 
@@ -20,18 +21,17 @@ public class PlayerView implements PlayerObserver {
     private Text playerId, fiches, punten;
 
 
-    public PlayerView(int id, Group group, PlayerController playerCon) {
-        this.group = group;
+    public PlayerView(int id, PlayerController playerCon) {
+        this.group = GameViewEnum.PLAYER.getGroup();
         this.playerCon = playerCon;
         this.id = id;
     }
 
     public void initialize() {
-        playerId.setText(""+id);
+        playerId.setText("Player"+id);
         playerCon.register(this);
         pane.setLayoutY(100 + 150 * id);
         group.getChildren().add(pane);
-
     }
 
     @Override

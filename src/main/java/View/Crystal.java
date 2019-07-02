@@ -1,47 +1,39 @@
 package View;
 
+import Enum.View3DEnum;
 import Managers.AnimationsManager;
-import Model.FicheModel;
 import Objects.Animatable;
 import Objects.AnimationPoint;
-import Observer.FicheObserver;
-import javafx.fxml.FXMLLoader;
+import Objects.NormalFXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
+import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Translate;
-
-import java.io.IOException;
 
 public class Crystal implements Animatable {
 
     Translate position;
     Group group;
-    Node node;
+    MeshView crystal;
 
-    public Crystal(Group group){
-        this.group = group;
+    public Crystal(){
+        group = new Group();
+        View3DEnum.CRYSTAL.getGroup().getChildren().add(group);
         loadCrystal();
         AnimationsManager.getInstance().createUpAndDownAnimation(this, 20, 4);
     }
 
     public void loadCrystal(){
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(this.getClass().getResource("/3dObjects/magical.fxml"));
-        try {
-            node = fxmlLoader.load();
-            node.setScaleX(8);
-            node.setScaleY(8);
-            node.setScaleZ(8);
-            group.getChildren().add(node);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        crystal = new NormalFXMLLoader("/3dObjects/magical.fxml").loadMeshView();
+        crystal.setScaleX(8);
+        crystal.setScaleY(8);
+        crystal.setScaleZ(8);
+        group.getChildren().add(crystal);
     }
 
     public void setPosition(Translate newPos){
-        node.setTranslateX(newPos.getX());
-        node.setTranslateY(newPos.getY() - 20);
-        node.setTranslateZ(newPos.getZ());
+        group.setTranslateX(newPos.getX());
+        group.setTranslateY(newPos.getY() - 20);
+        group.setTranslateZ(newPos.getZ());
 
     }
 
@@ -50,9 +42,9 @@ public class Crystal implements Animatable {
     }
 
     public void movePosition(Translate translate){
-        node.setTranslateX(node.getTranslateX() + translate.getX());
-        node.setTranslateY(node.getTranslateY() + translate.getY());
-        node.setTranslateZ(node.getTranslateZ() + translate.getZ());
+        group.setTranslateX(group.getTranslateX() + translate.getX());
+        group.setTranslateY(group.getTranslateY() + translate.getY());
+        group.setTranslateZ(group.getTranslateZ() + translate.getZ());
     }
 
     @Override
@@ -68,7 +60,7 @@ public class Crystal implements Animatable {
 
     @Override
     public Translate getCurrentPosition() {
-        return new Translate(node.getTranslateX(), node.getLayoutY(), node.getScaleZ());
+        return new Translate(group.getTranslateX(), group.getLayoutY(), group.getScaleZ());
     }
 
     @Override

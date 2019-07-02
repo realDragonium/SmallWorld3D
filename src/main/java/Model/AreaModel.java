@@ -32,13 +32,6 @@ public class AreaModel implements AreaObservable {
     public Translate areaPoint;
     public Translate specialPropPoint;
 
-
-    public AreaModel(String id, Translate areaPoint) {
-        this.id = id;
-        this.areaPoint = areaPoint;
-        type = AreaType.valueOf(id.split("_")[0]);
-    }
-
     public AreaModel(AreaInfo info) {
         id = info.id;
         neighbours = info.neighbours;
@@ -47,12 +40,7 @@ public class AreaModel implements AreaObservable {
         lostTribe = info.lostTribe;
         specialProperty = info.property;
         nextToWater = info.nextToWater;
-
         type = AreaType.valueOf(id.split("_")[0]);
-    }
-
-    public AreaModel(String id) {
-        this.id = id;
     }
 
     @Override
@@ -73,10 +61,15 @@ public class AreaModel implements AreaObservable {
         notifyObserver();
     }
 
+    public FicheController removeFiche() {
+        FicheController fiche = fiches.pop();
+        notifyObserver();
+        return fiche;
+    }
+
     public PlayerController getPlayer(){
         return player;
     }
-
 
     public boolean firstAttackArea(){
         return borderArea && attackAble;
@@ -94,17 +87,6 @@ public class AreaModel implements AreaObservable {
     public void changeActive() {
         active = !active;
         notifyObserver();
-    }
-
-    public void setFiches(Stack<FicheController> fiches) {
-        this.fiches = fiches;
-        notifyObserver();
-    }
-
-
-
-    public Stack<FicheController> getFiches() {
-        return fiches;
     }
 
     public String getSpecialProp(){
@@ -160,8 +142,4 @@ public class AreaModel implements AreaObservable {
         return false;
     }
 
-
-    public FicheController removeFiche() {
-        return fiches.pop();
-    }
 }

@@ -10,21 +10,45 @@ import javafx.application.Platform;
 
 import java.util.*;
 
-public class FirebaseGameController implements FirebaseActionObserver {
+public class FirebaseGameController implements FirebaseActionObserver, Runnable {
 
     private GameController gameCon;
     private FirebaseGameService service;
     private Map<String, FirebaseGameObserver> observers = new HashMap<>();
+    private Queue<Map<String, Object>> queue = new LinkedList<>();
 
     public FirebaseGameController(String gameName, GameController gameCon) {
         this.gameCon = gameCon;
         service = new FirebaseGameService(gameName);
+    }
+
+    @Override
+    public void run() {
+        service.startFBService();
+        placeActionQueue();
+    }
+
+    public void activateListener(){
         turnActionListener(this);
     }
 
+
     private void placeAction(Map<String, Object> map) {
-        System.out.println("send message");
-        service.placeAction(getEventNumber(), map);
+//        service.placeAction(getEventNumber(), map);
+        queue.add(map);
+    }
+
+    private void placeActionQueue(){
+        TimerTask start = new TimerTask() {
+            @Override
+            public void run() {
+                if(queue.peek()!= null){
+                    service.placeAction(getEventNumber(), queue.remove());
+                }
+            }
+        };
+        Timer animTimer = new Timer();
+        animTimer.scheduleAtFixedRate(start, 0, 250);
     }
 
     private String getEventNumber(){
@@ -34,21 +58,21 @@ public class FirebaseGameController implements FirebaseActionObserver {
         return str.toString();
     }
 
-    public void nextPhaseAction() {
+    void nextPhaseAction() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "phase");
         map.put("action", "nextPhase");
         placeAction(map);
     }
 
-    public void buyCombiAction(int number) {
+    void buyCombiAction(int number) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "buy");
         map.put("item", number);
         placeAction(map);
     }
 
-    public void addCombiAction(String race, String power) {
+    void addCombiAction(String race, String power) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "add");
         map.put("race", race);
@@ -56,35 +80,35 @@ public class FirebaseGameController implements FirebaseActionObserver {
         placeAction(map);
     }
 
-    public void attackAction(String areaId) {
+    void attackAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "attack");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
-    public void addsFicheAction(String areaId) {
+    void addsFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "addFiche");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
-    public void removeFicheAction(String areaId) {
+    void removeFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "removeFiche");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
-    public void leavesFicheAction(String areaId) {
+    void leavesFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "leaves");
         map.put("areaId", areaId);
         placeAction(map);
     }
 
-    public void declineAction() {
+    void declineAction() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "decline");
         map.put("action", "decline");
@@ -109,12 +133,6 @@ public class FirebaseGameController implements FirebaseActionObserver {
             System.out.println(doc.getData());
             Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
-//        updateQue(qs.getDocumentChanges());
-//        LinkedList<DocumentChange> list = (LinkedList) updateList;
-
     }
 
-    private void updateQue(Collection<DocumentChange> list){
-
-    }
 }

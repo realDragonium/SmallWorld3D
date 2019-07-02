@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-
+import Enum.GameViewEnum;
 
 public class DiceView implements DiceObserver {
 
@@ -41,18 +41,8 @@ public class DiceView implements DiceObserver {
             new KeyFrame(Duration.millis(3000), new KeyValue(showImageView.imageProperty(), Five))
     );
 
-
-
-    public DiceView(DiceController diceCon, Group group) {
-        this.diceController = diceCon;
-        this.root = group;
-
-        diceController.registreer(this);
-        createScene();
-    }
-
-    public DiceView(Group group, DiceController diceCon) {
-        root = group;
+    public DiceView(DiceController diceCon) {
+        root = GameViewEnum.DICE.getGroup();
         diceController = diceCon;
     }
 
