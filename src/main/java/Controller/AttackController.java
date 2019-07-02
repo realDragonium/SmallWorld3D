@@ -1,14 +1,38 @@
 package Controller;
 
+import Enums.GameViewEnum;
+import Enums.NotificationEnum;
+import Objects.SpecialFXMLLoader;
+import View.AttackView;
+
+import java.util.concurrent.Callable;
+
 public class AttackController {
 
     private GameController gameCon;
     private AreaController targetArea;
-    private int fichesCountNeeded;
-    private boolean diceUsed = false;
+    private FirebaseGameController fbGame;
 
     AttackController(GameController gameCon) {
         this.gameCon = gameCon;
+        fbGame = gameCon.getFireBase();
+        createAttackView();
+    }
+
+    private void createAttackView(){
+        new SpecialFXMLLoader().loader("/AttackView.fxml", (Callable<AttackView>)() -> new AttackView(this));
+    }
+
+    public void AttackArea(String areaID) {
+        int fiches = gameCon.getCurrentPlayer().getCurrentCombi().getFichesAmount();
+        int fichesNeeded = gameCon.getMapCon().getAreaCon(areaID).getDefenceValue();
+        if(fiches < fichesNeeded) {
+            gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+
+            return;
+        }
+        fbGame.attackAction(areaID);
+        gameCon.removeFromGameView(GameViewEnum.AREAINFO);
     }
 
 //    public void removeFichesNeeded(int amount){

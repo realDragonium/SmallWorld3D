@@ -1,17 +1,10 @@
 package Phase;
+import Controller.CombinationController;
+import Controller.GameController;
 import Controller.PhaseController;
-import Enum.GameViewEnum;
-import java.util.ArrayList;
-import java.util.List;
-import Enum.PhaseEnum;
 
 
 public class Redeploying implements Phase {
-    List<GameViewEnum> views = new ArrayList<>();
-
-    public Redeploying(){
-
-    }
 
     @Override
     public void nextPhase(PhaseController phaseCon) {
@@ -24,7 +17,9 @@ public class Redeploying implements Phase {
     }
 
     @Override
-    public List<GameViewEnum> getView() {
-        return views;
+    public void setViews(CombinationController combi) {
+        combi.checkRedeployAreas();
     }
+
+
 }

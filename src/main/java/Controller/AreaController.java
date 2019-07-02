@@ -1,6 +1,7 @@
 package Controller;
 
-import Enum.AreaType;
+import Enums.AreaInfoEnum;
+import Enums.AreaType;
 import Model.AreaModel;
 import Objects.AreaInfo;
 import Observer.AreaObserver;
@@ -17,8 +18,6 @@ import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AreaController{
-
-
     private MapController mapCon;
     private AreaModel model;
     private GameController gameCon;
@@ -66,7 +65,7 @@ public class AreaController{
         return model.getAreaPoint();
     }
 
-    String getId() {
+    public String getId() {
         return model.getId();
     }
 
@@ -125,7 +124,7 @@ public class AreaController{
         return model.isAttackAble();
     }
 
-    List<String> getNeighbours() {
+    public List<String> getNeighbours() {
         return model.getNeigbours();
     }
 
@@ -174,7 +173,6 @@ public class AreaController{
     }
 
     public void showInfo() {
-//        System.out.println("showing: " + getAreaType());
         gameCon.getAreaInfoCon().putAreaInformationScreen(this);
     }
 
@@ -185,5 +183,13 @@ public class AreaController{
     public void setPropPoint(Translate translate) {
         model.specialPropPoint = translate;
         createSpecialPropFiche();
+    }
+
+    public AreaInfoEnum getAreaInfoButton(){
+        return model.getAreaInfoButton();
+    }
+
+    public void setAreaInfoButton(AreaInfoEnum areaInfoButton){
+        model.setAreaInfoButton(areaInfoButton);
     }
 }

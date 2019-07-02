@@ -1,6 +1,6 @@
 package Model;
 
-import Enum.ApplicationViewEnum;
+import Enums.ApplicationViewEnum;
 import Observable.ApplicationObservable;
 import Observer.ApplicationObserver;
 import javafx.scene.SubScene;

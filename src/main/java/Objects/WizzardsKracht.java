@@ -2,7 +2,7 @@ package Objects;
 
 import Controller.AreaController;
 import Controller.RaceController;
-import Enum.AreaProperty;
+import Enums.AreaProperty;
 
 
 public class WizzardsKracht implements Kracht{

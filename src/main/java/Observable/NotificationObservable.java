@@ -1,7 +1,7 @@
 package Observable;
 
 import Observer.NotificationObserver;
-import Enum.NotificationEnum;
+import Enums.NotificationEnum;
 
 public interface NotificationObservable {
     void register(NotificationObserver no);

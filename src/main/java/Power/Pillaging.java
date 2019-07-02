@@ -9,6 +9,6 @@ public class Pillaging implements Power {
 
     @Override
     public int getFicheAmount() {
-        return 4;
+        return 5;
     }
 }

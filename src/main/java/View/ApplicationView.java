@@ -1,12 +1,11 @@
 package View;
 
 import Controller.ApplicationController;
-import Enum.ApplicationViewEnum;
+import Enums.ApplicationViewEnum;
 import Observable.ApplicationObservable;
 import Observer.ApplicationObserver;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 

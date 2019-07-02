@@ -1,4 +1,4 @@
-package Enum;
+package Enums;
 
 import Race.*;
 import javafx.scene.Group;

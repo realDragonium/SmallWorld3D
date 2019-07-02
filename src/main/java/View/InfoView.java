@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 
 
 public class InfoView implements infoObserver {

@@ -1,6 +1,6 @@
 package Observable;
 
-import Enum.ApplicationViewEnum;
+import Enums.ApplicationViewEnum;
 import Observer.ApplicationObserver;
 
 public interface ApplicationObservable {

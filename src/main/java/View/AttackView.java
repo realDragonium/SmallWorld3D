@@ -1,34 +1,33 @@
 package View;
 
 import Controller.AttackController;
+import Enums.GameViewEnum;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 
-    public class AttackView {
+public class AttackView {
 
-        private Group root;
-        private AttackController attackCon;
 
-        @FXML
-        public Pane pane;
-        public Button attackButton;
+    private AttackController attackCon;
 
-        public AttackView(Group group, AttackController attackCon){
-            root = group;
-            this.attackCon = attackCon;
-        }
+    @FXML
+    public Button attackButton;
 
-        public void initialize() {
-            root.getChildren().add(pane);
-        }
+    public AttackView(AttackController attackCon) {
+        this.attackCon = attackCon;
+    }
 
-        @FXML
-        public void attackCountry(){
-//            attackCon.attackCountry();
-        }
+    public void initialize() {
+        GameViewEnum.ATTACK.getGroup().getChildren().add(attackButton);
+    }
+
+    public void attackCountry() {
+        attackCon.AttackArea(attackButton.getId());
+    }
 
 
 }

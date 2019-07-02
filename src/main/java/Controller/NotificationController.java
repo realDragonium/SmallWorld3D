@@ -3,7 +3,7 @@ package Controller;
 import Model.NotificationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.NotificationObserver;
-import Enum.NotificationEnum;
+import Enums.NotificationEnum;
 import View.NotificationView;
 
 import java.util.concurrent.Callable;

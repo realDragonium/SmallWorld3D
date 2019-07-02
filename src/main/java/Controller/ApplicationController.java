@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.ApplicationViewEnum;
+import Enums.ApplicationViewEnum;
 import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.ApplicationObserver;

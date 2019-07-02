@@ -11,7 +11,6 @@ import java.util.List;
 
 public class TurnModel implements TurnObservable {
     private List<TurnObserver> observers = new ArrayList<>();
-    public int currentTurn = 0;
     public PlayerController currentPlayer;
     public List<PlayerController> players;
     private LinkedList<Turn> turns = new LinkedList<>();
@@ -20,7 +19,6 @@ public class TurnModel implements TurnObservable {
     public TurnModel(List<PlayerController> players, int myPlayerId){
         this.myPlayerId = myPlayerId;
         this.players = players;
-        currentTurn = 0;
     }
 
     public LinkedList<Turn> getTurns(){
@@ -28,16 +26,15 @@ public class TurnModel implements TurnObservable {
     }
 
     public void newRound(){
-        this.turns.add(new NotMyTurn());
-        this.turns.add(new NotMyTurn());
-        this.turns.add(new NotMyTurn());
-        this.turns.add(myPlayerId, new MyTurn());
+        turns.add(new NotMyTurn());
+        turns.add(new NotMyTurn());
+        turns.add(new NotMyTurn());
+        turns.add(myPlayerId, new MyTurn());
     }
 
     @Override
     public void register(TurnObserver to) {
         observers.add(to);
-        notifyObservers();
     }
 
     @Override
@@ -47,6 +44,6 @@ public class TurnModel implements TurnObservable {
 
     @Override
     public String getPlayerName() {
-        return currentPlayer.getId();
+        return currentPlayer.getName();
     }
 }

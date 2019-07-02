@@ -3,7 +3,7 @@ package Model;
 import Controller.PlayerController;
 import Observable.GameObservable;
 import Observer.GameObserver;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 
 public class DeclineView {
 

@@ -3,21 +3,22 @@ package Model;
 import Attacks.AttackType;
 import Attacks.FirstAttack;
 import Controller.AreaController;
-import Controller.CombinationController;
 import Controller.FicheController;
-import Controller.RaceController;
-import Fiches.RaceFiche;
+import Decline.*;
+import Enums.PowerEnum;
+import Enums.RaceEnum;
 import Observable.CombinationObservable;
 import Observer.CombinationObserver;
+import Phase.Phase;
+import Points.*;
+import Power.Power;
+import Race.Race;
+import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import Enum.RaceEnum;
-import Enum.PowerEnum;
-import Power.Power;
-import Race.Race;
-import javafx.scene.transform.Translate;
+import Enums.AreaType;
 
 public class CombinationModel implements CombinationObservable {
 
@@ -33,7 +34,8 @@ public class CombinationModel implements CombinationObservable {
 
 
     private AttackType attack;
-    private Object pointsCounter;
+    private Decline decline;
+    private Points points;
     private Object defends;
     private Object specialAction;
 
@@ -43,6 +45,12 @@ public class CombinationModel implements CombinationObservable {
         this.race = RaceEnum.valueOf(raceId).getRace();
         this.power = PowerEnum.valueOf(powerId).getPower();
         attack = new FirstAttack();
+        decline = new NotInDecline();
+        points = new NormalPoints();
+    }
+
+    public List<AreaController> getAreas(){
+        return areas;
     }
 
     public void addArea(AreaController area) {
@@ -52,23 +60,28 @@ public class CombinationModel implements CombinationObservable {
     public void removeArea(AreaController area) {areas.remove(area);}
 
     public boolean isActive(){
-        return active;
+        return decline.isActive();
     }
 
     public Stack<FicheController> removeFiches(int count) {
         Stack<FicheController> tempFiches = new Stack<>();
         for (int i = 0; i < count; i++) {
             tempFiches.add(raceFiches.pop());
+            System.out.println("Fiches Over: "+raceFiches.size());
         }
         return tempFiches;
     }
 
     public void goIntoDecline() {
-        active = false;
+        decline = new InDecline();
     }
 
     public AttackType getAttack(){
         return attack;
+    }
+
+    public void nextAttack(){
+        attack = attack.nextAttack();
     }
 
     public void setPosition(Translate pos) {
@@ -96,10 +109,13 @@ public class CombinationModel implements CombinationObservable {
         return power;
     }
 
-    public void setAttackType(AttackType attack) {
-        this.attack = attack;
+    public Phase getStartingPhase(){
+        return decline.startAt();
     }
 
+    public int getPoints(AreaType type){
+        return points.getWorth(type);
+    }
 
     @Override
     public void register(CombinationObserver mvo) {

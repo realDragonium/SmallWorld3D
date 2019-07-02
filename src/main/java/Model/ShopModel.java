@@ -1,15 +1,14 @@
 package Model;
 
 import Controller.CombinationController;
-import Enum.PowerEnum;
-import Enum.RaceEnum;
+import Enums.PowerEnum;
+import Enums.RaceEnum;
 import Observable.ShopObservable;
 import Observer.ShopObserver;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ShopModel implements ShopObservable {

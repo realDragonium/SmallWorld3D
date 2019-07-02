@@ -3,8 +3,8 @@ package Model;
 import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.PlayerController;
-import Enum.AreaType;
-import Enum.AreaInfoEnum;
+import Enums.AreaType;
+import Enums.AreaInfoEnum;
 import Objects.AreaInfo;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
@@ -32,7 +32,7 @@ public class AreaModel implements AreaObservable {
     private Stack<FicheController> fiches = new Stack<>();
     public Translate areaPoint;
     public Translate specialPropPoint;
-    private AreaInfoEnum areaInfo;
+    private AreaInfoEnum areaInfoButton = AreaInfoEnum.NONE;
 
     public AreaModel(AreaInfo info) {
         id = info.id;
@@ -45,10 +45,7 @@ public class AreaModel implements AreaObservable {
         type = AreaType.valueOf(id.split("_")[0]);
     }
 
-    @Override
-    public Translate getAreaPoint(){
-        return areaPoint;
-    }
+
 
     public Translate getSpecialPropPoint(){
         return specialPropPoint;
@@ -113,6 +110,14 @@ public class AreaModel implements AreaObservable {
 
     public List<String> getNeigbours() {return neighbours;}
 
+    public AreaInfoEnum getAreaInfoButton(){
+        return areaInfoButton;
+    }
+
+    public void setAreaInfoButton(AreaInfoEnum areaInfoButton){
+        this.areaInfoButton = areaInfoButton;
+    }
+
     @Override
     public void register(AreaObserver ao) {
         observer = ao;
@@ -142,6 +147,11 @@ public class AreaModel implements AreaObservable {
     @Override
     public boolean isShowing() {
         return false;
+    }
+
+    @Override
+    public Translate getAreaPoint(){
+        return areaPoint;
     }
 
 }

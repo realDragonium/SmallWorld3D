@@ -1,8 +1,8 @@
 package View;
 
 import Controller.ShopController;
-import Enum.GameViewEnum;
-import Enum.RaceEnum;
+import Enums.GameViewEnum;
+import Enums.RaceEnum;
 import Observable.ShopObservable;
 import Observer.ShopObserver;
 import javafx.fxml.FXML;

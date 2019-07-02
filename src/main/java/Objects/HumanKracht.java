@@ -2,7 +2,7 @@ package Objects;
 
 import Controller.AreaController;
 import Controller.RaceController;
-import Enum.AreaType;
+import Enums.AreaType;
 
 
 public class HumanKracht implements Kracht{

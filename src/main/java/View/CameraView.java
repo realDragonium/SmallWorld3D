@@ -6,7 +6,7 @@ import Observable.CameraObservable;
 import Observer.CameraObserver;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
-import Enum.View3DEnum;
+import Enums.View3DEnum;
 
 public class CameraView implements CameraObserver {
     Group root;

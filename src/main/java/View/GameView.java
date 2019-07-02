@@ -6,7 +6,7 @@ import Observer.GameObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 import java.util.List;
 
 public class GameView implements GameObserver {
@@ -31,7 +31,6 @@ public class GameView implements GameObserver {
         gameCon.register(this);
         gameCon.setPlayerPositions();
         gameCon.startGame();
-
     }
 
     private void createViews(){
@@ -60,6 +59,7 @@ public class GameView implements GameObserver {
         if(views == null) return;
         views.forEach(s -> notBasicRoot.getChildren().add(s.getGroup()));
     }
+
 
     @Override
     public void update(GameObservable go) {

@@ -8,8 +8,8 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
-import Enum.GameViewEnum;
-import Enum.RaceEnum;
+import Enums.GameViewEnum;
+import Enums.RaceEnum;
 
 public class CombinationView implements CombinationObserver {
 

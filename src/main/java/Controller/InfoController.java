@@ -3,7 +3,7 @@ package Controller;
 import Model.InfoModel;
 import Objects.SpecialFXMLLoader;
 import Observer.infoObserver;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 import View.InfoView;
 
 import java.util.concurrent.Callable;

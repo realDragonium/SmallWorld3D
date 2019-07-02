@@ -1,10 +1,11 @@
-package Enum;
+package Enums;
 
 import javafx.scene.Group;
 
+
 public enum AreaInfoEnum {
-    ATTACK(new Group()), REDEPLOY(new Group()), PREPARE(new Group()),
-    NONE(new Group());
+    ATTACK(GameViewEnum.ATTACK.getGroup()), REDEPLOY(GameViewEnum.REDEPLOY.getGroup()),
+    PREPARE(GameViewEnum.PREPARE.getGroup()), NONE(new Group());
 
 
     private Group group;

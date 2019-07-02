@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
-import Enum.AreaColor;
+import Enums.AreaColor;
 
 public class Area3DView implements AreaObserver {
 

@@ -1,7 +1,7 @@
 package View;
 
 import Controller.AreaController;
-import Enum.AreaColor;
+import Enums.AreaColor;
 import Observable.AreaObservable;
 import Observer.AreaObserver;
 import javafx.application.Platform;

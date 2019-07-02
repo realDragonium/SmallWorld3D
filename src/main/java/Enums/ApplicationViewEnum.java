@@ -1,4 +1,4 @@
-package Enum;
+package Enums;
 
 public enum ApplicationViewEnum {
     LOGIN("login"), GAME("game"), HOMESCREEN("homescreen");

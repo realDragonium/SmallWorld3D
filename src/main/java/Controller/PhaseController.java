@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.PhaseEnum;
+import Enums.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
 import Objects.SpecialFXMLLoader;
@@ -12,9 +12,9 @@ import java.util.concurrent.Callable;
 
 public class PhaseController implements FirebaseGameObserver {
 
-
     private GameController gameCon;
     private FirebaseGameController fb;
+    private TurnController turnCon;
     private PhaseModel model;
 
     PhaseController(GameController gameCon) {
@@ -23,6 +23,10 @@ public class PhaseController implements FirebaseGameObserver {
         fb = gameCon.getFireBase();
         fb.register("phase", this::update);
         createPhaseView();
+    }
+
+    public void setTurnCon(TurnController turnCon){
+        this.turnCon = turnCon;
     }
 
     private void createPhaseView() {
@@ -47,11 +51,13 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     public void changeView(){
-        gameCon.changeGameView(model.getPhase().getView());
+        if(turnCon.getCurrentPlayer().getCurrentCombi() == null) return;
+        model.getPhase().setViews(turnCon.getCurrentPlayer().getCurrentCombi());
     }
 
     public void nextTurn(){
-        gameCon.nextTurn();
+       countPoints();
+       turnCon.nextTurn();
     }
 
 
@@ -62,5 +68,11 @@ public class PhaseController implements FirebaseGameObserver {
     @Override
     public void update(DocumentSnapshot ds) {
         nextPhase();
+    }
+
+    public void countPoints() {
+        for(CombinationController combi : turnCon.getCurrentPlayer().getCombinations()){
+            combi.countPoints();
+        }
     }
 }

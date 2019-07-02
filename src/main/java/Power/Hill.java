@@ -9,6 +9,6 @@ public class Hill implements Power {
 
     @Override
     public int getFicheAmount() {
-        return 0;
+        return 4;
     }
 }

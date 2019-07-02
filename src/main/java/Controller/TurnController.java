@@ -10,6 +10,7 @@ import javafx.scene.transform.Translate;
 
 import java.util.concurrent.Callable;
 
+
 public class TurnController implements FirebaseGameObserver {
 
     private TurnModel model;
@@ -17,15 +18,20 @@ public class TurnController implements FirebaseGameObserver {
     private PhaseController phaseCon;
     private RoundController roundCon;
 
+
     TurnController(GameController gameCon){
         model = new TurnModel(gameCon.getPlayers(), gameCon.imPlayer());
         this.gameCon = gameCon;
+        createTurnView();
+        manageControllers();
+        registerFirebase();
+        model.newRound();
+    }
+
+    private void manageControllers(){
         this.phaseCon = gameCon.getPhaseCon();
         this.roundCon = gameCon.getRoundCon();
-        model.newRound();
-        model.currentPlayer = gameCon.getPlayer(0);
-        createTurnView();
-        registerFirebase();
+        phaseCon.setTurnCon(this);
     }
 
     private void registerFirebase(){
@@ -51,8 +57,17 @@ public class TurnController implements FirebaseGameObserver {
 
     void nextTurn(){
         if(model.getTurns().size() == 0) roundCon.nextRound();
+        model.currentPlayer = model.players.get(4 - model.getTurns().size());
         model.getTurns().pop().nextTurn(phaseCon);
-        model.currentPlayer = model.players.get(3 - model.getTurns().size());
+        rotateCamera();
+        model.notifyObservers();
+    }
+
+    PlayerController getCurrentPlayer() {
+        return model.currentPlayer;
+    }
+
+    private void rotateCamera(){
         PlayerController player = model.currentPlayer;
         Translate cameraPos = new Translate(player.get3dPos().getX(), -700, player.get3dPos().getZ());
         gameCon.getCameraCon().moveToPosition(cameraPos, 5);
@@ -69,11 +84,6 @@ public class TurnController implements FirebaseGameObserver {
         }
 
         gameCon.getCameraCon().rotateToAngle(-60, rotationY , 5);
-        model.notifyObservers();
-    }
-
-    PlayerController getCurrentPlayer() {
-        return model.currentPlayer;
     }
 
     @Override
@@ -84,7 +94,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void attackUpdate(DocumentSnapshot ds){
         AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
-        getCurrentPlayer().getActiveCombination().attackThisArea(area);
+        getCurrentPlayer().getCurrentCombi().attackThisArea(area);
     }
 
     public void addFicheUpdate(DocumentSnapshot ds){

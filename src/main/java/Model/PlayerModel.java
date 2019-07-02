@@ -2,7 +2,6 @@ package Model;
 
 import Controller.CombinationController;
 import Controller.FicheController;
-import Controller.RaceController;
 import Observable.PlayerObservable;
 import Observer.PlayerObserver;
 import javafx.scene.transform.Translate;
@@ -12,31 +11,57 @@ import java.util.List;
 import java.util.Stack;
 
 public class PlayerModel implements PlayerObservable {
+
     private Translate player3dPos;
     private Translate player2dPos;
     private PlayerObserver observer;
     private final String NAME;
-    private String playerID;
-    public Stack<FicheController> raceFiches = new Stack<>();
+    private int playerID;
     private List<CombinationController> combinations = new ArrayList<>();
+    private List<CombinationController> activeCombies = new ArrayList<>();
+    private List<CombinationController> declineCombies = new ArrayList<>();
     private CombinationController currentCombi;
     public int points;
-    public boolean connected = true;
 
-    public PlayerModel(String playerId) {
+    public PlayerModel(int playerId, String Name) {
         playerID = playerId;
         points = 5;
-        NAME = playerId;
+        NAME = Name;
+    }
+
+    public PlayerModel(String name) {
+        NAME = name;
+    }
+
+    public void setCurrentCombi(CombinationController combi){
+        currentCombi = combi;
     }
 
     public List<CombinationController> getCombies(){
         return combinations;
     }
+    public List<CombinationController> getActiveCombies(){
+        return activeCombies;
+    }
+    public List<CombinationController> getDeclineCombies(){
+        return declineCombies;
+    }
 
     public void addCombi(CombinationController combi){
         combinations.add(combi);
+        activeCombies.add(combi);
     }
 
+    public void declineCombi(CombinationController combi){
+        activeCombies.remove(combi);
+        declineCombies.add(combi);
+    }
+
+    public void removeCombi(CombinationController combi){
+        activeCombies.remove(combi);
+        declineCombies.remove(combi);
+        combinations.remove(combi);
+    }
 
     public void setPlayer3dPos(Translate position){
         player3dPos = position;
@@ -44,20 +69,12 @@ public class PlayerModel implements PlayerObservable {
 
     public void setPlayer2dPos(Translate position) { player2dPos = position;}
 
-    public void addRaceFiche(FicheController fiche){
-
-    }
-
-    public FicheController removeRaceFiche(){
-        return raceFiches.pop();
-    }
-
     public void removePoints(int amount){
         points -= amount;
         notifyObserver();
     }
 
-    public String getId(){
+    public int getId(){
         return playerID;
     }
 
@@ -69,11 +86,6 @@ public class PlayerModel implements PlayerObservable {
     @Override
     public void notifyObserver() {
         observer.update(this);
-    }
-
-    @Override
-    public int getRaceFichesAmount() {
-        return raceFiches.size();
     }
 
     @Override
@@ -100,8 +112,10 @@ public class PlayerModel implements PlayerObservable {
     }
 
     public CombinationController getCurrenCombi() {
-        return combinations.get(0);
+        return currentCombi;
     }
 
-
+    public String getName() {
+        return NAME;
+    }
 }

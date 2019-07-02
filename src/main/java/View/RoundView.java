@@ -6,7 +6,7 @@ import Observer.RoundObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 public class RoundView implements RoundObserver {
 
 

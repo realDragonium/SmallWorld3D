@@ -1,8 +1,6 @@
 package View;
 
 import Controller.DiceController;
-import Controller.GameController;
-import Controller.TurnController;
 import Observable.DiceObservable;
 import Observer.DiceObserver;
 import javafx.animation.KeyFrame;
@@ -15,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 
 public class DiceView implements DiceObserver {
 

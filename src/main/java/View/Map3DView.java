@@ -5,8 +5,8 @@ import Objects.NormalFXMLLoader;
 import Objects.Xform;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
-import Enum.View3DEnum;
-import Enum.GameViewEnum;
+import Enums.View3DEnum;
+import Enums.GameViewEnum;
 
 public class Map3DView {
 

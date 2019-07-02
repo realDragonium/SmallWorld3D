@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.ApplicationViewEnum;
+import Enums.ApplicationViewEnum;
 import Model.HomeScreenModel;
 import Observer.HomeScreenObserver;
 

@@ -1,19 +1,12 @@
 package Phase;
 
+import Controller.CombinationController;
+import Controller.GameController;
 import Controller.PhaseController;
-import Enum.GameViewEnum;
-import Enum.PhaseEnum;
-
-import java.util.ArrayList;
-import java.util.List;
+import Enums.PhaseEnum;
 
 public class SpectateConquering implements Phase {
 
-    List<GameViewEnum> views = new ArrayList<>();
-
-    public SpectateConquering(){
-
-    }
 
     @Override
     public void nextPhase(PhaseController phaseCon) {
@@ -26,7 +19,8 @@ public class SpectateConquering implements Phase {
     }
 
     @Override
-    public List<GameViewEnum> getView() {
-        return views;
+    public void setViews(CombinationController combi) {
+
     }
+
 }

@@ -4,15 +4,14 @@ import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
 import View.*;
-import javafx.scene.Group;
-import Enum.*;
+import Enums.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 import javafx.scene.transform.Translate;
 
 public class GameController {
@@ -41,8 +40,6 @@ public class GameController {
     private TurnController turnCon;
     private AreaInformationController areaInfoCon;
 
-
-    private String lobbyName;
     private DeclineController vervCon;
     private TimerController timeCon;
     private AttackController attCon;
@@ -62,8 +59,14 @@ public class GameController {
 
     private List<PlayerController> createPlayers(int numberOfPlayers){
         List<PlayerController> players = new ArrayList<>();
-        for(int i = 0; i < numberOfPlayers; i++)
-            players.add(new PlayerController(i, this));
+
+        players.add(new PlayerController(0, this, "Beau1"));
+        players.add(new PlayerController(1, this, "Beau2"));
+        players.add(new PlayerController(2, this, "Beau3"));
+        players.add(new PlayerController(3, this, "Beau4"));
+
+//        for(int i = 0; i < numberOfPlayers; i++)
+//            players.add(new PlayerController(i, this));
 
         return players;
     }
@@ -103,20 +106,25 @@ public class GameController {
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
+        //Belangrijk
+        mapCon = new MapController(this);
+        shopCon = new ShopController(this);
+
+        phaseCon = new PhaseController(this);
+        roundCon = new RoundController(this);
+        turnCon = new TurnController(this);
+
+        timerCon = new TimerController(this);
+        areaInfoCon = new AreaInformationController(this);
+
+        //Minder belangrijk
+        declineCon = new DeclineController(this);
+        buttonCon = new ButtonController(this);
+        notiCon = new NotificationController(this);
         redCon = new RedeployingController(this);
         attCon = new AttackController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
-        declineCon = new DeclineController(this);
-        timerCon = new TimerController(this);
-        shopCon = new ShopController(this);
-        buttonCon = new ButtonController(this);
-        roundCon = new RoundController(this);
-        areaInfoCon = new AreaInformationController(this);
-        phaseCon = new PhaseController(this);
-        mapCon = new MapController(this);
-        turnCon = new TurnController(this);
-        notiCon = new NotificationController(this);
     }
 
 
@@ -172,10 +180,6 @@ public class GameController {
         gameTimer = new GameTimer(this, 30);
     }
 
-    void nextTurn() {
-        turnCon.nextTurn();
-    }
-
     GameTimer getGameTimer() {
         return gameTimer;
     }
@@ -183,7 +187,6 @@ public class GameController {
     TimerController getTimer(){
         return timeCon;
     }
-
 
     void addToGameView(GameViewEnum go){
         model.addActiveView(go);
@@ -197,12 +200,12 @@ public class GameController {
         model.changeGameView(views);
     }
 
-    public void nextPhase(){
-        phaseCon.nextPhase();
-    }
-
     AreaInformationController getAreaInfoCon() {
         return areaInfoCon;
+    }
+
+    public AttackController getAttCon(){
+        return attCon;
     }
 
     public void register(GameObserver go){
@@ -241,5 +244,9 @@ public class GameController {
         return player.get3dPos();
     }
 
+    public void setAreaInfoViewButtonInArea(AreaInfoEnum areainfo, String areaId){
+        mapCon.getAreaCon(areaId).setAreaInfoButton(areainfo);
+
+    }
 
 }

@@ -9,11 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 
 public class PlayerView implements PlayerObserver {
 
-    private int id;
+    private String name;
     private Group group;
     private PlayerController playerCon;
 
@@ -25,16 +25,16 @@ public class PlayerView implements PlayerObserver {
     public ImageView race;
 
 
-    public PlayerView(int id, PlayerController playerCon) {
+    public PlayerView(String name, PlayerController playerCon) {
         this.group = GameViewEnum.PLAYER.getGroup();
         this.playerCon = playerCon;
-        this.id = id;
+        this.name = name;
     }
 
     public void initialize() {
-        playerId.setText("Player"+id);
+        playerId.setText(name);
         playerCon.register(this);
-        pane.setLayoutY(150 + 160 * id);
+        pane.setLayoutY(150 + 160 * playerCon.getId());
         group.getChildren().add(pane);
     }
 

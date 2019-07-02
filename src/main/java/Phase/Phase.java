@@ -1,12 +1,10 @@
 package Phase;
 
+import Controller.CombinationController;
 import Controller.PhaseController;
-import Enum.GameViewEnum;
-
-import java.util.List;
 
 public interface Phase {
     void nextPhase(PhaseController phaseCon);
     String getName();
-    List<GameViewEnum> getView();
+    void setViews(CombinationController combi);
 }

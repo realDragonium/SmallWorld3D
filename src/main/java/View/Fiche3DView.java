@@ -5,9 +5,9 @@ import Objects.NormalFXMLLoader;
 import Observable.FicheObservable;
 import Observer.FicheObserver;
 import javafx.scene.Group;
-import Enum.RaceEnum;
+import Enums.RaceEnum;
 
-import Enum.View3DEnum;
+import Enums.View3DEnum;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import Enum.GameViewEnum;
+import Enums.GameViewEnum;
 public class NotificationView implements NotificationObserver {
 
     private Group group;

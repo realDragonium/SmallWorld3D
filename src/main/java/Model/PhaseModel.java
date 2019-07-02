@@ -5,7 +5,7 @@ import Observer.PhaseObserver;
 import Phase.Phase;
 import java.util.ArrayList;
 import java.util.List;
-import Enum.PhaseEnum;
+import Enums.PhaseEnum;
 import Phase.SpectatePreparing;
 
 public class PhaseModel implements PhaseObservable {

@@ -1,15 +1,15 @@
 package Controller;
 
-import Attacks.AttackType;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
+import Phase.Phase;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
+import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.Callable;
-
 
 public class CombinationController {
 
@@ -28,14 +28,29 @@ public class CombinationController {
         new SpecialFXMLLoader().loader("/CombinationView.fxml", (Callable<CombinationView>)() -> new CombinationView(this));
     }
 
+    void countPoints(){
+        int totalPoints = 0;
+        for(AreaController area : model.getAreas()){
+            totalPoints += model.getPoints(area.getAreaType());
+        }
+        player.addPoints(totalPoints);
+    }
+
     public void registerObserver(CombinationObserver obs){
         model.register(obs);
+    }
+
+    public void checkAttackableAreas(){
+        model.getAttack().checkAttackableAreas(this, gameCon.getMapCon().getAllAreas());
     }
 
     boolean isActive(){
         return model.isActive();
     }
 
+    Phase getStartingPhase(){
+        return model.getStartingPhase();
+    }
 
     public void addArea(AreaController area){
         model.addArea(area);
@@ -43,8 +58,12 @@ public class CombinationController {
 
     public void removeArea(AreaController area) {model.removeArea(area);}
 
+    public List<AreaController> getAreas(){ return model.getAreas();}
+
     public void attackThisArea(AreaController area){
         model.getAttack().Attack(area, this);
+        model.nextAttack();
+        checkAttackableAreas();
     }
 
     public Stack<FicheController> getFiches(int count){
@@ -58,8 +77,8 @@ public class CombinationController {
         fiche.moveToPosition(fichePos);
     }
 
-    public void retreat(Stack<FicheController> fiches){
-        fiches.forEach(this::addRaceFiche);
+    public int getFichesAmount(){
+        return model.getFichesAmount();
     }
 
     public void setPlayer(PlayerController player){
@@ -78,13 +97,14 @@ public class CombinationController {
 
     void goIntoDecline() {
         model.goIntoDecline();
+        getPlayer().setDeclineCombi(this);
     }
 
-    public void moveToPosition(Translate pos) {
+    void moveToPosition(Translate pos) {
         model.setPosition(pos);
     }
 
-    public void createRaceFiches(){
+    void createRaceFiches(){
         int fiches = model.getRace().getFicheAmount() + model.getPower().getFicheAmount();
         for(int i = 0; i < fiches; i++){
             FicheController ficheCon = new FicheController(1, this);
@@ -92,11 +112,7 @@ public class CombinationController {
         }
     }
 
-    public void setAttackType(AttackType attack) {
-        model.setAttackType(attack);
-    }
-
-    public FicheController getFiche() {
+    FicheController getFiche() {
         return getFiches(1).pop();
     }
 
@@ -107,5 +123,13 @@ public class CombinationController {
                 if(item != 6) gameCon.getShopCon().buyToFirebase(item);
            }
         //}
+    }
+
+    public void checkRedeployAreas() {
+
+    }
+
+    public void checkPrepareAreas() {
+
     }
 }

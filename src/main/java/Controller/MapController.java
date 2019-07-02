@@ -17,10 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MapController {
 	private Map<String, AreaController> areas = new HashMap<>();
@@ -120,6 +117,10 @@ public class MapController {
 			areaCon.changeCombiOwner(model.getCombi());
 			areas.put(s, areaCon);
 		});
+	}
+
+	public Collection<AreaController> getAllAreas(){
+		return areas.values();
 	}
 
 

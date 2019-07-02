@@ -1,6 +1,6 @@
 package View;
 
-import Enum.View3DEnum;
+import Enums.View3DEnum;
 import Objects.NormalFXMLLoader;
 import javafx.scene.Group;
 

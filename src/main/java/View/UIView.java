@@ -2,7 +2,7 @@ package View;
 
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import Enum.GameViewEnum;
+
 public class UIView {
 
     Group group;

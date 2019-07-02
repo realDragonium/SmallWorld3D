@@ -1,6 +1,6 @@
 package Controller;
 
-import Enum.NotificationEnum;
+import Enums.NotificationEnum;
 import Objects.SpecialFXMLLoader;
 import View.ButtonView;
 

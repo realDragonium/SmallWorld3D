@@ -9,6 +9,6 @@ public class Fortified implements Power {
 
     @Override
     public int getFicheAmount() {
-        return 0;
+        return 3;
     }
 }

@@ -1,6 +1,6 @@
 package View;
 
-import Enum.View3DEnum;
+import Enums.View3DEnum;
 import Managers.AnimationsManager;
 import Objects.Animatable;
 import Objects.AnimationPoint;

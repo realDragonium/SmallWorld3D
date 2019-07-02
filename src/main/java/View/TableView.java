@@ -2,14 +2,12 @@ package View;
 
 import Objects.NormalFXMLLoader;
 import Objects.Xform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
 
-import java.io.IOException;
-import Enum.View3DEnum;
+import Enums.View3DEnum;
 
 public class TableView {
 

@@ -2,7 +2,7 @@ package Model;
 
 import Observable.NotificationObservable;
 import Observer.NotificationObserver;
-import Enum.NotificationEnum;
+import Enums.NotificationEnum;
 import java.util.ArrayList;
 import java.util.List;
 
