@@ -15,7 +15,6 @@ public class NormalAttack implements AttackType {
         area.attackArea(combi.getFiches(area.getDefenceValue()));
         combi.addArea(area);
         area.changeCombiOwner(combi);
-        System.out.println("Normal attack CREATED!!!!!!!!");
     }
 
     @Override
@@ -27,6 +26,8 @@ public class NormalAttack implements AttackType {
     public void checkAttackableAreas(CombinationController combi, Collection<AreaController> allAreas) {
         List<AreaController> areas = new ArrayList<>();
         Set<String> areaSet = new HashSet<>();
+
+        allAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
 
         //Voeg alle buren toe aan een Set
         combi.getAreas().forEach(area ->{

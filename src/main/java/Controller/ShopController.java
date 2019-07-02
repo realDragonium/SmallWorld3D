@@ -45,6 +45,7 @@ public class ShopController implements FirebaseGameObserver, Animatable {
     public void buyToFirebase(int item){
         if (model.getShopItems().size() > item) {
             fbGame.buyCombiAction(item);
+            fbGame.nextPhaseAction();
             TimerTask start = new TimerTask() {
                 @Override
                 public void run() {
