@@ -5,13 +5,18 @@ import Objects.NormalFXMLLoader;
 import Observable.FicheObservable;
 import Observer.FicheObserver;
 import javafx.scene.Group;
+import Enum.RaceEnum;
 
 import Enum.View3DEnum;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.MeshView;
+
 public class Fiche3DView implements FicheObserver {
 
     private FicheController ficheCon;
     private Group fiches;
     private Group fiche;
+    private boolean initialize = true;
 
     public Fiche3DView(FicheController ficheCon){
         this.ficheCon = ficheCon;
@@ -34,5 +39,12 @@ public class Fiche3DView implements FicheObserver {
         fiche.setTranslateX(fo.getPosition().getX());
         fiche.setTranslateY(fo.getPosition().getY());
         fiche.setTranslateZ(fo.getPosition().getZ());
+        if(initialize){
+            MeshView mesh = (MeshView)fiche.getChildren().get(0);
+            PhongMaterial material = new PhongMaterial();
+            material.setDiffuseColor(RaceEnum.valueOf(fo.getRace()).getRace().getRaceColor());
+            mesh.setMaterial(material);
+            initialize = false;
+        }
     }
 }
