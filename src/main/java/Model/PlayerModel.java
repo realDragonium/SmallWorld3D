@@ -48,8 +48,10 @@ public class PlayerModel implements PlayerObservable {
     }
 
     public void addCombi(CombinationController combi){
+        currentCombi = combi;
         combinations.add(combi);
         activeCombies.add(combi);
+        notifyObserver();
     }
 
     public void declineCombi(CombinationController combi){
