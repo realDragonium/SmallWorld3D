@@ -59,6 +59,11 @@ public class ShopModel implements ShopObservable {
         else return null;
     }
 
+    @Override
+    public Translate getShopPosition() {
+        return position;
+    }
+
     public CombinationController getShopItem(int item){
         CombinationController combo = shopItems.remove(item);
         notifyObservers();
@@ -73,12 +78,12 @@ public class ShopModel implements ShopObservable {
 
     public void removeItem(int item){
         shopItems.remove(item);
-        notifyObservers();
     }
 
     @Override
     public void register(ShopObserver so) {
         observers.add(so);
+        notifyObservers();
     }
 
     @Override
@@ -95,9 +100,17 @@ public class ShopModel implements ShopObservable {
 
     public void setShopPosition(Translate translate) {
         position = translate;
+        notifyObservers();
     }
 
     public Translate getPosition() {
         return position;
+    }
+
+    public void moveToPosition(Translate translate) {
+        position.setX(position.getX() + translate.getX());
+        position.setY(position.getY() + translate.getY());
+        position.setZ(position.getZ() + translate.getZ());
+        notifyObservers();
     }
 }

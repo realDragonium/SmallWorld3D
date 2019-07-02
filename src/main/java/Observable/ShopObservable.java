@@ -32,4 +32,6 @@ public interface ShopObservable {
     List<CombinationController> getShopItems();
 
     Translate getItemPosition(int i);
+
+    Translate getShopPosition();
 }

@@ -39,7 +39,6 @@ public class AnimationsManager {
         for(int i =0; i < rotateAnimations.size(); i++){
             if( rotateAnimations.get(i).getAnimObject().equals(newAnim.getAnimObject())){
                 rotateAnimations.remove(i);
-                System.out.println("found a animation with this animatable");
             }
         }
         rotateAnimations.add(newAnim);
@@ -50,7 +49,6 @@ public class AnimationsManager {
         for(int i =0; i < translateAnimations.size(); i++){
             if( translateAnimations.get(i).getAnimObject().equals(newAnim.getAnimObject())){
                 translateAnimations.remove(i);
-                System.out.println("found a animation with this animatable");
             }
         }
         translateAnimations.add(newAnim);
@@ -69,7 +67,6 @@ public class AnimationsManager {
         AnimationController newAnim = new AnimationController(animObj, true);
         int frames = (int)seconds * animationFPS;
         double yDelta = height / frames;
-        System.out.println(yDelta);
         for(int x = 1; x <= frames / 2; x++) {
             Translate point = new Translate(0, yDelta, 0);
             newAnim.addAnimationPoint(x, new AnimationPoint(point));

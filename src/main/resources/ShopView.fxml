@@ -5,9 +5,19 @@
 <?import javafx.scene.image.Image?>
 <Pane fx:id="pane" layoutX="1570" layoutY="135" prefHeight="860.0" prefWidth="420.0"
       xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShopView">
+
+    <ImageView onMouseClicked="#buttonClicked" layoutX="-35" layoutY="320" fitWidth="45" fitHeight="70">
+        <image>
+            <Image url="@UI/FoldOut.png"/>
+        </image>
+    </ImageView>
+
     <ImageView fitWidth="350" fitHeight="750">
         <image>
             <Image url="@UI/CombinationShop.png"/>
         </image>
     </ImageView>
+
+
+
 </Pane>

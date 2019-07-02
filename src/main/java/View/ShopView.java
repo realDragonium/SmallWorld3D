@@ -18,6 +18,7 @@ public class ShopView implements ShopObserver {
 
     private Button lastActiveButton;
     private ShopController shopCon;
+    private boolean showing;
     Group group;
 
     public ShopView(ShopController shopCon){
@@ -25,9 +26,27 @@ public class ShopView implements ShopObserver {
         this.group = GameViewEnum.SHOP.getGroup();
     }
 
+    public void buttonClicked(){
+        if(showing){
+            hideShop();
+            showing = false;
+        }
+        else{
+            showShop();
+            showing = true;
+        }
+    }
 
+    public void hideShop(){
+        shopCon.hideShop();
+    }
+
+    public void showShop(){
+        shopCon.showShop();
+    }
 
     public void initialize() {
+        System.out.println("maakt de shop aan");
         group.getChildren().add(pane);
         shopCon.registerObserver(this);
         shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
@@ -36,9 +55,14 @@ public class ShopView implements ShopObserver {
 
     @Override
     public void update(ShopObservable so) {
+        System.out.println(so.getShopPosition());
         for(int i = 0; i < so.getShopItems().size(); i++) {
             if(so.getItemPosition(i) != null)
             so.getShopItems().get(i).moveToPosition(so.getItemPosition(i));
+        }
+        if(so.getShopPosition() != null) {
+            pane.setLayoutX(so.getShopPosition().getX());
+            pane.setLayoutY(so.getShopPosition().getY());
         }
     }
 }
