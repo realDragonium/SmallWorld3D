@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<Pane fx:id="pane" style="-fx-background-color: rgb(46, 59, 69);" prefWidth="500" prefHeight="400" layoutX="460.0" layoutY="340.0"
+      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.VoteView">
+    <Text fx:id="message" layoutX="50" layoutY="100"/>
+    <Group fx:id="votes">
+        <children>
+            <Pane visible="false" layoutX="50" layoutY="200" style="-fx-border-color: black;" prefWidth="40" prefHeight="40"></Pane>
+            <Pane visible="false" layoutX="100" layoutY="200" style="-fx-border-color: black;" prefWidth="40" prefHeight="40"></Pane>
+            <Pane visible="false" layoutX="150" layoutY="200" style="-fx-border-color: black;" prefWidth="40" prefHeight="40"></Pane>
+            <Pane visible="false" layoutX="200" layoutY="200" style="-fx-border-color: black;" prefWidth="40" prefHeight="40"></Pane>
+        </children>
+    </Group>
+    <Group fx:id="voted">
+        <children>
+            <Pane visible="false" layoutX="55" layoutY="205" style="-fx-border-color: black; -fx-background-color: rgb(1, 1, 1);" prefWidth="30" prefHeight="30"></Pane>
+            <Pane visible="false" layoutX="105" layoutY="205" style="-fx-border-color: black; -fx-background-color: rgb(1, 1, 1);" prefWidth="30" prefHeight="30"></Pane>
+            <Pane visible="false" layoutX="155" layoutY="205" style="-fx-border-color: black; -fx-background-color: rgb(1, 1, 1);" prefWidth="30" prefHeight="30"></Pane>
+            <Pane visible="false" layoutX="205" layoutY="205" style="-fx-border-color: black; -fx-background-color: rgb(1, 1, 1);" prefWidth="30" prefHeight="30"></Pane>
+        </children>
+    </Group>
+    <Button fx:id="vote" layoutY="250" layoutX="100" onAction="#clickVote" text="vote"/>
+</Pane>

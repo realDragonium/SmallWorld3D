@@ -249,4 +249,7 @@ public class GameController {
 
     }
 
+    public void createVote(int i) {
+        new VoteController(i, "player lost connection, skip turn?");
+    }
 }
