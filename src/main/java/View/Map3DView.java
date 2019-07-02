@@ -87,7 +87,7 @@ public class Map3DView {
 
 //    public FicheController createRaceFiche(String race){
 //        FicheController ficheCon = new FicheController(1, race);
-//        new fiche3dView(ficheCon, fiches, race);
+//        new fiche3dView2(ficheCon, fiches, race);
 //        return ficheCon;
 //    }
 

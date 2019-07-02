@@ -183,7 +183,7 @@ public class GameController {
     }
 
     public void createRaceFiche(FicheController con){
-        new fiche3dView(con, addable3d);
+        new fiche3dView2(con, addable3d);
     }
 
     public CameraView createCamera(Group camera) {

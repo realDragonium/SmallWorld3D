@@ -11,14 +11,14 @@ import Enum.RaceEnum;
 
 import java.io.IOException;
 
-public class fiche3dView implements FicheObserver {
+public class fiche3dView2 implements FicheObserver {
 
     FicheController ficheCon;
     Group fiches;
     Group fiche;
     boolean initialize = true;
 
-    public fiche3dView(FicheController ficheCon, Group fiches){
+    public fiche3dView2(FicheController ficheCon, Group fiches){
         this.ficheCon = ficheCon;
         this.fiches = fiches;
         ficheCon.registerObserver(this);

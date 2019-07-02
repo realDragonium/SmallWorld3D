@@ -3,13 +3,8 @@ package Controller;
 import View.CameraView;
 import View.Map3DView;
 import View.TableView;
-import View.fiche3dView;
-import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class Controller3D{
 
@@ -59,7 +54,7 @@ public class Controller3D{
 
 //    public FicheController createRaceFiche(String race){
 //        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new fiche3dView(ficheCon, fiches, race);
+//        new fiche3dView2(ficheCon, fiches, race);
 //        return ficheCon;
 //    }
 

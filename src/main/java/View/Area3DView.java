@@ -71,7 +71,7 @@ public class Area3DView implements AreaObserver {
 
 //    public FicheController createRaceFiche(String race){
 //        FicheController ficheCon = new FicheController(1, "Ghost");
-//        new fiche3dView(ficheCon, map, race);
+//        new fiche3dView2(ficheCon, map, race);
 //        return ficheCon;
 //    }
 
