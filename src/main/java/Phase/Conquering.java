@@ -10,7 +10,7 @@ public class Conquering implements Phase{
     List<GameViewEnum> views = new ArrayList<>();
 
     public Conquering(){
-        views.add(GameViewEnum.DICE);
+
     }
 
     @Override
@@ -26,6 +26,6 @@ public class Conquering implements Phase{
 
     @Override
     public List<GameViewEnum> getView() {
-        return null;
+        return views;
     }
 }

@@ -27,6 +27,6 @@ public class SpectateConquering implements Phase {
 
     @Override
     public List<GameViewEnum> getView() {
-        return null;
+        return views;
     }
 }

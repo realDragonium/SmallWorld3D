@@ -9,7 +9,6 @@ import View.NumberView;
 import View.SpecialProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
@@ -175,7 +174,7 @@ public class AreaController{
     }
 
     public void showInfo() {
-        System.out.println("showing: " + getAreaType());
+//        System.out.println("showing: " + getAreaType());
         gameCon.getAreaInfoCon().putAreaInformationScreen(this);
     }
 

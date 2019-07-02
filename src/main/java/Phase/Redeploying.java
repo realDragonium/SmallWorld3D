@@ -25,6 +25,6 @@ public class Redeploying implements Phase {
 
     @Override
     public List<GameViewEnum> getView() {
-        return null;
+        return views;
     }
 }
