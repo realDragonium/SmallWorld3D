@@ -34,15 +34,11 @@ public class ShopModel implements ShopObservable {
     }
 
     public String getRandomRace(){
-        String race = races.get((int) (Math.random() * races.size()));
-        removeRace(race);
-        return race;
+        return races.get((int) (Math.random() * races.size()));
     }
 
     public String getRandomPower(){
-        String power = powers.get((int) (Math.random() * powers.size()));
-        removePower(power);
-        return power;
+        return powers.get((int) (Math.random() * powers.size()));
     }
 
     public void removePower(String power){

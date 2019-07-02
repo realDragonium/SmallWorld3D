@@ -100,7 +100,7 @@ public class GameController {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
+        fbGame = new FirebaseGameController("test2", this);
         new Thread(fbGame).start();
         redCon = new RedeployingController(this);
         attCon = new AttackController(this);
