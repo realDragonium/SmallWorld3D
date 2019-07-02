@@ -50,19 +50,6 @@ public class ShopController implements FirebaseGameObserver {
         }
     }
 
-    public void setShopPosition(double xPos, double yPos) {
-        model.setShopPosition(new Translate(xPos, yPos));
-        setShopItemPositions();
-    }
-
-    private void setShopItemPositions() {
-
-        for (int i = 0; i < 6; i++) {
-            Translate pos = new Translate(model.getPosition().getX() + 83, model.getPosition().getY() + i * 107.5 + 94);
-            model.addItemPosition(pos);
-        }
-    }
-
     public void registerObserver(ShopObserver obs) {
         model.register(obs);
     }
