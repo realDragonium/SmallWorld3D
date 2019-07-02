@@ -81,6 +81,11 @@ public class PlayerModel implements PlayerObservable {
         return points;
     }
 
+    @Override
+    public boolean hasActiveCombination() {
+        return combinations.size() > 0;
+    }
+
     public void addPunten(int amount) {
         points += amount;
         notifyObserver();
@@ -95,6 +100,8 @@ public class PlayerModel implements PlayerObservable {
     }
 
     public CombinationController getCurrenCombi() {
-        return currentCombi;
+        return combinations.get(0);
     }
+
+
 }

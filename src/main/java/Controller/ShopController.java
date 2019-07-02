@@ -1,18 +1,23 @@
 package Controller;
 
 import Firebase.FirebaseGameObserver;
+import Managers.AnimationsManager;
 import Model.ShopModel;
+import Objects.Animatable;
+import Objects.AnimationPoint;
 import Objects.SpecialFXMLLoader;
 import Observer.ShopObserver;
 import View.ShopView;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Callable;
 
-public class ShopController implements FirebaseGameObserver {
+public class ShopController implements FirebaseGameObserver, Animatable {
 
     private GameController gameCon;
     private ShopModel model = new ShopModel();
@@ -87,5 +92,47 @@ public class ShopController implements FirebaseGameObserver {
 
     public int getShopItem(CombinationController item) {
         return model.getShopItemIndex(item);
+    }
+
+    public void moveToPosition(Translate position){
+        AnimationsManager.getInstance().createMoveToAnimation(this, position, 2);
+    }
+
+    public void hideShop() {
+        moveToPosition(new Translate(1920, model.getPosition().getY()));
+    }
+
+    public void showShop(){
+        moveToPosition(new Translate(1570, model.getPosition().getY()));
+    }
+
+    @Override
+    public void resetToOrigin(AnimationPoint animPoint) {
+        System.out.println("reset");
+    }
+
+    @Override
+    public void doAnimation(AnimationPoint animPoint) {
+        model.moveToPosition(animPoint.getTranslate());
+    }
+
+    @Override
+    public Translate getCurrentPosition() {
+        return model.getPosition();
+    }
+
+    @Override
+    public double getCurrentXAngle() {
+        return 0;
+    }
+
+    @Override
+    public double getCurrentYAngle() {
+        return 0;
+    }
+
+    public void setShopPosition(double xPos, double yPos) {
+        model.setShopPosition(new Translate(xPos, yPos));
+
     }
 }

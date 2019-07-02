@@ -2,13 +2,13 @@ package View;
 
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import Enum.GameViewEnum;
-public class UIView {
+
+public class UIPlayer {
 
     Group group;
     public Pane pane;
 
-    public UIView(Group group) {
+    public UIPlayer(Group group) {
         this.group = group;
     }
 

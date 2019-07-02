@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="pane" layoutX="0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UIPlayer">
+
+   <ImageView fitHeight="650" fitWidth="400.0" layoutX="0.0" layoutY="135.0">
+      <image>
+         <Image url="@Images/UIPlayers.png" />
+      </image>
+   </ImageView>
+
+</Pane>

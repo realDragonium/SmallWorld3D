@@ -28,7 +28,7 @@ public class PlayerController implements FirebaseGameObserver {
     }
 
     private void createPlayerView(int id){
-        new SpecialFXMLLoader().loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, this));
+        new SpecialFXMLLoader().loader("/UI/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(id, this));
     }
 
     public void setPlayer3dPosition(Translate pos){
