@@ -23,8 +23,11 @@ public class ButtonController {
     }
 
     public void nextPhase(){
-        gameCon.getFireBase().nextPhaseAction();
+        //gameCon.getFireBase().nextPhaseAction();
+        gameCon.createVote(3);
     }
+
+
 
     public void createShopItem() {
         gameCon.createRandomShopItem();
