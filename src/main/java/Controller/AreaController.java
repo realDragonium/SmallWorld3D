@@ -152,9 +152,9 @@ public class AreaController{
     }
 
     public void createSpecialPropFiche(){
-        if(!model.getSpecialProp().equals("None")) {
+        if(model.getSpecialProp() != AreaProperty.None) {
 
-            if(model.getSpecialProp().equals("Magical")){
+            if(model.getSpecialProp() == AreaProperty.Magical){
                 new Crystal().setPosition(model.getSpecialPropPoint());
             }
             else {

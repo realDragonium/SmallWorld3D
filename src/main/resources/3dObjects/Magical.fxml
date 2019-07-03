@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.TriangleMesh?>
 <?import javafx.scene.Group?>
 
-<Group id="AddedRootGroup_1561913524584">
 <MeshView id="Icosphere" cullFace="BACK" drawMode="FILL">
   <material>
     <PhongMaterial specularPower="96.07843">
@@ -31,4 +30,3 @@
     </TriangleMesh>
   </mesh>
 </MeshView>
-</Group>
