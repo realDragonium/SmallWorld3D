@@ -100,6 +100,7 @@ public class GameController {
 
 
     private void createUIOverlay() {
+        new SpecialFXMLLoader().loader("/UIBottom.fxml", (Callable<UIBottom>) () -> new UIBottom(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UIPlayers.fxml", (Callable<UIPlayer>) () -> new UIPlayer(GameViewEnum.UIOVERLAY.getGroup()));
     }
