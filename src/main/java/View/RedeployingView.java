@@ -1,16 +1,16 @@
 package View;
 
 import Controller.RedeployingController;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import Enums.GameViewEnum;
 
 public class RedeployingView {
-
-    public Button remove;
     public Button add;
-    Group group;
+    public Button remove;
+    private Group group;
 
     public Pane pane;
 
@@ -23,14 +23,15 @@ public class RedeployingView {
 
 
     public void initialize(){
-        group.getChildren().add(pane);
+        group.getChildren().add(add);
+        group.getChildren().add(remove);
     }
 
     public void removeButton() {
-        //redCon.removeFiche();
+        redCon.removeFiche(remove.getId());
     }
 
     public void addButton() {
-        //redCon.addFiche();
+        redCon.addFiche(add.getId());
     }
 }

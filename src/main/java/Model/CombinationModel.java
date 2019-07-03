@@ -31,7 +31,7 @@ public class CombinationModel implements CombinationObservable {
     private List<AreaController> areas = new ArrayList<>();
     private Translate position;
     public boolean inShop = true;
-
+    public List<AreaController> lastUsedAreas = new ArrayList<>();
 
     private AttackType attack;
     private Decline decline;
@@ -113,9 +113,7 @@ public class CombinationModel implements CombinationObservable {
         return decline.startAt();
     }
 
-    public int getPoints(AreaType type){
-        return points.getWorth(type);
-    }
+    public Points getPointCounter(){ return points;}
 
     @Override
     public void register(CombinationObserver mvo) {

@@ -27,8 +27,6 @@ public class NormalAttack implements AttackType {
         List<AreaController> areas = new ArrayList<>();
         Set<String> areaSet = new HashSet<>();
 
-        allAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
-
         //Voeg alle buren toe aan een Set
         combi.getAreas().forEach(area ->{
            areaSet.addAll(area.getNeighbours());

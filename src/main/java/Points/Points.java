@@ -1,8 +1,8 @@
 package Points;
 
-import Enums.AreaType;
+import Controller.CombinationController;
 
 public interface Points {
+   int getPoints(CombinationController combi);
 
-   int getWorth(AreaType type);
 }

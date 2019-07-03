@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.AreaInfoEnum;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
@@ -7,6 +8,7 @@ import Phase.Phase;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.Callable;
@@ -29,10 +31,7 @@ public class CombinationController {
     }
 
     void countPoints(){
-        int totalPoints = 0;
-        for(AreaController area : model.getAreas()){
-            totalPoints += model.getPoints(area.getAreaType());
-        }
+        int totalPoints = model.getPointCounter().getPoints(this);
         player.addPoints(totalPoints);
     }
 
@@ -126,10 +125,23 @@ public class CombinationController {
     }
 
     public void checkRedeployAreas() {
-
+        List<AreaController> usingAreas = new ArrayList<>();
+        List<AreaController> areas = model.getAreas();
+        for(AreaController area : areas){
+            if(area.getFichesAmount() > 1)
+                usingAreas.add(area);
+        }
+        manageAreaInfoButtons(usingAreas, AreaInfoEnum.REDEPLOY);
     }
 
     public void checkPrepareAreas() {
 
+    }
+
+    private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo){
+        model.lastUsedAreas.removeAll(areas);
+        model.lastUsedAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
+        areas.forEach(area -> area.setAreaInfoButton(areainfo));
+        model.lastUsedAreas = areas;
     }
 }

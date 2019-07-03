@@ -12,11 +12,20 @@ public class RedeployingController {
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
+        fbGame = gameCon.getFireBase();
         createRedeployView();
     }
 
     private void createRedeployView() {
         new SpecialFXMLLoader().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
+    }
+
+    public void removeFiche(String areaId){
+        fbGame.removeFicheAction(areaId);
+    }
+
+    public void addFiche(String areaId){
+        fbGame.addsFicheAction(areaId);
     }
 
     //DEPRECATED
