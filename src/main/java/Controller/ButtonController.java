@@ -24,7 +24,8 @@ public class ButtonController {
 
     public void nextPhase(){
         //gameCon.getFireBase().nextPhaseAction();
-        gameCon.createVote(3, "skip turn?");
+        System.out.println(gameCon.rollDice());
+        //gameCon.createVote(3, "skip turn?");
     }
 
 

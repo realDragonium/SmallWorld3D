@@ -5,12 +5,23 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UIBottom">
+<?import javafx.scene.Group?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="pane" layoutY="960" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UIBottom">
 
-   <ImageView fitHeight="120" fitWidth="1920.0" layoutY="960">
+   <ImageView fitHeight="120" fitWidth="1920.0" >
       <image>
          <Image url="@UI/BottomUI.png" />
       </image>
    </ImageView>
+
+   <Group fx:id="activeCombi" layoutX="300"/>
+   <Group fx:id="declinedCombi" layoutX="600"/>
+   <Text fx:id="punten" fill="#fcfcfc" layoutX="800">
+      <font>
+         <Font size="36.0"/>
+      </font>
+   </Text>
 
 </Pane>

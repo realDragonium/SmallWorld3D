@@ -47,7 +47,7 @@ public class VoteController implements FirebaseActionObserver {
     public void doVote(){
         model.disableVote();
         voteFireStore();
-        addVote();
+        //addVote();
         if(model.getVotesNeeded() - 1 == model.getCurrentVotes()) skipTurn();
     }
 

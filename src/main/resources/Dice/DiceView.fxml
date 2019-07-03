@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Group xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.DiceView">
-
-</Group>
+<?import javafx.scene.image.ImageView?>
+<Pane fx:id="pane" layoutX="800" layoutY="400" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.DiceView">
+    <ImageView fx:id="dice"/>
+</Pane>
