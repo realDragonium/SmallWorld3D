@@ -1,5 +1,7 @@
 package Controller;
 
+import Enums.GameViewEnum;
+import Enums.NotificationEnum;
 import Objects.SpecialFXMLLoader;
 import View.RedeployingView;
 
@@ -12,11 +14,28 @@ public class RedeployingController {
 
     RedeployingController(GameController gameCon){
         this.gameCon = gameCon;
+        fbGame = gameCon.getFireBase();
         createRedeployView();
     }
 
     private void createRedeployView() {
         new SpecialFXMLLoader().loader("/RedeployingView.fxml", (Callable<RedeployingView>) () -> new RedeployingView(this));
+    }
+
+    public void removeFiche(String areaId){
+        closeAreaInfo();
+        if(gameCon.getMapCon().getAreaCon(areaId).getFichesAmount() > 1) fbGame.removeFicheAction(areaId);
+        else gameCon.setMessage(NotificationEnum.YOUCANTLEAVE);
+    }
+
+    public void addFiche(String areaId){
+        closeAreaInfo();
+        if(gameCon.getTurnCon().getCurrentPlayer().getCurrentCombi().getFichesAmount() > 0) fbGame.addsFicheAction(areaId);
+        else gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+    }
+
+    private void closeAreaInfo(){
+        gameCon.removeFromGameView(GameViewEnum.AREAINFO);
     }
 
     //DEPRECATED

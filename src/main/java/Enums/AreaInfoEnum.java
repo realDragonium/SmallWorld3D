@@ -5,7 +5,7 @@ import javafx.scene.Group;
 
 public enum AreaInfoEnum {
     ATTACK(GameViewEnum.ATTACK.getGroup()), REDEPLOY(GameViewEnum.REDEPLOY.getGroup()),
-    PREPARE(GameViewEnum.PREPARE.getGroup()), NONE(new Group());
+    LEAVE(GameViewEnum.LEAVE.getGroup()), NONE(new Group());
 
 
     private Group group;

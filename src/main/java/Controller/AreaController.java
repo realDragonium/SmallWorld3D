@@ -50,6 +50,7 @@ public class AreaController{
     public void leaveArea(){
         returnAllFiches();
         model.setOwningCombi(mapCon.getLostTribeCombi());
+        setAreaInfoButton(AreaInfoEnum.NONE);
     }
 
     private void returnAllFiches(){

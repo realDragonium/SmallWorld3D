@@ -32,6 +32,7 @@ public class GameController {
     private VoteController currentVote;
     private InfoController infoCon;
     private NotificationController notiCon;
+    private LeaveController leaveCon;
 
 
     private GameModel model;
@@ -106,7 +107,7 @@ public class GameController {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
+        fbGame = new FirebaseGameController("test1", this);
         new Thread(fbGame).start();
         //Belangrijk
         mapCon = new MapController(this);
@@ -118,6 +119,8 @@ public class GameController {
         timerCon = new TimerController(this);
 
         areaInfoCon = new AreaInformationController(this);
+
+        leaveCon = new LeaveController(this);
 
         //Minder belangrijk
         declineCon = new DeclineController(this);
@@ -252,7 +255,7 @@ public class GameController {
     }
 
     public void createVote(int i, String message) {
-        currentVote = new VoteController(i, message);
+        currentVote = new VoteController(i, message, this);
     }
 
     public void setTimer(int time, boolean b) {

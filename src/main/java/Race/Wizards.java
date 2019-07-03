@@ -11,7 +11,7 @@ public class Wizards implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 8;
+        return 5;
     }
 
     @Override

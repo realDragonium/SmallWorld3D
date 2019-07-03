@@ -36,11 +36,6 @@ public class AreaInformationView implements AreaInformationObserver {
         areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
         buttonGroup.getChildren().clear();
 
-        System.out.println(ao.getArea().getAreaInfoButton());
-        if(ao.getArea().getAreaInfoButton().getGroup().getChildren().size() > 0)
-            System.out.println(ao.getArea().getAreaInfoButton().getGroup().getChildren().get(0));
-        else System.out.println("GEEN KINDEREN!!!!!!!!!!");
-
         for(int i = 0; i < ao.getArea().getAreaInfoButton().getGroup().getChildren().size(); i++){
             Node button = ao.getArea().getAreaInfoButton().getGroup().getChildren().get(i);
             button.setId(ao.getArea().getId());
@@ -59,17 +54,17 @@ public class AreaInformationView implements AreaInformationObserver {
 //        exitScreen();
 //    }
 
-    public void addFiche() {
-        areaInfoCon.addFiche();
-    }
+//    public void addFiche() {
+//        areaInfoCon.addFiche();
+//    }
+//
+//    public void removeFiche() {
+//        areaInfoCon.removeFiche();
+//    }
 
-    public void removeFiche() {
-        areaInfoCon.removeFiche();
-    }
-
-    public void leaveArea() {
-        areaInfoCon.leaveArea();
-    }
+//    public void leaveArea() {
+//        areaInfoCon.leaveArea();
+//    }
 
     public void exitScreen() {
         areaInfoCon.closeAreaInformation();

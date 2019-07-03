@@ -48,28 +48,28 @@
 <!--        </font>-->
 <!--    </Button>-->
 
-    <Button layoutX="600" layoutY="300.0" mnemonicParsing="false" onAction="#addFiche" style="-fx-background-color: rgb(224, 158, 145);" text="Add">
-        <font>
-            <Font size="21.0" />
-        </font>
-    </Button>
+<!--    <Button layoutX="600" layoutY="300.0" mnemonicParsing="false" onAction="#addFiche" style="-fx-background-color: rgb(224, 158, 145);" text="Add">-->
+<!--        <font>-->
+<!--            <Font size="21.0" />-->
+<!--        </font>-->
+<!--    </Button>-->
 
-    <Button layoutX="500" layoutY="300.0" mnemonicParsing="false" onAction="#removeFiche" style="-fx-background-color: rgb(42, 112, 77);" text="Remove">
-        <font>
-            <Font size="21.0" />
-        </font>
-    </Button>
+<!--    <Button layoutX="500" layoutY="300.0" mnemonicParsing="false" onAction="#removeFiche" style="-fx-background-color: rgb(42, 112, 77);" text="Remove">-->
+<!--        <font>-->
+<!--            <Font size="21.0" />-->
+<!--        </font>-->
+<!--    </Button>-->
 
-    <Button layoutX="500" layoutY="400.0" mnemonicParsing="false" onAction="#leaveArea" style="-fx-background-color: rgb(224, 158, 145);" text="Leave">
-        <font>
-            <Font size="21.0" />
-        </font>
-    </Button>
+<!--    <Button layoutX="500" layoutY="400.0" mnemonicParsing="false" onAction="#leaveArea" style="-fx-background-color: rgb(224, 158, 145);" text="Leave">-->
+<!--        <font>-->
+<!--            <Font size="21.0" />-->
+<!--        </font>-->
+<!--    </Button>-->
 
-    <Button layoutX="700" layoutY="400.0" mnemonicParsing="false" onAction="#exitScreen" style="-fx-background-color: rgb(224, 158, 145);" text="Close">
+    <Button layoutX="750" layoutY="500.0" mnemonicParsing="false" onAction="#exitScreen" style="-fx-background-color: rgb(224, 158, 145);" text="Close">
         <font>
             <Font size="21.0" />
         </font>
     </Button>
-   <Group fx:id="buttonGroup" layoutX="500" layoutY="500"  />
+   <Group fx:id="buttonGroup" layoutX="500" layoutY="400"  />
 </Pane>

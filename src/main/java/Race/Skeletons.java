@@ -11,7 +11,7 @@ public class Skeletons implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 8;
+        return 6;
     }
 
     @Override

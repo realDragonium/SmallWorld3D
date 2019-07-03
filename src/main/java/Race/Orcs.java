@@ -12,7 +12,7 @@ public class Orcs implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 4;
+        return 5;
     }
 
     @Override

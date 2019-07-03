@@ -35,7 +35,6 @@ public class TimerController {
                 });
             }
         };
-
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(start, 0, 1000);
     }

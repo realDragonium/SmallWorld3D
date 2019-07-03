@@ -26,13 +26,9 @@ public class AttackController {
     public void AttackArea(String areaID) {
         int fiches = gameCon.getCurrentPlayer().getCurrentCombi().getFichesAmount();
         int fichesNeeded = gameCon.getMapCon().getAreaCon(areaID).getDefenceValue();
-        if(fiches < fichesNeeded) {
-            gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
-
-            return;
-        }
-        fbGame.attackAction(areaID);
         gameCon.removeFromGameView(GameViewEnum.AREAINFO);
+        if(fiches < fichesNeeded) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+        else fbGame.attackAction(areaID);
     }
 
 //    public void removeFichesNeeded(int amount){

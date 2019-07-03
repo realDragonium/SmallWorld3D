@@ -1,24 +1,33 @@
 package Controller;
 
+import Firebase.FirebaseActionObserver;
+import Firebase.FirebaseGameObserver;
 import Model.VoteModel;
 import Objects.SpecialFXMLLoader;
 import Observer.VoteObserver;
 import View.VoteView;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 
 import java.util.concurrent.Callable;
 
-public class VoteController{
-    VoteModel model;
-
+public class VoteController implements FirebaseActionObserver {
+    private VoteModel model;
+    private FirebaseGameController fbGame;
+    private GameController gameCon;
 
     public VoteController(int neededVotes){
         model = new VoteModel(neededVotes);
         createVoteView();
     }
-    public VoteController(int neededVotes, String message){
+
+    public VoteController(int neededVotes, String message, GameController gameCon){
         model = new VoteModel(neededVotes);
         model.setMessage(message);
         createVoteView();
+        this.gameCon = gameCon;
+        fbGame = gameCon.getFireBase();
+        fbGame.voteListener(this::update);
     }
 
     private void createVoteView() {
@@ -41,16 +50,18 @@ public class VoteController{
     }
 
     public void voteFireStore(){
-
+        fbGame.placeVote();
         //hier moet een seintje aan fireBase worden gegeven dat er een vote bij moet komen
     }
 
     private void skipTurn() {
         //hier aanroepen wat ervoor zorgt dat de beurt eindigd
+        fbGame.nextTurnAction();
     }
 
     //deze moet worden aangeroepen door fireBase
-    public void update(){
+    @Override
+    public void update(QuerySnapshot qs) {
         addVote();
     }
 }

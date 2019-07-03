@@ -41,6 +41,7 @@ public class TurnController implements FirebaseGameObserver {
         fbGame.register("addFiche", this::addFicheUpdate);
         fbGame.register("removeFiche", this::removeFicheUpdate);
         fbGame.register("leaves", this::leaveAreaUpdate);
+        fbGame.register("turn", this::turnUpdate);
     }
 
     private void createTurnView() {
@@ -86,6 +87,10 @@ public class TurnController implements FirebaseGameObserver {
         gameCon.getCameraCon().rotateToAngle(-60, rotationY , 5);
     }
 
+    private void reloadAreaInfoViews(){
+        phaseCon.changeView();
+    }
+
     @Override
     public void update(DocumentSnapshot ds) {
         //Decline updates
@@ -93,23 +98,35 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void attackUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        AreaController area = getArea(ds.getString("areaId"));
         getCurrentPlayer().getCurrentCombi().attackThisArea(area);
+        reloadAreaInfoViews();
     }
 
-    public void addFicheUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+    private void addFicheUpdate(DocumentSnapshot ds){
+        AreaController area = getArea(ds.getString("areaId"));
         area.addFiche();
+        reloadAreaInfoViews();
     }
 
-    public void removeFicheUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+    private void removeFicheUpdate(DocumentSnapshot ds){
+        AreaController area = getArea(ds.getString("areaId"));
         area.removeFiche();
+        reloadAreaInfoViews();
     }
 
-    public void leaveAreaUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
-        area.leaveArea();
+    private void leaveAreaUpdate(DocumentSnapshot ds){
+        AreaController area =  getArea(ds.getString("areaId"));
+        getCurrentPlayer().getCurrentCombi().leaveArea(area);
+        reloadAreaInfoViews();
+    }
+
+    private void turnUpdate(DocumentSnapshot ds){
+        nextTurn();
+    }
+
+    private AreaController getArea(String id){
+        return gameCon.getMapCon().getAreaCon(id);
     }
 
 }

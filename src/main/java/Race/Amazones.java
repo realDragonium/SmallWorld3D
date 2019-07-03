@@ -11,7 +11,7 @@ public class Amazones implements Race{
 
     @Override
     public int getFicheAmount() {
-        return 9;
+        return 6;
     }
 
     @Override

@@ -683,7 +683,7 @@
     "borderArea": true,
     "property": "None",
     "lostTribe": false,
-    "attackable": false
+    "attackable": true
   },
   {
     "id": "water_002",
@@ -703,7 +703,7 @@
     "borderArea": false,
     "property": "None",
     "lostTribe": false,
-    "attackable": false
+    "attackable": true
   },
   {
     "id": "water_003",
@@ -715,6 +715,6 @@
     "borderArea": true,
     "property": "None",
     "lostTribe": false,
-    "attackable": false
+    "attackable": true
   }
 ]
