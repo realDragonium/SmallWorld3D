@@ -69,6 +69,7 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     public void clearAreaInfoView(){
+        if(turnCon.getCurrentPlayer().getCurrentCombi() != null)
         turnCon.getCurrentPlayer().getCurrentCombi().cleareAreaInfo();
     }
 
