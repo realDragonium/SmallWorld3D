@@ -9,6 +9,8 @@ import View.VoteView;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 
 public class VoteController implements FirebaseActionObserver {
@@ -57,6 +59,13 @@ public class VoteController implements FirebaseActionObserver {
     private void skipTurn() {
         //hier aanroepen wat ervoor zorgt dat de beurt eindigd
         fbGame.nextTurnAction();
+        TimerTask delete = new TimerTask() {
+            @Override
+            public void run() {
+                fbGame.deleteVotes();
+            }
+        };
+        new Timer().schedule(delete, 500);
     }
 
     //deze moet worden aangeroepen door fireBase
