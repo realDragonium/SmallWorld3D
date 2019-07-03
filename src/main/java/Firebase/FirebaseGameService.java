@@ -55,7 +55,7 @@ public class FirebaseGameService {
     }
 
     public void deleteVotes(){
-        List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Actions")).getDocuments();
+        List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Votes")).getDocuments();
         for(QueryDocumentSnapshot qDocSS: list)
             delete(qDocSS.getId());
 
