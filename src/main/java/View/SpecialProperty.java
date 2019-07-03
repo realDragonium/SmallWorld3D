@@ -15,7 +15,6 @@ public class SpecialProperty {
     }
 
     public Group create(){
-        System.out.println(specialProp.toString());
         Group mesh = new NormalFXMLLoader("/3dObjects/" + specialProp.toString() + ".fxml").loadGroup();
         View3DEnum.SPECIALPROP.getGroup().getChildren().add(mesh);
         return mesh;

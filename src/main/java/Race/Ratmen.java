@@ -1,6 +1,7 @@
 package Race;
 
 import Controller.CombinationController;
+import Enums.NotificationEnum;
 import javafx.scene.paint.Color;
 
 public class Ratmen implements Race {
@@ -22,6 +23,6 @@ public class Ratmen implements Race {
 
     @Override
     public void activateRacePower(CombinationController combiCon) {
-
+//        combiCon.getPlayer().getGameCon().setMessage(NotificationEnum.RATMEN);
     }
 }

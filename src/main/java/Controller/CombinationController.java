@@ -1,6 +1,6 @@
 package Controller;
 
-import Attacks.AttackType;
+import Attacks.AttackableAreas;
 import Attacks.AttackableType;
 import Enums.AreaInfoEnum;
 import Enums.AreaType;
@@ -8,11 +8,11 @@ import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import Phase.Phase;
+import Points.Points;
 import Power.EveryRoundPower;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.Callable;
@@ -26,19 +26,17 @@ public class CombinationController {
 
     public CombinationController(GameController gameCon, String race, String power) {
         model = new CombinationModel(race, power);
-        model.getPower().activatePower(this);
-        model.getRace().activateRacePower(this);
         createCombinationView();
         this.gameCon = gameCon;
     }
 
-    private void createCombinationView() {
-        new SpecialFXMLLoader().loader("/CombinationView.fxml", (Callable<CombinationView>) () -> new CombinationView(this));
+    public void setPowersActive(){
+        model.getPower().activatePower(this);
+        model.getRace().activateRacePower(this);
     }
 
-    void countPoints() {
-        int totalPoints = model.getPointCounter().getPoints(this);
-        player.addPoints(totalPoints);
+    private void createCombinationView() {
+        new SpecialFXMLLoader().loader("/CombinationView.fxml", (Callable<CombinationView>) () -> new CombinationView(this));
     }
 
     public void registerObserver(CombinationObserver obs) {
@@ -55,6 +53,7 @@ public class CombinationController {
 
     public void addArea(AreaController area) {
         model.addArea(area);
+        model.thisRoundConquered.add(area);
     }
 
     public void removeArea(AreaController area) {
@@ -106,7 +105,7 @@ public class CombinationController {
         return model.getPowerId();
     }
 
-    public void setAttackType(AttackType type){
+    public void setAttackType(AttackableAreas type){
         model.setAttack(type);
     }
 
@@ -178,6 +177,24 @@ public class CombinationController {
 
     public void doEveryRoundPower(){
 
+    }
+
+    void countPoints() {
+        int totalPoints = model.getPointCounter().getPoints(this);
+        totalPoints += getExtraPoints();
+        player.addPoints(totalPoints);
+    }
+
+    public void setRacePoints(Points points){
+        model.racePoints = points;
+    }
+
+    public void setPowerPoints(Points points){
+        model.powerPoints = points;
+    }
+
+    private int getExtraPoints(){
+        return model.racePoints.getPoints(this) + model.powerPoints.getPoints(this);
     }
 
 }

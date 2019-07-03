@@ -42,8 +42,9 @@ public class TimerController {
     private void timerAction(){
         model.setTimer(model.getSeconds() - 1);
 
-        if(model.getSeconds() == 0&& model.isMyTurn()){
-            gameCon.getPhaseCon().nextPhase();
+        if(model.getSeconds() == 0 && model.isMyTurn()){
+//            gameCon.getPhaseCon().nextPhase();
+            gameCon.getFireBase().nextPhaseAction();
         }
 
         if(model.getSeconds() == -10){

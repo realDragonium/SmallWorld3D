@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class FlyAttack implements AttackType {
+public class FlyAttack implements AttackableAreas {
 
     @Override
     public void Attack(AreaController area, CombinationController combi) {
@@ -18,7 +18,7 @@ public class FlyAttack implements AttackType {
     }
 
     @Override
-    public AttackType nextAttack() {
+    public AttackableAreas nextAttack() {
         return this;
     }
 

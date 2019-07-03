@@ -237,7 +237,7 @@ public class GameController {
         phaseCon.setPhase(phase);
     }
 
-    void setMessage(NotificationEnum message) {
+    public void setMessage(NotificationEnum message) {
         notiCon.setMessage(message);
     }
 

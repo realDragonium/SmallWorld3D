@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class HalfingAttack implements AttackType {
+public class HalfingAttack implements AttackableAreas {
 
     @Override
     public void Attack(AreaController area, CombinationController combi) {
@@ -18,7 +18,7 @@ public class HalfingAttack implements AttackType {
     }
 
     @Override
-    public AttackType nextAttack() {
+    public AttackableAreas nextAttack() {
         return new NormalAttack();
     }
 

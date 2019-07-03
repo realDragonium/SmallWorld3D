@@ -1,15 +1,13 @@
 package Attacks;
 
 import Controller.*;
-import Enums.AreaInfoEnum;
 import Enums.AreaType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Stack;
 
-public class FirstAttack implements AttackType {
+public class FirstAttack implements AttackableAreas {
 
     @Override
     public void Attack(AreaController area, CombinationController combi) {
@@ -19,7 +17,7 @@ public class FirstAttack implements AttackType {
     }
 
     @Override
-    public AttackType nextAttack() {
+    public AttackableAreas nextAttack() {
         return new NormalAttack();
     }
 
