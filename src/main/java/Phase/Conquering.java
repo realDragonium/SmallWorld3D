@@ -23,4 +23,14 @@ public class Conquering implements Phase{
         combi.checkAttackableAreas();
     }
 
+    @Override
+    public int getTime() {
+        return 20;
+    }
+
+    @Override
+    public boolean myTurn() {
+        return true;
+    }
+
 }

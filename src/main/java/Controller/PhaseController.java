@@ -41,7 +41,8 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void setPhase(PhaseEnum phase){
         model.setPhase(phase);
-
+        setTimer(phase.getPhase().getTime(), phase.getPhase().myTurn());
+        changeView();
     }
 
     public Phase getPhase(){
@@ -81,9 +82,12 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     public void countPoints() {
-        System.out.println("count them points");
         for(CombinationController combi : turnCon.getCurrentPlayer().getCombinations()){
             combi.countPoints();
         }
+    }
+
+    public void setTimer(int time, boolean b) {
+        gameCon.setTimer(time, b);
     }
 }

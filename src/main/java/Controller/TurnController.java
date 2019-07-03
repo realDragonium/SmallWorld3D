@@ -41,6 +41,7 @@ public class TurnController implements FirebaseGameObserver {
         fbGame.register("addFiche", this::addFicheUpdate);
         fbGame.register("removeFiche", this::removeFicheUpdate);
         fbGame.register("leaves", this::leaveAreaUpdate);
+        fbGame.register("turn", this::turnUpdate);
     }
 
     private void createTurnView() {
@@ -88,7 +89,6 @@ public class TurnController implements FirebaseGameObserver {
 
     private void reloadAreaInfoViews(){
         phaseCon.changeView();
-        System.out.println("change View");
     }
 
     @Override
@@ -103,22 +103,26 @@ public class TurnController implements FirebaseGameObserver {
         reloadAreaInfoViews();
     }
 
-    public void addFicheUpdate(DocumentSnapshot ds){
+    private void addFicheUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
         area.addFiche();
         reloadAreaInfoViews();
     }
 
-    public void removeFicheUpdate(DocumentSnapshot ds){
+    private void removeFicheUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
         area.removeFiche();
         reloadAreaInfoViews();
     }
 
-    public void leaveAreaUpdate(DocumentSnapshot ds){
+    private void leaveAreaUpdate(DocumentSnapshot ds){
         AreaController area =  getArea(ds.getString("areaId"));
         getCurrentPlayer().getCurrentCombi().leaveArea(area);
         reloadAreaInfoViews();
+    }
+
+    private void turnUpdate(DocumentSnapshot ds){
+        nextTurn();
     }
 
     private AreaController getArea(String id){

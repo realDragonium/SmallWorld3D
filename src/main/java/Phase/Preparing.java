@@ -23,4 +23,15 @@ public class Preparing implements Phase{
     public void setViews(CombinationController combi) {
         combi.checkPrepareAreas();
     }
+
+
+    @Override
+    public int getTime() {
+        return 10;
+    }
+
+    @Override
+    public boolean myTurn() {
+        return true;
+    }
 }

@@ -34,7 +34,6 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
 
 
     private void placeAction(Map<String, Object> map) {
-//        service.placeAction(getEventNumber(), map);
         queue.add(map);
     }
 
@@ -58,10 +57,35 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         return str.toString();
     }
 
+
+    void placeVote(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("vote", "yes");
+        service.placeVote(map);
+    }
+
+    void deleteVotes(){
+        service.deleteVotes();
+    }
+
+    void voteListener(FirebaseActionObserver controller){
+        service.voteListener(controller);
+    }
+
+
+
+
     void nextPhaseAction() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "phase");
         map.put("action", "nextPhase");
+        placeAction(map);
+    }
+
+    void nextTurnAction() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "turn");
+        map.put("action", "nextTurn");
         placeAction(map);
     }
 

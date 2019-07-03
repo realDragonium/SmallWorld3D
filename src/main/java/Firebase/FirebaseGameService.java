@@ -50,6 +50,39 @@ public class FirebaseGameService {
 
 
 
+    public void placeVote(Object vote){
+        gameRef.collection("Votes").document().set(vote);
+    }
+
+    public void deleteVotes(){
+        List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Actions")).getDocuments();
+        for(QueryDocumentSnapshot qDocSS: list)
+            delete(qDocSS.getId());
+
+    }
+
+
+    private void delete(String documentId) {
+        gameRef.collection("Votes").document(documentId).delete();
+    }
+
+
+
+    public void voteListener(final FirebaseActionObserver controller) {
+        CollectionReference docRef = gameRef.collection("Votes");
+        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirestoreException error) {
+                if (error != null) {
+                    System.err.println("Listen failed: " + error);
+                    return;
+                }
+                if (snapshot != null && snapshot.getDocuments().size() > 0) {
+                    controller.update(snapshot);
+                }
+            }
+        });
+    }
+
 
 
 

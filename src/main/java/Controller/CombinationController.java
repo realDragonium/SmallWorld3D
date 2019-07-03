@@ -133,12 +133,10 @@ public class CombinationController {
 
     public void clickedCombination() {
         if (model.inShop) {
-            //if(gameCon.get.equals(player.getGameCon().getCurrentPlayer())){
             int item = gameCon.getShopCon().getShopItem(this);
             gameCon.getShopCon().buyToFirebase(item);
             model.inShop = false;
         }
-        //}
     }
 
     public void cleareAreaInfo(){

@@ -22,5 +22,15 @@ public class Redeploying implements Phase {
         combi.checkRedeployAreas();
     }
 
+    @Override
+    public int getTime() {
+        return 30;
+    }
+
+    @Override
+    public boolean myTurn() {
+        return true;
+    }
+
 
 }

@@ -29,6 +29,7 @@ public class GameController {
     private ButtonController buttonCon;
     private TimerController timerCon;
     private DeclineController declineCon;
+    private VoteController currentVote;
     private InfoController infoCon;
     private NotificationController notiCon;
     private LeaveController leaveCon;
@@ -114,8 +115,8 @@ public class GameController {
         phaseCon = new PhaseController(this);
         roundCon = new RoundController(this);
         turnCon = new TurnController(this);
-
         timerCon = new TimerController(this);
+
         areaInfoCon = new AreaInformationController(this);
 
         leaveCon = new LeaveController(this);
@@ -252,7 +253,11 @@ public class GameController {
 
     }
 
-    public void createVote(int i) {
-        new VoteController(i, "player lost connection, skip turn?");
+    public void createVote(int i, String message) {
+        currentVote = new VoteController(i, message, this);
+    }
+
+    public void setTimer(int time, boolean b) {
+        timerCon.restartTimer(time, b);
     }
 }
