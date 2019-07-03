@@ -13,8 +13,8 @@ import Observable.CombinationObservable;
 import Observer.CombinationObserver;
 import Phase.Phase;
 import Points.*;
-import Power.Power;
-import Race.Race;
+import Power.*;
+import Race.*;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
@@ -25,16 +25,17 @@ import Enums.AreaType;
 public class CombinationModel implements CombinationObservable {
 
     private List<CombinationObserver> observers = new ArrayList<>();
-    private Race race;
-    private Power power;
-    private int newFiches = 0;
-    private boolean active = true;
+
     private Stack<FicheController> raceFiches = new Stack<>();
     private List<AreaController> areas = new ArrayList<>();
+
     private Translate position;
     public boolean inShop = true;
     public List<AreaController> lastUsedAreas = new ArrayList<>();
 
+    private Race race;
+    private Power power;
+    public EveryRoundPower everyRoundPower;
     private AttackableType attackableType;
     private AttackType attack;
     private Decline decline;
@@ -88,6 +89,10 @@ public class CombinationModel implements CombinationObservable {
 
     public AttackType getAttack(){
         return attack;
+    }
+
+    public void setAttack(AttackType type){
+        attack = type;
     }
 
     public void nextAttack(){

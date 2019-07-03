@@ -1,5 +1,6 @@
 package Race;
 
+import Controller.CombinationController;
 import javafx.scene.paint.Color;
 
 public class Amazones implements Race{
@@ -17,5 +18,10 @@ public class Amazones implements Race{
     @Override
     public Color getRaceColor() {
         return Color.rgb(9, 184, 73);
+    }
+
+    @Override
+    public void activateRacePower(CombinationController combiCon) {
+
     }
 }

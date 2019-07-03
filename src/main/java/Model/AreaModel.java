@@ -3,6 +3,7 @@ package Model;
 import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.PlayerController;
+import Enums.AreaProperty;
 import Enums.AreaType;
 import Enums.AreaInfoEnum;
 import Objects.AreaInfo;
@@ -16,7 +17,7 @@ import java.util.Stack;
 public class AreaModel implements AreaObservable {
 
     private boolean borderArea;
-    private String specialProperty;
+    private AreaProperty specialProperty;
     private List<String> neighbours;
     private String id;
     private AreaType type;
@@ -40,7 +41,7 @@ public class AreaModel implements AreaObservable {
         borderArea = info.borderArea;
         attackAble = info.attackable;
         lostTribe = info.lostTribe;
-        specialProperty = info.property;
+        specialProperty = AreaProperty.valueOf(info.property);
         nextToWater = info.nextToWater;
         type = AreaType.valueOf(id.split("_")[0]);
     }
@@ -88,7 +89,7 @@ public class AreaModel implements AreaObservable {
         notifyObserver();
     }
 
-    public String getSpecialProp(){
+    public AreaProperty getSpecialProp(){
         return specialProperty;
     }
 

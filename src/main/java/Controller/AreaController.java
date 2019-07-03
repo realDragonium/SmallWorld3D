@@ -1,6 +1,7 @@
 package Controller;
 
 import Enums.AreaInfoEnum;
+import Enums.AreaProperty;
 import Enums.AreaType;
 import Model.AreaModel;
 import Objects.AreaInfo;
@@ -101,7 +102,7 @@ public class AreaController{
 
     public void makeActive(){ model.changeActive();}
 
-    public String getSpecialProp() {
+    public AreaProperty getSpecialProp() {
         return model.getSpecialProp();
     }
 

@@ -1,5 +1,6 @@
 package Controller;
 
+import Attacks.AttackType;
 import Attacks.AttackableType;
 import Enums.AreaInfoEnum;
 import Enums.AreaType;
@@ -7,6 +8,7 @@ import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import Phase.Phase;
+import Power.EveryRoundPower;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
@@ -24,6 +26,8 @@ public class CombinationController {
 
     public CombinationController(GameController gameCon, String race, String power) {
         model = new CombinationModel(race, power);
+        model.getPower().activatePower(this);
+        model.getRace().activateRacePower(this);
         createCombinationView();
         this.gameCon = gameCon;
     }
@@ -102,6 +106,10 @@ public class CombinationController {
         return model.getPowerId();
     }
 
+    public void setAttackType(AttackType type){
+        model.setAttack(type);
+    }
+
     public void setAttackableType(AttackableType type) {
         model.setAttackableType(type);
     }
@@ -158,9 +166,18 @@ public class CombinationController {
     }
 
     private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo){
+        model.lastUsedAreas.removeAll(areas);
         model.lastUsedAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas = areas;
+    }
+
+    public void setEveryRoundPower(EveryRoundPower power){
+        model.everyRoundPower = power;
+    }
+
+    public void doEveryRoundPower(){
+
     }
 
 }

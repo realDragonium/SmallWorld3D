@@ -1,5 +1,6 @@
 package Race;
 
+import Controller.CombinationController;
 import javafx.scene.paint.Color;
 
 public class Wizards implements Race {
@@ -17,5 +18,10 @@ public class Wizards implements Race {
     @Override
     public Color getRaceColor() {
         return Color.rgb(89, 17, 83);
+    }
+
+    @Override
+    public void activateRacePower(CombinationController combiCon) {
+
     }
 }
