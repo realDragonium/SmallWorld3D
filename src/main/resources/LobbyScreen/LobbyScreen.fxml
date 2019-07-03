@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.GridPane?>
 <Group fx:id="root" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8"
        xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LobbyView">
-    <ImageView fitHeight="900.0" fitWidth="1600.0">
+    <ImageView fitHeight="1080.0" fitWidth="1920.0">
 
-        <Image url="@backgroundLobby.jpg"/>
+        <Image url="@Background.jpg"/>
     </ImageView>
     <ImageView layoutX="254.0" layoutY="168.0">
 
