@@ -86,6 +86,11 @@ public class TurnController implements FirebaseGameObserver {
         gameCon.getCameraCon().rotateToAngle(-60, rotationY , 5);
     }
 
+    private void reloadAreaInfoViews(){
+        phaseCon.changeView();
+        System.out.println("change View");
+    }
+
     @Override
     public void update(DocumentSnapshot ds) {
         //Decline updates
@@ -93,23 +98,31 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void attackUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        AreaController area = getArea(ds.getString("areaId"));
         getCurrentPlayer().getCurrentCombi().attackThisArea(area);
+        reloadAreaInfoViews();
     }
 
     public void addFicheUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        AreaController area = getArea(ds.getString("areaId"));
         area.addFiche();
+        reloadAreaInfoViews();
     }
 
     public void removeFicheUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
+        AreaController area = getArea(ds.getString("areaId"));
         area.removeFiche();
+        reloadAreaInfoViews();
     }
 
     public void leaveAreaUpdate(DocumentSnapshot ds){
-        AreaController area = gameCon.getMapCon().getAreaCon(ds.getString("areaId"));
-        area.leaveArea();
+        AreaController area =  getArea(ds.getString("areaId"));
+        getCurrentPlayer().getCurrentCombi().leaveArea(area);
+        reloadAreaInfoViews();
+    }
+
+    private AreaController getArea(String id){
+        return gameCon.getMapCon().getAreaCon(id);
     }
 
 }

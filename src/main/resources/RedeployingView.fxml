@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <Pane fx:id="pane"  prefHeight="600.0" prefWidth="116.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.RedeployingView">
-      <Button fx:id="add" onAction="#addButton" style="-fx-background-color: rgb(29, 196, 154);" text="add fiches" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.RedeployingView">
+      <Button fx:id="add" onAction="#addButton" style="-fx-background-color: rgb(29, 196, 154);" text="add fiches" >
          <font>
             <Font size="21.0" />
          </font></Button>

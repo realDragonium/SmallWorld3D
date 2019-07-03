@@ -11,7 +11,7 @@ public class Giants implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 7;
+        return 6;
     }
 
     @Override

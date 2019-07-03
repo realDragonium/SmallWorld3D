@@ -11,7 +11,7 @@ public class Humans implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 7;
+        return 5;
     }
 
     @Override

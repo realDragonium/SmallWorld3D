@@ -8,6 +8,7 @@ public class Redeploying implements Phase {
 
     @Override
     public void nextPhase(PhaseController phaseCon) {
+        phaseCon.clearAreaInfoView();
         phaseCon.nextTurn();
     }
 

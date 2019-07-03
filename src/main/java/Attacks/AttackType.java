@@ -11,5 +11,5 @@ public interface AttackType {
 
     void Attack(AreaController area, CombinationController combi);
     AttackType nextAttack();
-    void checkAttackableAreas(CombinationController combi, Collection<AreaController> allAreas);
+    List<AreaController> checkAttackableAreas(CombinationController combi, Collection<AreaController> allAreas);
 }

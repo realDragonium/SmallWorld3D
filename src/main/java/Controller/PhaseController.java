@@ -1,10 +1,12 @@
 package Controller;
 
+import Enums.AreaInfoEnum;
 import Enums.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
 import Objects.SpecialFXMLLoader;
 import Observer.PhaseObserver;
+import Phase.Phase;
 import View.PhaseView;
 import com.google.cloud.firestore.DocumentSnapshot;
 
@@ -39,11 +41,16 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void setPhase(PhaseEnum phase){
         model.setPhase(phase);
-        changeView();
+
+    }
+
+    public Phase getPhase(){
+        return model.getPhase();
     }
 
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
+        changeView();
     }
 
     public void notMyTurn(){
@@ -60,6 +67,9 @@ public class PhaseController implements FirebaseGameObserver {
        turnCon.nextTurn();
     }
 
+    public void clearAreaInfoView(){
+        turnCon.getCurrentPlayer().getCurrentCombi().cleareAreaInfo();
+    }
 
     public void register(PhaseObserver po){
         model.register(po);
@@ -71,6 +81,7 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     public void countPoints() {
+        System.out.println("count them points");
         for(CombinationController combi : turnCon.getCurrentPlayer().getCombinations()){
             combi.countPoints();
         }

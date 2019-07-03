@@ -1,7 +1,9 @@
 package Model;
 
 import Attacks.AttackType;
+import Attacks.AttackableType;
 import Attacks.FirstAttack;
+import Attacks.NormalAttackableType;
 import Controller.AreaController;
 import Controller.FicheController;
 import Decline.*;
@@ -33,12 +35,12 @@ public class CombinationModel implements CombinationObservable {
     public boolean inShop = true;
     public List<AreaController> lastUsedAreas = new ArrayList<>();
 
+    private AttackableType attackableType;
     private AttackType attack;
     private Decline decline;
     private Points points;
     private Object defends;
     private Object specialAction;
-
 
 
     public CombinationModel(String raceId, String powerId){
@@ -47,6 +49,13 @@ public class CombinationModel implements CombinationObservable {
         attack = new FirstAttack();
         decline = new NotInDecline();
         points = new NormalPoints();
+        attackableType = new NormalAttackableType();
+    }
+
+    public void setAttackableType(AttackableType type) {attackableType = type;}
+
+    public List<AreaType> getAttackableAreaTypes(){
+        return attackableType.getAttackableTypes();
     }
 
     public List<AreaController> getAreas(){
@@ -57,7 +66,9 @@ public class CombinationModel implements CombinationObservable {
         areas.add(area);
     }
 
-    public void removeArea(AreaController area) {areas.remove(area);}
+    public void removeArea(AreaController area) {
+        areas.remove(area);
+    }
 
     public boolean isActive(){
         return decline.isActive();
@@ -65,10 +76,9 @@ public class CombinationModel implements CombinationObservable {
 
     public Stack<FicheController> removeFiches(int count) {
         Stack<FicheController> tempFiches = new Stack<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
             tempFiches.add(raceFiches.pop());
-            System.out.println("Fiches Over: "+raceFiches.size());
-        }
+        System.out.println("Fiches Over: "+raceFiches.size());
         return tempFiches;
     }
 

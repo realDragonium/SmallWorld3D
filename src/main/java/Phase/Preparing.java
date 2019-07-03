@@ -11,6 +11,7 @@ public class Preparing implements Phase{
     @Override
     public void nextPhase(PhaseController phaseCon) {
         phaseCon.setPhase(PhaseEnum.CONQUERING);
+        phaseCon.changeView();
     }
 
     @Override

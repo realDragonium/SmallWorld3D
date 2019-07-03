@@ -11,7 +11,7 @@ public class Dwarves implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 5;
+        return 3;
     }
 
     @Override

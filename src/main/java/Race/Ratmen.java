@@ -11,7 +11,7 @@ public class Ratmen implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 11;
+        return 8;
     }
 
     @Override
