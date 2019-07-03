@@ -54,6 +54,7 @@ public class ApplicationView implements ApplicationObserver {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setFullScreen(true);
     }
 
     private void setActive(ApplicationViewEnum view) {
