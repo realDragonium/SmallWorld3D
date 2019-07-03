@@ -23,5 +23,15 @@ public class SpectatePreparing implements Phase {
 
     }
 
+    @Override
+    public int getTime() {
+        return 10;
+    }
+
+    @Override
+    public boolean myTurn() {
+        return false;
+    }
+
 
 }

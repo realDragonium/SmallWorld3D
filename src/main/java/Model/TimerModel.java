@@ -8,10 +8,11 @@ import javax.swing.event.ChangeListener;
 
 public class TimerModel implements TimerObservable, ChangeListener {
 
-    private int elapsedTime;
+    private int elapsedTime = 0;
     private TimerObserver observer;
-    private int timeAmount = 10;
+    private int timeAmount;
     private boolean timerDone = false;
+    private boolean myTurn;
 
     public TimerModel(){
 
@@ -28,7 +29,7 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     @Override
     public int getSeconds() {
-        return elapsedTime;
+        return timeAmount;
     }
 
     @Override
@@ -41,8 +42,17 @@ public class TimerModel implements TimerObservable, ChangeListener {
 
     }
 
+
     public void setTimer(int timer) {
-        elapsedTime = timer;
-        notifyAllObservers();
+        timeAmount = timer;
+        if(timeAmount >= 0) notifyAllObservers();
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        this.myTurn = myTurn;
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
     }
 }

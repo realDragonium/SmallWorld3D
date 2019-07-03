@@ -7,4 +7,7 @@ public interface Phase {
     void nextPhase(PhaseController phaseCon);
     String getName();
     void setViews(CombinationController combi);
+    int getTime();
+
+    boolean myTurn();
 }

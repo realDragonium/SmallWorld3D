@@ -36,7 +36,7 @@ public class TimerView implements TimerObserver {
         if(seconds.length() == 1){
             seconds = "0" + seconds;
         }
-        String time = "Time left: " + minutes + ":" + seconds ;
+        String time = minutes + ":" + seconds ;
         timer.setText(time);
     }
 

@@ -29,6 +29,7 @@ public class GameController {
     private ButtonController buttonCon;
     private TimerController timerCon;
     private DeclineController declineCon;
+    private VoteController currentVote;
     private InfoController infoCon;
     private NotificationController notiCon;
 
@@ -113,8 +114,8 @@ public class GameController {
         phaseCon = new PhaseController(this);
         roundCon = new RoundController(this);
         turnCon = new TurnController(this);
-
         timerCon = new TimerController(this);
+
         areaInfoCon = new AreaInformationController(this);
 
         //Minder belangrijk
@@ -250,6 +251,10 @@ public class GameController {
     }
 
     public void createVote(int i, String message) {
-        new VoteController(i, message);
+        currentVote = new VoteController(i, message);
+    }
+
+    public void setTimer(int time, boolean b) {
+        timerCon.restartTimer(time, b);
     }
 }

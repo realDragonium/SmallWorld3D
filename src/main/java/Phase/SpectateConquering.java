@@ -22,5 +22,14 @@ public class SpectateConquering implements Phase {
     public void setViews(CombinationController combi) {
 
     }
+    @Override
+    public int getTime() {
+        return 20;
+    }
+
+    @Override
+    public boolean myTurn() {
+        return false;
+    }
 
 }
