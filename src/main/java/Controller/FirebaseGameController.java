@@ -46,8 +46,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
                 }
             }
         };
-        Timer animTimer = new Timer();
-        animTimer.scheduleAtFixedRate(start, 0, 250);
+        new Timer().scheduleAtFixedRate(start, 0, 250);
     }
 
     private String getEventNumber(){
@@ -136,6 +135,13 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         Map<String, Object> map = new HashMap<>();
         map.put("id", "decline");
         map.put("action", "decline");
+        placeAction(map);
+    }
+
+    void diceAction(int number) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "dice");
+        map.put("eyes", number);
         placeAction(map);
     }
 

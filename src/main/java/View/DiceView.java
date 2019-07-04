@@ -1,11 +1,14 @@
 package View;
 
 import Controller.DiceController;
+import Firebase.FirebaseGameObserver;
 import Observable.DiceObservable;
 import Observer.DiceObserver;
+import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,6 +18,8 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Enums.GameViewEnum;
 
@@ -47,10 +52,17 @@ public class DiceView implements DiceObserver {
 
 
     private void playAnimation(int waarde) {
+        TimerTask hide = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(()-> diceCon.hide());
+            }
+        };
 
         timeline.play();
         timeline.setOnFinished(e -> {
-                dice.setImage(new Image("/Dice/Dice" + waarde + ".jpg"));
+            dice.setImage(new Image("/Dice/Dice" + waarde + ".jpg"));
+            new Timer().schedule(hide, 500);
         });
     }
 
@@ -61,6 +73,7 @@ public class DiceView implements DiceObserver {
             playAnimation(ob.getWaarde());
         }
     }
+
 }
 
 

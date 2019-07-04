@@ -107,7 +107,7 @@ public class GameController {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("beau", this);
+        fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
         //Belangrijk
         mapCon = new MapController(this);

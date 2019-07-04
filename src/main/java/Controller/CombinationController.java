@@ -163,6 +163,8 @@ public class CombinationController {
         areas.addAll(model.raceAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
 
         List<AreaController> arealist = new ArrayList<>(areas);
+
+
         manageAreaInfoButtons(arealist, AreaInfoEnum.ATTACK);
     }
 
