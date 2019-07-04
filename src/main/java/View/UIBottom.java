@@ -1,6 +1,8 @@
 package View;
 
 import Controller.GameController;
+import Enums.GameViewEnum;
+import Enums.RaceEnum;
 import Observable.PlayerObservable;
 import Observer.PlayerObserver;
 import javafx.scene.Group;
@@ -31,6 +33,10 @@ public class UIBottom implements PlayerObserver {
 
     @Override
     public void update(PlayerObservable po) {
-
+        System.out.println("got the update");
+        activeCombi.getChildren().clear();
+        if(po.hasActiveCombination()) {
+            activeCombi.getChildren().add(RaceEnum.valueOf(po.getActiveCombi()).getGroup());
+        }
     }
 }

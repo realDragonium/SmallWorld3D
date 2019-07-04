@@ -23,8 +23,8 @@ public class ButtonController {
     }
 
     public void nextPhase(){
-        //gameCon.getFireBase().nextPhaseAction();
-        System.out.println(gameCon.rollDice());
+        gameCon.getFireBase().nextPhaseAction();
+        //System.out.println(gameCon.rollDice());
         //gameCon.createVote(3, "skip turn?");
     }
 

@@ -39,13 +39,11 @@ public class DiceView implements DiceObserver {
 
     private void createAnimation(){
         timeline = new Timeline();
-        for(int i = 0; i < 6; i++) {
+        for(int i = 1; i < 7; i++) {
             int randInt = new Random().nextInt(6);
             if(randInt != 1 && randInt != 2 && randInt != 3) randInt = 0;
-            System.out.println("/Dice/Dice" + randInt + ".jpg");
-            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), new KeyValue(dice.imageProperty(), new Image("/Dice/Dice" + randInt + ".jpg"))));
+            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500 * i), new KeyValue(dice.imageProperty(), new Image("/Dice/Dice" + randInt + ".jpg"))));
         }
-        System.out.println(timeline.getKeyFrames());
     }
 
 
