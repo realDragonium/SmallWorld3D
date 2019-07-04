@@ -8,6 +8,7 @@
 <?import javafx.scene.paint.PhongMaterial?>
 <?import javafx.scene.shape.MeshView?>
 <?import javafx.scene.shape.TriangleMesh?>
+<?import javafx.scene.Group?>
 
 <MeshView id="Icosphere" cullFace="BACK" drawMode="FILL">
   <material>

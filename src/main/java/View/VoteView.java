@@ -36,7 +36,6 @@ public class VoteView implements VoteObserver {
 
     @Override
     public void update(VoteObservable vo) {
-        System.out.println("update!");
         vote.setVisible(!vo.hasVoted());
         for(int i = 0; i < vo.getVotesNeeded(); i++){
             votes.getChildren().get(i).setVisible(true);

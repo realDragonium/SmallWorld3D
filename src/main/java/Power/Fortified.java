@@ -1,5 +1,7 @@
 package Power;
 
+import Controller.CombinationController;
+
 public class Fortified implements Power {
 
     @Override
@@ -10,5 +12,10 @@ public class Fortified implements Power {
     @Override
     public int getFicheAmount() {
         return 3;
+    }
+
+    @Override
+    public void activatePower(CombinationController combiCon) {
+
     }
 }

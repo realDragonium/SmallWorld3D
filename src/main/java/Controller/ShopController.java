@@ -78,7 +78,6 @@ public class ShopController implements FirebaseGameObserver, Animatable {
 
     @Override
     public void update(DocumentSnapshot ds) {
-        System.out.println("[SHOPCON UPDATE] Als je deze iets, dan wordt deze nog gebruikt helaas. ");
     }
 
     private void addUpdate(DocumentSnapshot ds) {

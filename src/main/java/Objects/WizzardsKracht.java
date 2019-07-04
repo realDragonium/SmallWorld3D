@@ -21,7 +21,7 @@ public class WizzardsKracht implements Kracht{
     @Override
     public void doAction() {
         for(AreaController area : raceCon.getAllAreas()){
-            if(area.getSpecialProp().equals(AreaProperty.magicsource)){
+            if(area.getSpecialProp().equals(AreaProperty.Magical)){
                 raceCon.getCombiCon().getPlayer().addPoints(1);
             }
         }

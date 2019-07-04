@@ -1,13 +1,14 @@
 package Attacks;
 
-import Controller.*;
+import Controller.AreaController;
+import Controller.CombinationController;
 import Enums.AreaType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class FirstAttack implements AttackableAreas {
+public class HalfingAttack implements AttackableAreas {
 
     @Override
     public void Attack(AreaController area, CombinationController combi) {
@@ -26,12 +27,10 @@ public class FirstAttack implements AttackableAreas {
         List<AreaController> usableAreas = new ArrayList<>();
         List<AreaType> areaTypes = combi.getAttackableTypes();
         allAreas.forEach(area -> {
-            if (area.isBorderArea() && area.isAttackAble()
-                    && areaTypes.contains(area.getAreaType())) {
+            if (area.isAttackAble() && areaTypes.contains(area.getAreaType())) {
                 usableAreas.add(area);
             }
         });
         return usableAreas;
     }
-
 }

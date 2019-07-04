@@ -107,7 +107,7 @@ public class GameController {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("beau", this);
+        fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
         //Belangrijk
         mapCon = new MapController(this);
@@ -237,7 +237,7 @@ public class GameController {
         phaseCon.setPhase(phase);
     }
 
-    void setMessage(NotificationEnum message) {
+    public void setMessage(NotificationEnum message) {
         notiCon.setMessage(message);
     }
 

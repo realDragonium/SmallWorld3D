@@ -45,6 +45,7 @@ public class PlayerController implements FirebaseGameObserver {
         combo.moveToPosition(model.get2dPos());
         combo.setPlayer(this);
         combo.createRaceFiches();
+        combo.setPowersActive();
     }
 
     List<CombinationController> getActiveCombination() {

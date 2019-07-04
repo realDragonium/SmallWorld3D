@@ -1,5 +1,7 @@
 package Power;
 
+import Controller.CombinationController;
+
 public class Stout implements Power {
 
     @Override
@@ -10,5 +12,10 @@ public class Stout implements Power {
     @Override
     public int getFicheAmount() {
         return 4;
+    }
+
+    @Override
+    public void activatePower(CombinationController combiCon) {
+
     }
 }

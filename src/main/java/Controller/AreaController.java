@@ -1,6 +1,7 @@
 package Controller;
 
 import Enums.AreaInfoEnum;
+import Enums.AreaProperty;
 import Enums.AreaType;
 import Model.AreaModel;
 import Objects.AreaInfo;
@@ -101,7 +102,7 @@ public class AreaController{
 
     public void makeActive(){ model.changeActive();}
 
-    public String getSpecialProp() {
+    public AreaProperty getSpecialProp() {
         return model.getSpecialProp();
     }
 
@@ -151,9 +152,9 @@ public class AreaController{
     }
 
     public void createSpecialPropFiche(){
-        if(!model.getSpecialProp().equals("None")) {
+        if(model.getSpecialProp() != AreaProperty.None) {
 
-            if(model.getSpecialProp().equals("Magical")){
+            if(model.getSpecialProp() == AreaProperty.Magical){
                 new Crystal().setPosition(model.getSpecialPropPoint());
             }
             else {

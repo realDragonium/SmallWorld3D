@@ -1,6 +1,6 @@
 package Model;
 
-import Attacks.AttackType;
+import Attacks.AttackableAreas;
 import Attacks.AttackableType;
 import Attacks.FirstAttack;
 import Attacks.NormalAttackableType;
@@ -13,8 +13,8 @@ import Observable.CombinationObservable;
 import Observer.CombinationObserver;
 import Phase.Phase;
 import Points.*;
-import Power.Power;
-import Race.Race;
+import Power.*;
+import Race.*;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
@@ -25,22 +25,28 @@ import Enums.AreaType;
 public class CombinationModel implements CombinationObservable {
 
     private List<CombinationObserver> observers = new ArrayList<>();
-    private Race race;
-    private Power power;
-    private int newFiches = 0;
-    private boolean active = true;
+
     private Stack<FicheController> raceFiches = new Stack<>();
     private List<AreaController> areas = new ArrayList<>();
+    public List<AreaController> thisRoundConquered = new ArrayList<>();
+
     private Translate position;
     public boolean inShop = true;
     public List<AreaController> lastUsedAreas = new ArrayList<>();
 
+    private Race race;
+    private Power power;
+    public EveryRoundPower everyRoundPower;
     private AttackableType attackableType;
-    private AttackType attack;
+    private AttackableAreas attack;
     private Decline decline;
     private Points points;
     private Object defends;
     private Object specialAction;
+
+
+    public Points racePoints = new NullPoints();
+    public Points powerPoints = new NullPoints();
 
 
     public CombinationModel(String raceId, String powerId){
@@ -50,6 +56,10 @@ public class CombinationModel implements CombinationObservable {
         decline = new NotInDecline();
         points = new NormalPoints();
         attackableType = new NormalAttackableType();
+    }
+
+    public void resetConqueredAreas(){
+        thisRoundConquered = new ArrayList<>();
     }
 
     public void setAttackableType(AttackableType type) {attackableType = type;}
@@ -86,8 +96,12 @@ public class CombinationModel implements CombinationObservable {
         decline = new InDecline();
     }
 
-    public AttackType getAttack(){
+    public AttackableAreas getAttack(){
         return attack;
+    }
+
+    public void setAttack(AttackableAreas type){
+        attack = type;
     }
 
     public void nextAttack(){

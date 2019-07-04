@@ -53,7 +53,7 @@ public class ApplicationView implements ApplicationObserver {
         scene = new Scene(root);
 
         primaryStage.setScene(scene);
-       // primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 

@@ -1,5 +1,7 @@
 package Power;
 
+import Controller.CombinationController;
+
 public class Merchant implements Power {
 
     @Override
@@ -10,5 +12,10 @@ public class Merchant implements Power {
     @Override
     public int getFicheAmount() {
         return 2;
+    }
+
+    @Override
+    public void activatePower(CombinationController combiCon) {
+
     }
 }
