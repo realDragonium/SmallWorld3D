@@ -56,7 +56,7 @@ public class CombinationModel implements CombinationObservable {
     public CombinationModel(String raceId, String powerId){
         this.race = RaceEnum.valueOf(raceId).getRace();
         this.power = PowerEnum.valueOf(powerId).getPower();
-        attack = new FirstAttack();
+        attack = new NormalAreasAttack();
         decline = new NotInDecline();
         points = new NormalPoints();
         attackableType = new NormalAttackableType();

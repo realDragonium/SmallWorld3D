@@ -10,63 +10,48 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import Enums.GameViewEnum;
 
 public class DiceView implements DiceObserver {
 
-    private Group root;
-    private DiceController diceController;
-    private ArrayList<Image> list = new ArrayList<>();
-    private int counter = 0;
+    public ImageView dice;
+    public Pane pane;
 
-    private ImageView showImageView = new ImageView(getClass().getResource("/Dice/DiceNul.jpg").toExternalForm());
-    private Image One = new Image("/Dice/DiceNul.jpg");
-    private Image Two = new Image("/Dice/DiceNul.jpg");
-    private Image Three = new Image("/Dice/DiceNul.jpg");
-    private Image Four = new Image("/Dice/DiceOne.jpg");
-    private Image Five = new Image("/Dice/DiceTwo.jpg");
-    private Image Six = new Image("/Dice/DiceThree.jpg");
-
-    private Timeline timeline = new Timeline(
-            new KeyFrame(Duration.millis(500), new KeyValue(showImageView.imageProperty(), One)),
-            new KeyFrame(Duration.millis(1000), new KeyValue(showImageView.imageProperty(), Four)),
-            new KeyFrame(Duration.millis(1500), new KeyValue(showImageView.imageProperty(), Three)),
-            new KeyFrame(Duration.millis(2000), new KeyValue(showImageView.imageProperty(), Six)),
-            new KeyFrame(Duration.millis(2500), new KeyValue(showImageView.imageProperty(), Two)),
-            new KeyFrame(Duration.millis(3000), new KeyValue(showImageView.imageProperty(), Five))
-    );
+    private DiceController diceCon;
+    private Timeline timeline;
 
     public DiceView(DiceController diceCon) {
-        root = GameViewEnum.DICE.getGroup();
-        diceController = diceCon;
+        this.diceCon = diceCon;
     }
 
-    private void createScene() {
-        list.add(new Image("/Dice/DiceNul.jpg"));
-        list.add(new Image("/Dice/DiceNul.jpg"));
-        list.add(new Image("/Dice/DiceNul.jpg"));
-        list.add(new Image("/Dice/DiceOne.jpg"));
-        list.add(new Image("/Dice/DiceTwo.jpg"));
-        list.add(new Image("/Dice/DiceThree.jpg"));
-
-        GridPane gridPane = new GridPane();
-        gridPane.add(showImageView, 0, 1);
-
-
-        root.getChildren().add(gridPane);
-        gridPane.setTranslateX(550);
-        gridPane.setTranslateY(720);
+    public void initialize(){
+        GameViewEnum.DICE.getGroup().getChildren().add(pane);
+        diceCon.registreer(this);
+        createAnimation();
     }
+
+    private void createAnimation(){
+        timeline = new Timeline();
+        for(int i = 1; i < 7; i++) {
+            int randInt = new Random().nextInt(6);
+            if(randInt != 1 && randInt != 2 && randInt != 3) randInt = 0;
+            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500 * i), new KeyValue(dice.imageProperty(), new Image("/Dice/Dice" + randInt + ".jpg"))));
+        }
+    }
+
 
     private void playAnimation(int waarde) {
 
         timeline.play();
-        timeline.setOnFinished(e -> showImageView.setImage(list.get(waarde)));
-
-
+        timeline.setOnFinished(e -> {
+                dice.setImage(new Image("/Dice/Dice" + waarde + ".jpg"));
+        });
     }
 
 

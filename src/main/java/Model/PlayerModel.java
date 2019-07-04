@@ -100,6 +100,11 @@ public class PlayerModel implements PlayerObservable {
         return combinations.size() > 0;
     }
 
+    @Override
+    public String getActiveCombi() {
+        return currentCombi.getRace();
+    }
+
     public void addPunten(int amount) {
         points += amount;
         notifyObserver();

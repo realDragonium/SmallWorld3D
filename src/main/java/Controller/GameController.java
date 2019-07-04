@@ -101,7 +101,7 @@ public class GameController {
 
 
     private void createUIOverlay() {
-        new SpecialFXMLLoader().loader("/UIBottom.fxml", (Callable<UIBottom>) () -> new UIBottom(GameViewEnum.UIOVERLAY.getGroup()));
+        new SpecialFXMLLoader().loader("/UIBottom.fxml", (Callable<UIBottom>) () -> new UIBottom(GameViewEnum.UIOVERLAY.getGroup(), this));
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UIPlayers.fxml", (Callable<UIPlayer>) () -> new UIPlayer(GameViewEnum.UIOVERLAY.getGroup()));
     }
@@ -153,7 +153,7 @@ public class GameController {
         return shopCon;
     }
 
-    TurnController getTurnCon(){
+    public TurnController getTurnCon(){
         return turnCon;
     }
 
@@ -229,7 +229,7 @@ public class GameController {
         return model.getPlayers();
     }
 
-    int imPlayer(){
+    public int imPlayer(){
         return model.imPlayer();
     }
 
@@ -260,5 +260,9 @@ public class GameController {
 
     public void setTimer(int time, boolean b) {
         timerCon.restartTimer(time, b);
+    }
+
+    public int rollDice(){
+        return diceCon.rollDice();
     }
 }

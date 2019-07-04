@@ -5,6 +5,7 @@ import Objects.SpecialFXMLLoader;
 import Observer.DiceObserver;
 import View.DiceView;
 
+import java.util.Random;
 import java.util.concurrent.Callable;
 
 public class DiceController {
@@ -21,25 +22,25 @@ public class DiceController {
         new SpecialFXMLLoader().loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(this));
     }
 
-    int ClickedDice() {
+    int rollDice() {
         int uitkomst = RollDice();
         diceModel.play(uitkomst);
-        return diceModel.giveValue(uitkomst);
+        return uitkomst;
     }
 
     private int RollDice() {
-        int uitkomst = (int) (Math.floor(Math.random() * 6));
-        diceModel.changeSide(uitkomst);
-        //uitkomst += 1;
-        diceModel.giveValue(uitkomst);
+        int randInt = new Random().nextInt(6) + 1;
+        int waarde = diceModel.giveValue(randInt);
+        diceModel.changeSide(waarde);
 
-        return uitkomst;
+        return waarde;
 
     }
 
     public void registreer(DiceObserver ob) {
         diceModel.register(ob);
     }
+
 }
 
 

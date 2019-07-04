@@ -19,8 +19,6 @@ public class DiceModel implements DiceObservable {
 
     public void changeSide(int gegooideOgen) {
         this.gegooideOgen = gegooideOgen;
-
-        notifyAllObs();
     }
 
     public int giveValue(int gegooideOgen) {
@@ -57,6 +55,7 @@ public class DiceModel implements DiceObservable {
         playing = true;
         gegooideOgen = uitkomst;
         notifyAllObs();
+        playing = false;
     }
 }
 

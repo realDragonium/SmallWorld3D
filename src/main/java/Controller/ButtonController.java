@@ -5,7 +5,6 @@ import Objects.SpecialFXMLLoader;
 import View.ButtonView;
 
 import java.util.concurrent.Callable;
-import java.util.stream.IntStream;
 
 public class ButtonController {
     private GameController gameCon;
@@ -25,6 +24,8 @@ public class ButtonController {
 
     public void nextPhase(){
         gameCon.getFireBase().nextPhaseAction();
+        //System.out.println(gameCon.rollDice());
+        //gameCon.createVote(3, "skip turn?");
     }
 
 
