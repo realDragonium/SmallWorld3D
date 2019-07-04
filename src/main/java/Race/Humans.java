@@ -2,6 +2,7 @@ package Race;
 
 import Controller.CombinationController;
 import Enums.AreaType;
+import Model.CombinationModel;
 import Points.AreaTypePoints;
 import javafx.scene.paint.Color;
 
@@ -23,7 +24,7 @@ public class Humans implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-        combiCon.setRacePoints(new AreaTypePoints(AreaType.farm));
+    public void activateRacePower(CombinationModel combi) {
+        combi.racePoints = new AreaTypePoints(AreaType.farm);
     }
 }

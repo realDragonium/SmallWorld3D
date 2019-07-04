@@ -19,12 +19,12 @@ public class ButtonController {
     }
 
     public void showInfo() {
-
+//        gameCon.getFireBase().diceAction(gameCon.getDiceCon().rollDice());
     }
 
     public void nextPhase(){
         gameCon.getFireBase().nextPhaseAction();
-        //System.out.println(gameCon.rollDice());
+
         //gameCon.createVote(3, "skip turn?");
     }
 

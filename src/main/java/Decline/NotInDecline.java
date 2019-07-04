@@ -1,7 +1,5 @@
 package Decline;
 
-import Phase.*;
-
 public class NotInDecline implements Decline {
 
     @Override
@@ -9,8 +7,4 @@ public class NotInDecline implements Decline {
         return true;
     }
 
-    @Override
-    public Phase startAt() {
-        return new Preparing();
-    }
 }

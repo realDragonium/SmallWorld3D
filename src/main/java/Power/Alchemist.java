@@ -1,8 +1,8 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
-public class Alchemist implements Power {
+public class Alchemist implements Power, EveryRoundPower {
 
     @Override
     public String getName() {
@@ -15,7 +15,12 @@ public class Alchemist implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
+    public void activatePower(CombinationModel combi) {
+        combi.everyRoundPower = this;
+    }
 
+    @Override
+    public void doAction(CombinationModel combi) {
+        combi.player.addPoints(2);
     }
 }

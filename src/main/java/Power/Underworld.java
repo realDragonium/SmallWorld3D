@@ -1,6 +1,9 @@
 package Power;
 
-import Controller.CombinationController;
+import Attacks.AreaPropertyAttackBoost;
+import Attacks.UnderWorldAttack;
+import Enums.AreaProperty;
+import Model.CombinationModel;
 
 public class Underworld implements Power {
 
@@ -15,7 +18,9 @@ public class Underworld implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-
+    public void activatePower(CombinationModel combi) {
+        combi.powerAttackBoost = new AreaPropertyAttackBoost(AreaProperty.Cave);
+        combi.powerAreas = new UnderWorldAttack();
     }
+
 }

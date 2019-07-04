@@ -1,6 +1,7 @@
 package Power;
 
-import Controller.CombinationController;
+import Attacks.CommandoAttackBoost;
+import Model.CombinationModel;
 
 public class Commando implements Power {
 
@@ -15,7 +16,8 @@ public class Commando implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-
+    public void activatePower(CombinationModel combi) {
+        combi.powerAttackBoost = new CommandoAttackBoost();
     }
+
 }

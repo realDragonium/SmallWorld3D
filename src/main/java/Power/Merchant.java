@@ -1,6 +1,7 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
+import Points.NormalPoints;
 
 public class Merchant implements Power {
 
@@ -15,7 +16,7 @@ public class Merchant implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-
+    public void activatePower(CombinationModel combi) {
+        combi.powerPoints = new NormalPoints();
     }
 }

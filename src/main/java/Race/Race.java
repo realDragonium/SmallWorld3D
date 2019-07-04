@@ -1,11 +1,11 @@
 package Race;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
 public interface Race {
     String getName();
     int getFicheAmount();
     Color getRaceColor();
-    void activateRacePower(CombinationController combiCon);
+    void activateRacePower(CombinationModel combi);
 }

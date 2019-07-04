@@ -39,7 +39,7 @@ public class CombinationInfoModel implements CombinationInfoObservable {
 
     @Override
     public String getRace() {
-        return currentCombi.getRace();
+        return currentCombi.getRaceName();
     }
 
     @Override

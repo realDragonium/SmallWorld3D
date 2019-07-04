@@ -47,7 +47,6 @@ public class ShopView implements ShopObserver {
     }
 
     public void initialize() {
-        System.out.println("maakt de shop aan");
         group.getChildren().add(pane);
         shopCon.registerObserver(this);
         shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
@@ -57,7 +56,6 @@ public class ShopView implements ShopObserver {
             group.setLayoutY(i * 107.5 + 94);
             pane.getChildren().add(group);
             groups.put("group" + i, group);
-
         }
     }
 
@@ -65,7 +63,7 @@ public class ShopView implements ShopObserver {
     @Override
     public void update(ShopObservable so) {
         for(int i = 0; i < so.getShopItems().size(); i++) {
-            String race = so.getShopItems().get(i).getRace();
+            String race = so.getShopItems().get(i).getRaceName();
             Group group = RaceEnum.valueOf(race).getGroup();
             groups.get("group" + i).getChildren().clear();
             groups.get("group" + i).getChildren().add(group);

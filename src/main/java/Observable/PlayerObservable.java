@@ -1,5 +1,6 @@
 package Observable;
 
+import Controller.CombinationController;
 import Observer.PlayerObserver;
 
 
@@ -13,5 +14,5 @@ public interface PlayerObservable {
 
     boolean hasActiveCombination();
 
-    String getActiveCombi();
+    CombinationController getActiveCombi();
 }

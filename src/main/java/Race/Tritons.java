@@ -1,6 +1,8 @@
 package Race;
 
+import Attacks.TritonsAttack;
 import Controller.CombinationController;
+import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
 public class Tritons implements Race {
@@ -21,7 +23,8 @@ public class Tritons implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-
+    public void activateRacePower(CombinationModel combi) {
+        combi.raceAttackBoost = new TritonsAttack();
     }
+
 }

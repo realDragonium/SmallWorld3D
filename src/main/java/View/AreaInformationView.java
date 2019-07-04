@@ -1,11 +1,11 @@
 package View;
 
 import Controller.AreaInformationController;
+import Enums.AreaInfoEnum;
 import Observable.AreaInformationObservable;
 import Observer.AreaInformationObserver;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -36,35 +36,20 @@ public class AreaInformationView implements AreaInformationObserver {
         areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
         buttonGroup.getChildren().clear();
 
-        for(int i = 0; i < ao.getArea().getAreaInfoButton().getGroup().getChildren().size(); i++){
-            Node button = ao.getArea().getAreaInfoButton().getGroup().getChildren().get(i);
-            button.setId(ao.getArea().getId());
+        for(AreaInfoEnum areaInfo : ao.getArea().getAreaInfoButtons()){
+            for(int i = 0; i < areaInfo.getGroup().getChildren().size(); i++){
+                Node button = areaInfo.getGroup().getChildren().get(i);
+                button.setId(ao.getArea().getId());
+            }
+            buttonGroup.getChildren().add(areaInfo.getGroup());
         }
 
-        buttonGroup.getChildren().add(ao.getArea().getAreaInfoButton().getGroup());
         Image image = new Image("/Images/" + ao.getArea().getAreaType() + "_info.jpg");
         areaDefenceValue.setText("Defence value: " + ao.getArea().getDefenceValue());
         areaType.setText(ao.getArea().getAreaType().toString().toUpperCase());
         area_picture.setImage(image);
         areaSpecial.setText("Special properties: " + ao.getArea().getSpecialProp());
     }
-
-//    public void attackCountry() {
-//        areaInfoCon.AttackArea();
-//        exitScreen();
-//    }
-
-//    public void addFiche() {
-//        areaInfoCon.addFiche();
-//    }
-//
-//    public void removeFiche() {
-//        areaInfoCon.removeFiche();
-//    }
-
-//    public void leaveArea() {
-//        areaInfoCon.leaveArea();
-//    }
 
     public void exitScreen() {
         areaInfoCon.closeAreaInformation();

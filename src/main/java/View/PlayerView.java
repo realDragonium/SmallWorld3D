@@ -49,8 +49,8 @@ public class PlayerView implements PlayerObserver {
     public void update(PlayerObservable po) {
         updateFields(po.getPoints());
         if(po.hasActiveCombination()){
-            System.out.println(playerCon.getCurrentCombi().getRace() + "  " +  playerCon.getCurrentCombi().getPower());
-            setCombinationImages(playerCon.getCurrentCombi().getRace(), playerCon.getCurrentCombi().getPower());
+//            System.out.println(playerCon.getCurrentCombi().getRaceName() + "  " +  playerCon.getCurrentCombi().getPower());
+            setCombinationImages(playerCon.getCurrentCombi().getRaceName(), playerCon.getCurrentCombi().getPower());
         }
     }
 

@@ -2,6 +2,7 @@ package Power;
 
 import Attacks.SeafaringAttackableType;
 import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Seafaring implements Power {
 
@@ -16,7 +17,7 @@ public class Seafaring implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-        combiCon.setAttackableType(new SeafaringAttackableType());
+    public void activatePower(CombinationModel combi) {
+        combi.attackableType = new SeafaringAttackableType();
     }
 }

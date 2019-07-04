@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
@@ -30,6 +31,18 @@ public class AreaController{
         this.gameCon = gameCon;
     }
 
+    public void fixNeighboursControllers(){
+        List<AreaController> areas = new ArrayList<>();
+        for(String areaId: model.getNeigbours())
+            areas.add(mapCon.getAreaCon(areaId));
+
+        model.neighbourCons = areas;
+    }
+
+    public List<AreaController> getNeighbourCons(){
+        return model.neighbourCons;
+    }
+
     public void addFiche(FicheController fiche){
         model.addFiche(fiche);
     }
@@ -38,9 +51,8 @@ public class AreaController{
         model.addFiche(model.getOwningCombi().getFiche());
     }
 
-    public void removeFiche(){
-        FicheController fiche = model.removeFiche();
-        fiche.getCombiCon().addRaceFiche(fiche);
+    public FicheController removeFiche(){
+       return model.removeFiche();
     }
 
     public void attackArea(Stack<FicheController> fiches) {
@@ -187,11 +199,12 @@ public class AreaController{
         createSpecialPropFiche();
     }
 
-    public AreaInfoEnum getAreaInfoButton(){
-        return model.getAreaInfoButton();
+    public List<AreaInfoEnum> getAreaInfoButtons(){
+        return model.getAreaInfoButtons();
     }
 
     public void setAreaInfoButton(AreaInfoEnum areaInfoButton){
         model.setAreaInfoButton(areaInfoButton);
     }
+    public void resetAreaInfo(){model.resetAreaInfoButton();}
 }

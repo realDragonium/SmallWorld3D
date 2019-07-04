@@ -1,6 +1,10 @@
 package Power;
 
-import Controller.CombinationController;
+import Attacks.AreaTypeAttackBoost;
+import Enums.AreaType;
+import Model.CombinationModel;
+
+import java.util.ArrayList;
 
 public class Mounted implements Power {
 
@@ -15,7 +19,11 @@ public class Mounted implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-
+    public void activatePower(CombinationModel combi) {
+        ArrayList<AreaType> list = new ArrayList<>();
+        list.add(AreaType.farm);
+        list.add(AreaType.hill);
+        combi.powerAttackBoost = new AreaTypeAttackBoost(list);
     }
+
 }

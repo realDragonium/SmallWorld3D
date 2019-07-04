@@ -21,13 +21,14 @@ public class Preparing implements Phase{
 
     @Override
     public void setViews(CombinationController combi) {
+        combi.prepareRound();
         combi.checkPrepareAreas();
     }
 
 
     @Override
     public int getTime() {
-        return 10;
+        return 30;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class SpectateConquering implements Phase {
     }
     @Override
     public int getTime() {
-        return 20;
+        return 120;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Spirit implements Power {
 
@@ -15,7 +15,7 @@ public class Spirit implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
+    public void activatePower(CombinationModel combi) {
 
     }
 }

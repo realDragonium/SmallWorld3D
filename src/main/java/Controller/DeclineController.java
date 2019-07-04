@@ -25,7 +25,6 @@ public class DeclineController {
 
     private void makeCombinationNonActive(){
         gameCon.getFireBase().declineAction();
-
     }
 
 

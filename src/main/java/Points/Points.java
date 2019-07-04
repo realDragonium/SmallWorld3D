@@ -1,8 +1,8 @@
 package Points;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public interface Points {
-   int getPoints(CombinationController combi);
+   int getPoints(CombinationModel combi);
 
 }

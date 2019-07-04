@@ -1,6 +1,7 @@
 package Race;
 
-import Controller.CombinationController;
+import Attacks.HalflingAttack;
+import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
 public class Halflings implements Race {
@@ -21,7 +22,7 @@ public class Halflings implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-
+    public void activateRacePower(CombinationModel combi) {
+        combi.raceAreas = new HalflingAttack();
     }
 }

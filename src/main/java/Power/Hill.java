@@ -2,6 +2,7 @@ package Power;
 
 import Controller.CombinationController;
 import Enums.AreaType;
+import Model.CombinationModel;
 import Points.AreaTypePoints;
 
 public class Hill implements Power {
@@ -17,7 +18,7 @@ public class Hill implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-        combiCon.setPowerPoints(new AreaTypePoints(AreaType.hill));
+    public void activatePower(CombinationModel combi) {
+        combi.powerPoints = new AreaTypePoints(AreaType.hill);
     }
 }

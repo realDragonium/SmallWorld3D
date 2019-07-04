@@ -1,6 +1,6 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Wealthy implements Power {
 
@@ -15,7 +15,8 @@ public class Wealthy implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-        combiCon.getPlayer().addPoints(7);
+    public void activatePower(CombinationModel combi) {
+        combi.player.addPoints(7);
     }
+
 }

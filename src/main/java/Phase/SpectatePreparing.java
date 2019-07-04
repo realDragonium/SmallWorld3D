@@ -25,7 +25,7 @@ public class SpectatePreparing implements Phase {
 
     @Override
     public int getTime() {
-        return 10;
+        return 30;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public interface Power {
     String getName();
     int getFicheAmount();
-    void activatePower(CombinationController combiCon);
+    void activatePower(CombinationModel combi);
 }

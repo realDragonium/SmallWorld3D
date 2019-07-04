@@ -55,6 +55,8 @@ public class ApplicationView implements ApplicationObserver {
         primaryStage.setScene(scene);
 //        primaryStage.setFullScreen(true);
         primaryStage.show();
+//        primaryStage.setMaximized(true);
+        primaryStage.setTitle("Small World - Group 7b");
     }
 
     private void setActive(ApplicationViewEnum view) {

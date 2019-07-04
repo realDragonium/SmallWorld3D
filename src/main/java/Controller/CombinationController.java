@@ -1,20 +1,17 @@
 package Controller;
 
-import Attacks.AttackableAreas;
-import Attacks.AttackableType;
+import Decline.InDecline;
 import Enums.AreaInfoEnum;
-import Enums.AreaType;
+import Enums.NotificationEnum;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import Phase.Phase;
-import Points.Points;
-import Power.EveryRoundPower;
 import View.CombinationView;
+import javafx.application.Platform;
 import javafx.scene.transform.Translate;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public class CombinationController {
@@ -30,9 +27,9 @@ public class CombinationController {
         this.gameCon = gameCon;
     }
 
-    public void setPowersActive(){
-        model.getPower().activatePower(this);
-        model.getRace().activateRacePower(this);
+    public void setPowersActive() {
+        model.power.activatePower(model);
+        model.race.activateRacePower(model);
     }
 
     private void createCombinationView() {
@@ -44,60 +41,88 @@ public class CombinationController {
     }
 
     boolean isActive() {
-        return model.isActive();
+        return model.decline.isActive();
     }
 
-    Phase getStartingPhase() {
-        return model.getStartingPhase();
-    }
-
-    public void addArea(AreaController area) {
-        model.addArea(area);
+    void addArea(AreaController area) {
+        model.areas.add(area);
         model.thisRoundConquered.add(area);
     }
 
-    public void removeArea(AreaController area) {
-        model.removeArea(area);
+    void removeArea(AreaController area) {
+        model.areas.remove(area);
     }
 
-    public List<AreaController> getAreas() {
-        return model.getAreas();
+    void attackThisArea(AreaController area) {
+        attack(area, fichesNeeded(area));
     }
 
-    public void attackThisArea(AreaController area) {
-        model.getAttack().Attack(area, this);
-        model.nextAttack();
+    void attack(AreaController area, int number) {
+        area.attackArea(getFiches(number));
+        area.changeCombiOwner(this);
+        addArea(area);
     }
 
-    public void leaveArea(AreaController area) {
+
+    void diceAttackThisArea(AreaController area, int eyes) {
+        int needed = fichesNeeded(area) - eyes;
+        if(!(needed <= model.raceFiches.size())) {
+            gameCon.setMessage(NotificationEnum.DICENOTENOUGH);
+            return;
+        }
+        if(needed < 1) needed = 1;
+        int number = needed;
+        TimerTask hide = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(()-> {
+                    attack(area, number);
+                });
+            }
+        };
+        new Timer().schedule(hide, 3250);
+    }
+
+    int fichesNeeded(AreaController area) {
+        int numbers = area.getDefenceValue();
+        numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
+        return numbers;
+    }
+
+    boolean hasOnlyOneFiche(){
+        return model.raceFiches.size() == 1;
+    }
+
+    void leaveArea(AreaController area) {
         removeArea(area);
         area.leaveArea();
         player.addPoints(-1);
     }
 
-    public Stack<FicheController> getFiches(int count) {
+    private Stack<FicheController> getFiches(int count) {
         return model.removeFiches(count);
     }
 
-    public void addRaceFiche(FicheController fiche) {
-        Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((model.getFichesAmount() - 1) * 10)), player.get3dPos().getZ());
-        model.addFiche(fiche);
+    private void addRaceFiche(FicheController fiche) {
+        Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((getFichesAmount() - 1) * 10)), player.get3dPos().getZ());
+        model.raceFiches.add(fiche);
         fiche.moveToPosition(fichePos);
     }
 
-    public int getFichesAmount() {
-        return model.getFichesAmount();
+    int getFichesAmount() {
+        return model.raceFiches.size();
     }
 
     public void setPlayer(PlayerController player) {
         this.player = player;
+        model.player = player;
     }
 
     public PlayerController getPlayer() {
         return this.player;
     }
 
-    public String getRace() {
+    public String getRaceName() {
         return model.getRaceId();
     }
 
@@ -105,21 +130,10 @@ public class CombinationController {
         return model.getPowerId();
     }
 
-    public void setAttackType(AttackableAreas type){
-        model.setAttack(type);
-    }
-
-    public void setAttackableType(AttackableType type) {
-        model.setAttackableType(type);
-    }
-
-    public List<AreaType> getAttackableTypes(){
-        return model.getAttackableAreaTypes();
-    }
-
     void goIntoDecline() {
-        model.goIntoDecline();
+        model.decline = new InDecline();
         getPlayer().setDeclineCombi(this);
+        keepOneFichePerArea();
     }
 
     void moveToPosition(Translate pos) {
@@ -127,9 +141,9 @@ public class CombinationController {
     }
 
     void createRaceFiches() {
-        int fiches = model.getRace().getFicheAmount() + model.getPower().getFicheAmount();
+        int fiches = model.race.getFicheAmount() + model.power.getFicheAmount();
         for (int i = 0; i < fiches; i++) {
-            FicheController ficheCon = new FicheController(1, this);
+            FicheController ficheCon = new FicheController(1, model.race.getName());
             addRaceFiche(ficheCon);
         }
     }
@@ -150,8 +164,8 @@ public class CombinationController {
         }
     }
 
-    public void cleareAreaInfo(){
-        model.lastUsedAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
+    void cleareAreaInfo() {
+        model.lastUsedAreas.forEach(AreaController::resetAreaInfo);
     }
 
     public void checkRedeployAreas() {
@@ -159,46 +173,47 @@ public class CombinationController {
     }
 
     public void checkAttackableAreas() {
-        List<AreaController> areas;
-        areas = model.getAttack().checkAttackableAreas(this, gameCon.getMapCon().getAllAreas());
-        manageAreaInfoButtons(areas, AreaInfoEnum.ATTACK);
+        HashSet<AreaController> areas;
+        areas = new HashSet<>(model.attackableAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
+        areas.addAll(model.powerAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
+        areas.addAll(model.raceAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
+
+        List<AreaController> arealist = new ArrayList<>(areas);
+        manageAreaInfoButtons(arealist, AreaInfoEnum.ATTACK);
     }
 
     public void checkPrepareAreas() {
         manageAreaInfoButtons(model.getAreas(), AreaInfoEnum.LEAVE);
     }
 
-    private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo){
-        model.lastUsedAreas.removeAll(areas);
-        model.lastUsedAreas.forEach(area -> area.setAreaInfoButton(AreaInfoEnum.NONE));
+    private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo) {
+        cleareAreaInfo();
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas = areas;
     }
 
-    public void setEveryRoundPower(EveryRoundPower power){
-        model.everyRoundPower = power;
-    }
-
-    public void doEveryRoundPower(){
-
-    }
-
     void countPoints() {
-        int totalPoints = model.getPointCounter().getPoints(this);
-        totalPoints += getExtraPoints();
+        model.everyRoundPower.doAction(model);
+        int totalPoints = model.points.getPoints(model);
+        totalPoints +=  model.racePoints.getPoints(model);
+        totalPoints += model.powerPoints.getPoints(model);
         player.addPoints(totalPoints);
     }
 
-    public void setRacePoints(Points points){
-        model.racePoints = points;
+    public void returnAllButOne(AreaController area) {
+        for(int i = 0; i < (area.getFichesAmount() - 1); i++) {
+            addRaceFiche(area.removeFiche());
+        }
     }
 
-    public void setPowerPoints(Points points){
-        model.powerPoints = points;
+    public void keepOneFichePerArea(){
+        model.getAreas().forEach(area -> returnAllButOne(area));
     }
 
-    private int getExtraPoints(){
-        return model.racePoints.getPoints(this) + model.powerPoints.getPoints(this);
+    public void prepareRound() {
+        keepOneFichePerArea();
+        model.thisRoundConquered = new ArrayList<>();
     }
+
 
 }

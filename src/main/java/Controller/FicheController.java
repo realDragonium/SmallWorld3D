@@ -5,17 +5,16 @@ import Model.FicheModel;
 import Objects.Animatable;
 import Objects.AnimationPoint;
 import Observer.FicheObserver;
+import Race.Race;
 import View.Fiche3DView;
 import javafx.scene.transform.Translate;
 
 public class FicheController implements Animatable {
 
     FicheModel model;
-    CombinationController combiCon;
 
-    public FicheController(int defenceValue, CombinationController combi){
-        combiCon = combi;
-        model = new FicheModel(defenceValue, combiCon.getRace());
+    public FicheController(int defenceValue, String raceName){
+        model = new FicheModel(defenceValue, raceName);
         new Fiche3DView(this);
     }
 
@@ -61,7 +60,4 @@ public class FicheController implements Animatable {
         return model.getDefenceValue();
     }
 
-    public CombinationController getCombiCon() {
-        return combiCon;
-    }
 }
