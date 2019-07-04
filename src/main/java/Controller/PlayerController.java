@@ -27,7 +27,7 @@ public class PlayerController implements FirebaseGameObserver {
     }
 
     private void createPlayerView(){
-        new SpecialFXMLLoader().loader("/UI/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(getName(), this));
+        new SpecialFXMLLoader().loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(getName(), this));
     }
 
     public void setPlayer3dPosition(Translate pos){
@@ -48,12 +48,10 @@ public class PlayerController implements FirebaseGameObserver {
         combo.setPowersActive();
     }
 
-    List<CombinationController> getActiveCombination() {
-        return model.getActiveCombies();
-    }
 
     void setDeclineCombi(CombinationController combi){
         model.declineCombi(combi);
+
     }
     void removecombi(CombinationController combi){
         model.removeCombi(combi);

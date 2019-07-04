@@ -14,15 +14,13 @@ import java.util.concurrent.Callable;
 public class PhaseController implements FirebaseGameObserver {
 
     private GameController gameCon;
-    private FirebaseGameController fb;
     private TurnController turnCon;
     private PhaseModel model;
 
     PhaseController(GameController gameCon) {
         this.gameCon = gameCon;
         model = new PhaseModel();
-        fb = gameCon.getFireBase();
-        fb.register("phase", this::update);
+        gameCon.getFireBase().register("phase", this);
         createPhaseView();
     }
 
@@ -51,6 +49,7 @@ public class PhaseController implements FirebaseGameObserver {
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
         changeView();
+//        turnCon.getCurrentPlayer().g
     }
 
     public void notMyTurn(){
@@ -59,7 +58,7 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void changeView(){
         if(turnCon.getCurrentPlayer().getCurrentCombi() == null) return;
-        System.out.println(model.getPhase().getName());
+//        System.out.println(model.getPhase().getName());
         model.getPhase().setViews(turnCon.getCurrentPlayer().getCurrentCombi());
     }
 

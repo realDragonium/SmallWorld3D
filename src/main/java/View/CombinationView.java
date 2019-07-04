@@ -23,7 +23,7 @@ public class CombinationView implements CombinationObserver {
     public ImageView race, power;
 
     public CombinationView(CombinationController combiCon){
-        group = RaceEnum.valueOf(combiCon.getRace()).getGroup();
+        group = RaceEnum.valueOf(combiCon.getRaceName()).getGroup();
         GameViewEnum.COMBINATION.getGroup().getChildren().add(group);
         this.comboCon = combiCon;
 //        group = GameViewEnum.COMBINATION.getGroup();

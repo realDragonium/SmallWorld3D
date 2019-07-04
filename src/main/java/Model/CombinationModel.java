@@ -35,7 +35,7 @@ public class CombinationModel implements CombinationObservable {
     public Race race;
     public Power power;
     public EveryRoundPower everyRoundPower = new None();
-    public AttackableAreas attack;
+    public AttackableAreas attackableAreas;
     public AttackableType attackableType;
     public Decline decline;
     public Points points;
@@ -56,7 +56,7 @@ public class CombinationModel implements CombinationObservable {
     public CombinationModel(String raceId, String powerId){
         this.race = RaceEnum.valueOf(raceId).getRace();
         this.power = PowerEnum.valueOf(powerId).getPower();
-        attack = new NormalAreasAttack();
+        attackableAreas = new NormalAreasAttack();
         decline = new NotInDecline();
         points = new NormalPoints();
         attackableType = new NormalAttackableType();
@@ -64,19 +64,6 @@ public class CombinationModel implements CombinationObservable {
 
     public List<AreaController> getAreas(){
         return areas;
-    }
-
-    public void addArea(AreaController area) {
-        areas.add(area);
-        thisRoundConquered.add(area);
-    }
-
-    public void removeArea(AreaController area) {
-        areas.remove(area);
-    }
-
-    public boolean isActive(){
-        return decline.isActive();
     }
 
     public Stack<FicheController> removeFiches(int count) {
@@ -87,44 +74,23 @@ public class CombinationModel implements CombinationObservable {
         return tempFiches;
     }
 
-    public void goIntoDecline() {
-        decline = new InDecline();
-    }
-
-    public AttackableAreas getAttack(){
-        return attack;
-    }
-
     public void setPosition(Translate pos) {
         position = pos;
         notifyAllObservers();
     }
 
+
+
     public void addFiche(FicheController fiche) {
+        System.out.println("FICHE ADDED");
+        Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((raceFiches.size() - 1) * 10)), player.get3dPos().getZ());
         raceFiches.add(fiche);
+        fiche.moveToPosition(fichePos);
     }
 
     public FicheController removeFiche() {
         return raceFiches.pop();
     }
-
-    public int getFichesAmount() {
-        return raceFiches.size();
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public Power getPower(){
-        return power;
-    }
-
-    public Phase getStartingPhase(){
-        return decline.startAt();
-    }
-
-    public Points getPointCounter(){ return points;}
 
     @Override
     public void register(CombinationObserver mvo) {

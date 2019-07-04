@@ -24,12 +24,29 @@ public class AttackController {
     }
 
     public void AttackArea(String areaID) {
-        int fiches = gameCon.getCurrentPlayer().getCurrentCombi().getFichesAmount();
-        int fichesNeeded = gameCon.getMapCon().getAreaCon(areaID).getDefenceValue();
+        final AreaController area = gameCon.getMapCon().getAreaCon(areaID);
+        final CombinationController combi = gameCon.getCurrentPlayer().getCurrentCombi();
+        int fiches = combi.getFichesAmount();
+        int fichesNeeded = gameCon.getCurrentPlayer().getCurrentCombi().fichesNeeded(area);
         gameCon.removeFromGameView(GameViewEnum.AREAINFO);
-        if(fiches < fichesNeeded) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+        if(fiches < fichesNeeded) notEnoughFiches(combi, area);
         else fbGame.attackAction(areaID);
     }
+
+    private void notEnoughFiches(CombinationController combi, AreaController area){
+        if(!combi.hasOnlyOneFiche()) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+        fbGame.diceAction(gameCon.getDiceCon().rollDice(), area.getId());
+    }
+
+    private void throwDice(){
+
+    }
+
+
+
+
+
+
 
 //    public void removeFichesNeeded(int amount){
 //        fichesCountNeeded -= amount;
@@ -39,9 +56,9 @@ public class AttackController {
 //        return targetArea;
 //    }
 
-//    private void attack(PlayerController player, AreaController area, int fiches){
+//    private void attackableAreas(PlayerController player, AreaController area, int fiches){
 //        player.getActiveCombination().addArea(area);
-//        area.attackArea(player.getActiveCombination().getRace().getFiches(fiches));
+//        area.attackArea(player.getActiveCombination().getRaceName().getFiches(fiches));
 //        area.setPlayerOwner(player);
 //    }
 
@@ -67,12 +84,12 @@ public class AttackController {
 //        if(area.isAttackAble()) {
 //            if (player.hasActiveCombination()) {
 //                if (player.hasEnoughFiches(fichesNeeded)) {
-//                    if (player.getActiveCombination().getRace().getAllAreas().size() == 0) {
+//                    if (player.getActiveCombination().getRaceName().getAllAreas().size() == 0) {
 //                        if (area.isBorderArea()) {
 //                            return true;
 //                        }
 //                        else{
-//                            System.out.println("only able to attack from the outside");
+//                            System.out.println("only able to attackableAreas from the outside");
 //                        }
 //                    } else {
 //                        if (isNeighbour(area, player)) {
@@ -104,10 +121,10 @@ public class AttackController {
 //        //ask for powers and stuff!
 //        System.out.println(player.getId());
 //        if(isAbleToAttack(player, fichesNeeded, area)){
-//            System.out.println("is able to attack");
-//            attack(player, area, fichesNeeded);
+//            System.out.println("is able to attackableAreas");
+//            attackableAreas(player, area, fichesNeeded);
 //        }
-//        System.out.println("not able to attack");
+//        System.out.println("not able to attackableAreas");
 //    }
 
 

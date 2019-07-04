@@ -18,7 +18,6 @@ public class DiceController implements FirebaseGameObserver {
 
     DiceController(GameController gameController) {
         gameCon = gameController;
-        gameCon.getFireBase().register("dice", this);
         createDiceView();
     }
 

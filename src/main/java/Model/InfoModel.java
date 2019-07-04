@@ -124,7 +124,7 @@ public class InfoModel implements infoObservable {
             "selected, the player rolls the Reinforcement Die once. Note that " +
             "the Region the player wishes to make his last conquest target " +
             "for the turn must be selected before rolling the die. This Region " +
-            "does not have to be the weakest one available for attack either, " +
+            "does not have to be the weakest one available for attackableAreas either, " +
             "provided it could still be conquered with a lucky die roll. " +
             "If the sum of the die rolled, combined with the Race token(s) " +
             "left in his possession, is high enough to conquer the Region, the " +

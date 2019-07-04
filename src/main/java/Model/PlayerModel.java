@@ -14,13 +14,12 @@ public class PlayerModel implements PlayerObservable {
 
     private Translate player3dPos;
     private Translate player2dPos;
-    private PlayerObserver observer;
+    private List<PlayerObserver> observers = new ArrayList<>();
     private final String NAME;
     private int playerID;
     private List<CombinationController> combinations = new ArrayList<>();
-    private List<CombinationController> activeCombies = new ArrayList<>();
     private List<CombinationController> declineCombies = new ArrayList<>();
-    private CombinationController currentCombi;
+    public CombinationController currentCombi;
     public int points;
 
     public PlayerModel(int playerId, String Name) {
@@ -35,13 +34,11 @@ public class PlayerModel implements PlayerObservable {
 
     public void setCurrentCombi(CombinationController combi){
         currentCombi = combi;
+        notifyObserver();
     }
 
     public List<CombinationController> getCombies(){
         return combinations;
-    }
-    public List<CombinationController> getActiveCombies(){
-        return activeCombies;
     }
     public List<CombinationController> getDeclineCombies(){
         return declineCombies;
@@ -50,17 +47,16 @@ public class PlayerModel implements PlayerObservable {
     public void addCombi(CombinationController combi){
         currentCombi = combi;
         combinations.add(combi);
-        activeCombies.add(combi);
         notifyObserver();
     }
 
     public void declineCombi(CombinationController combi){
-        activeCombies.remove(combi);
+        currentCombi = null;
         declineCombies.add(combi);
+        notifyObserver();
     }
 
     public void removeCombi(CombinationController combi){
-        activeCombies.remove(combi);
         declineCombies.remove(combi);
         combinations.remove(combi);
     }
@@ -69,7 +65,7 @@ public class PlayerModel implements PlayerObservable {
         player3dPos = position;
     }
 
-    public void setPlayer2dPos(Translate position) { player2dPos = position;}
+    public void setPlayer2dPos(Translate position) {player2dPos = position;}
 
     public void removePoints(int amount){
         points -= amount;
@@ -82,12 +78,14 @@ public class PlayerModel implements PlayerObservable {
 
     @Override
     public void register(PlayerObserver po) {
-        observer = po;
+        observers.add(po);
     }
 
     @Override
     public void notifyObserver() {
-        observer.update(this);
+        for(PlayerObserver po: observers){
+            po.update(this);
+        }
     }
 
     @Override
@@ -97,12 +95,12 @@ public class PlayerModel implements PlayerObservable {
 
     @Override
     public boolean hasActiveCombination() {
-        return combinations.size() > 0;
+        return currentCombi != null;
     }
 
     @Override
-    public String getActiveCombi() {
-        return currentCombi.getRace();
+    public CombinationController getActiveCombi() {
+        return currentCombi;
     }
 
     public void addPunten(int amount) {

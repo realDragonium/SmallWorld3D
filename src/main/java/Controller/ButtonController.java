@@ -19,7 +19,7 @@ public class ButtonController {
     }
 
     public void showInfo() {
-        gameCon.getFireBase().diceAction(gameCon.getDiceCon().rollDice());
+//        gameCon.getFireBase().diceAction(gameCon.getDiceCon().rollDice());
     }
 
     public void nextPhase(){

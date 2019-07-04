@@ -138,10 +138,11 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         placeAction(map);
     }
 
-    void diceAction(int number) {
+    void diceAction(int number, String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "dice");
         map.put("eyes", number);
+        map.put("areaId", areaId);
         placeAction(map);
     }
 
