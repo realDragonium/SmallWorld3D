@@ -1,8 +1,9 @@
 package Power;
 
 import Controller.CombinationController;
+import Model.CombinationModel;
 
 public interface EveryRoundPower {
 
-    void doAction(CombinationController combiCon);
+    void doAction(CombinationModel combi);
 }

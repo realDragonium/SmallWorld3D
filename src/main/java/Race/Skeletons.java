@@ -1,6 +1,7 @@
 package Race;
 
-import Controller.CombinationController;
+import Controller.FicheController;
+import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
 public class Skeletons implements Race {
@@ -21,7 +22,12 @@ public class Skeletons implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-
+    public void activateRacePower(CombinationModel combi) {
+        int numberOfFiches =  combi.thisRoundConquered.size()/2;
+        for (int i = 0; i < numberOfFiches ; i++) {
+            FicheController fiche = new FicheController(1, combi.race.getName());
+            combi.addFiche(fiche);
+        }
     }
+
 }

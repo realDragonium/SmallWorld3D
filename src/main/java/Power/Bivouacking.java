@@ -1,6 +1,6 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Bivouacking implements Power {
 
@@ -15,7 +15,7 @@ public class Bivouacking implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
+    public void activatePower(CombinationModel combi) {
 
     }
 }

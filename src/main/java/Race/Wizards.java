@@ -2,6 +2,7 @@ package Race;
 
 import Controller.CombinationController;
 import Enums.AreaProperty;
+import Model.CombinationModel;
 import Points.SpecialPropertyPoints;
 import javafx.scene.paint.Color;
 
@@ -23,7 +24,7 @@ public class Wizards implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-        combiCon.setRacePoints(new SpecialPropertyPoints(AreaProperty.Magical));
+    public void activateRacePower(CombinationModel combi) {
+        combi.racePoints = new SpecialPropertyPoints(AreaProperty.Magical);
     }
 }

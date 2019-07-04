@@ -11,7 +11,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.transform.Translate;
 
-import java.awt.geom.Area;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -117,12 +116,15 @@ public class MapController {
 			areaCon.changeCombiOwner(model.getCombi());
 			areas.put(s, areaCon);
 		});
+
+		areas.forEach((s, area) -> {
+			area.fixNeighboursControllers();
+		});
 	}
 
 	public Collection<AreaController> getAllAreas(){
 		return areas.values();
 	}
-
 
 	private void setupSpecialPropPoints(){
 		Map<String, Translate> propPoints = new HashMap<>();

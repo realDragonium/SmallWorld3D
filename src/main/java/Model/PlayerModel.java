@@ -34,7 +34,6 @@ public class PlayerModel implements PlayerObservable {
     }
 
     public void setCurrentCombi(CombinationController combi){
-        System.out.println("PlayerModel: "+combi);
         currentCombi = combi;
     }
 

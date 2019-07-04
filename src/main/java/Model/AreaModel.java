@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.AreaController;
 import Controller.CombinationController;
 import Controller.FicheController;
 import Controller.PlayerController;
@@ -11,6 +12,7 @@ import Observable.AreaObservable;
 import Observer.AreaObserver;
 import javafx.scene.transform.Translate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -19,6 +21,7 @@ public class AreaModel implements AreaObservable {
     private boolean borderArea;
     private AreaProperty specialProperty;
     private List<String> neighbours;
+    public List<AreaController> neighbourCons;
     private String id;
     private AreaType type;
     private boolean lostTribe;
@@ -33,7 +36,7 @@ public class AreaModel implements AreaObservable {
     private Stack<FicheController> fiches = new Stack<>();
     public Translate areaPoint;
     public Translate specialPropPoint;
-    private AreaInfoEnum areaInfoButton = AreaInfoEnum.NONE;
+    private List<AreaInfoEnum> areaInfoButtons;
 
     public AreaModel(AreaInfo info) {
         id = info.id;
@@ -44,6 +47,7 @@ public class AreaModel implements AreaObservable {
         specialProperty = AreaProperty.valueOf(info.property);
         nextToWater = info.nextToWater;
         type = AreaType.valueOf(id.split("_")[0]);
+        areaInfoButtons = new ArrayList<>();
     }
 
 
@@ -111,12 +115,16 @@ public class AreaModel implements AreaObservable {
 
     public List<String> getNeigbours() {return neighbours;}
 
-    public AreaInfoEnum getAreaInfoButton(){
-        return areaInfoButton;
+    public List<AreaInfoEnum> getAreaInfoButtons(){
+        return areaInfoButtons;
     }
 
     public void setAreaInfoButton(AreaInfoEnum areaInfoButton){
-        this.areaInfoButton = areaInfoButton;
+        this.areaInfoButtons.add(areaInfoButton);
+    }
+
+    public void resetAreaInfoButton(){
+        this.areaInfoButtons = new ArrayList<>();
     }
 
     @Override

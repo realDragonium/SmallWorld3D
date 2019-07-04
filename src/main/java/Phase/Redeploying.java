@@ -24,7 +24,7 @@ public class Redeploying implements Phase {
 
     @Override
     public int getTime() {
-        return 30;
+        return 60;
     }
 
     @Override

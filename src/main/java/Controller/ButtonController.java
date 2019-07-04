@@ -5,6 +5,7 @@ import Objects.SpecialFXMLLoader;
 import View.ButtonView;
 
 import java.util.concurrent.Callable;
+import java.util.stream.IntStream;
 
 public class ButtonController {
     private GameController gameCon;
@@ -23,8 +24,7 @@ public class ButtonController {
     }
 
     public void nextPhase(){
-        //gameCon.getFireBase().nextPhaseAction();
-        gameCon.createVote(3, "skip turn?");
+        gameCon.getFireBase().nextPhaseAction();
     }
 
 

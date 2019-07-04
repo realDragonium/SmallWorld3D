@@ -2,6 +2,8 @@ package Race;
 
 
 import Controller.CombinationController;
+import Model.CombinationModel;
+import Points.ThisRoundConquered;
 import javafx.scene.paint.Color;
 
 public class Orcs implements Race {
@@ -22,8 +24,8 @@ public class Orcs implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-
+    public void activateRacePower(CombinationModel combi) {
+        combi.racePoints = new ThisRoundConquered();
     }
 
 

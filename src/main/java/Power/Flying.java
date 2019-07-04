@@ -2,6 +2,7 @@ package Power;
 
 import Attacks.FlyAttack;
 import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Flying implements Power {
 
@@ -16,7 +17,8 @@ public class Flying implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-        combiCon.setAttackType(new FlyAttack());
+    public void activatePower(CombinationModel combi) {
+        combi.powerAreas = new FlyAttack();
     }
+
 }

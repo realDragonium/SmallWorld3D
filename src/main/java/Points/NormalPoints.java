@@ -1,16 +1,11 @@
 package Points;
 
-import Controller.CombinationController;
-import Enums.AreaType;
-
-import java.util.HashMap;
-import java.util.Map;
+import Model.CombinationModel;
 
 public class NormalPoints implements Points {
 
-
     @Override
-    public int getPoints(CombinationController combi) {
+    public int getPoints(CombinationModel combi) {
         return combi.getAreas().size();
     }
 }

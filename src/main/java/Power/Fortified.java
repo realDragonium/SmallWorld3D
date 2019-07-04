@@ -1,6 +1,6 @@
 package Power;
 
-import Controller.CombinationController;
+import Model.CombinationModel;
 
 public class Fortified implements Power {
 
@@ -15,7 +15,8 @@ public class Fortified implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
+    public void activatePower(CombinationModel combi) {
 
     }
+
 }

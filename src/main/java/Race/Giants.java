@@ -1,6 +1,8 @@
 package Race;
 
+import Attacks.GiantAttack;
 import Controller.CombinationController;
+import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
 public class Giants implements Race {
@@ -21,8 +23,8 @@ public class Giants implements Race {
     }
 
     @Override
-    public void activateRacePower(CombinationController combiCon) {
-
+    public void activateRacePower(CombinationModel combi) {
+        combi.raceAttackBoost = new GiantAttack();
     }
 
 }

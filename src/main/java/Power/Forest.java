@@ -1,7 +1,7 @@
 package Power;
 
-import Controller.CombinationController;
 import Enums.AreaType;
+import Model.CombinationModel;
 import Points.AreaTypePoints;
 
 public class Forest implements Power {
@@ -17,7 +17,7 @@ public class Forest implements Power {
     }
 
     @Override
-    public void activatePower(CombinationController combiCon) {
-        combiCon.setPowerPoints(new AreaTypePoints(AreaType.forest));
+    public void activatePower(CombinationModel combi) {
+        combi.powerPoints = new AreaTypePoints(AreaType.forest);
     }
 }

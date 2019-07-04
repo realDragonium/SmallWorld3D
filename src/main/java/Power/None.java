@@ -1,23 +1,26 @@
 package Power;
 
-import Attacks.SeafaringAttackableType;
-import Controller.CombinationController;
 import Model.CombinationModel;
 
-public class Seafaring implements Power {
+public class None implements EveryRoundPower, Power {
 
     @Override
     public String getName() {
-        return "seafaring";
+        return "None";
     }
 
     @Override
     public int getFicheAmount() {
-        return 5;
+        return 0;
     }
 
     @Override
     public void activatePower(CombinationModel combi) {
-        combi.attackableType = new SeafaringAttackableType();
+        //Do Nothing
+    }
+
+    @Override
+    public void doAction(CombinationModel combi) {
+        //Do Nothing
     }
 }

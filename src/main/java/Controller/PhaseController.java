@@ -1,6 +1,5 @@
 package Controller;
 
-import Enums.AreaInfoEnum;
 import Enums.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
@@ -60,6 +59,7 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void changeView(){
         if(turnCon.getCurrentPlayer().getCurrentCombi() == null) return;
+        System.out.println(model.getPhase().getName());
         model.getPhase().setViews(turnCon.getCurrentPlayer().getCurrentCombi());
     }
 
