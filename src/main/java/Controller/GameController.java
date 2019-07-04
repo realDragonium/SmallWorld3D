@@ -33,6 +33,7 @@ public class GameController {
     private InfoController infoCon;
     private NotificationController notiCon;
     private LeaveController leaveCon;
+    private CombinationInfoController combiInfoCon;
 
 
     private GameModel model;
@@ -130,6 +131,7 @@ public class GameController {
         attCon = new AttackController(this);
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
+        combiInfoCon = new CombinationInfoController(this);
     }
 
 
@@ -194,7 +196,7 @@ public class GameController {
     }
 
     void addToGameView(GameViewEnum go){
-        model.addActiveView(go);
+        if(!model.getCurrenViews().contains(go)) model.addActiveView(go);
     }
 
     void removeFromGameView(GameViewEnum go){
@@ -264,5 +266,9 @@ public class GameController {
 
     public int rollDice(){
         return diceCon.rollDice();
+    }
+
+    public void showCombinationInfo(CombinationController combi) {
+        combiInfoCon.showCombinationInfo(combi);
     }
 }

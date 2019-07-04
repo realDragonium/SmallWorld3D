@@ -139,6 +139,10 @@ public class CombinationController {
     }
 
     public void clickedCombination() {
+        gameCon.showCombinationInfo(this);
+    }
+
+    public void buyItem(){
         if (model.inShop) {
             int item = gameCon.getShopCon().getShopItem(this);
             gameCon.getShopCon().buyToFirebase(item);

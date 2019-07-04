@@ -46,8 +46,6 @@ public class CombinationView implements CombinationObserver {
             root.setTranslateY(co.getPosition().getY());
         }
         if(initialize && !co.getRaceId().equals("losttribes")) {
-            System.out.println(co.getPowerId() + ".png");
-            System.out.println(co.getRaceId() + ".png");
             Image powerImage = new Image("/Images/Powers/" + co.getPowerId() + ".png");
             Image raceImage = new Image("/Images/Races/" + co.getRaceId() + ".png");
             power.setImage(powerImage);
