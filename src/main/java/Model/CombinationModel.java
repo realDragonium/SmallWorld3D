@@ -22,7 +22,7 @@ import java.util.Stack;
 public class CombinationModel implements CombinationObservable {
 
     private List<CombinationObserver> observers = new ArrayList<>();
-
+    public int index;
     public PlayerController player;
     public Stack<FicheController> raceFiches = new Stack<>();
     public List<AreaController> areas = new ArrayList<>();
@@ -45,7 +45,6 @@ public class CombinationModel implements CombinationObservable {
     public Object specialAction;
 
 
-
     public Points racePoints = new NullPoints();
     public Points powerPoints = new NullPoints();
 
@@ -55,7 +54,7 @@ public class CombinationModel implements CombinationObservable {
     public AttackBoost raceAttackBoost = new NoAttackBoost();
     public AttackBoost powerAttackBoost = new NoAttackBoost();
 
-    public CombinationModel(String raceId, String powerId){
+    public CombinationModel(String raceId, String powerId) {
         this.race = RaceEnum.valueOf(raceId).getRace();
         this.power = PowerEnum.valueOf(powerId).getPower();
         attackableAreas = new NormalAreasAttack();
@@ -64,7 +63,7 @@ public class CombinationModel implements CombinationObservable {
         attackableType = new NormalAttackableType();
     }
 
-    public List<AreaController> getAreas(){
+    public List<AreaController> getAreas() {
         return areas;
     }
 
@@ -72,7 +71,7 @@ public class CombinationModel implements CombinationObservable {
         Stack<FicheController> tempFiches = new Stack<>();
         for (int i = 0; i < count; i++)
             tempFiches.add(raceFiches.pop());
-        System.out.println("Fiches Over: "+raceFiches.size());
+        System.out.println("Fiches Over: " + raceFiches.size());
         return tempFiches;
     }
 
@@ -80,7 +79,6 @@ public class CombinationModel implements CombinationObservable {
         position = pos;
 //        notifyAllObservers();
     }
-
 
 
     public void addFiche(FicheController fiche) {
@@ -106,7 +104,7 @@ public class CombinationModel implements CombinationObservable {
 
     @Override
     public void notifyAllObservers() {
-        for(CombinationObserver obs : observers){
+        for (CombinationObserver obs : observers) {
             obs.update(this);
         }
     }
@@ -125,5 +123,6 @@ public class CombinationModel implements CombinationObservable {
     public Translate getPosition() {
         return position;
     }
+
 
 }

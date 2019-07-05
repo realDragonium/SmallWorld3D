@@ -33,11 +33,10 @@ public class UIBottom implements PlayerObserver {
     @Override
     public void update(PlayerObservable po) {
         activeCombi.getChildren().clear();
-        System.out.println("getting update!");
-        if(po.hasActiveCombination()) {
+        if(po.hasActiveCombination()){
             Group combi = RaceEnum.valueOf(po.getActiveCombi().getRaceName()).getGroup();
-            System.out.println(RaceEnum.valueOf(po.getActiveCombi().getRaceName()));
             activeCombi.getChildren().add(combi);
+//            System.out.println("BOTTOM: "+((Pane) combi.getChildren().get(0)).getChildren());
         }
     }
 }

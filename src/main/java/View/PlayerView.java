@@ -7,6 +7,7 @@ import Observable.PlayerObservable;
 import Observer.PlayerObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,8 @@ import Enums.GameViewEnum;
 
 public class PlayerView implements PlayerObserver {
 
+
+    public Group combination;
     private String name;
     private Group group;
     private PlayerController playerCon;
@@ -26,7 +29,7 @@ public class PlayerView implements PlayerObserver {
     private Text playerId, punten;
     public ImageView power;
     public ImageView race;
-    public Group combination;
+
 
     public PlayerView(String name, PlayerController playerCon) {
         this.group = GameViewEnum.PLAYER.getGroup();
@@ -35,10 +38,12 @@ public class PlayerView implements PlayerObserver {
     }
 
     public void initialize() {
+        group.getChildren().add(pane);
         playerId.setText(name);
         playerCon.register(this);
         pane.setLayoutY(150 + 160 * playerCon.getId());
-        group.getChildren().add(pane);
+        race.setOnMouseClicked(e -> playerCon.getCurrentCombi().clickedCombination());
+        power.setOnMouseClicked(e -> playerCon.getCurrentCombi().clickedCombination());
     }
 
     private void setCombinationImages(String raceId, String powerId) {
@@ -53,6 +58,9 @@ public class PlayerView implements PlayerObserver {
         updateFields(po.getPoints());
         if(po.hasActiveCombination()){
             setCombinationImages(playerCon.getCurrentCombi().getRaceName(), playerCon.getCurrentCombi().getPower());
+
+//            Group combi = RaceEnum.valueOf(po.getActiveCombi().getRaceName()).getGroup();
+//            combination.getChildren().add(combi);
         }
     }
 

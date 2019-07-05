@@ -6,21 +6,26 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.Group?>
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerView">
+<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="View.PlayerView">
 
-      <Text fx:id="playerId" fill="#fcfafa" layoutX="40.0" layoutY="30.0">
-         <font>
-            <Font name="Algerian" size="36.0" />
-         </font>
-      </Text>
+    <Text fx:id="playerId" fill="#fcfafa" layoutX="40.0" layoutY="30.0">
+        <font>
+            <Font name="Algerian" size="36.0"/>
+        </font>
+    </Text>
 
     <ImageView fx:id="power" layoutX="20" layoutY="40" fitHeight="80" fitWidth="80"/>
 
     <ImageView fx:id="race" layoutY="40" fitHeight="80" fitWidth="160" layoutX="100"/>
 
-      <Text fx:id="punten" fill="#fcfafa" layoutX="320.0" layoutY="95.0" text="0">
-          <font>
-              <Font name="Algerian" size="36.0" />
-          </font>
-      </Text>
+    <Group fx:id="combination" layoutX="20" layoutY="-50"/>
+
+    <Text fx:id="punten" fill="#fcfafa" layoutX="320.0" layoutY="95.0" text="0">
+        <font>
+            <Font name="Algerian" size="36.0"/>
+        </font>
+    </Text>
+
+
 </Pane>

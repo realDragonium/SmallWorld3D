@@ -15,6 +15,7 @@
 
    <Group fx:id="activeCombi" layoutX="300"/>
    <Group fx:id="declinedCombi" layoutX="600"/>
+
    <Text fx:id="punten" fill="#fcfcfc" layoutX="800">
       <font>
          <Font size="36.0"/>

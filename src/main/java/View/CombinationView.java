@@ -24,9 +24,8 @@ public class CombinationView implements CombinationObserver {
 
     public CombinationView(CombinationController combiCon){
         group = RaceEnum.valueOf(combiCon.getRaceName()).getGroup();
-        GameViewEnum.COMBINATION.getGroup().getChildren().add(group);
+
         this.comboCon = combiCon;
-//        group = GameViewEnum.COMBINATION.getGroup();
     }
 
     public void initialize(){
