@@ -17,6 +17,8 @@ public class HalflingAttack implements AttackableAreas {
         List<AreaController> usableAreas = new ArrayList<>();
         List<AreaType> areaTypes = combi.attackableType.getAttackableTypes();
 
+        if(combi.areas.size() > 0) return usableAreas;
+
         allAreas.forEach(area -> {
             if (area.isAttackAble() && areaTypes.contains(area.getAreaType())) {
                 usableAreas.add(area);

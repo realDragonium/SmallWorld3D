@@ -82,7 +82,6 @@ public class CombinationModel implements CombinationObservable {
 
 
     public void addFiche(FicheController fiche) {
-        System.out.println("FICHE ADDED");
         Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((raceFiches.size() - 1) * 10)), player.get3dPos().getZ());
         raceFiches.add(fiche);
         fiche.moveToPosition(fichePos);
