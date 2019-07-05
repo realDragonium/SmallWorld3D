@@ -4,7 +4,6 @@ import Enums.GameViewEnum;
 import Model.CombinationInfoModel;
 import Objects.SpecialFXMLLoader;
 import View.CombinationInfoView;
-import View.GameView;
 
 import java.util.concurrent.Callable;
 
@@ -21,8 +20,9 @@ public class CombinationInfoController {
         new SpecialFXMLLoader().loader("/CombinationInfoView.fxml", (Callable<CombinationInfoView>) () -> new CombinationInfoView(this));
     }
 
-    public void showCombinationInfo(CombinationController combi){
+    public void showCombinationInfo(CombinationController combi, boolean inShop){
         model.showCombination(combi);
+        model.inShop = inShop;
         gameCon.addToGameView(GameViewEnum.COMBIINFO);
     }
 

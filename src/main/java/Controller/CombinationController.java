@@ -153,7 +153,7 @@ public class CombinationController {
     }
 
     public void clickedCombination() {
-        gameCon.showCombinationInfo(this);
+        gameCon.showCombinationInfo(this, model.inShop);
     }
 
     public void buyItem(){

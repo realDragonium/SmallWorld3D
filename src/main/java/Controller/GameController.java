@@ -108,7 +108,7 @@ public class GameController {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("beau", this);
+        fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
         //Belangrijk
         mapCon = new MapController(this);
@@ -268,7 +268,7 @@ public class GameController {
         return diceCon.rollDice();
     }
 
-    public void showCombinationInfo(CombinationController combi) {
-        combiInfoCon.showCombinationInfo(combi);
+    public void showCombinationInfo(CombinationController combi, boolean inShop) {
+        combiInfoCon.showCombinationInfo(combi, inShop);
     }
 }
