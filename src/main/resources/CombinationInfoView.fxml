@@ -30,4 +30,9 @@
             <Font size="21.0" />
         </font>
     </Button>
+    <Button fx:id="buyButton" layoutX="650" layoutY="620.0" mnemonicParsing="false" onAction="#buyItem" style="-fx-background-color: rgb(224, 158, 145);" text="Buy">
+        <font>
+            <Font size="21.0" />
+        </font>
+    </Button>
 </Pane>

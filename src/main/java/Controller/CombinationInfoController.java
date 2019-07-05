@@ -8,11 +8,12 @@ import View.CombinationInfoView;
 import java.util.concurrent.Callable;
 
 public class CombinationInfoController {
-    private CombinationInfoModel model = new CombinationInfoModel();
+    private CombinationInfoModel model;
     private GameController gameCon;
 
     public CombinationInfoController(GameController gameCon){
         this.gameCon = gameCon;
+        model = new CombinationInfoModel();
         createCombiInfoView();
     }
 
@@ -21,8 +22,8 @@ public class CombinationInfoController {
     }
 
     public void showCombinationInfo(CombinationController combi, boolean inShop){
-        model.showCombination(combi);
         model.inShop = inShop;
+        model.showCombination(combi);
         gameCon.addToGameView(GameViewEnum.COMBIINFO);
     }
 

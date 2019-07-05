@@ -18,6 +18,7 @@ public class CombinationInfoView implements CombinationInfoObserver {
     public Pane pane;
     public ImageView race;
     public ImageView power;
+    public Button buyButton;
 
     public CombinationInfoView(CombinationInfoController combiInfoCon) {
         this.combiInfoCon = combiInfoCon;
@@ -25,6 +26,7 @@ public class CombinationInfoView implements CombinationInfoObserver {
 
     public void initialize() {
         GameViewEnum.COMBIINFO.getGroup().getChildren().add(pane);
+        pane.getChildren().remove(buyButton);
         combiInfoCon.registerObserver(this);
     }
 
@@ -32,7 +34,7 @@ public class CombinationInfoView implements CombinationInfoObserver {
     public void update(CombinationInfoObservable co) {
         race.setImage(new Image("/Images/Races/" + co.getRace() + "Info.png"));
         power.setImage(new Image("/Images/Powers/" + co.getPower() + "Info.png"));
-        if(co.inShop()) GameViewEnum.COMBIINFO.getGroup().getChildren().add(new Button("Buy"));
+        if(co.inShop()) pane.getChildren().add(buyButton);
     }
 
     public void exitScreen() {

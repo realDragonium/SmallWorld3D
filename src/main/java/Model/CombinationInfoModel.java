@@ -18,7 +18,6 @@ public class CombinationInfoModel implements CombinationInfoObservable {
     @Override
     public void register(CombinationInfoObserver ob) {
         observer = ob;
-        notifyAllObs();
     }
 
     @Override
