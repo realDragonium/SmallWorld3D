@@ -32,8 +32,6 @@ public class CombinationInfoView implements CombinationInfoObserver {
 
     @Override
     public void update(CombinationInfoObservable co) {
-        System.out.println("/Images/Races/" + co.getRace() + "Info.png");
-        System.out.println("/Images/Powers/" + co.getPower() + "Info.png");
         race.setImage(new Image("/Images/Races/" + co.getRace() + "Info.png"));
         power.setImage(new Image("/Images/Powers/" + co.getPower() + "Info.png"));
         if(co.inShop()) pane.getChildren().add(buyButton);
