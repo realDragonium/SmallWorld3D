@@ -117,11 +117,10 @@ public class GameController implements FirebaseGameObserver {
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UIPlayers.fxml", (Callable<UIPlayer>) () -> new UIPlayer(GameViewEnum.UIOVERLAY.getGroup()));
     }
-    //OPSTART PROCEDURE
+
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
-        //Belangrijk
         mapCon = new MapController(this);
         shopCon = new ShopController(this);
 
@@ -171,7 +170,7 @@ public class GameController implements FirebaseGameObserver {
         return mapCon;
     }
 
-    public DeclineController getVervCon(){
+    public DeclineController getDeclineCon(){
         return vervCon;
     }
 

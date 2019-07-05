@@ -28,6 +28,8 @@ public class TurnController implements FirebaseGameObserver {
         manageControllers();
         registerFirebase();
         newRound();
+        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
+        rotateCamera();
     }
 
     private void manageControllers(){

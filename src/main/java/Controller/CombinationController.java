@@ -63,6 +63,12 @@ public class CombinationController {
         addArea(area);
     }
 
+    void retreat(AreaController area) {
+        removeArea(area);
+        model.defend.retreat(this);
+    }
+
+
     void diceAttackThisArea(AreaController area, int eyes) {
         int needed = fichesNeeded(area) - eyes;
         if (!(needed <= model.raceFiches.size())) {
@@ -103,7 +109,7 @@ public class CombinationController {
         return model.removeFiches(count);
     }
 
-    private void addRaceFiche(FicheController fiche) {
+    void addRaceFiche(FicheController fiche) {
         Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((getFichesAmount() - 1) * 10)), player.get3dPos().getZ());
         model.raceFiches.add(fiche);
         fiche.moveToPosition(fichePos);
@@ -134,6 +140,10 @@ public class CombinationController {
         model.decline = new InDecline();
         getPlayer().setDeclineCombi(this);
         keepOneFichePerArea();
+        int times = model.raceFiches.size();
+        for (int i = 0; i < times; i++)
+            fichePoof();
+
     }
 
     void moveToPosition(Translate pos) {
@@ -148,7 +158,7 @@ public class CombinationController {
         }
     }
 
-    FicheController getFiche() {
+    public FicheController getFiche() {
         return getFiches(1).pop();
     }
 
@@ -198,11 +208,12 @@ public class CombinationController {
         player.addPoints(totalPoints);
     }
 
-    private void returnAllButOne(AreaController area) {
+    public void returnAllButOne(AreaController area) {
         for (int i = 0; i < (area.getFichesAmount() - 1); i++) {
             addRaceFiche(area.removeFiche());
         }
     }
+
 
     private void keepOneFichePerArea() {
         model.getAreas().forEach(area -> returnAllButOne(area));
@@ -213,7 +224,7 @@ public class CombinationController {
         model.thisRoundConquered = new ArrayList<>();
     }
 
-    boolean showBuyButton(){
+    boolean showBuyButton() {
         return model.buyButton;
     }
 
@@ -225,4 +236,9 @@ public class CombinationController {
         model.buyButton = true;
     }
 
+    public void fichePoof() {
+        FicheController fiche = getFiche();
+        Translate fichePoint = new Translate(0, 500, 0);
+        fiche.moveToPosition(fichePoint);
+    }
 }

@@ -75,9 +75,7 @@ public class AreaModel implements AreaObservable {
         return player;
     }
 
-    public boolean firstAttackArea(){
-        return borderArea && attackAble;
-    }
+    public boolean isBorderArea(){return borderArea;}
 
     public String getId() {
         return id;

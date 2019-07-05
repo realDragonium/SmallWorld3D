@@ -35,7 +35,6 @@ public class AreaController{
         List<AreaController> areas = new ArrayList<>();
         for(String areaId: model.getNeigbours())
             areas.add(mapCon.getAreaCon(areaId));
-
         model.neighbourCons = areas;
     }
 
@@ -56,7 +55,10 @@ public class AreaController{
     }
 
     public void attackArea(Stack<FicheController> fiches) {
-        returnAllFiches();
+        if(model.getNumberOfFiches() > 0) {
+            returnAllFiches();
+            model.getOwningCombi().retreat(this);
+        }
         fiches.forEach(this::addFiche);
     }
 
@@ -68,7 +70,8 @@ public class AreaController{
 
     private void returnAllFiches(){
         int number = model.getNumberOfFiches();
-        for(int i = 0; i < number; i++) removeFiche();
+        for(int i = 0; i < number; i++)
+            model.getOwningCombi().addRaceFiche(removeFiche());
     }
 
     public void putFiche(FicheController fiche){
@@ -130,9 +133,7 @@ public class AreaController{
         return model.getAreaType();
     }
 
-    public boolean isBorderArea() {
-        return model.firstAttackArea();
-    }
+    public boolean isBorderArea(){return model.isBorderArea();}
 
     public boolean isAttackAble() {
         return model.isAttackAble();
@@ -151,13 +152,17 @@ public class AreaController{
     }
 
     public int getDefenceValue() {
-        return 2 + model.getNumberOfFiches();
+        int number = 2 + model.getNumberOfFiches();
+        if(model.getAreaType() == AreaType.mountain) number++;
+        return number;
     }
 
     public void createNumber(Group group){
         numberCon = new NumberController();
         new NumberView(numberCon, group);
     }
+
+
 
     public void setNumber(int number){
         numberCon.setNumber(number);

@@ -14,6 +14,7 @@ public class ButtonView {
     public Button infoButton;
     public Button availableButton;
     public Button nextFaseButton;
+    public Button declineButton;
 
     public ButtonView(ButtonController buttonCon){
         root = GameViewEnum.BUTTON.getGroup();

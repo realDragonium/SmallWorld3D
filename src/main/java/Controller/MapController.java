@@ -29,6 +29,7 @@ public class MapController {
         CombinationController combi = new CombinationController(gameCon,"losttribes", "flying");
         combi.setPlayer(new PlayerController("None"));
 		model = new MapModel(combi);
+		cameraCon = new CameraController();
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();
@@ -44,7 +45,6 @@ public class MapController {
     }
 
 	public CameraView createCamera() {
-		cameraCon = new CameraController();
 		return new CameraView(cameraCon);
 	}
 

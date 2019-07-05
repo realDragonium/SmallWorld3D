@@ -5,11 +5,11 @@ import Controller.AreaController;
 import Controller.FicheController;
 import Controller.PlayerController;
 import Decline.*;
+import Defend.*;
 import Enums.PowerEnum;
 import Enums.RaceEnum;
 import Observable.CombinationObservable;
 import Observer.CombinationObserver;
-import Phase.Phase;
 import Points.*;
 import Power.*;
 import Race.*;
@@ -20,9 +20,8 @@ import java.util.List;
 import java.util.Stack;
 
 public class CombinationModel implements CombinationObservable {
-
     private List<CombinationObserver> observers = new ArrayList<>();
-    public int index;
+
     public PlayerController player;
     public Stack<FicheController> raceFiches = new Stack<>();
     public List<AreaController> areas = new ArrayList<>();
@@ -41,7 +40,7 @@ public class CombinationModel implements CombinationObservable {
     public AttackableType attackableType;
     public Decline decline;
     public Points points;
-    public Object defends;
+    public Defend defend;
     public Object specialAction;
 
 
@@ -61,6 +60,7 @@ public class CombinationModel implements CombinationObservable {
         decline = new NotInDecline();
         points = new NormalPoints();
         attackableType = new NormalAttackableType();
+        defend = new NormalDefend();
     }
 
     public List<AreaController> getAreas() {
@@ -71,7 +71,7 @@ public class CombinationModel implements CombinationObservable {
         Stack<FicheController> tempFiches = new Stack<>();
         for (int i = 0; i < count; i++)
             tempFiches.add(raceFiches.pop());
-        System.out.println("Fiches Over: " + raceFiches.size());
+//        System.out.println("Fiches Over: " + raceFiches.size());
         return tempFiches;
     }
 

@@ -1,6 +1,6 @@
 package Race;
 
-import Controller.CombinationController;
+import Defend.ElvenDefend;
 import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
@@ -23,7 +23,7 @@ public class Elves implements Race {
 
     @Override
     public void activateRacePower(CombinationModel combi) {
-
+        combi.defend = new ElvenDefend();
     }
 
 
