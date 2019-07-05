@@ -30,6 +30,7 @@ public class CombinationController {
     public void setPowersActive() {
         model.power.activatePower(model);
         model.race.activateRacePower(model);
+        model.inShop = false;
     }
 
     private void createCombinationView() {
@@ -63,7 +64,6 @@ public class CombinationController {
         addArea(area);
     }
 
-
     void diceAttackThisArea(AreaController area, int eyes) {
         int needed = fichesNeeded(area) - eyes;
         if(!(needed <= model.raceFiches.size())) {
@@ -86,6 +86,7 @@ public class CombinationController {
     int fichesNeeded(AreaController area) {
         int numbers = area.getDefenceValue();
         numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
+        if(numbers < 1) numbers = 1;
         return numbers;
     }
 
@@ -160,7 +161,6 @@ public class CombinationController {
         if (model.inShop) {
             int item = gameCon.getShopCon().getShopItem(this);
             gameCon.getShopCon().buyToFirebase(item);
-            model.inShop = false;
         }
     }
 

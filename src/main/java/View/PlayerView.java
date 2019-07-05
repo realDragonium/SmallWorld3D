@@ -1,10 +1,13 @@
 package View;
 
+import Controller.CombinationController;
 import Controller.PlayerController;
+import Enums.RaceEnum;
 import Observable.PlayerObservable;
 import Observer.PlayerObserver;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -23,7 +26,7 @@ public class PlayerView implements PlayerObserver {
     private Text playerId, punten;
     public ImageView power;
     public ImageView race;
-
+    public Group combination;
 
     public PlayerView(String name, PlayerController playerCon) {
         this.group = GameViewEnum.PLAYER.getGroup();
@@ -49,7 +52,6 @@ public class PlayerView implements PlayerObserver {
     public void update(PlayerObservable po) {
         updateFields(po.getPoints());
         if(po.hasActiveCombination()){
-//            System.out.println(playerCon.getCurrentCombi().getRaceName() + "  " +  playerCon.getCurrentCombi().getPower());
             setCombinationImages(playerCon.getCurrentCombi().getRaceName(), playerCon.getCurrentCombi().getPower());
         }
     }

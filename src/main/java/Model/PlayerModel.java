@@ -32,11 +32,6 @@ public class PlayerModel implements PlayerObservable {
         NAME = name;
     }
 
-    public void setCurrentCombi(CombinationController combi){
-        currentCombi = combi;
-        notifyObserver();
-    }
-
     public List<CombinationController> getCombies(){
         return combinations;
     }
@@ -79,6 +74,7 @@ public class PlayerModel implements PlayerObservable {
     @Override
     public void register(PlayerObserver po) {
         observers.add(po);
+        notifyObserver();
     }
 
     @Override

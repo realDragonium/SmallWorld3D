@@ -76,7 +76,7 @@ public class CombinationModel implements CombinationObservable {
 
     public void setPosition(Translate pos) {
         position = pos;
-        notifyAllObservers();
+//        notifyAllObservers();
     }
 
 

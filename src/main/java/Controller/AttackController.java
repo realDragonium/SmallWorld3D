@@ -35,15 +35,8 @@ public class AttackController {
 
     private void notEnoughFiches(CombinationController combi, AreaController area){
         if(!combi.hasOnlyOneFiche()) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
-        fbGame.diceAction(gameCon.getDiceCon().rollDice(), area.getId());
+        else fbGame.diceAction(gameCon.getDiceCon().rollDice(), area.getId());
     }
-
-    private void throwDice(){
-
-    }
-
-
-
 
 
 
