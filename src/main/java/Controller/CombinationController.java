@@ -153,7 +153,9 @@ public class CombinationController {
     }
 
     public void clickedCombination() {
-        gameCon.showCombinationInfo(this);
+
+        //gameCon.showCombinationInfo(this);
+        buyItem();
     }
 
     public void buyItem(){
