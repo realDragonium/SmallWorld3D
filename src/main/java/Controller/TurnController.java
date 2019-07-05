@@ -115,7 +115,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void rotateCamera(){
         PlayerController player = model.currentPlayer;
-        Translate cameraPos = new Translate(player.get3dPos().getX(), -700, player.get3dPos().getZ());
+        Translate cameraPos = new Translate(player.get3dPos().getX(), -800, player.get3dPos().getZ());
         gameCon.getCameraCon().moveToPosition(cameraPos, 5);
         int rotationY = 0;
         if(player.get3dPos().getX() == -600){

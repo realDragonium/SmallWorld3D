@@ -13,10 +13,16 @@
          <Image url="@UI/BottomUI.png" />
    </ImageView>
 
-   <Group fx:id="activeCombi" layoutX="300"/>
-   <Group fx:id="declinedCombi" layoutX="1200"/>
+   <Text fx:id="fiches" fill="#fcfcfc" layoutX="890" layoutY="70" >
+      <font>
+         <Font size="36.0"/>
+      </font>
+   </Text>
 
-   <Text fx:id="punten" fill="#fcfcfc" layoutX="800">
+   <Group fx:id="activeCombi" layoutX="305" layoutY="17" />
+   <Group fx:id="declinedCombi" layoutX="1220" layoutY="20"/>
+
+   <Text fx:id="punten" fill="#fcfcfc" layoutX="1710" layoutY="78">
       <font>
          <Font size="36.0"/>
       </font>

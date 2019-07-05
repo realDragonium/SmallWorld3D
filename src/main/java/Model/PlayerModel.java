@@ -19,7 +19,7 @@ public class PlayerModel implements PlayerObservable {
     private int playerID;
     private List<CombinationController> combinations = new ArrayList<>();
     private List<CombinationController> declineCombies = new ArrayList<>();
-    public CombinationController currentCombi;
+    private CombinationController currentCombi;
     public int points;
 
     public PlayerModel(int playerId, String Name) {

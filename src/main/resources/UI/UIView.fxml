@@ -5,9 +5,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UIView">
+<Pane fx:id="pane" layoutY="0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UIView">
    
-   <ImageView fitHeight="120" fitWidth="1920.0" style="-fx-opacity: 1;">
+   <ImageView fitHeight="120" fitWidth="1920.0" style="-fx-opacity: 1;" >
       <image>
          <Image url="@UITop.png" />
       </image>

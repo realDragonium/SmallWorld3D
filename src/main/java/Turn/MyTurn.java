@@ -18,7 +18,7 @@ public class MyTurn implements Turn {
     @Override
     public void nextTurn(PhaseController phaseCon) {
         if(combi.isActive()) phaseCon.myTurn();
-        else phaseCon.countPoints();
+        else phaseCon.nextTurn();
     }
 
     @Override

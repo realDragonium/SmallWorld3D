@@ -1,6 +1,6 @@
 package Race;
 
-import Controller.CombinationController;
+import Decline.NotInDecline;
 import Model.CombinationModel;
 import javafx.scene.paint.Color;
 
@@ -23,7 +23,7 @@ public class Ghouls implements Race {
 
     @Override
     public void activateRacePower(CombinationModel combi) {
-
+        combi.inDecline = new NotInDecline();
     }
 
 }

@@ -27,8 +27,7 @@ public class CombinationModel implements CombinationObservable {
     public List<AreaController> areas = new ArrayList<>();
     public List<AreaController> thisRoundConquered = new ArrayList<>();
     public boolean buyButton = false;
-
-
+    
     private Translate position;
     public boolean inShop = true;
     public List<AreaController> lastUsedAreas = new ArrayList<>();
@@ -39,6 +38,7 @@ public class CombinationModel implements CombinationObservable {
     public AttackableAreas attackableAreas;
     public AttackableType attackableType;
     public Decline decline;
+    public Decline inDecline;
     public Points points;
     public Defend defend;
     public Object specialAction;
@@ -61,6 +61,7 @@ public class CombinationModel implements CombinationObservable {
         points = new NormalPoints();
         attackableType = new NormalAttackableType();
         defend = new NormalDefend();
+        inDecline = new InDecline();
     }
 
     public List<AreaController> getAreas() {
@@ -71,7 +72,6 @@ public class CombinationModel implements CombinationObservable {
         Stack<FicheController> tempFiches = new Stack<>();
         for (int i = 0; i < count; i++)
             tempFiches.add(raceFiches.pop());
-//        System.out.println("Fiches Over: " + raceFiches.size());
         return tempFiches;
     }
 

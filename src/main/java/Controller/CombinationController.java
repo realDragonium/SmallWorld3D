@@ -68,7 +68,6 @@ public class CombinationController {
         model.defend.retreat(this);
     }
 
-
     void diceAttackThisArea(AreaController area, int eyes) {
         int needed = fichesNeeded(area) - eyes;
         if (!(needed <= model.raceFiches.size())) {
@@ -80,9 +79,7 @@ public class CombinationController {
         TimerTask hide = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> {
-                    attack(area, number);
-                });
+                Platform.runLater(() -> attack(area, number));
             }
         };
         new Timer().schedule(hide, 3250);
@@ -106,7 +103,8 @@ public class CombinationController {
     }
 
     private Stack<FicheController> getFiches(int count) {
-        return model.removeFiches(count);
+        Stack<FicheController> fiches = model.removeFiches(count);
+        return fiches;
     }
 
     void addRaceFiche(FicheController fiche) {
@@ -115,7 +113,7 @@ public class CombinationController {
         fiche.moveToPosition(fichePos);
     }
 
-    int getFichesAmount() {
+    public int getFichesAmount() {
         return model.raceFiches.size();
     }
 
@@ -137,13 +135,12 @@ public class CombinationController {
     }
 
     void goIntoDecline() {
-        model.decline = new InDecline();
+        model.decline = model.inDecline;
         getPlayer().setDeclineCombi(this);
         keepOneFichePerArea();
         int times = model.raceFiches.size();
         for (int i = 0; i < times; i++)
             fichePoof();
-
     }
 
     void moveToPosition(Translate pos) {

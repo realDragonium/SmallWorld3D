@@ -15,6 +15,7 @@ public class UIBottom implements PlayerObserver {
     public Group activeCombi;
     public Group declinedCombi;
     public Text punten;
+    public Text fiches;
 
     Group group;
     public Pane pane;
@@ -36,10 +37,12 @@ public class UIBottom implements PlayerObserver {
         if(po.hasActiveCombination()){
             Group combi = RaceEnum.valueOf(po.getCurrentCombi().getRaceName()).getGroup();
             activeCombi.getChildren().add(combi);
+            fiches.setText(""+po.getCurrentCombi().getFichesAmount());
         }
         if(po.getDeclineCombies().size() > 0 &&declinedCombi.getChildren().size() == 0 ){
             Group combi = RaceEnum.valueOf(po.getDeclineCombies().get(0).getRaceName()).getGroup();
             declinedCombi.getChildren().add(combi);
         }
+        punten.setText(""+po.getPoints());
     }
 }

@@ -1,5 +1,6 @@
 package Power;
 
+import Decline.NotInDecline;
 import Model.CombinationModel;
 
 public class Spirit implements Power {
@@ -16,6 +17,6 @@ public class Spirit implements Power {
 
     @Override
     public void activatePower(CombinationModel combi) {
-
+        combi.inDecline = new NotInDecline();
     }
 }

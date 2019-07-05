@@ -22,19 +22,19 @@ public class PlayerController implements FirebaseGameObserver {
         createPlayerView();
     }
 
-    public PlayerController(String name){
+    public PlayerController(String name) {
         model = new PlayerModel(name);
     }
 
-    private void createPlayerView(){
-        new SpecialFXMLLoader().loader("/PlayerView.fxml", (Callable<PlayerView>)() -> new PlayerView(getName(), this));
+    private void createPlayerView() {
+        new SpecialFXMLLoader().loader("/PlayerView.fxml", (Callable<PlayerView>) () -> new PlayerView(getName(), this));
     }
 
-    public void setPlayer3dPosition(Translate pos){
+    public void setPlayer3dPosition(Translate pos) {
         model.setPlayer3dPos(pos);
     }
 
-    public Translate get3dPos(){
+    public Translate get3dPos() {
         return model.get3dPos();
     }
 
@@ -42,26 +42,29 @@ public class PlayerController implements FirebaseGameObserver {
         model.removePoints(costs);
         model.addCombi(combo);
         gameCon.getTurnCon().setCurrentCombi(combo);
-//        combo.moveToPosition(model.get2dPos());
         combo.setPlayer(this);
         combo.createRaceFiches();
         combo.setPowersActive();
+        model.notifyObserver();
     }
 
-    void setDeclineCombi(CombinationController combi){
+    void setDeclineCombi(CombinationController combi) {
+        for (CombinationController combo : model.getDeclineCombies()) {
+            if (!combo.isActive())
+                removecombi(combi);
+        }
         model.declineCombi(combi);
-
     }
 
-    void removecombi(CombinationController combi){
+    void removecombi(CombinationController combi) {
         model.removeCombi(combi);
     }
 
-    List<CombinationController> getCombinations(){
+    List<CombinationController> getCombinations() {
         return model.getCombies();
     }
 
-    List<CombinationController> getDeclineCombinations(){
+    List<CombinationController> getDeclineCombinations() {
         return model.getDeclineCombies();
     }
 
@@ -73,7 +76,7 @@ public class PlayerController implements FirebaseGameObserver {
         model.register(po);
     }
 
-    public CombinationController getCurrentCombi(){
+    public CombinationController getCurrentCombi() {
         return model.getCurrentCombi();
     }
 
@@ -91,11 +94,11 @@ public class PlayerController implements FirebaseGameObserver {
         model.addPunten(i);
     }
 
-    int getPoints(){
+    int getPoints() {
         return model.points;
     }
 
-    public void setPlayer2dPosition(Translate position) {
+    void setPlayer2dPosition(Translate position) {
         model.setPlayer2dPos(position);
     }
 
