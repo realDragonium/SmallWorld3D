@@ -38,4 +38,11 @@ public class TurnModel implements TurnObservable {
     public String getPlayerName() {
         return currentPlayer.getName();
     }
+
+    @Override
+    public String getRaceName() {
+        if(currentCombi == null) return "";
+        return currentCombi.getRaceName();
+    }
+
 }

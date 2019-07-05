@@ -30,7 +30,7 @@ public class RedeployingController {
 
     public void addFiche(String areaId){
         closeAreaInfo();
-        if(gameCon.getTurnCon().getCurrentPlayer().getCurrentCombi().getFichesAmount() > 0) fbGame.addsFicheAction(areaId);
+        if(gameCon.getTurnCon().getCurrentCombi().getFichesAmount() > 0) fbGame.addsFicheAction(areaId);
         else gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
     }
 

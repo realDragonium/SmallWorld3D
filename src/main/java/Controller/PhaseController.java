@@ -62,6 +62,8 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void changeView(){
         if(turnCon.getCurrentCombi() == null) return;
+        System.out.println(model.getPhase().getName());
+        System.out.println(turnCon.getCurrentCombi().getRaceName());
         model.getPhase().setViews(turnCon.getCurrentCombi());
     }
 
@@ -75,7 +77,7 @@ public class PhaseController implements FirebaseGameObserver {
         turnCon.getCurrentCombi().cleareAreaInfo();
     }
 
-    public void countPoints() {
+    private void countPoints() {
         if(turnCon.getCurrentCombi() == null) return;
         turnCon.getCurrentCombi().countPoints();
     }

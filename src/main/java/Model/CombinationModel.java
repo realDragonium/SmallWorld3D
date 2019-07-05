@@ -27,7 +27,7 @@ public class CombinationModel implements CombinationObservable {
     public List<AreaController> areas = new ArrayList<>();
     public List<AreaController> thisRoundConquered = new ArrayList<>();
     public boolean buyButton = false;
-    
+
     private Translate position;
     public boolean inShop = true;
     public List<AreaController> lastUsedAreas = new ArrayList<>();
@@ -77,7 +77,6 @@ public class CombinationModel implements CombinationObservable {
 
     public void setPosition(Translate pos) {
         position = pos;
-//        notifyAllObservers();
     }
 
 

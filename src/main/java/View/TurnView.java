@@ -31,6 +31,7 @@ public class TurnView implements TurnObserver {
 
     @Override
     public void update(TurnObservable to) {
-        setTextFields(to.getPlayerName());
+        String text = to.getPlayerName() + " : "+to.getRaceName();
+        setTextFields(text);
     }
 }

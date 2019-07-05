@@ -70,33 +70,35 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void fixTurnOtherPlayer(LinkedList<Turn> turns, PlayerController player){
+        for(CombinationController combi: player.getDeclineCombinations()){
+            turns.add(new NotMyTurn(player, combi));
+        }
         if(player.getCurrentCombi() == null)
             turns.add(new NotMyTurn(player, null));
          else
             turns.add(new NotMyTurn(player, player.getCurrentCombi()));
 
-        for(CombinationController combi: player.getDeclineCombinations()){
-            turns.add(new NotMyTurn(player, combi));
-        }
+
     }
 
     private void fixMyOwnTurns(LinkedList<Turn> turns, PlayerController player){
+        for(CombinationController combi: player.getDeclineCombinations()){
+            turns.add(new MyTurn(player, combi));
+        }
         if(player.getCurrentCombi() == null)
             turns.add(new ShopTurn(player, null));
         else
             turns.add(new MyTurn(player, player.getCurrentCombi()));
 
-        for(CombinationController combi: player.getDeclineCombinations()){
-            turns.add(new MyTurn(player, combi));
-        }
+
     }
 
     void nextTurn(){
         if(model.turns.size() == 0) roundCon.nextRound();
         model.currentTurn = model.turns.pop();
-        model.currentTurn.nextTurn(phaseCon);
         model.currentCombi = model.currentTurn.getCombi();
         model.currentPlayer = model.currentTurn.getPlayer();
+        model.currentTurn.nextTurn(phaseCon);
         rotateCamera();
         model.notifyObservers();
     }
@@ -111,6 +113,7 @@ public class TurnController implements FirebaseGameObserver {
 
     void setCurrentCombi(CombinationController combi){
         model.currentCombi = combi;
+        model.notifyObservers();
     }
 
     private void rotateCamera(){
@@ -139,19 +142,19 @@ public class TurnController implements FirebaseGameObserver {
     @Override
     public void update(DocumentSnapshot ds) {
         //Decline updates
-        getCurrentPlayer().getCurrentCombi().goIntoDecline();
+        getCurrentCombi().goIntoDecline();
     }
 
     private void attackUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
-        getCurrentPlayer().getCurrentCombi().attackThisArea(area);
+        getCurrentCombi().attackThisArea(area);
         reloadAreaInfoViews();
     }
 
     private void diceAttackUpdate(DocumentSnapshot ds){
         gameCon.getDiceCon().update(ds);
         AreaController area = getArea(ds.getString("areaId"));
-        getCurrentPlayer().getCurrentCombi().diceAttackThisArea(area, ds.getDouble("eyes").intValue());
+        getCurrentCombi().diceAttackThisArea(area, ds.getDouble("eyes").intValue());
         reloadAreaInfoViews();
     }
 
@@ -169,7 +172,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void leaveAreaUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
-        getCurrentPlayer().getCurrentCombi().leaveArea(area);
+        getCurrentCombi().leaveArea(area);
         reloadAreaInfoViews();
     }
 

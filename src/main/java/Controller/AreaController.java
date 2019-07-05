@@ -86,12 +86,12 @@ public class AreaController{
         return model.getId();
     }
 
-    public void changeCombiOwner(CombinationController combi){
+    void changeCombiOwner(CombinationController combi){
         removeOwner();
         model.setOwningCombi(combi);
     }
 
-    public void removeOwner(){
+    void removeOwner(){
         if(model.getOwningCombi()!= null) model.getOwningCombi().removeArea(this);
     }
 
@@ -99,7 +99,7 @@ public class AreaController{
         return getOwnerCombi().getPlayer();
     }
 
-    public CombinationController getOwnerCombi(){
+    CombinationController getOwnerCombi(){
         return model.getOwningCombi();
     }
 

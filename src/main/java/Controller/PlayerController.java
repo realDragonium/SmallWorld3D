@@ -49,14 +49,17 @@ public class PlayerController implements FirebaseGameObserver {
     }
 
     void setDeclineCombi(CombinationController combi) {
-        for (CombinationController combo : model.getDeclineCombies()) {
+        for (int i = 0; i < model.getDeclineCombies().size(); i++) {
+            CombinationController combo = model.getDeclineCombies().get(i);
             if (!combo.isActive())
-                removecombi(combi);
+                removecombi(combo);
         }
         model.declineCombi(combi);
     }
 
     void removecombi(CombinationController combi) {
+        combi.selfDestruct();
+        System.out.println("SELF DESTRUCT");
         model.removeCombi(combi);
     }
 
@@ -104,5 +107,9 @@ public class PlayerController implements FirebaseGameObserver {
 
     public String getName() {
         return model.getName();
+    }
+
+    public void fichesChanged(){
+        model.notifyObserver();
     }
 }

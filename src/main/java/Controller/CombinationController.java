@@ -104,6 +104,7 @@ public class CombinationController {
 
     private Stack<FicheController> getFiches(int count) {
         Stack<FicheController> fiches = model.removeFiches(count);
+        model.player.fichesChanged();
         return fiches;
     }
 
@@ -137,7 +138,12 @@ public class CombinationController {
     void goIntoDecline() {
         model.decline = model.inDecline;
         getPlayer().setDeclineCombi(this);
+        if(model.decline.isActive()) return;
         keepOneFichePerArea();
+        deleteAllFichesInHand();
+    }
+
+    private void deleteAllFichesInHand(){
         int times = model.raceFiches.size();
         for (int i = 0; i < times; i++)
             fichePoof();
@@ -193,6 +199,7 @@ public class CombinationController {
 
     private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo) {
         cleareAreaInfo();
+        System.out.println(model.getRaceId() + " : " + model.areas.size());
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas = areas;
     }
@@ -238,4 +245,12 @@ public class CombinationController {
         Translate fichePoint = new Translate(0, 500, 0);
         fiche.moveToPosition(fichePoint);
     }
+
+    void selfDestruct() {
+        for (AreaController area : model.getAreas()) {
+            area.leaveArea();
+        }
+        deleteAllFichesInHand();
+    }
+
 }

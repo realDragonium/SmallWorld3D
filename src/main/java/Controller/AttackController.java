@@ -25,9 +25,9 @@ public class AttackController {
 
     public void AttackArea(String areaID) {
         final AreaController area = gameCon.getMapCon().getAreaCon(areaID);
-        final CombinationController combi = gameCon.getCurrentPlayer().getCurrentCombi();
+        final CombinationController combi = gameCon.getTurnCon().getCurrentCombi();
         int fiches = combi.getFichesAmount();
-        int fichesNeeded = gameCon.getCurrentPlayer().getCurrentCombi().fichesNeeded(area);
+        int fichesNeeded = gameCon.getTurnCon().getCurrentCombi().fichesNeeded(area);
         gameCon.removeFromGameView(GameViewEnum.AREAINFO);
         if(fiches < fichesNeeded) notEnoughFiches(combi, area);
         else fbGame.attackAction(areaID);
