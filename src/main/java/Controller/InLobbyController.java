@@ -1,59 +1,99 @@
 package Controller;
 
+import Enums.ApplicationViewEnum;
+import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
+import Firebase.FirebaseLobbyObserver;
+import Firebase.FirebaseLobbyService;
 import Model.InLobbyModel;
 import Observer.InLobbyObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class InLobbyController implements FirebaseGameObserver { ;
-    private InLobbyModel mod = new InLobbyModel();
+public class InLobbyController implements FirebaseLobbyObserver { ;
+    private InLobbyModel model = new InLobbyModel();
+    private FirebaseLobbyService fb;
+    private ApplicationController appCon;
 
-    public InLobbyController(){
-
+    public InLobbyController(ApplicationController appCon){
+        this.appCon = appCon;
+        fb = appCon.getLobbyFireBase();
     }
 
-    InLobbyController(String lobbyNaam, int id){
-;
-        setLobbyNaam(lobbyNaam);
+    public void joinLobby(String player, int id){
+        fb.joinLobby(Integer.toString(id));
+        fb.actionDocumentListener(this);
+        fb.pushDocumentUpdate(this);
+        model.setPlayer(model.getPlayerNames().size() + 1, player);
+        model.setMyPlayer("player" + (model.getPlayerNames().size()));
+        model.setPlayerReady(model.getPlayerStates().size() + 1, false);
+        model.setMyName(player);
+        model.setLobbyId(id);
+        updateLobbyInfo();
+        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
     }
 
-    public InLobbyController(String lobbyNaam){
-
-        setLobbyNaam(lobbyNaam);
+    public void createLobby(String player){
+        int id = fb.createLobby();
+        fb.actionDocumentListener(this);
+        model.setLobbyNaam("lobby" + id);
+        model.setPlayer(1, player);
+        model.setMyPlayer("player1");
+        model.setPlayerReady(1, false);
+        model.setLobbyId(id);
+        model.setMyName(player);
+        model.setAsHost();
+        updateLobbyInfo();
+        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
     }
 
-    void setLobbyNaam(String lobbyNaam){
-        mod.setLobbyNaam(lobbyNaam);
+    public void updateLobbyInfo(){
+        HashMap<String, Object> info = new HashMap<>();
+        info.put("playerNames", model.getPlayerNames());
+        info.put("playerStates", model.getPlayerStates());
+        info.put("password", model.getPassword());
+        info.put("lobbyName", model.getLobbyNaam());
+        info.put("gameSpeed", model.getGameSpeed());
+        info.put("inProgress", model.getStart());
+        fb.changeLobbyInfo(info);
     }
 
     public void start(){            // start button
-        //new GameController(mod.getLobbyNaam(), app.getAccountCon().getPlayerId());  // starten van het spel
+        new GameController(appCon);  // starten van het spel
     }
 
 
     public void exitLobby(){
-        new LobbyController();
+        model.reset();
+        fb.leaveLobby(model.getMyPlayer());
+        appCon.setActiveView(ApplicationViewEnum.LOBBY);
     }
 
     public void register(InLobbyObserver ob){
-        mod.register(ob);
+        model.register(ob);
     }
 
     public void unregister(InLobbyObserver ob){
-        mod.unregister(ob);
+        model.unregister(ob);
     }
 
     @Override
     public void update(DocumentSnapshot ds) {
-        Map<String, Object> map = ds.getData();
-        mod.setPlayer( 1, (String)map.get("player1"));
-        mod.setPlayer( 2, (String)map.get("player2"));
-        mod.setPlayer( 3, (String)map.get("player3"));
-        mod.setPlayer( 4, (String)map.get("player4"));
+        Map<String, Object> info = ds.getData();
+        Map<String, String> players = (Map)info.get("playerNames");
+        for(int i = 1; i <= players.size(); i++){
+            model.setPlayer(i, players.get("player"+i));
+        }
+
+        Map<String, Boolean> states = (Map)info.get("playerStates");
+        for(int i = 1; i <= states.size(); i++){
+            model.setPlayerReady(i, states.get("player"+i));
+        }
+        model.setLobbyNaam((String)info.get("lobbyName"));
+        model.setPassword((String)info.get("password"));
     }
-
-
-
 }

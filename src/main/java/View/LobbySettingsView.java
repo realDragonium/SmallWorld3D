@@ -39,9 +39,6 @@ public class LobbySettingsView implements LobbySettingsObserver{
         // con.lobbyView(textLobby);   // gaat terug naar lobby overzicht
     }
 
-    public void back(){
-        con.lobbyView();
-    }
 
     private void playerAmountBox(){
         box.setItems(list);

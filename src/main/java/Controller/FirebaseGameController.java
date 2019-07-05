@@ -165,5 +165,4 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
             Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
     }
-
 }

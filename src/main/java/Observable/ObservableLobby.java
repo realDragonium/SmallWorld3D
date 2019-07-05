@@ -2,6 +2,7 @@ package Observable;
 
 import Observer.LobbyObserver;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,5 +33,5 @@ public interface ObservableLobby {
     /**
      * @return a List of Strings that contains all the lobbyNames
      */
-    List<String> getLobbyName();
+    List<HashMap> getLobbyName();
 }

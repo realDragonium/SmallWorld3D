@@ -31,27 +31,15 @@ public interface InLobbyObservable {
     /**
      * @return a String of player1
      */
-    String getPlayer1();
+    String getPlayer(int i);
 
-    /**
-     * @return a String of player2
-     */
-    String getPlayer2();
-
-    /**
-     * @return a String of player3
-     */
-    String getPlayer3();
-
-    /**
-     * @return a String of player4
-     */
-    String getPlayer4();
-
+    boolean getPlayerState(int i);
 
     /**
      * @return a Boolean that is False
      */
 
     boolean getStart();
+
+    boolean isHost();
 }

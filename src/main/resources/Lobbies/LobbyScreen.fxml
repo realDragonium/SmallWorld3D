@@ -20,9 +20,12 @@
             <Rectangle2D/>
         </viewport>
     </ImageView>
-    <Button fx:id="terug" layoutX="412.0" layoutY="562.0" mnemonicParsing="false" onAction="#terug" prefHeight="30.0"
-            prefWidth="130.0" text="Terug"/>
-    <Button fx:id="hosten" layoutX="649.0" layoutY="562.0" mnemonicParsing="false" onAction="#hostGame"
+    <Group fx:id="lobbies" layoutY="250" layoutX="400">
+
+    </Group>
+    <Button fx:id="back" layoutX="412.0" layoutY="562.0" mnemonicParsing="false" onAction="#terug" prefHeight="30.0"
+            prefWidth="130.0" text="Back"/>
+    <Button fx:id="host" layoutX="649.0" layoutY="562.0" mnemonicParsing="false" onAction="#hostGame"
             prefHeight="30.0" prefWidth="130.0" text="Host game"/>
     <Button fx:id="join" layoutX="888.0" layoutY="562.0" mnemonicParsing="false" onAction="#join" prefHeight="30.0"
             prefWidth="130.0" text="Join"/>

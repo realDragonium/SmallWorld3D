@@ -9,11 +9,11 @@
 <Group fx:id="root" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8.0.172-ea"
        xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LobbyView">
     <ImageView fitHeight="466.0" fitWidth="864.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@backgroundLobby.jpg"/>
+        <Image url="@../Lobbies/backgroundLobby.jpg"/>
     </ImageView>
     <ImageView fitHeight="414.0" fitWidth="716.0" layoutX="56.0" layoutY="38.0" pickOnBounds="true"
                preserveRatio="true">
-        <Image url="@guiLobbyScreen.jpg"/>
+        <Image url="@../Lobbies/guiLobbyScreen.jpg"/>
     </ImageView>
     <Button fx:id="terug" layoutX="178.0" layoutY="353.0" mnemonicParsing="false" onAction="#terug" prefHeight="25.0"
             prefWidth="100.0" text="Terug"/>

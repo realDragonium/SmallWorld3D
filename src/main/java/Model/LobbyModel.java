@@ -4,17 +4,18 @@ import Observable.ObservableLobby;
 import Observer.LobbyObserver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LobbyModel implements ObservableLobby {
 	private List<LobbyObserver> observers = new ArrayList<>();
-	private List<String> lobbynamen = new ArrayList<>();
+	private List<HashMap> lobbies = new ArrayList<>();
 
 
 	// returns a list of lobbyNames
 	@Override
-	public List<String> getLobbyName() {
-		return lobbynamen;
+	public List<HashMap> getLobbyName() {
+		return lobbies;
 	}
 
 	// adds an observers to the observer list
@@ -35,5 +36,14 @@ public class LobbyModel implements ObservableLobby {
 		for(LobbyObserver obs : observers) {
 			obs.update(this);
 		}
+	}
+
+	public void clearLobbiesList(){
+		lobbies.clear();
+	}
+
+	public void setLobby(HashMap lobby, String id) {
+		lobby.put("lobbyId", id);
+		lobbies.add(lobby);
 	}
 }

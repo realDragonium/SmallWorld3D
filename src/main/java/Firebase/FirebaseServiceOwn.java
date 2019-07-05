@@ -184,22 +184,22 @@ public class FirebaseServiceOwn {
 
     //Werkt wel niet toegepast, runtime items toevoegen vind javafx niet leuk.
     //LobbyListener
-    public void LobbyListener(final FirebaseLobbyObserver controller) {
-        CollectionReference docRef = firestore.collection("Lobby");
-        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirestoreException error) {
-                if (error != null) {
-                    System.err.println("Listen failed: " + error);
-                    return;
-                }
-                List<String> buttonLijst = new ArrayList<>();
-                for (DocumentSnapshot doc : snapshot.getDocuments()) {
-                    buttonLijst.add(doc.getId());
-                }
-                controller.update(buttonLijst);
-            }
-        });
-    }
+//    public void LobbyListener(final FirebaseLobbyObserver controller) {
+//        CollectionReference docRef = firestore.collection("Lobby");
+//        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+//            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirestoreException error) {
+//                if (error != null) {
+//                    System.err.println("Listen failed: " + error);
+//                    return;
+//                }
+//                List<String> buttonLijst = new ArrayList<>();
+//                for (DocumentSnapshot doc : snapshot.getDocuments()) {
+//                    buttonLijst.add(doc.getId());
+//                }
+//                controller.update(buttonLijst);
+//            }
+//        });
+  //  }
 
     // retrieves active lobbies
     public List<String> getActiveLobbies() throws ExecutionException, InterruptedException {
