@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class AnimationsManager {
     private static AnimationsManager animManager;
-    int animationFPS = 20;
+    int animationFPS = 60;
     List<AnimationController> translateAnimations = new ArrayList<>();
     List<AnimationController> rotateAnimations = new ArrayList<>();
 
@@ -87,10 +87,21 @@ public class AnimationsManager {
         double deltaY = newPosition.getY() - animObj.getCurrentPosition().getY();
         double deltaZ = newPosition.getZ() - animObj.getCurrentPosition().getZ();
 
+        double oldX = animObj.getCurrentPosition().getX();
+        //double oldY = animObj.getCurrentPosition().getY();
+        double oldZ = animObj.getCurrentPosition().getZ();
 
-        double lastHeight = 0.4 * ((0 - frames/2) * (0 - frames/2)) - 100;
+        double newX = newPosition.getX();
+       // double newY = newPosition.getY();
+        double newZ = newPosition.getZ();
+        double radius = Math.sqrt( (newX-oldX)*(newX-oldX) + (newZ-oldZ)*(newZ-oldZ));
+        double step = radius/frames;
+
+        double lastHeight = 0;
+
         for(int x = 1; x <= frames; x++) {
-            double height = 0.4 * ((x - frames/2) * (x -frames/2)) - 100;
+            double height = 350 * Math.sin((3.14159/step) * x / (frames/step));
+            height = height * -1;
             double deltaHeight = height - lastHeight;
             lastHeight = height;
             Translate point = new Translate(deltaX / frames, deltaY / frames + deltaHeight, deltaZ / frames);
