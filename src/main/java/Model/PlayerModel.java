@@ -35,9 +35,6 @@ public class PlayerModel implements PlayerObservable {
     public List<CombinationController> getCombies(){
         return combinations;
     }
-    public List<CombinationController> getDeclineCombies(){
-        return declineCombies;
-    }
 
     public void addCombi(CombinationController combi){
         currentCombi = combi;
@@ -95,8 +92,13 @@ public class PlayerModel implements PlayerObservable {
     }
 
     @Override
-    public CombinationController getActiveCombi() {
+    public CombinationController getCurrentCombi() {
         return currentCombi;
+    }
+
+    @Override
+    public List<CombinationController> getDeclineCombies(){
+        return declineCombies;
     }
 
     public void addPunten(int amount) {
@@ -112,9 +114,7 @@ public class PlayerModel implements PlayerObservable {
         return player2dPos;
     }
 
-    public CombinationController getCurrenCombi() {
-        return currentCombi;
-    }
+
 
     public String getName() {
         return NAME;

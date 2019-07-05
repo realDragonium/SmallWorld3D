@@ -34,9 +34,12 @@ public class UIBottom implements PlayerObserver {
     public void update(PlayerObservable po) {
         activeCombi.getChildren().clear();
         if(po.hasActiveCombination()){
-            Group combi = RaceEnum.valueOf(po.getActiveCombi().getRaceName()).getGroup();
+            Group combi = RaceEnum.valueOf(po.getCurrentCombi().getRaceName()).getGroup();
             activeCombi.getChildren().add(combi);
-//            System.out.println("BOTTOM: "+((Pane) combi.getChildren().get(0)).getChildren());
+        }
+        if(po.getDeclineCombies().size() > 0){
+            Group combi = RaceEnum.valueOf(po.getDeclineCombies().get(0).getRaceName()).getGroup();
+            declinedCombi.getChildren().add(combi);
         }
     }
 }

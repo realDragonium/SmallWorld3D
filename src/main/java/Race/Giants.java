@@ -24,7 +24,7 @@ public class Giants implements Race {
 
     @Override
     public void activateRacePower(CombinationModel combi) {
-        combi.raceAttackBoost = new GiantAttack();
+        combi.raceAttackBoost = new GiantAttack(combi);
     }
 
 }

@@ -50,6 +50,7 @@ public class PlayerController implements FirebaseGameObserver {
 
     void setDeclineCombi(CombinationController combi){
         model.declineCombi(combi);
+
     }
 
     void removecombi(CombinationController combi){
@@ -73,7 +74,7 @@ public class PlayerController implements FirebaseGameObserver {
     }
 
     public CombinationController getCurrentCombi(){
-        return model.getCurrenCombi();
+        return model.getCurrentCombi();
     }
 
     @Override

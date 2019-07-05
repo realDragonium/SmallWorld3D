@@ -3,6 +3,8 @@ package Observable;
 import Controller.CombinationController;
 import Observer.PlayerObserver;
 
+import java.util.List;
+
 
 public interface PlayerObservable {
 
@@ -14,5 +16,7 @@ public interface PlayerObservable {
 
     boolean hasActiveCombination();
 
-    CombinationController getActiveCombi();
+    CombinationController getCurrentCombi();
+
+    List<CombinationController> getDeclineCombies();
 }

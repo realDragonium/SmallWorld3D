@@ -26,7 +26,7 @@ public class CombinationController {
         this.gameCon = gameCon;
     }
 
-    public void setPowersActive() {
+    void setPowersActive() {
         model.power.activatePower(model);
         model.race.activateRacePower(model);
         model.inShop = false;
@@ -44,7 +44,7 @@ public class CombinationController {
         return model.decline.isActive();
     }
 
-    void addArea(AreaController area) {
+    private void addArea(AreaController area) {
         model.areas.add(area);
         model.thisRoundConquered.add(area);
     }
@@ -57,7 +57,7 @@ public class CombinationController {
         attack(area, fichesNeeded(area));
     }
 
-    void attack(AreaController area, int number) {
+    private void attack(AreaController area, int number) {
         area.attackArea(getFiches(number));
         area.changeCombiOwner(this);
         addArea(area);
@@ -156,7 +156,7 @@ public class CombinationController {
         gameCon.showCombinationInfo(this);
     }
 
-    public void buyItem() {
+    void buyItem() {
         ShopController shop = gameCon.getShopCon();
         int item = shop.getShopItem(this);
         shop.buyToFirebase(item);
@@ -217,11 +217,11 @@ public class CombinationController {
         return model.buyButton;
     }
 
-
-    public void buybuttonOff() {
+    void buybuttonOff() {
         model.buyButton = false;
     }
-    public void buybuttonOn() {
+
+    void buybuttonOn() {
         model.buyButton = true;
     }
 
