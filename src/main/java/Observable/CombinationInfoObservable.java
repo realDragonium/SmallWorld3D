@@ -13,9 +13,9 @@ public interface CombinationInfoObservable {
      */
     void notifyAllObs();
 
-    boolean showing();
-
     String getRace();
 
     String getPower();
+
+    boolean inShop();
 }

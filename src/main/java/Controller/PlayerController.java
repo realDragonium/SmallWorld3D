@@ -41,24 +41,18 @@ public class PlayerController implements FirebaseGameObserver {
     void buyFromShop(CombinationController combo, int costs) {
         model.removePoints(costs);
         model.addCombi(combo);
-        model.setCurrentCombi(combo);
-        combo.moveToPosition(model.get2dPos());
+//        combo.moveToPosition(model.get2dPos());
         combo.setPlayer(this);
         combo.createRaceFiches();
         combo.setPowersActive();
     }
 
-
     void setDeclineCombi(CombinationController combi){
         model.declineCombi(combi);
-
     }
+
     void removecombi(CombinationController combi){
         model.removeCombi(combi);
-    }
-
-    void setCurrentCombi(CombinationController combi){
-        model.setCurrentCombi(combi);
     }
 
     List<CombinationController> getCombinations(){

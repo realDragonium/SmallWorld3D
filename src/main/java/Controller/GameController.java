@@ -56,7 +56,7 @@ public class GameController {
         this.appCon = appCon;
         int numberOfPlayers = 4;
         model = new GameModel(8, createPlayers(numberOfPlayers));
-        createUIOverlay();
+
         createControllers();
     }
 
@@ -101,14 +101,14 @@ public class GameController {
 
 
 
-    private void createUIOverlay() {
+    public void createUIOverlay() {
         new SpecialFXMLLoader().loader("/UIBottom.fxml", (Callable<UIBottom>) () -> new UIBottom(GameViewEnum.UIOVERLAY.getGroup(), this));
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UIPlayers.fxml", (Callable<UIPlayer>) () -> new UIPlayer(GameViewEnum.UIOVERLAY.getGroup()));
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("beau", this);
+        fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
         //Belangrijk
         mapCon = new MapController(this);
@@ -268,7 +268,7 @@ public class GameController {
         return diceCon.rollDice();
     }
 
-    public void showCombinationInfo(CombinationController combi) {
-        combiInfoCon.showCombinationInfo(combi);
+    public void showCombinationInfo(CombinationController combi, boolean inShop) {
+        combiInfoCon.showCombinationInfo(combi, inShop);
     }
 }

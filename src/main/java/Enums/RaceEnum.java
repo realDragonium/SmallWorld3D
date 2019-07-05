@@ -15,6 +15,7 @@ public enum RaceEnum {
 
     private Race race;
     private Group group;
+
     RaceEnum(Race race, Group group){
         this.race = race;
         this.group = group;

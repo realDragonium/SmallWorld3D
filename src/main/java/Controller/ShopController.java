@@ -72,10 +72,6 @@ public class ShopController implements FirebaseGameObserver, Animatable {
         model.addShopItem(new CombinationController(gameCon, race, power));
     }
 
-    public List<CombinationController> getShopItems() {
-        return model.getShopItems();
-    }
-
     @Override
     public void update(DocumentSnapshot ds) {
     }
