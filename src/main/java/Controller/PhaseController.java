@@ -49,7 +49,11 @@ public class PhaseController implements FirebaseGameObserver {
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
         changeView();
-//        turnCon.getCurrentPlayer().g
+    }
+
+    public void startShopTurn() {
+        gameCon.getShopCon().buyButtonsOn();
+        setPhase(PhaseEnum.PREPARING);
     }
 
     public void notMyTurn(){
@@ -57,19 +61,23 @@ public class PhaseController implements FirebaseGameObserver {
     }
 
     public void changeView(){
-        if(turnCon.getCurrentPlayer().getCurrentCombi() == null) return;
-//        System.out.println(model.getPhase().getName());
-        model.getPhase().setViews(turnCon.getCurrentPlayer().getCurrentCombi());
+        if(turnCon.getCurrentCombi() == null) return;
+        model.getPhase().setViews(turnCon.getCurrentCombi());
     }
 
     public void nextTurn(){
-       countPoints();
-       turnCon.nextTurn();
+        countPoints();
+        turnCon.nextTurn();
     }
 
     public void clearAreaInfoView(){
-        if(turnCon.getCurrentPlayer().getCurrentCombi() != null)
-        turnCon.getCurrentPlayer().getCurrentCombi().cleareAreaInfo();
+        if(turnCon.getCurrentCombi() != null)
+        turnCon.getCurrentCombi().cleareAreaInfo();
+    }
+
+    public void countPoints() {
+        if(turnCon.getCurrentCombi() == null) return;
+        turnCon.getCurrentCombi().countPoints();
     }
 
     public void register(PhaseObserver po){
@@ -81,13 +89,11 @@ public class PhaseController implements FirebaseGameObserver {
         nextPhase();
     }
 
-    public void countPoints() {
-        for(CombinationController combi : turnCon.getCurrentPlayer().getCombinations()){
-            combi.countPoints();
-        }
-    }
+
 
     public void setTimer(int time, boolean b) {
         gameCon.setTimer(time, b);
     }
+
+
 }

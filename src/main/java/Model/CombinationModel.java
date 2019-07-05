@@ -27,6 +27,8 @@ public class CombinationModel implements CombinationObservable {
     public Stack<FicheController> raceFiches = new Stack<>();
     public List<AreaController> areas = new ArrayList<>();
     public List<AreaController> thisRoundConquered = new ArrayList<>();
+    public boolean buyButton = false;
+
 
     private Translate position;
     public boolean inShop = true;

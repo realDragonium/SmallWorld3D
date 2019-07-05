@@ -28,7 +28,9 @@ public class ButtonController {
         //gameCon.createVote(3, "skip turn?");
     }
 
-
+    public void decline(){
+        gameCon.getFireBase().declineAction();
+    }
 
     public void createShopItem() {
         gameCon.createRandomShopItem();
@@ -39,6 +41,6 @@ public class ButtonController {
     }
 
     public void activeListener() {
-//        gameCon.getFireBase().activateListener();
+        gameCon.getFireBase().startGame();
     }
 }

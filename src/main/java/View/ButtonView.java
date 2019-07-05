@@ -25,9 +25,9 @@ public class ButtonView {
     }
 
 
-    public void showInfo(){ buttonCon.showInfo(); }
+    public void showInfo(){ buttonCon.activeListener(); }
     public void fichesOver(){
-        buttonCon.activeListener();
+        buttonCon.decline();
     }
     public void nextPhase(){ buttonCon.nextPhase(); }
     public void createShopItem() {

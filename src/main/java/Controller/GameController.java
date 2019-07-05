@@ -1,20 +1,20 @@
 package Controller;
 
+import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
 import View.*;
 import Enums.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.concurrent.Callable;
 
 import Enums.GameViewEnum;
+import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.transform.Translate;
 
-public class GameController {
+public class GameController implements FirebaseGameObserver {
 
     private FirebaseGameController fbGame;
     Translate playerPos2d = new Translate(600, 900);
@@ -56,8 +56,9 @@ public class GameController {
         this.appCon = appCon;
         int numberOfPlayers = 4;
         model = new GameModel(8, createPlayers(numberOfPlayers));
-
+        setPlayerPositions();
         createControllers();
+        fbGame.register("start", this);
     }
 
     private List<PlayerController> createPlayers(int numberOfPlayers){
@@ -77,7 +78,17 @@ public class GameController {
 
     public void startGame(){
         turnCon.nextTurn();
+    }
+
+    public void startFbListener(){
         fbGame.activateListener();
+//        createShopItems();
+    }
+
+    private void createShopItems(){
+        for (int i = 0; i < 6; i++) {
+            shopCon.createRandomShopItem();
+        }
     }
 
     public void setPlayerPositions(){
@@ -106,7 +117,7 @@ public class GameController {
         new SpecialFXMLLoader().loader("/UI/UIView.fxml", (Callable<UIView>) () -> new UIView(GameViewEnum.UIOVERLAY.getGroup()));
         new SpecialFXMLLoader().loader("/UIPlayers.fxml", (Callable<UIPlayer>) () -> new UIPlayer(GameViewEnum.UIOVERLAY.getGroup()));
     }
-
+    //OPSTART PROCEDURE
     private void createControllers() {
         fbGame = new FirebaseGameController("test", this);
         new Thread(fbGame).start();
@@ -119,11 +130,6 @@ public class GameController {
         turnCon = new TurnController(this);
         timerCon = new TimerController(this);
 
-        areaInfoCon = new AreaInformationController(this);
-
-        leaveCon = new LeaveController(this);
-
-        //Minder belangrijk
         declineCon = new DeclineController(this);
         buttonCon = new ButtonController(this);
         notiCon = new NotificationController(this);
@@ -132,6 +138,8 @@ public class GameController {
         infoCon = new InfoController(this);
         diceCon = new DiceController(this);
         combiInfoCon = new CombinationInfoController(this);
+        areaInfoCon = new AreaInformationController(this);
+        leaveCon = new LeaveController(this);
     }
 
 
@@ -268,7 +276,12 @@ public class GameController {
         return diceCon.rollDice();
     }
 
-    public void showCombinationInfo(CombinationController combi, boolean inShop) {
-        combiInfoCon.showCombinationInfo(combi, inShop);
+    public void showCombinationInfo(CombinationController combi) {
+        combiInfoCon.showCombinationInfo(combi);
+    }
+
+    @Override
+    public void update(DocumentSnapshot ds) {
+        startGame();
     }
 }

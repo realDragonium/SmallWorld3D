@@ -4,21 +4,19 @@ import Controller.CombinationController;
 import Controller.PhaseController;
 import Controller.PlayerController;
 
-public class MyTurn implements Turn {
+public class ShopTurn implements Turn {
 
     private final PlayerController player;
     private final CombinationController combi;
 
-    public MyTurn(PlayerController player,CombinationController combi ) {
+    public ShopTurn(PlayerController player,CombinationController combi ) {
         this.combi = combi;
         this.player = player;
     }
 
-
     @Override
     public void nextTurn(PhaseController phaseCon) {
-        if(combi.isActive()) phaseCon.myTurn();
-        else phaseCon.countPoints();
+        phaseCon.startShopTurn();
     }
 
     @Override
@@ -30,4 +28,5 @@ public class MyTurn implements Turn {
     public CombinationController getCombi() {
         return combi;
     }
+
 }

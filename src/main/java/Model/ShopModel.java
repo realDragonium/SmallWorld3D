@@ -19,6 +19,7 @@ public class ShopModel implements ShopObservable {
     private Translate position;
     private List<String> races = new ArrayList<>();
     private List<String> powers = new ArrayList<>();
+    public boolean buyButton = false;
 
     public ShopModel(){
         creatNewRaceList();

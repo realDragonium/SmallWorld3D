@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.CombinationController;
 import Controller.PlayerController;
 import Observable.TurnObservable;
 import Observer.TurnObserver;
@@ -13,23 +14,14 @@ public class TurnModel implements TurnObservable {
     private List<TurnObserver> observers = new ArrayList<>();
     public PlayerController currentPlayer;
     public List<PlayerController> players;
-    private LinkedList<Turn> turns = new LinkedList<>();
-    private int myPlayerId;
+    public LinkedList<Turn> turns = new LinkedList<>();
+    public final int myPlayerId;
+    public Turn currentTurn;
+    public CombinationController currentCombi;
 
     public TurnModel(List<PlayerController> players, int myPlayerId){
         this.myPlayerId = myPlayerId;
         this.players = players;
-    }
-
-    public LinkedList<Turn> getTurns(){
-        return turns;
-    }
-
-    public void newRound(){
-        turns.add(new NotMyTurn());
-        turns.add(new NotMyTurn());
-        turns.add(new NotMyTurn());
-        turns.add(myPlayerId, new MyTurn());
     }
 
     @Override

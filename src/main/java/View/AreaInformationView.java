@@ -33,7 +33,7 @@ public class AreaInformationView implements AreaInformationObserver {
 
     @Override
     public void update(AreaInformationObservable ao) {
-        areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getId());
+        areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getName());
         buttonGroup.getChildren().clear();
 
         for(AreaInfoEnum areaInfo : ao.getArea().getAreaInfoButtons()){

@@ -36,24 +36,33 @@ public class ShopController implements FirebaseGameObserver, Animatable {
     }
 
     private void buyingItem(int item) {
-        if (model.getShopItems().size() > item) {
-            gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
-        }
-
+        buyButtonsOff();
+        gameCon.getCurrentPlayer().buyFromShop(model.getShopItem(item), item);
     }
 
-    public void buyToFirebase(int item){
-        if (model.getShopItems().size() > item) {
-            fbGame.buyCombiAction(item);
-            fbGame.nextPhaseAction();
-            TimerTask start = new TimerTask() {
-                @Override
-                public void run() {
-                    createRandomShopItem();
-                }
-            };
-            new Timer().schedule(start, 1000);
-        }
+    public void buyToFirebase(int item) {
+//        if (model.getShopItems().size() > item) {
+        fbGame.buyCombiAction(item);
+        fbGame.nextPhaseAction();
+        TimerTask start = new TimerTask() {
+            @Override
+            public void run() {
+                createRandomShopItem();
+            }
+        };
+        new Timer().schedule(start, 1000);
+//        }
+    }
+
+
+    public void buyButtonsOff() {
+        for (CombinationController combi : model.getShopItems())
+            combi.buybuttonOff();
+    }
+
+    public void buyButtonsOn() {
+        for (CombinationController combi : model.getShopItems())
+            combi.buybuttonOn();
     }
 
     public void registerObserver(ShopObserver obs) {
@@ -90,7 +99,7 @@ public class ShopController implements FirebaseGameObserver, Animatable {
         return model.getShopItemIndex(item);
     }
 
-    public void moveToPosition(Translate position){
+    public void moveToPosition(Translate position) {
         AnimationsManager.getInstance().createMoveToAnimation(this, position, 2);
     }
 
@@ -98,7 +107,7 @@ public class ShopController implements FirebaseGameObserver, Animatable {
         moveToPosition(new Translate(1920, model.getPosition().getY()));
     }
 
-    public void showShop(){
+    public void showShop() {
         moveToPosition(new Translate(1570, model.getPosition().getY()));
     }
 

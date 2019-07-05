@@ -29,8 +29,7 @@ public class GameView implements GameObserver {
         createViews();
         basicViewLayout();
         gameCon.register(this);
-        gameCon.setPlayerPositions();
-        gameCon.startGame();
+        gameCon.startFbListener();
     }
 
     private void createViews(){

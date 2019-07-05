@@ -4,10 +4,12 @@ import Firebase.FirebaseGameObserver;
 import Model.TurnModel;
 import Objects.SpecialFXMLLoader;
 import Observer.TurnObserver;
+import Turn.*;
 import View.TurnView;
 import com.google.cloud.firestore.DocumentSnapshot;
 import javafx.scene.transform.Translate;
 
+import java.util.LinkedList;
 import java.util.concurrent.Callable;
 
 
@@ -25,7 +27,7 @@ public class TurnController implements FirebaseGameObserver {
         createTurnView();
         manageControllers();
         registerFirebase();
-        model.newRound();
+        newRound();
     }
 
     private void manageControllers(){
@@ -54,19 +56,59 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     void newRound(){
-        model.newRound();
+        LinkedList<Turn> turns = new LinkedList<>();
+        int imPlayer = model.myPlayerId;
+        for(PlayerController player : gameCon.getPlayers()){
+            if(player.getId() != imPlayer)
+                fixTurnOtherPlayer(turns, player);
+            else
+                fixMyOwnTurns(turns, player);
+        }
+        model.turns = turns;
+    }
+
+    private void fixTurnOtherPlayer(LinkedList<Turn> turns, PlayerController player){
+        if(player.getCurrentCombi() == null)
+            turns.add(new NotMyTurn(player, null));
+         else
+            turns.add(new NotMyTurn(player, player.getCurrentCombi()));
+
+        for(CombinationController combi: player.getDeclineCombinations()){
+            turns.add(new NotMyTurn(player, combi));
+        }
+    }
+
+    private void fixMyOwnTurns(LinkedList<Turn> turns, PlayerController player){
+        if(player.getCurrentCombi() == null)
+            turns.add(new ShopTurn(player, null));
+        else
+            turns.add(new MyTurn(player, player.getCurrentCombi()));
+
+        for(CombinationController combi: player.getDeclineCombinations()){
+            turns.add(new MyTurn(player, combi));
+        }
     }
 
     void nextTurn(){
-        if(model.getTurns().size() == 0) roundCon.nextRound();
-        model.currentPlayer = model.players.get(4 - model.getTurns().size());
-        model.getTurns().pop().nextTurn(phaseCon);
+        if(model.turns.size() == 0) roundCon.nextRound();
+        model.currentTurn = model.turns.pop();
+        model.currentTurn.nextTurn(phaseCon);
+        model.currentCombi = model.currentTurn.getCombi();
+        model.currentPlayer = model.currentTurn.getPlayer();
         rotateCamera();
         model.notifyObservers();
     }
 
     PlayerController getCurrentPlayer() {
         return model.currentPlayer;
+    }
+
+    CombinationController getCurrentCombi(){
+        return model.currentCombi;
+    }
+
+    void setCurrentCombi(CombinationController combi){
+        model.currentCombi = combi;
     }
 
     private void rotateCamera(){

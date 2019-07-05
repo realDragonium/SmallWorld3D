@@ -21,8 +21,8 @@ public class CombinationInfoController {
         new SpecialFXMLLoader().loader("/CombinationInfoView.fxml", (Callable<CombinationInfoView>) () -> new CombinationInfoView(this));
     }
 
-    public void showCombinationInfo(CombinationController combi, boolean inShop){
-        model.inShop = inShop;
+    public void showCombinationInfo(CombinationController combi){
+        model.inShop = combi.showBuyButton();
         model.showCombination(combi);
         gameCon.addToGameView(GameViewEnum.COMBIINFO);
     }

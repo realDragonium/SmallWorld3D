@@ -6,7 +6,6 @@ import Enums.NotificationEnum;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
-import Phase.Phase;
 import View.CombinationView;
 import javafx.application.Platform;
 import javafx.scene.transform.Translate;
@@ -41,7 +40,7 @@ public class CombinationController {
         model.register(obs);
     }
 
-    boolean isActive() {
+    public boolean isActive() {
         return model.decline.isActive();
     }
 
@@ -66,16 +65,16 @@ public class CombinationController {
 
     void diceAttackThisArea(AreaController area, int eyes) {
         int needed = fichesNeeded(area) - eyes;
-        if(!(needed <= model.raceFiches.size())) {
+        if (!(needed <= model.raceFiches.size())) {
             gameCon.setMessage(NotificationEnum.DICENOTENOUGH);
             return;
         }
-        if(needed < 1) needed = 1;
+        if (needed < 1) needed = 1;
         int number = needed;
         TimerTask hide = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(()-> {
+                Platform.runLater(() -> {
                     attack(area, number);
                 });
             }
@@ -86,11 +85,11 @@ public class CombinationController {
     int fichesNeeded(AreaController area) {
         int numbers = area.getDefenceValue();
         numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
-        if(numbers < 1) numbers = 1;
+        if (numbers < 1) numbers = 1;
         return numbers;
     }
 
-    boolean hasOnlyOneFiche(){
+    boolean hasOnlyOneFiche() {
         return model.raceFiches.size() == 1;
     }
 
@@ -154,14 +153,13 @@ public class CombinationController {
     }
 
     public void clickedCombination() {
-        gameCon.showCombinationInfo(this, model.inShop);
+        gameCon.showCombinationInfo(this);
     }
 
-    public void buyItem(){
-        if (model.inShop) {
-            int item = gameCon.getShopCon().getShopItem(this);
-            gameCon.getShopCon().buyToFirebase(item);
-        }
+    public void buyItem() {
+        ShopController shop = gameCon.getShopCon();
+        int item = shop.getShopItem(this);
+        shop.buyToFirebase(item);
     }
 
     void cleareAreaInfo() {
@@ -195,18 +193,18 @@ public class CombinationController {
     void countPoints() {
         model.everyRoundPower.doAction(model);
         int totalPoints = model.points.getPoints(model);
-        totalPoints +=  model.racePoints.getPoints(model);
+        totalPoints += model.racePoints.getPoints(model);
         totalPoints += model.powerPoints.getPoints(model);
         player.addPoints(totalPoints);
     }
 
-    public void returnAllButOne(AreaController area) {
-        for(int i = 0; i < (area.getFichesAmount() - 1); i++) {
+    private void returnAllButOne(AreaController area) {
+        for (int i = 0; i < (area.getFichesAmount() - 1); i++) {
             addRaceFiche(area.removeFiche());
         }
     }
 
-    public void keepOneFichePerArea(){
+    private void keepOneFichePerArea() {
         model.getAreas().forEach(area -> returnAllButOne(area));
     }
 
@@ -215,5 +213,16 @@ public class CombinationController {
         model.thisRoundConquered = new ArrayList<>();
     }
 
+    boolean showBuyButton(){
+        return model.buyButton;
+    }
+
+
+    public void buybuttonOff() {
+        model.buyButton = false;
+    }
+    public void buybuttonOn() {
+        model.buyButton = true;
+    }
 
 }
