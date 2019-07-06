@@ -58,7 +58,6 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     void newRound(){
-        System.out.println("Turn: "+ model.myPlayerId);
         LinkedList<Turn> turns = new LinkedList<>();
         for(PlayerController player : gameCon.getPlayers()){
             if(player.getId() != model.myPlayerId)
@@ -183,6 +182,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void turnUpdate(DocumentSnapshot ds){
         nextTurn();
+        gameCon.removeFromGameView(GameViewEnum.VOTE);
     }
 
     private AreaController getArea(String id){

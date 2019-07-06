@@ -4,9 +4,13 @@ import Controller.GameController;
 import Enums.RaceEnum;
 import Observable.PlayerObservable;
 import Observer.PlayerObserver;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class UIBottom implements PlayerObserver {
@@ -27,6 +31,18 @@ public class UIBottom implements PlayerObserver {
 
     public void initialize(){
         group.getChildren().add(pane);
+        TimerTask start = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(()->getPlayer());
+            }
+        };
+
+        new Timer().schedule(start, 500);
+
+    }
+
+    private void getPlayer(){
         gameCon.getPlayer(gameCon.getMyPlayerId()).register(this);
     }
 

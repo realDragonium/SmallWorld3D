@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.GameViewEnum;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Model.VoteModel;

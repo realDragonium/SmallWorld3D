@@ -94,7 +94,7 @@ public class GameController implements FirebaseGameObserver {
             model.getPlayer(i).setPlayerName(names.get(i));
             if(names.get(i).equals(myName)) model.myPlayerId = i;
         }
-        System.out.println(model.myPlayerId);
+        System.out.println("My player Id: " + model.myPlayerId);
     }
 
 
