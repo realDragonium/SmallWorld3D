@@ -70,7 +70,7 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     public void exitLobby(){
         model.reset();
         fb.leaveLobby(model.getMyPlayer());
-        appCon.setActiveView(ApplicationViewEnum.LOBBY);
+        appCon.getLobbyCon().setAsActive();
     }
 
     public void register(InLobbyObserver ob){

@@ -28,6 +28,6 @@
     <Button fx:id="host" layoutX="649.0" layoutY="562.0" mnemonicParsing="false" onAction="#hostGame"
             prefHeight="30.0" prefWidth="130.0" text="Host game"/>
     <Button fx:id="join" layoutX="888.0" layoutY="562.0" mnemonicParsing="false" onAction="#join" prefHeight="30.0"
-            prefWidth="130.0" text="Join"/>
+            prefWidth="130.0" text="Refresh"/>
     <GridPane fx:id="panel" layoutX="395.0" layoutY="264.0"/>
 </Group>

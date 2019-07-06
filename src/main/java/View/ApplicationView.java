@@ -22,17 +22,14 @@ public class ApplicationView implements ApplicationObserver {
 
     public ApplicationView(Stage primaryStage){
         this.primaryStage = primaryStage;
-
         createViews();
-
         appCon.register(this);
         setStartScreen();
-
         startPrimaryStage();
     }
 
     private void setStartScreen(){
-        setActive(ApplicationViewEnum.LOGIN);
+        appCon.getLobbyCon().setAsActive();
     }
 
     private void createViews(){
