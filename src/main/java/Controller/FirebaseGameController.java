@@ -26,6 +26,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
     public void run() {
         service.startFBService();
         placeActionQueue();
+        activateListener();
     }
 
     public void activateListener(){
