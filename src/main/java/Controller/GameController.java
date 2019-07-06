@@ -1,6 +1,7 @@
 package Controller;
 
 import Firebase.FirebaseGameObserver;
+import Firebase.FirebaseGameService;
 import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
@@ -57,12 +58,21 @@ public class GameController implements FirebaseGameObserver {
         int numberOfPlayers = 4;
         model = new GameModel(8, createPlayers(numberOfPlayers));
         setPlayerPositions();
-        fbGame = new FirebaseGameController("beau1", appCon.getFirestore().getfbGame());
-        new Thread(fbGame).start();
         createControllers();
-        fbGame.register("start", this);
     }
 
+    public void startFirebaseConnection(FirebaseGameService fb){
+        fbGame = new FirebaseGameController("beau1", fb);
+        new Thread(fbGame).start();
+
+        fbGame.register("start", this);
+
+        shopCon = new ShopController(this);
+        phaseCon = new PhaseController(this);
+        roundCon = new RoundController(this);
+        turnCon = new TurnController(this);
+        timerCon = new TimerController(this);
+    }
 
 
     private List<PlayerController> createPlayers(int numberOfPlayers){
@@ -114,12 +124,7 @@ public class GameController implements FirebaseGameObserver {
 
     private void createControllers() {
         mapCon = new MapController(this);
-        shopCon = new ShopController(this);
 
-        phaseCon = new PhaseController(this);
-        roundCon = new RoundController(this);
-        turnCon = new TurnController(this);
-        timerCon = new TimerController(this);
 
         declineCon = new DeclineController(this);
         buttonCon = new ButtonController(this);

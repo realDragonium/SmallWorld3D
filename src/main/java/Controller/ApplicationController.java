@@ -68,6 +68,7 @@ public class ApplicationController {
         gameCon = new GameController(this);
 //        new GameView(gameCon, ApplicationViewEnum.GAME.getGroup());
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, ApplicationViewEnum.GAME.getGroup()));
+        gameCon.startFirebaseConnection(fbService.getfbGame());
     }
 
     FirebaseLobbyController getLobbyFireBase() {
