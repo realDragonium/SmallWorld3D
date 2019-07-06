@@ -124,4 +124,8 @@ public class ApplicationController {
     void setAccount(AccountController account) {
         this.account = account;
     }
+
+    public void logout() {
+        fbService.getfbLogin().logout(account.getAccountName());
+    }
 }

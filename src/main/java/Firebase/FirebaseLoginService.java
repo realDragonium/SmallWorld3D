@@ -23,10 +23,9 @@ public class FirebaseLoginService {
         return getDocSnapshot(accRef.document(name)).exists();
     }
 
-    public String getPassword(String username) {
+    public DocumentSnapshot getPassword(String username) {
         DocumentReference docRef = accRef.document(username);
-        DocumentSnapshot document = getDocSnapshot(docRef);
-        return document.getString("password");
+        return getDocSnapshot(docRef);
 
     }
 
@@ -45,4 +44,10 @@ public class FirebaseLoginService {
         }
         return null;
     }
+
+    public void setLoggedIn(String username, HashMap<String, Object> map) {
+        accRef.document(username).update(map);
+    }
+
+
 }

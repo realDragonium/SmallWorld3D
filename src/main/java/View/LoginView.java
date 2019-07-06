@@ -87,7 +87,7 @@ public class LoginView implements LoginObserver{
 
     @FXML
 	private void registeren(){
-//    	loginController.register(Username.getText(), Password.getText());
+    	loginController.register(Username.getText(), Password.getText());
 	}
 
 	@Override

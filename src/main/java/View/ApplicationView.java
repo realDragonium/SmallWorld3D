@@ -48,6 +48,10 @@ public class ApplicationView implements ApplicationObserver {
         primaryStage.show();
 //        primaryStage.setMaximized(true);
         primaryStage.setTitle("Small World - Group 7b");
+
+        primaryStage.setOnCloseRequest(event -> {
+            appCon.logout();
+        });
     }
 
     private void setActive(ApplicationViewEnum view) {
