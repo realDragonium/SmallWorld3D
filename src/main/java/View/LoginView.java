@@ -66,8 +66,8 @@ public class LoginView implements LoginObserver{
 
 	@FXML
 	private void login(){
-//		loginController.validateLoginInfo(Username.getText(), Password.getText());
-		loginController.goToHomeScreen();
+		loginController.validateLoginInfo(Username.getText(), Password.getText());
+//		loginController.goToHomeScreen();
 	}
 
 	private void goToHomeScreen(){

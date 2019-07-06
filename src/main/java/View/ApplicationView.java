@@ -16,7 +16,6 @@ public class ApplicationView implements ApplicationObserver {
     private Scene scene;
     private Stage primaryStage;
     private Group root = new Group();
-    private Map<String, Group> groups = new HashMap<>();
 
     private ApplicationController appCon;
 

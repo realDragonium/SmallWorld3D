@@ -13,12 +13,4 @@ public class AccountController {
     String getAccountName(){
         return model.getAccountName();
     }
-
-    void setPlayerId(String id){
-        model.setPlayerId(id);
-    }
-
-    String getPlayerId(){
-        return model.getPlayerId();
-    }
 }

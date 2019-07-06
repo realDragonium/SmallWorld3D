@@ -22,7 +22,7 @@ public class TurnController implements FirebaseGameObserver {
     private RoundController roundCon;
 
     TurnController(GameController gameCon){
-        model = new TurnModel(gameCon.getPlayers(), gameCon.imPlayer());
+        model = new TurnModel(gameCon.getPlayers(), gameCon.getMyPlayerId());
         this.gameCon = gameCon;
         createTurnView();
         manageControllers();
