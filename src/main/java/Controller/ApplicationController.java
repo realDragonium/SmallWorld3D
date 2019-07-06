@@ -103,4 +103,8 @@ public class ApplicationController {
     public FirebaseService getFirestore() {
         return fbService;
     }
+
+    public LobbyController getLobbyCon() {
+        return lobbyCon;
+    }
 }

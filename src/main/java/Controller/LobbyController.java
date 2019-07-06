@@ -1,5 +1,7 @@
 package Controller;
 
+import Enums.ApplicationViewEnum;
+import Enums.GameViewEnum;
 import Firebase.FirebaseAllLobbiesObserver;
 import Firebase.FirebaseLobbyObserver;
 import Firebase.FirebaseLobbyService;
@@ -19,7 +21,6 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 
 	public LobbyController(ApplicationController appCon){
 		this.fb = appCon.getLobbyFireBase();
-
 		this.appCon = appCon;
 	}
 
@@ -49,4 +50,9 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 		}
 		lobbymodel.notifyAllObservers();
 	}
+
+    public void setAsActive() {
+	    refreshLobbies();
+	    appCon.setActiveView(ApplicationViewEnum.LOBBY);
+    }
 }
