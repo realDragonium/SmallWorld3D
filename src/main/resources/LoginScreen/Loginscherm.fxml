@@ -57,38 +57,4 @@
     </ImageView>
     <Button fx:id="registeerButton" layoutX="1120.0" layoutY="708.0" mnemonicParsing="false" onAction="#registeren" text="Registeren" />
 
-    <ScrollPane fx:id="testScrollPane" layoutX="118.0" layoutY="137.0" prefHeight="174.0" prefWidth="200.0">
-      <content>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Pane prefHeight="55.0" prefWidth="200.0">
-                  <children>
-                     <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Knop1" />
-                  </children>
-               </Pane>
-               <Pane layoutX="-6.0" layoutY="65.0" prefHeight="55.0" prefWidth="200.0">
-                  <children>
-                     <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Knop1" />
-                  </children>
-               </Pane>
-               <Pane layoutY="128.0" prefHeight="55.0" prefWidth="200.0">
-                  <children>
-                     <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Knop1" />
-                  </children>
-               </Pane>
-               <Pane prefHeight="55.0" prefWidth="200.0">
-                  <children>
-                     <Button layoutX="13.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Knop1" />
-                  </children>
-               </Pane>
-               <Pane prefHeight="55.0" prefWidth="200.0">
-                  <children>
-                     <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Knop1" />
-                  </children>
-               </Pane>
-            </children>
-         </AnchorPane>
-      </content>
-   </ScrollPane>
-
 </AnchorPane>
