@@ -39,7 +39,6 @@ public class FirebaseLoginController {
     }
 
     public boolean register(String username, String password) {
-        System.out.println("registeer");
         if (service.exists(username)) return false;
         HashMap<String, Object> map = new HashMap<>();
         map.put("password", password);
