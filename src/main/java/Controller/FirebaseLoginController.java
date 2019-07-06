@@ -14,7 +14,7 @@ public class FirebaseLoginController {
         this.service = service;
     }
 
-    public boolean login(String username, String password) {
+    boolean login(String username, String password) {
         if (service.exists(username)) {
             DocumentSnapshot docSnap = service.getPassword(username);
             if (docSnap.getString("password").equals(password) &&
