@@ -61,6 +61,8 @@ public class GameController implements FirebaseGameObserver {
         fbGame.register("start", this);
     }
 
+
+
     private List<PlayerController> createPlayers(int numberOfPlayers){
         List<PlayerController> players = new ArrayList<>();
 

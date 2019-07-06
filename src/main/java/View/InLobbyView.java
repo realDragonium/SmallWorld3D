@@ -4,27 +4,23 @@ import Controller.InLobbyController;
 import Observable.InLobbyObservable;
 import Observer.InLobbyObserver;
 import javafx.scene.Group;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class InLobbyView implements InLobbyObserver {
 
     private InLobbyController con;
     private Group group;
-
-    public Group root;
-    public Text Player1;
-    public Text Player2;
-    public Text Player3;
-    public Text Player4;
+    public Pane pane;
 
 
-    public InLobbyView(Group group, InLobbyController con) {
+    public InLobbyView(InLobbyController con, Group group) {
         this.group = group;
         this.con = con;
     }
 
     public void initialize() {
-        group.getChildren().add(root);
+        group.getChildren().add(pane);
         con.register(this);
     }
 
@@ -44,14 +40,17 @@ public class InLobbyView implements InLobbyObserver {
 
     @Override
     public void update(InLobbyObservable ilo){
-        Player1.setText(ilo.getPlayer1());
-        Player2.setText(ilo.getPlayer2());
-        Player3.setText(ilo.getPlayer3());
-        Player4.setText(ilo.getPlayer4());
+//        Player1.setText(ilo.getPlayer1());
+//        Player2.setText(ilo.getPlayer2());
+//        Player3.setText(ilo.getPlayer3());
+//        Player4.setText(ilo.getPlayer4());
         if(ilo.getStart()){
             start();
         }
     }
 
 
+    public void exitLobby() {
+        con.exitLobby();
+    }
 }

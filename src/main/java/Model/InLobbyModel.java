@@ -4,17 +4,22 @@ import Observable.InLobbyObservable;
 import Observer.InLobbyObserver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class InLobbyModel implements InLobbyObservable {
     private List<InLobbyObserver> observers = new ArrayList<>();
     private boolean start = false;
-    private String lobbyNaam;
-    private String player1;
-    private String player2;
-    private String player3;
-    private String player4;
+    private String lobbyNaam = "";
+    private String myName;
+    private String myPlayer;
+    private int lobbyId;
+    private String password = "test";
+    private String gameSpeed = "normal";
+    private boolean host = false;
+    private HashMap<String, Boolean> playerStates = new HashMap<>();
+    private HashMap<String, String> playerNames = new HashMap<>();
 
 
 
@@ -32,7 +37,6 @@ public class InLobbyModel implements InLobbyObservable {
         this.start = start;
         notifyAllObservers();
     }
-
 
     // Notifies all observers in the list of observers
     @Override
@@ -53,23 +57,13 @@ public class InLobbyModel implements InLobbyObservable {
     }
 
     @Override
-    public String getPlayer1() {
-        return player1;
+    public String getPlayer(int i) {
+        return playerNames.get("player" + i);
     }
 
     @Override
-    public String getPlayer2() {
-        return player2;
-    }
-
-    @Override
-    public String getPlayer3() {
-        return player3;
-    }
-
-    @Override
-    public String getPlayer4() {
-        return player4;
+    public boolean getPlayerState(int i) {
+        return playerStates.get("player" + i);
     }
 
     @Override
@@ -77,23 +71,68 @@ public class InLobbyModel implements InLobbyObservable {
         return start;
     }
 
-    public void setPlayer(int i, String player) {
-        switch (i) {
-            case 1:
-                player1 = player;
-                break;
-            case 2:
-                player2 = player;
-                break;
-            case 3:
-                player3 = player;
-                break;
-            case 4:
-                player4 = player;
-                break;
-        }
-        notifyAllObservers();
-
-        }
+    @Override
+    public boolean isHost() {
+        return host;
     }
+
+    public void setPlayer(int i, String name) {
+        playerNames.put("player" + i, name);
+        notifyAllObservers();
+    }
+
+    public void setAsHost() {
+        host = true;
+    }
+
+    public void setPlayerReady(int i, boolean state) {
+        playerStates.put("player" + i, state);
+        notifyAllObservers();
+    }
+
+    public void setLobbyId(int id) {
+        lobbyId = id;
+    }
+
+    public HashMap<String, String> getPlayerNames() {
+        return playerNames;
+    }
+
+    public HashMap<String, Boolean> getPlayerStates() {
+        return playerStates;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getGameSpeed() {
+        return gameSpeed;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setMyName(String name) {
+        myName = name;
+    }
+
+    public void reset(){
+        playerNames = new HashMap<>();
+        playerStates = new HashMap<>();
+    }
+
+    public void setMyPlayer(String player){
+        myPlayer = player;
+    }
+
+    public String getMyName(){
+        return myName;
+    }
+
+    public String getMyPlayer() {
+        return myPlayer;
+    }
+}
 

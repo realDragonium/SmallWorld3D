@@ -1,7 +1,7 @@
 package Enums;
 
 public enum ApplicationViewEnum {
-    LOGIN("login"), GAME("game"), HOMESCREEN("homescreen");
+    LOGIN("login"), GAME("game"), HOMESCREEN("homescreen"), LOBBY("lobbyscreen"), INLOBBY("inlobbyscreen");
 
     private String view;
 

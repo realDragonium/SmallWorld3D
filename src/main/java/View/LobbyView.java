@@ -4,24 +4,29 @@ import Controller.LobbyController;
 import Observable.ObservableLobby;
 import Observer.LobbyObserver;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import java.util.HashMap;
 import java.util.List;
 
 public class LobbyView implements LobbyObserver {
     private LobbyController lobbyCon;
     private Group group;
     public Group root;
-    public Button terug, hosten;
+    public Group lobbies;
+    public Button back, host;
     public GridPane panel;
     private Button activeButton;
     private int gridCounter = 0;             // startwaarde aantal aangemaakte lobbies = 0
     private GridPane grid= new GridPane();
 
-    public LobbyView(Group group, LobbyController con) {
+    public LobbyView(LobbyController con, Group group) {
         this.group = group;
         this.lobbyCon = con;
     }
@@ -30,54 +35,47 @@ public class LobbyView implements LobbyObserver {
     public void initialize() {
         group.getChildren().add(root);
         lobbyCon.register(this);
-        panel.setVgap(10);
-        List<String> lijst = null;   // Gets lobbynames from firebase and puts in a list
-
-        for(String lobbyNaam: lijst) {
-            Button btn = new Button(lobbyNaam);
-            panel.add(btn, 0, gridCounter);
-            panel.getChildren().get(gridCounter).setId("button" + gridCounter);
-            gridCounter++;
-
-            // On button clicked, the button will change red.
-            btn.setOnAction(d -> {
-                if (activeButton != null) {
-                    activeButton.setStyle(" -fx-background-color:   -fx-background");
-                }
-                btn.setStyle("-fx-background-color: red;");
-                activeButton = btn;
-            });
-        }
     }
 
     public void join() {
-        lobbyCon.joinLobby(activeButton.getText());               // start de LobbySettingView
+        lobbyCon.refreshLobbies();
     }
 
-    private void host(){
-        lobbyCon.lobbyEdit();
+    public void hostGame() {
+        lobbyCon.createLobby();
     }
 
-    private void addLobbyFirebase(String lobbyNaam) {
-        panel.add(new Button(lobbyNaam), 0, gridCounter);
+    public void setLobby(int index, HashMap lobby){
+        Pane newLobby = new Pane();
+        newLobby.setPrefWidth(600);
+        newLobby.setPrefHeight(50);
+        newLobby.setBackground(new Background(new BackgroundFill(Color.rgb(200, 200, 200), CornerRadii.EMPTY, Insets.EMPTY)));
+        Font font = new Font(26);
+        Text name = new Text((String)lobby.get("lobbyName"));
+        name.setFont(font);
+        name.setLayoutY(20);
+        TextField password = new TextField();
+        password.setLayoutX(200);
+        Button button = new Button("join");
+        button.setLayoutX(400);
+        button.setOnAction(event -> joinLobby((String)lobby.get("lobbyId"),index, password.getText()));
+        newLobby.getChildren().add(name);
+        newLobby.getChildren().add(password);
+        newLobby.getChildren().add(button);
+        newLobby.setLayoutY(60 * index);
+        lobbies.getChildren().add(newLobby);
     }
 
-    public void hostGame(ActionEvent t) {
-        if (gridCounter < 5) {
-            gridCounter++;
-            host();
-        } else {
-            ((Node) t.getSource()).setOpacity(0);
-            root.getChildren().remove(t.getSource());
-        }
+    private void joinLobby(String id, int index, String password) {
+        lobbyCon.joinLobby(Integer.parseInt(id),index, password);
     }
 
     @Override
     public void update(ObservableLobby lo) {
-        List<String> lobbynamen =  lo.getLobbyName();
-        for(String test:lobbynamen){
-            addLobbyFirebase(test);
+        for(int i = 0; i < lo.getLobbyName().size(); i++){
+            setLobby(i, lo.getLobbyName().get(i));
         }
+
     }
 
     public void terug(ActionEvent actionEvent) {
