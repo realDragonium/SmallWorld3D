@@ -19,4 +19,6 @@ public interface PlayerObservable {
     CombinationController getCurrentCombi();
 
     List<CombinationController> getDeclineCombies();
+
+    String getName();
 }

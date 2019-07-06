@@ -1,7 +1,6 @@
 package Controller;
 
 import Firebase.FirebaseGameObserver;
-import Firebase.FirebaseGameService;
 import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
@@ -56,9 +55,16 @@ public class GameController implements FirebaseGameObserver {
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
         int numberOfPlayers = 4;
-        model = new GameModel(8, createPlayers(numberOfPlayers));
+        model = new GameModel(8);
+        createPlayers();
         setPlayerPositions();
         createControllers();
+    }
+
+    public void startGame(String lobbyId){
+        System.out.println(lobbyId);
+        fbGame.setGameName(lobbyId);
+        new Thread(fbGame).start();
     }
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
@@ -81,16 +87,23 @@ public class GameController implements FirebaseGameObserver {
         attCon = new AttackController(this);
     }
 
+    private void setPlayerNames(HashMap info){
+        model.getPlayer(0).setPlayerName((String) info.get("player1"));
+        model.getPlayer(1).setPlayerName((String) info.get("player2"));
+        model.getPlayer(2).setPlayerName((String) info.get("player3"));
+        model.getPlayer(3).setPlayerName((String) info.get("player4"));
+    }
 
-    private List<PlayerController> createPlayers(int numberOfPlayers){
+
+    private void createPlayers(){
         List<PlayerController> players = new ArrayList<>();
 
-        players.add(new PlayerController(0, this, "Beau1"));
-        players.add(new PlayerController(1, this, "Beau2"));
-        players.add(new PlayerController(2, this, "Beau3"));
-        players.add(new PlayerController(3, this, "Beau4"));
+        players.add(new PlayerController(0, this, "None"));
+        players.add(new PlayerController(1, this, "none"));
+        players.add(new PlayerController(2, this, "None"));
+        players.add(new PlayerController(3, this, "None"));
 
-        return players;
+        model.setPlayers(players);
     }
 
     public void startGame(){
@@ -274,5 +287,10 @@ public class GameController implements FirebaseGameObserver {
     @Override
     public void update(DocumentSnapshot ds) {
         startGame();
+    }
+
+    public void setGameInfo(HashMap info) {
+        setPlayerNames((HashMap) info.get("playerNames"));
+        model.setGameSpeed((String) info.get("gameSpeed"));
     }
 }

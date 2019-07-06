@@ -1,17 +1,12 @@
 package Controller;
 
 import Enums.ApplicationViewEnum;
-import Firebase.FirebaseActionObserver;
-import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseLobbyObserver;
-import Firebase.FirebaseLobbyService;
 import Model.InLobbyModel;
 import Observer.InLobbyObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class InLobbyController implements FirebaseLobbyObserver { ;
@@ -38,32 +33,42 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     }
 
     public void createLobby(String player){
-        int id = fb.createLobby();
+        int lobbyId = fb.createLobby();
         fb.actionDocumentListener(this);
-        model.setLobbyNaam("lobby" + id);
         model.setPlayer(1, player);
-        model.setMyPlayer("player1");
+        model.setLobbyNaam("lobby" + lobbyId);
         model.setPlayerReady(1, false);
-        model.setLobbyId(id);
+        model.setMyPlayer("player1");
         model.setMyName(player);
-        model.setAsHost();
+        model.setLobbyId(lobbyId);
         updateLobbyInfo();
         appCon.setActiveView(ApplicationViewEnum.INLOBBY);
     }
 
-    public void updateLobbyInfo(){
+    public HashMap getGameInfo(){
         HashMap<String, Object> info = new HashMap<>();
         info.put("playerNames", model.getPlayerNames());
         info.put("playerStates", model.getPlayerStates());
+        info.put("lobbyId", Integer.toString(model.getLobbyId()));
         info.put("password", model.getPassword());
         info.put("lobbyName", model.getLobbyNaam());
         info.put("gameSpeed", model.getGameSpeed());
         info.put("inProgress", model.getStart());
-        fb.changeLobbyInfo(info);
+        return info;
+    }
+
+    public void updateLobbyInfo(){
+
+        fb.changeLobbyInfo(getGameInfo());
     }
 
     public void start(){            // start button
-        new GameController(appCon);  // starten van het spel
+
+
+        //moet eigenlijk update geven aan iedereen en niet hier starten
+        appCon.startGame(getGameInfo()); // starten van het spel
+        model.startGame(true);
+        updateLobbyInfo();
     }
 
 
@@ -95,5 +100,6 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
         }
         model.setLobbyNaam((String)info.get("lobbyName"));
         model.setPassword((String)info.get("password"));
+        model.startGame((Boolean)info.get("inProgress"));
     }
 }

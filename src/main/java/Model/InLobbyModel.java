@@ -15,7 +15,7 @@ public class InLobbyModel implements InLobbyObservable {
     private String myName;
     private String myPlayer;
     private int lobbyId;
-    private String password = "test";
+    private String password = "";
     private String gameSpeed = "normal";
     private boolean host = false;
     private HashMap<String, Boolean> playerStates = new HashMap<>();
@@ -133,6 +133,10 @@ public class InLobbyModel implements InLobbyObservable {
 
     public String getMyPlayer() {
         return myPlayer;
+    }
+
+    public int getLobbyId() {
+        return lobbyId;
     }
 }
 

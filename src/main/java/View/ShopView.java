@@ -48,7 +48,6 @@ public class ShopView implements ShopObserver {
 
     public void initialize() {
         group.getChildren().add(pane);
-        shopCon.registerObserver(this);
         shopCon.setShopPosition(pane.getLayoutX(), pane.getLayoutY());
         for (int i = 0; i < 6; i++) {
             Group group = new Group();
@@ -57,6 +56,7 @@ public class ShopView implements ShopObserver {
             pane.getChildren().add(group);
             groups.put("group" + i, group);
         }
+        shopCon.registerObserver(this);
     }
 
 

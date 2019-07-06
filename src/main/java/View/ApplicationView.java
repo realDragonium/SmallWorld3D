@@ -38,7 +38,7 @@ public class ApplicationView implements ApplicationObserver {
         appCon.createHomeScreenController();
         appCon.createLobbyController();
         appCon.createInLobbyController();
-//        appCon.createGameController(groups.get("game"));
+        //appCon.createGameController();
     }
 
     private void startPrimaryStage(){

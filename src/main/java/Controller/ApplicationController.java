@@ -8,6 +8,7 @@ import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.ApplicationObserver;
 import View.*;
+import javafx.application.Platform;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -71,33 +72,41 @@ public class ApplicationController {
         return  inLobbyCon;
     }
 
-    void startGame(){
+    void startGame(HashMap info){
         createGameController();
 
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
-                beginGame();
+                Platform.runLater(()->{
+                    beginGame(info);
+                });
             }
         };
 
-//        new Timer().schedule(start, 3000);
+        new Timer().schedule(start, 3000);
     }
 
-    void beginGame() {
-        List<String> races = new ArrayList<>();
-        List<String> powers = new ArrayList<>();
-        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
-        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
-        races.remove("losttribes");
-        for (int i = 0; i < 6; i++) {
-            String race = races.get((int) (Math.random() * races.size()));
-            String power = powers.get((int) (Math.random() * powers.size()));
-            races.remove(race);
-            powers.remove(power);
-            fbService.getfbGame().addCombiAction(race, power);
+    void beginGame(HashMap info) {
+        System.out.println(info.get("inProgress"));
+        if(!(Boolean)info.get("inProgress")) {
+            List<String> races = new ArrayList<>();
+            List<String> powers = new ArrayList<>();
+            Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
+            Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
+            races.remove("losttribes");
+            for (int i = 0; i < 6; i++) {
+                String race = races.get((int) (Math.random() * races.size()));
+                String power = powers.get((int) (Math.random() * powers.size()));
+                races.remove(race);
+                powers.remove(power);
+                fbService.getfbGame().addCombiAction(race, power);
+            }
+            fbService.getfbGame().startGame();
         }
-        fbService.getfbGame().startGame();
+        gameCon.setGameInfo(info);
+        gameCon.startGame((String) info.get("lobbyId"));
+        setActiveView(ApplicationViewEnum.GAME);
     }
 
     public FirebaseService getFirestore() {
