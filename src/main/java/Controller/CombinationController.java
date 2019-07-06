@@ -58,7 +58,7 @@ public class CombinationController {
         attack(area, fichesNeeded(area));
     }
 
-    private void attack(AreaController area, int number) {
+    void attack(AreaController area, int number) {
         area.attackArea(getFiches(number));
         area.changeCombiOwner(this);
         addArea(area);

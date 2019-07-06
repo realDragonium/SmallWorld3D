@@ -63,7 +63,7 @@ public class GameController implements FirebaseGameObserver {
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
         this.fbGame = fbGame;
-        fbGame.setGameName("beau1");
+        fbGame.setGameName("test");
         new Thread(fbGame).start();
 
 
@@ -74,7 +74,7 @@ public class GameController implements FirebaseGameObserver {
         roundCon = new RoundController(this);
         turnCon = new TurnController(this);
         timerCon = new TimerController(this);
-
+        diceCon = new DiceController(this);
         redCon = new RedeployingController(this);
         declineCon = new DeclineController(this);
         buttonCon = new ButtonController(this);
@@ -126,12 +126,8 @@ public class GameController implements FirebaseGameObserver {
 
     private void createControllers() {
         mapCon = new MapController(this);
-
         notiCon = new NotificationController(this);
-
-
         infoCon = new InfoController(this);
-        diceCon = new DiceController(this);
         combiInfoCon = new CombinationInfoController(this);
         areaInfoCon = new AreaInformationController(this);
         leaveCon = new LeaveController(this);

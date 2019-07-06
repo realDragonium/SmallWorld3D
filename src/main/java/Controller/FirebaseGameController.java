@@ -115,6 +115,14 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         placeAction(map);
     }
 
+    void specificAttackAction(String areaId, int number) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "specificattack");
+        map.put("areaId", areaId);
+        map.put("number", number);
+        placeAction(map);
+    }
+
     void addsFicheAction(String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "addFiche");

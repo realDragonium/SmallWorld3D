@@ -21,10 +21,8 @@ public class ApplicationView implements ApplicationObserver {
     private ApplicationController appCon = new ApplicationController();
 
     public ApplicationView(Stage primaryStage){
-
         this.primaryStage = primaryStage;
 
-        appCon.createLobbyFireBase();
         createViews();
 
         appCon.register(this);

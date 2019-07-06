@@ -1,17 +1,15 @@
 package Controller;
 
 import Enums.ApplicationViewEnum;
-import Firebase.FirebaseLobbyService;
+import Enums.PowerEnum;
+import Enums.RaceEnum;
 import Firebase.FirebaseService;
 import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.ApplicationObserver;
 import View.*;
-import com.google.cloud.firestore.Firestore;
-import javafx.scene.Group;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public class ApplicationController {
@@ -23,7 +21,6 @@ public class ApplicationController {
     private GameController gameCon;
     private LobbyController lobbyCon;
     private InLobbyController inLobbyCon;
-    private FirebaseLobbyController lobbyFB;
     private FirebaseService fbService;
 
     public ApplicationController(){
@@ -37,12 +34,6 @@ public class ApplicationController {
 
     public void register(ApplicationObserver ao){
         appModel.register(ao);
-    }
-
-    public void createLobbyFireBase(){
-//        lobbyFB = new FirebaseLobbyService();
-//        lobbyFB.startFBService();
-        lobbyFB = fbService.getfbLobby();
     }
 
     public void createLoginController(){
@@ -73,7 +64,7 @@ public class ApplicationController {
     }
 
     FirebaseLobbyController getLobbyFireBase() {
-        return lobbyFB;
+        return fbService.getfbLobby();
     }
 
     InLobbyController getInLobbyCon(){
@@ -86,11 +77,27 @@ public class ApplicationController {
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
-                fbService.getfbGame().startGame();
+                beginGame();
             }
         };
 
 //        new Timer().schedule(start, 3000);
+    }
+
+    void beginGame() {
+        List<String> races = new ArrayList<>();
+        List<String> powers = new ArrayList<>();
+        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
+        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
+        races.remove("losttribes");
+        for (int i = 0; i < 6; i++) {
+            String race = races.get((int) (Math.random() * races.size()));
+            String power = powers.get((int) (Math.random() * powers.size()));
+            races.remove(race);
+            powers.remove(power);
+            fbService.getfbGame().addCombiAction(race, power);
+        }
+        fbService.getfbGame().startGame();
     }
 
     public FirebaseService getFirestore() {

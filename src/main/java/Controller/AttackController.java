@@ -4,7 +4,10 @@ import Enums.GameViewEnum;
 import Enums.NotificationEnum;
 import Objects.SpecialFXMLLoader;
 import View.AttackView;
+import javafx.application.Platform;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 
 public class AttackController {
@@ -19,8 +22,8 @@ public class AttackController {
         createAttackView();
     }
 
-    private void createAttackView(){
-        new SpecialFXMLLoader().loader("/AttackView.fxml", (Callable<AttackView>)() -> new AttackView(this));
+    private void createAttackView() {
+        new SpecialFXMLLoader().loader("/AttackView.fxml", (Callable<AttackView>) () -> new AttackView(this));
     }
 
     public void AttackArea(String areaID) {
@@ -29,16 +32,27 @@ public class AttackController {
         int fiches = combi.getFichesAmount();
         int fichesNeeded = gameCon.getTurnCon().getCurrentCombi().fichesNeeded(area);
         gameCon.removeFromGameView(GameViewEnum.AREAINFO);
-        if(fiches < fichesNeeded) notEnoughFiches(combi, area);
+        if (fiches < fichesNeeded) notEnoughFiches(combi, area);
         else fbGame.attackAction(areaID);
     }
 
-    private void notEnoughFiches(CombinationController combi, AreaController area){
-        if(!combi.hasOnlyOneFiche()) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
-        else fbGame.diceAction(gameCon.getDiceCon().rollDice(), area.getId());
+    private void notEnoughFiches(CombinationController combi, AreaController area) {
+        if (!combi.hasOnlyOneFiche()) gameCon.setMessage(NotificationEnum.NOTENOUGHFICHES);
+        else {
+            int eyes = gameCon.getDiceCon().rollDice();
+            fbGame.diceAction(eyes, area.getId());
+            TimerTask delayedAttack = new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        fbGame.specificAttackAction(area.getId(), eyes);
+                        fbGame.nextPhaseAction();
+                    });
+                }
+            };
+            new Timer().schedule(delayedAttack, 4000);
+        }
     }
-
-
 
 
 //    public void removeFichesNeeded(int amount){

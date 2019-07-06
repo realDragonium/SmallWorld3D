@@ -19,6 +19,7 @@ public class DiceController implements FirebaseGameObserver {
     DiceController(GameController gameController) {
         gameCon = gameController;
         createDiceView();
+        gameCon.getFireBase().register("dice", this);
     }
 
     private void createDiceView() {
@@ -35,9 +36,7 @@ public class DiceController implements FirebaseGameObserver {
         int randInt = new Random().nextInt(6) + 1;
         int waarde = diceModel.giveValue(randInt);
         diceModel.changeSide(waarde);
-
         return waarde;
-
     }
 
     public void registreer(DiceObserver ob) {

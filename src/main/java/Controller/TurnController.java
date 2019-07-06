@@ -47,7 +47,8 @@ public class TurnController implements FirebaseGameObserver {
         fbGame.register("removeFiche", this::removeFicheUpdate);
         fbGame.register("leaves", this::leaveAreaUpdate);
         fbGame.register("turn", this::turnUpdate);
-        fbGame.register("dice", this::diceAttackUpdate);
+        fbGame.register("dice", this::diceUpdate);
+        fbGame.register("specificattack", this::specificAttackUpdate);
     }
 
     private void createTurnView() {
@@ -156,10 +157,13 @@ public class TurnController implements FirebaseGameObserver {
         reloadAreaInfoViews();
     }
 
-    private void diceAttackUpdate(DocumentSnapshot ds){
+    private void diceUpdate(DocumentSnapshot ds){
         gameCon.getDiceCon().update(ds);
+    }
+
+    private void specificAttackUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
-        getCurrentCombi().diceAttackThisArea(area, ds.getDouble("eyes").intValue());
+        getCurrentCombi().attack(area, ds.getDouble("eyes").intValue());
         reloadAreaInfoViews();
     }
 
