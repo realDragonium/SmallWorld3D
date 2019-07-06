@@ -66,9 +66,13 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
 
         //moet eigenlijk update geven aan iedereen en niet hier starten
-        appCon.startGame(getGameInfo()); // starten van het spel
+        // starten van het spel
         model.startGame(true);
         updateLobbyInfo();
+    }
+
+    public void startGame(){
+        appCon.startGame(getGameInfo());
     }
 
 
@@ -101,5 +105,8 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
         model.setLobbyNaam((String)info.get("lobbyName"));
         model.setPassword((String)info.get("password"));
         model.startGame((Boolean)info.get("inProgress"));
+        if((Boolean)info.get("inProgress")){
+            startGame();
+        }
     }
 }
