@@ -30,10 +30,7 @@ public class DeclineController {
 
     public void notInDecline(){
         closeDeclineView();
-        CombinationController combi = gameCon.getTurnCon().getCurrentCombi();
-        combi.checkPrepareAreas();
-        combi.prepareRound();
-        gameCon.addToGameView(GameViewEnum.BUTTON);
+        gameCon.getFireBase().notInDeclineAction();
     }
 
 }

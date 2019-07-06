@@ -61,9 +61,11 @@ public class GameController implements FirebaseGameObserver {
         createControllers();
     }
 
-    public void startFirebaseConnection(FirebaseGameService fb){
-        fbGame = new FirebaseGameController("beau1", fb);
+    public void startFirebaseConnection(FirebaseGameController fbGame){
+        this.fbGame = fbGame;
+        fbGame.setGameName("beau1");
         new Thread(fbGame).start();
+
 
         fbGame.register("start", this);
 
@@ -93,10 +95,6 @@ public class GameController implements FirebaseGameObserver {
 
     public void startGame(){
         turnCon.nextTurn();
-    }
-
-    public void startFbListener(){
-        fbGame.activateListener();
     }
 
     public void setPlayerPositions(){

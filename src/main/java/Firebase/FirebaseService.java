@@ -1,30 +1,32 @@
 package Firebase;
 
+import Controller.FirebaseGameController;
+import Controller.FirebaseLobbyController;
 import com.google.cloud.firestore.Firestore;
 
 public class FirebaseService implements Runnable {
 
     private Firestore fb;
-    private FirebaseLobbyService fbLobby;
-    private FirebaseGameService fbGame;
+    private FirebaseLobbyController fbLobby;
+    private FirebaseGameController fbGame;
 
     @Override
     public void run() {
         Database db = new Database();
         fb = db.getFirestoreDatabase();
-        fbLobby = new FirebaseLobbyService(fb);
-        fbGame = new FirebaseGameService(fb);
+        fbLobby = new FirebaseLobbyController(new FirebaseLobbyService(fb));
+        fbGame = new FirebaseGameController(new FirebaseGameService(fb));
     }
 
     public Firestore getFirestore(){
         return fb;
     }
 
-    public FirebaseLobbyService getfbLobby(){
+    public FirebaseLobbyController getfbLobby(){
         return fbLobby;
     }
 
-    public FirebaseGameService getfbGame(){
+    public FirebaseGameController getfbGame(){
         return fbGame;
     }
 }

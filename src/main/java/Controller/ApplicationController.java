@@ -10,6 +10,8 @@ import View.*;
 import com.google.cloud.firestore.Firestore;
 import javafx.scene.Group;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 
 public class ApplicationController {
@@ -40,8 +42,7 @@ public class ApplicationController {
     public void createLobbyFireBase(){
 //        lobbyFB = new FirebaseLobbyService();
 //        lobbyFB.startFBService();
-        lobbyFB = new FirebaseLobbyController(this);
-        new Thread(lobbyFB).start();
+        lobbyFB = fbService.getfbLobby();
     }
 
     public void createLoginController(){
@@ -79,8 +80,17 @@ public class ApplicationController {
         return  inLobbyCon;
     }
 
-    public void startGame(){
+    void startGame(){
         createGameController();
+
+        TimerTask start = new TimerTask() {
+            @Override
+            public void run() {
+                fbService.getfbGame().startGame();
+            }
+        };
+
+//        new Timer().schedule(start, 3000);
     }
 
     public FirebaseService getFirestore() {

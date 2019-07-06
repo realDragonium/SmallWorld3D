@@ -17,9 +17,13 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
     private Map<String, FirebaseGameObserver> observers = new HashMap<>();
     private Queue<Map<String, Object>> queue = new LinkedList<>();
 
-    public FirebaseGameController(String gameName, FirebaseGameService fbGame) {
+    public FirebaseGameController(FirebaseGameService fbGame) {
         service = fbGame;
-        fbGame.setGameName(gameName);
+    }
+
+    public void setGameName(String gameName){
+        service.setGameName(gameName);
+
     }
 
     @Override
@@ -136,6 +140,13 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         Map<String, Object> map = new HashMap<>();
         map.put("id", "decline");
         map.put("action", "decline");
+        placeAction(map);
+    }
+
+    void notInDeclineAction() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "decline");
+        map.put("action", "notdecline");
         placeAction(map);
     }
 

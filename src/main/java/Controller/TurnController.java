@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.GameViewEnum;
 import Firebase.FirebaseGameObserver;
 import Model.TurnModel;
 import Objects.SpecialFXMLLoader;
@@ -89,8 +90,6 @@ public class TurnController implements FirebaseGameObserver {
             turns.add(new ShopTurn(player, null));
         else
             turns.add(new MyTurn(player, player.getCurrentCombi()));
-
-
     }
 
     void nextTurn(){
@@ -141,9 +140,14 @@ public class TurnController implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-        //Decline updates
-        getCurrentCombi().goIntoDecline();
-        phaseCon.nextTurn();
+        gameCon.removeFromGameView(GameViewEnum.DECLINE);
+        if(ds.getString("action").equals("decline")) {
+            getCurrentCombi().goIntoDecline();
+            phaseCon.nextTurn();
+        } else {
+            getCurrentCombi().checkPrepareAreas();
+            getCurrentCombi().prepareRound();
+        }
     }
 
     private void attackUpdate(DocumentSnapshot ds){

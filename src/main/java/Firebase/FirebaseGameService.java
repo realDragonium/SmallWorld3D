@@ -21,7 +21,6 @@ public class FirebaseGameService {
         this.gameName = gameName;
     }
 
-
     public void startFBService(){
         gameRef = fb.collection("Games").document(gameName);
     }

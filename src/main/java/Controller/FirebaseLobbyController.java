@@ -8,14 +8,13 @@ import com.google.cloud.firestore.DocumentReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FirebaseLobbyController implements  Runnable {
+public class FirebaseLobbyController {
 
-    private ApplicationController appCon;
     private FirebaseLobbyService service;
     private DocumentReference currentLobby;
 
-    FirebaseLobbyController(ApplicationController appCon){
-        this.appCon = appCon;
+    public FirebaseLobbyController(FirebaseLobbyService service){
+        this.service = service;
     }
 
     void changeLobbyInfo(Object info){
@@ -65,12 +64,8 @@ public class FirebaseLobbyController implements  Runnable {
     }
 
 
-    public void pushAllLobbiesUpdate(FirebaseAllLobbiesObserver lobbies){
+    void pushAllLobbiesUpdate(FirebaseAllLobbiesObserver lobbies){
         service.pushAllLobbiesUpdate(lobbies);
     }
 
-    @Override
-    public void run() {
-        service = appCon.getFirestore().getfbLobby();
-    }
 }
