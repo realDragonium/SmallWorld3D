@@ -10,12 +10,17 @@ public class FirebaseService implements Runnable {
     private FirebaseLobbyController fbLobby;
     private FirebaseGameController fbGame;
 
+    public FirebaseService(){
+        fbLobby = new FirebaseLobbyController();
+        fbGame = new FirebaseGameController();
+    }
+
     @Override
     public void run() {
         Database db = new Database();
         fb = db.getFirestoreDatabase();
-        fbLobby = new FirebaseLobbyController(new FirebaseLobbyService(fb));
-        fbGame = new FirebaseGameController(new FirebaseGameService(fb));
+        fbLobby.setService(new FirebaseLobbyService(fb));
+        fbGame.setService(new FirebaseGameService(fb));
     }
 
     public Firestore getFirestore(){

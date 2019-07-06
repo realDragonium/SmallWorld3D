@@ -13,7 +13,8 @@ public class FirebaseLobbyController {
     private FirebaseLobbyService service;
     private DocumentReference currentLobby;
 
-    public FirebaseLobbyController(FirebaseLobbyService service){
+
+    public void setService(FirebaseLobbyService service){
         this.service = service;
     }
 

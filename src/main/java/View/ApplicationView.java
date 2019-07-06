@@ -18,10 +18,11 @@ public class ApplicationView implements ApplicationObserver {
     private Group root = new Group();
     private Map<String, Group> groups = new HashMap<>();
 
-    private ApplicationController appCon = new ApplicationController();
+    private ApplicationController appCon;
 
     public ApplicationView(Stage primaryStage){
         this.primaryStage = primaryStage;
+        appCon = new ApplicationController();
         createViews();
         appCon.register(this);
         setStartScreen();

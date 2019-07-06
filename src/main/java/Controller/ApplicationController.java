@@ -21,7 +21,7 @@ public class ApplicationController {
     private GameController gameCon;
     private LobbyController lobbyCon;
     private InLobbyController inLobbyCon;
-    private FirebaseService fbService;
+    public FirebaseService fbService;
 
     public ApplicationController(){
         fbService = new FirebaseService();
