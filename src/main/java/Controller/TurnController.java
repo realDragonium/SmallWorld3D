@@ -21,7 +21,6 @@ public class TurnController implements FirebaseGameObserver {
     private PhaseController phaseCon;
     private RoundController roundCon;
 
-
     TurnController(GameController gameCon){
         model = new TurnModel(gameCon.getPlayers(), gameCon.imPlayer());
         this.gameCon = gameCon;
@@ -61,9 +60,8 @@ public class TurnController implements FirebaseGameObserver {
 
     void newRound(){
         LinkedList<Turn> turns = new LinkedList<>();
-        int imPlayer = model.myPlayerId;
         for(PlayerController player : gameCon.getPlayers()){
-            if(player.getId() != imPlayer)
+            if(player.getId() != model.myPlayerId)
                 fixTurnOtherPlayer(turns, player);
             else
                 fixMyOwnTurns(turns, player);
@@ -79,8 +77,6 @@ public class TurnController implements FirebaseGameObserver {
             turns.add(new NotMyTurn(player, null));
          else
             turns.add(new NotMyTurn(player, player.getCurrentCombi()));
-
-
     }
 
     private void fixMyOwnTurns(LinkedList<Turn> turns, PlayerController player){

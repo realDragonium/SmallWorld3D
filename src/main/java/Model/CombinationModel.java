@@ -123,5 +123,4 @@ public class CombinationModel implements CombinationObservable {
         return position;
     }
 
-
 }
