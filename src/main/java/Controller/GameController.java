@@ -58,6 +58,8 @@ public class GameController implements FirebaseGameObserver {
         model = new GameModel(8, createPlayers(numberOfPlayers));
         setPlayerPositions();
         createControllers();
+        fbGame = new FirebaseGameController("test", appCon.getFirestore().getfbGame());
+        new Thread(fbGame).start();
         fbGame.register("start", this);
     }
 
@@ -71,9 +73,6 @@ public class GameController implements FirebaseGameObserver {
         players.add(new PlayerController(2, this, "Beau3"));
         players.add(new PlayerController(3, this, "Beau4"));
 
-//        for(int i = 0; i < numberOfPlayers; i++)
-//            players.add(new PlayerController(i, this));
-
         return players;
     }
 
@@ -84,13 +83,6 @@ public class GameController implements FirebaseGameObserver {
 
     public void startFbListener(){
         fbGame.activateListener();
-//        createShopItems();
-    }
-
-    private void createShopItems(){
-        for (int i = 0; i < 6; i++) {
-            shopCon.createRandomShopItem();
-        }
     }
 
     public void setPlayerPositions(){
@@ -121,8 +113,6 @@ public class GameController implements FirebaseGameObserver {
     }
 
     private void createControllers() {
-        fbGame = new FirebaseGameController("test", this);
-        new Thread(fbGame).start();
         mapCon = new MapController(this);
         shopCon = new ShopController(this);
 

@@ -2,10 +2,12 @@ package Controller;
 
 import Enums.ApplicationViewEnum;
 import Firebase.FirebaseLobbyService;
+import Firebase.FirebaseService;
 import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.ApplicationObserver;
 import View.*;
+import com.google.cloud.firestore.Firestore;
 import javafx.scene.Group;
 
 import java.util.concurrent.Callable;
@@ -19,7 +21,13 @@ public class ApplicationController {
     private GameController gameCon;
     private LobbyController lobbyCon;
     private InLobbyController inLobbyCon;
-    private FirebaseLobbyService lobbyFB;
+    private FirebaseLobbyController lobbyFB;
+    private FirebaseService fbService;
+
+    public ApplicationController(){
+        fbService = new FirebaseService();
+        new Thread(fbService).start();
+    }
 
     public void setActiveView(ApplicationViewEnum view){
         appModel.setCurrentView(view);
@@ -30,8 +38,10 @@ public class ApplicationController {
     }
 
     public void createLobbyFireBase(){
-        lobbyFB = new FirebaseLobbyService();
-        lobbyFB.startFBService();
+//        lobbyFB = new FirebaseLobbyService();
+//        lobbyFB.startFBService();
+        lobbyFB = new FirebaseLobbyController(this);
+        new Thread(lobbyFB).start();
     }
 
     public void createLoginController(Group group){
@@ -56,19 +66,23 @@ public class ApplicationController {
 
     public void createGameController(Group group) {
         gameCon = new GameController(this);
-//        new GameView(gameCon, group);
+        new GameView(gameCon, group);
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
     }
 
-    public FirebaseLobbyService getLobbyFireBase() {
+    FirebaseLobbyController getLobbyFireBase() {
         return lobbyFB;
     }
 
-    public InLobbyController getInLobbyCon(){
+    InLobbyController getInLobbyCon(){
         return  inLobbyCon;
     }
 
     public void startGame(){
         //createGameController(groups.get("game"));
+    }
+
+    public FirebaseService getFirestore() {
+        return fbService;
     }
 }

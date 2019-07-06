@@ -2,6 +2,7 @@ package Controller;
 
 import Decline.InDecline;
 import Enums.AreaInfoEnum;
+import Enums.GameViewEnum;
 import Enums.NotificationEnum;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
@@ -253,4 +254,7 @@ public class CombinationController {
         deleteAllFichesInHand();
     }
 
+    public void showDeclineMessage() {
+        gameCon.addToGameView(GameViewEnum.DECLINE);
+    }
 }

@@ -28,7 +28,6 @@ public class ApplicationView implements ApplicationObserver {
         createViewGroups();
         createViews();
 
-
         appCon.register(this);
         setStartScreen();
 
@@ -36,7 +35,7 @@ public class ApplicationView implements ApplicationObserver {
     }
 
     private void setStartScreen(){
-        appCon.setActiveView(ApplicationViewEnum.LOBBY);
+        appCon.setActiveView(ApplicationViewEnum.LOGIN);
     }
 
     private void createViews(){
@@ -44,6 +43,7 @@ public class ApplicationView implements ApplicationObserver {
         appCon.createHomeScreenController(groups.get("homescreen"));
         appCon.createLobbyController(groups.get("lobbyscreen"));
         appCon.createInLobbyController(groups.get("inlobbyscreen"));
+//        appCon.createGameController(groups.get("game"));
     }
 
     private void createViewGroups(){

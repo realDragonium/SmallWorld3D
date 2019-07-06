@@ -23,6 +23,7 @@ public class Preparing implements Phase{
     public void setViews(CombinationController combi) {
         combi.prepareRound();
         combi.checkPrepareAreas();
+        if(combi.isActive()) combi.showDeclineMessage();
     }
 
 

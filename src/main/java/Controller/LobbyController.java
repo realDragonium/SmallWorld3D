@@ -14,7 +14,7 @@ import java.util.List;
 
 public class LobbyController implements FirebaseAllLobbiesObserver {
 	private LobbyModel lobbymodel = new LobbyModel();
-	private FirebaseLobbyService fb;
+	private FirebaseLobbyController fb;
 	private ApplicationController appCon;
 
 	public LobbyController(ApplicationController appCon){

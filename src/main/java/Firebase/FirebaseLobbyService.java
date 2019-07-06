@@ -16,26 +16,32 @@ public class FirebaseLobbyService {
     private CollectionReference lobbiesRef;
     private DocumentReference currentLobby;
 
-    public void startFBService(){
-        Database db = new Database();
-        fb = db.getFirestoreDatabase();
+    public FirebaseLobbyService(Firestore fb){
+        this.fb = fb;
         lobbiesRef = fb.collection("Lobbies");
     }
 
-    public void changeLobbyInfo(Object info){
-        System.out.println("updating");
-        currentLobby.update((Map)info);
+//    public void changeLobbyInfo(Object info){
+//        System.out.println("updating");
+//        currentLobby.update((Map)info);
+//    }
+
+    public DocumentReference joinLobby(String id){
+        currentLobby  = lobbiesRef.document(id);
+        return lobbiesRef.document(id);
     }
 
-    public void joinLobby(String id){
-        currentLobby = lobbiesRef.document(id);
-    }
+//    public int createLobby(){
+//        int id = getHighestlobbyNumber() + 1;
+//        currentLobby = lobbiesRef.document(Integer.toString(id));
+//        currentLobby.set(newLobby());
+//        return id;
+//    }
 
-    public int createLobby(){
-        int id = getHighestlobbyNumber() + 1;
-        currentLobby = lobbiesRef.document(Integer.toString(id));
-        currentLobby.set(newLobby());
-        return id;
+
+    public DocumentReference createLobby(String id){
+        currentLobby  = lobbiesRef.document(id);
+        return lobbiesRef.document(id);
     }
 
     public int getHighestlobbyNumber(){
@@ -43,15 +49,15 @@ public class FirebaseLobbyService {
         return list.size();
     }
 
-    private Object newLobby() {
-        HashMap<String, Object> info = new HashMap<>();
-        info.put("gameSpeed", "normal");
-        info.put("password", "");
-        info.put("inProgress", false);
-        info.put("playerNames", new HashMap<String, String>());
-        info.put("playerStates", new HashMap<String, Boolean>());
-        return info;
-    }
+//    private Object newLobby() {
+//        HashMap<String, Object> info = new HashMap<>();
+//        info.put("gameSpeed", "normal");
+//        info.put("password", "");
+//        info.put("inProgress", false);
+//        info.put("playerNames", new HashMap<String, String>());
+//        info.put("playerStates", new HashMap<String, Boolean>());
+//        return info;
+//    }
 
     public void actionDocumentListener(final FirebaseLobbyObserver controller) {
         DocumentReference docRef = currentLobby;
@@ -73,7 +79,7 @@ public class FirebaseLobbyService {
         lobby.update(getDocumentSnapshot());
     }
 
-    private DocumentSnapshot getDocumentSnapshot(){
+    public DocumentSnapshot getDocumentSnapshot(){
         try{
             return currentLobby.get().get();
         }catch (InterruptedException e) {
@@ -99,13 +105,12 @@ public class FirebaseLobbyService {
         return null;
     }
 
-    public void leaveLobby(String player) {
-        Map info = getDocumentSnapshot().getData();
-        ((HashMap)info.get("playerNames")).remove(player);
-        ((HashMap)info.get("playerStates")).remove(player);
-        System.out.println("removing from player: " + player);
-        changeLobbyInfo(info);
-        currentLobby = null;
-
-    }
+//    public void leaveLobby(String player) {
+//        Map info = getDocumentSnapshot().getData();
+//        ((HashMap)info.get("playerNames")).remove(player);
+//        ((HashMap)info.get("playerStates")).remove(player);
+//        System.out.println("removing from player: " + player);
+//        changeLobbyInfo(info);
+//        currentLobby = null;
+//    }
 }

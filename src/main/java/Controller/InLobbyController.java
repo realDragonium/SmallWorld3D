@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class InLobbyController implements FirebaseLobbyObserver { ;
     private InLobbyModel model = new InLobbyModel();
-    private FirebaseLobbyService fb;
+    private FirebaseLobbyController fb;
     private ApplicationController appCon;
 
     public InLobbyController(ApplicationController appCon){

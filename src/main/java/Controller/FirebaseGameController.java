@@ -5,6 +5,7 @@ import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseGameService;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.application.Platform;
 
@@ -12,14 +13,13 @@ import java.util.*;
 
 public class FirebaseGameController implements FirebaseActionObserver, Runnable {
 
-    private GameController gameCon;
     private FirebaseGameService service;
     private Map<String, FirebaseGameObserver> observers = new HashMap<>();
     private Queue<Map<String, Object>> queue = new LinkedList<>();
 
-    public FirebaseGameController(String gameName, GameController gameCon) {
-        this.gameCon = gameCon;
-        service = new FirebaseGameService(gameName);
+    public FirebaseGameController(String gameName, FirebaseGameService fbGame) {
+        service = fbGame;
+        fbGame.setGameName(gameName);
     }
 
     @Override
