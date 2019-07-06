@@ -41,11 +41,14 @@ public class AttackController {
         else {
             int eyes = gameCon.getDiceCon().rollDice();
             fbGame.diceAction(eyes, area.getId());
+            int needed = gameCon.getTurnCon().getCurrentCombi().fichesNeeded(area);
+
             TimerTask delayedAttack = new TimerTask() {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        fbGame.specificAttackAction(area.getId(), eyes);
+                        if(eyes + 1 >= needed)
+                            fbGame.specificAttackAction(area.getId(), 1);
                         fbGame.nextPhaseAction();
                     });
                 }

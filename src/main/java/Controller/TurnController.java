@@ -163,7 +163,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void specificAttackUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
-        getCurrentCombi().attack(area, ds.getDouble("eyes").intValue());
+        getCurrentCombi().attack(area, ds.getDouble("number").intValue());
         reloadAreaInfoViews();
     }
 
@@ -175,7 +175,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void removeFicheUpdate(DocumentSnapshot ds){
         AreaController area = getArea(ds.getString("areaId"));
-        area.removeFiche();
+        area.returnFiche();
         reloadAreaInfoViews();
     }
 

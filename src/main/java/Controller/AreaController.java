@@ -54,6 +54,10 @@ public class AreaController{
        return model.removeFiche();
     }
 
+    public void returnFiche(){
+        model.getOwningCombi().addRaceFiche(model.removeFiche());
+    }
+
     public void attackArea(Stack<FicheController> fiches) {
         if(model.getNumberOfFiches() > 0) {
             returnAllFiches();

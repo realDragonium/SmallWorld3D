@@ -68,24 +68,7 @@ public class CombinationController {
         removeArea(area);
         model.defend.retreat(this);
     }
-
-    void diceAttackThisArea(AreaController area, int eyes) {
-        int needed = fichesNeeded(area) - eyes;
-        if (!(needed <= model.raceFiches.size())) {
-            gameCon.setMessage(NotificationEnum.DICENOTENOUGH);
-            return;
-        }
-        if (needed < 1) needed = 1;
-        int number = needed;
-        TimerTask hide = new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> attack(area, number));
-            }
-        };
-        new Timer().schedule(hide, 3250);
-    }
-
+    
     int fichesNeeded(AreaController area) {
         int numbers = area.getDefenceValue();
         numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
