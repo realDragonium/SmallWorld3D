@@ -44,30 +44,30 @@ public class ApplicationController {
         new Thread(lobbyFB).start();
     }
 
-    public void createLoginController(Group group){
+    public void createLoginController(){
         loginCon = new LoginController(this);
-        fxmlLoader.loader("/LoginScreen/Loginscherm.fxml", (Callable<LoginView>) () -> new LoginView(loginCon, group));
+        fxmlLoader.loader("/LoginScreen/Loginscherm.fxml", (Callable<LoginView>) () -> new LoginView(loginCon, ApplicationViewEnum.LOGIN.getGroup()));
     }
 
-    public void createHomeScreenController(Group group){
+    public void createHomeScreenController(){
         hsCon = new HomeScreenController(this);
-        fxmlLoader.loader("/HomeScreen/Homescreen.fxml", (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, group));
+        fxmlLoader.loader("/HomeScreen/Homescreen.fxml", (Callable<HomeScreenView>) () -> new HomeScreenView(hsCon, ApplicationViewEnum.HOMESCREEN.getGroup()));
     }
 
-    public void createLobbyController(Group group){
+    public void createLobbyController(){
         lobbyCon = new LobbyController(this);
-        fxmlLoader.loader("/Lobbies/lobbyScreen.fxml", (Callable<LobbyView>) () -> new LobbyView(lobbyCon, group));
+        fxmlLoader.loader("/Lobbies/lobbyScreen.fxml", (Callable<LobbyView>) () -> new LobbyView(lobbyCon, ApplicationViewEnum.LOBBY.getGroup()));
     }
 
-    public void createInLobbyController(Group group){
+    public void createInLobbyController(){
         inLobbyCon = new InLobbyController(this);
-        fxmlLoader.loader("/Lobbies/InLobbyScreen.fxml", (Callable<InLobbyView>) () -> new InLobbyView(inLobbyCon, group));
+        fxmlLoader.loader("/Lobbies/InLobbyScreen.fxml", (Callable<InLobbyView>) () -> new InLobbyView(inLobbyCon, ApplicationViewEnum.INLOBBY.getGroup()));
     }
 
-    public void createGameController(Group group) {
+    public void createGameController() {
         gameCon = new GameController(this);
-        new GameView(gameCon, group);
-        fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, group));
+//        new GameView(gameCon, ApplicationViewEnum.GAME.getGroup());
+        fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, ApplicationViewEnum.GAME.getGroup()));
     }
 
     FirebaseLobbyController getLobbyFireBase() {
@@ -79,7 +79,7 @@ public class ApplicationController {
     }
 
     public void startGame(){
-        //createGameController(groups.get("game"));
+        createGameController();
     }
 
     public FirebaseService getFirestore() {

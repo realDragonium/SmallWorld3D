@@ -57,9 +57,9 @@ public class GameController implements FirebaseGameObserver {
         int numberOfPlayers = 4;
         model = new GameModel(8, createPlayers(numberOfPlayers));
         setPlayerPositions();
-        createControllers();
-        fbGame = new FirebaseGameController("test", appCon.getFirestore().getfbGame());
+        fbGame = new FirebaseGameController("beau1", appCon.getFirestore().getfbGame());
         new Thread(fbGame).start();
+        createControllers();
         fbGame.register("start", this);
     }
 

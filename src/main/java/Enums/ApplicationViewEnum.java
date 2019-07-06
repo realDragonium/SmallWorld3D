@@ -1,15 +1,18 @@
 package Enums;
 
+import javafx.scene.Group;
+
 public enum ApplicationViewEnum {
-    LOGIN("login"), GAME("game"), HOMESCREEN("homescreen"), LOBBY("lobbyscreen"), INLOBBY("inlobbyscreen");
+    LOGIN(new Group()), GAME(new Group()), HOMESCREEN(new Group()), LOBBY(new Group()),
+    INLOBBY(new Group());
 
-    private String view;
+    private Group group;
 
-    ApplicationViewEnum(String view){
-        this.view = view;
+    ApplicationViewEnum(Group group){
+        this.group = group;
     }
 
-    public String getStringValue(){
-        return view;
+    public Group getGroup(){
+        return group;
     }
 }

@@ -14,6 +14,7 @@ public class FirebaseService implements Runnable {
         fb = db.getFirestoreDatabase();
         fbLobby = new FirebaseLobbyService(fb);
         fbGame = new FirebaseGameService(fb);
+        System.out.println("Created FIREBASE");
     }
 
     public Firestore getFirestore(){

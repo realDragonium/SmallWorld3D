@@ -25,7 +25,6 @@ public class ApplicationView implements ApplicationObserver {
         this.primaryStage = primaryStage;
 
         appCon.createLobbyFireBase();
-        createViewGroups();
         createViews();
 
         appCon.register(this);
@@ -35,23 +34,15 @@ public class ApplicationView implements ApplicationObserver {
     }
 
     private void setStartScreen(){
-        appCon.setActiveView(ApplicationViewEnum.LOGIN);
+        setActive(ApplicationViewEnum.LOGIN);
     }
 
     private void createViews(){
-        appCon.createLoginController(groups.get("login"));
-        appCon.createHomeScreenController(groups.get("homescreen"));
-        appCon.createLobbyController(groups.get("lobbyscreen"));
-        appCon.createInLobbyController(groups.get("inlobbyscreen"));
+        appCon.createLoginController();
+        appCon.createHomeScreenController();
+        appCon.createLobbyController();
+        appCon.createInLobbyController();
 //        appCon.createGameController(groups.get("game"));
-    }
-
-    private void createViewGroups(){
-        groups.put("login", new Group());
-        groups.put("game", new Group());
-        groups.put("homescreen", new Group());
-        groups.put("lobbyscreen", new Group());
-        groups.put("inlobbyscreen", new Group());
     }
 
     private void startPrimaryStage(){
@@ -66,7 +57,7 @@ public class ApplicationView implements ApplicationObserver {
 
     private void setActive(ApplicationViewEnum view) {
         root.getChildren().clear();
-        root.getChildren().add(groups.get(view.getStringValue()));
+        root.getChildren().add(view.getGroup());
     }
 
     @Override
