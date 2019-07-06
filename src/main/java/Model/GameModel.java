@@ -14,11 +14,16 @@ public class GameModel implements GameObservable {
     private int imPlayer = 0;
     public boolean gameEnded = false;
     private List<GameViewEnum> activeViews = new ArrayList<>();
-    private final List<PlayerController> players;
+    private List<PlayerController> players;
+    private String gameSpeed;
 
-    public GameModel(int rounds, List<PlayerController> players){
+    public GameModel(int rounds){
         numberOfRounds = rounds;
+    }
+
+    public void setPlayers(List<PlayerController> players){
         this.players = players;
+
     }
 
 
@@ -73,5 +78,9 @@ public class GameModel implements GameObservable {
 
     public List<PlayerController> getPlayers() {
         return players;
+    }
+
+    public void setGameSpeed(String gameSpeed) {
+        this.gameSpeed = gameSpeed;
     }
 }

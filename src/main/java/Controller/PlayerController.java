@@ -112,4 +112,8 @@ public class PlayerController implements FirebaseGameObserver {
     public void fichesChanged(){
         model.notifyObserver();
     }
+
+    public void setPlayerName(String name) {
+        model.setName(name);
+    }
 }

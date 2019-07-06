@@ -18,7 +18,7 @@ public class HomeScreenController {
     }
 
     public void startGame() {
-        appCon.setActiveView(ApplicationViewEnum.GAME);
-        appCon.startGame();
+//        appCon.setActiveView(ApplicationViewEnum.GAME);
+//        appCon.startGame();
     }
 }

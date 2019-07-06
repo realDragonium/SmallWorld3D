@@ -62,6 +62,7 @@ public class PlayerView implements PlayerObserver {
             race.setImage(null);
             power.setImage(null);
         }
+        playerId.setText(po.getName());
     }
 
     private void updateFields(int punten) {

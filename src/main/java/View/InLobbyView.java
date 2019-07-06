@@ -44,9 +44,6 @@ public class InLobbyView implements InLobbyObserver {
 //        Player2.setText(ilo.getPlayer2());
 //        Player3.setText(ilo.getPlayer3());
 //        Player4.setText(ilo.getPlayer4());
-        if(ilo.getStart()){
-            start();
-        }
     }
 
 

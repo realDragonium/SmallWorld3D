@@ -15,7 +15,7 @@ public class PlayerModel implements PlayerObservable {
     private Translate player3dPos;
     private Translate player2dPos;
     private List<PlayerObserver> observers = new ArrayList<>();
-    private final String NAME;
+    private String NAME;
     private int playerID;
     private List<CombinationController> combinations = new ArrayList<>();
     private List<CombinationController> declineCombies = new ArrayList<>();
@@ -116,7 +116,13 @@ public class PlayerModel implements PlayerObservable {
 
 
 
+    @Override
     public String getName() {
         return NAME;
+    }
+
+    public void setName(String name) {
+        NAME = name;
+        notifyObserver();
     }
 }
