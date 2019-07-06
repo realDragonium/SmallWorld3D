@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -15,6 +16,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class LoginView implements LoginObserver{
+
+	public ScrollPane testScrollPane;
 	@FXML
 	private Pane root;
 	@FXML

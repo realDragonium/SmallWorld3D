@@ -63,7 +63,7 @@ public class GameController implements FirebaseGameObserver {
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
         this.fbGame = fbGame;
-        fbGame.setGameName("beau");
+        fbGame.setGameName("beau1");
         new Thread(fbGame).start();
 
 

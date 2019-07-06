@@ -30,7 +30,7 @@ public class ApplicationView implements ApplicationObserver {
     }
 
     private void setStartScreen(){
-        appCon.getLobbyCon().setAsActive();
+        setActive(ApplicationViewEnum.LOGIN);
     }
 
     private void createViews(){

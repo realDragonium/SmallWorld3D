@@ -11,14 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LobbyController implements FirebaseAllLobbiesObserver {
+
 	private LobbyModel lobbymodel = new LobbyModel();
 	private FirebaseLobbyController fb;
 	private ApplicationController appCon;
 
 	public LobbyController(ApplicationController appCon){
 		this.appCon = appCon;
-		this.fb = appCon.fbService.getfbLobby();
-		System.out.println(appCon.fbService.getfbLobby());
+		this.fb = appCon.getLobbyFireBase();
 	}
 
 	public void createLobby(){
