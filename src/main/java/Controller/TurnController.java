@@ -27,9 +27,8 @@ public class TurnController implements FirebaseGameObserver {
         createTurnView();
         manageControllers();
         registerFirebase();
-        newRound();
-        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
-        rotateCamera();
+//        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
+//        rotateCamera();
     }
 
     private void manageControllers(){
@@ -59,6 +58,7 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     void newRound(){
+        System.out.println("Turn: "+ model.myPlayerId);
         LinkedList<Turn> turns = new LinkedList<>();
         for(PlayerController player : gameCon.getPlayers()){
             if(player.getId() != model.myPlayerId)

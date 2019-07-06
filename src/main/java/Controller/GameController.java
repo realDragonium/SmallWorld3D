@@ -62,11 +62,7 @@ public class GameController implements FirebaseGameObserver {
         model.lobbyInfo = info;
         setPlayerNames((HashMap) info.get("playerNames"));
         model.setGameSpeed((String) info.get("gameSpeed"));
-
-
     }
-
-
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
         this.fbGame = fbGame;
@@ -91,11 +87,14 @@ public class GameController implements FirebaseGameObserver {
     private void setPlayerNames(HashMap info){
         List<String> names = new ArrayList<>(info.values());
         String myName = appCon.getAccount().getAccountName();
-
-        for (int i = 0; i < names.size(); i++) {
+        System.out.println("Names: "+names);
+        int numberOfTimes = names.size();
+        if(numberOfTimes > 4) numberOfTimes = 4;
+        for (int i = 0; i < numberOfTimes; i++) {
             model.getPlayer(i).setPlayerName(names.get(i));
             if(names.get(i).equals(myName)) model.myPlayerId = i;
         }
+        System.out.println(model.myPlayerId);
     }
 
 

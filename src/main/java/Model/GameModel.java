@@ -12,7 +12,7 @@ import java.util.List;
 public class GameModel implements GameObservable {
     private GameObserver observer;
     private final int numberOfRounds;
-    public int myPlayerId = 0;
+    public int myPlayerId;
     public boolean gameEnded = false;
     private List<GameViewEnum> activeViews = new ArrayList<>();
     private List<PlayerController> players;
