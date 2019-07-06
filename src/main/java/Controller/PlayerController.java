@@ -59,7 +59,6 @@ public class PlayerController implements FirebaseGameObserver {
 
     void removecombi(CombinationController combi) {
         combi.selfDestruct();
-        System.out.println("SELF DESTRUCT");
         model.removeCombi(combi);
     }
 
