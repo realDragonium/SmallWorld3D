@@ -84,7 +84,7 @@ public class PlayerController implements FirebaseGameObserver {
 
     @Override
     public void update(DocumentSnapshot ds) {
-        model.points = (int) Math.round(ds.getDouble("points"));
+        model.points = ds.getDouble("points").intValue();
         model.notifyObserver();
     }
 
