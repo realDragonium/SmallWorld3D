@@ -18,7 +18,7 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class MapController {
+public class MapController{
 	private Map<String, AreaController> areas = new HashMap<>();
 	private GameController gameCon;
 	private MapModel model;
