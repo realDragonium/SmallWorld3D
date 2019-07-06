@@ -56,11 +56,11 @@ public class PlayerView implements PlayerObserver {
     @Override
     public void update(PlayerObservable po) {
         updateFields(po.getPoints());
-        if(po.hasActiveCombination()){
+        if(po.hasActiveCombination())
             setCombinationImages(playerCon.getCurrentCombi().getRaceName(), playerCon.getCurrentCombi().getPower());
-
-//            Group combi = RaceEnum.valueOf(po.getActiveCombi().getRaceName()).getGroup();
-//            combination.getChildren().add(combi);
+        else {
+            race.setImage(null);
+            power.setImage(null);
         }
     }
 

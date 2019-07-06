@@ -55,6 +55,7 @@ public class PlayerController implements FirebaseGameObserver {
                 removecombi(combo);
         }
         model.declineCombi(combi);
+        model.notifyObserver();
     }
 
     void removecombi(CombinationController combi) {

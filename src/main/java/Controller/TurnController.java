@@ -143,6 +143,7 @@ public class TurnController implements FirebaseGameObserver {
     public void update(DocumentSnapshot ds) {
         //Decline updates
         getCurrentCombi().goIntoDecline();
+        phaseCon.nextTurn();
     }
 
     private void attackUpdate(DocumentSnapshot ds){
