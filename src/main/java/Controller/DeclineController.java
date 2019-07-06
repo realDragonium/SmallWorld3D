@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.GameViewEnum;
 import Objects.SpecialFXMLLoader;
 import View.DeclineView;
 
@@ -11,11 +12,6 @@ public class DeclineController {
 
     DeclineController(GameController gameCon){
         this.gameCon = gameCon;
-    }
-
-
-    public void inVerval() {
-        makeCombinationNonActive();
         createDeclineView();
     }
 
@@ -23,9 +19,12 @@ public class DeclineController {
         new SpecialFXMLLoader().loader("/DeclineView.fxml", (Callable<DeclineView>) () -> new DeclineView(this));
     }
 
-    private void makeCombinationNonActive(){
+    public void InDecline() {
         gameCon.getFireBase().declineAction();
     }
 
+    public void closeDeclineView(){
+        gameCon.removeFromGameView(GameViewEnum.DECLINE);
+    }
 
 }

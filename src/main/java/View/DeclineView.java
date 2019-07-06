@@ -9,13 +9,10 @@ import Enums.GameViewEnum;
 
 public class DeclineView {
 
-
-    public Button declineButton;
     Group group;
     public Pane root;
 
     private DeclineController declineCon;
-    private TextField declinetext;
 
     public DeclineView(DeclineController declineCon){
         this.declineCon = declineCon;
@@ -26,6 +23,12 @@ public class DeclineView {
         group.getChildren().addAll(root);
     }
 
-    public void inVerval(){declineCon.inVerval();}
+    public void InDecline(){
+        declineCon.InDecline();
+        closeView();
+    }
 
+    public void closeView(){
+        declineCon.closeDeclineView();
+    }
 }

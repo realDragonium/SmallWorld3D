@@ -26,7 +26,6 @@ public class ShopController implements FirebaseGameObserver, Animatable {
     ShopController(GameController gameCon) {
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
-        System.out.println(fbGame);
         fbGame.register("add", this::addUpdate);
         fbGame.register("buy", this::buyUpdate);
         createShopView();

@@ -200,7 +200,6 @@ public class CombinationController {
 
     private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo) {
         cleareAreaInfo();
-        System.out.println(model.getRaceId() + " : " + model.areas.size());
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas = areas;
     }

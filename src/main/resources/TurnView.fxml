@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<Pane fx:id="pane" layoutX="1110.0" layoutY="23.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+<Pane fx:id="pane" layoutX="1050.0" layoutY="23.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TurnView">
     <Text fx:id="turnField" fill="#fcfcfc" layoutY="49" opacity="0.9"
           textAlignment="CENTER">
