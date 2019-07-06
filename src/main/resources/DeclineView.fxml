@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 <Pane fx:id="root" layoutX="800" layoutY="350" prefHeight="217.0" prefWidth="336.0" style="-fx-background-color: rgb(46, 59, 69);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DeclineView">
-   <Pane layoutY="25" layoutX="25" prefHeight="167.0" prefWidth="286.0"  style="-fx-background-color: rgb(115, 120, 168); -fx-border-color: black;"/>
+   <Pane layoutY="15" layoutX="15" prefHeight="187.0" prefWidth="306.0"  style="-fx-background-color: rgb(115, 120, 168); -fx-border-color: black;"/>
 
     <Text layoutX="100.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Decline">
         <font>

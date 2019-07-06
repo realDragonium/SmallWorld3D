@@ -9,11 +9,12 @@ import javafx.scene.PerspectiveCamera;
 import Enums.View3DEnum;
 
 public class CameraView implements CameraObserver {
-    Group root;
-    Xform xForm = new Xform();
-    Xform cameraXform3 = new Xform();
-    PerspectiveCamera camera;
-    CameraController cameraCon;
+
+    private Group root;
+    private Xform xForm = new Xform();
+    private Xform cameraXform3 = new Xform();
+    private PerspectiveCamera camera;
+    private CameraController cameraCon;
 
     public CameraView(CameraController cameraCon){
         this.cameraCon = cameraCon;

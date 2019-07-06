@@ -25,10 +25,9 @@ public class DeclineView {
 
     public void InDecline(){
         declineCon.InDecline();
-        closeView();
     }
 
     public void closeView(){
-        declineCon.closeDeclineView();
+        declineCon.notInDecline();
     }
 }

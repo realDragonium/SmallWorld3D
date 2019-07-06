@@ -21,10 +21,11 @@ public class Preparing implements Phase{
 
     @Override
     public void setViews(CombinationController combi) {
-        combi.prepareRound();
-        combi.checkPrepareAreas();
-        if(combi == combi.getPlayer().getCurrentCombi()){
+        if(combi == combi.getPlayer().getCurrentCombi())
             combi.showDeclineMessage();
+        else{
+            combi.prepareRound();
+            combi.checkPrepareAreas();
         }
     }
 

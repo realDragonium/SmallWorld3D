@@ -62,7 +62,7 @@ public class DiceView implements DiceObserver {
         timeline.play();
         timeline.setOnFinished(e -> {
             dice.setImage(new Image("/Dice/Dice" + waarde + ".jpg"));
-            new Timer().schedule(hide, 500);
+            new Timer().schedule(hide, 1000);
         });
     }
 

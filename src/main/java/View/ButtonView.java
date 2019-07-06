@@ -25,12 +25,14 @@ public class ButtonView {
         root.getChildren().add(pane);
     }
 
+    public void nextPhase(){ buttonCon.nextPhase(); }
+
 
     public void showInfo(){ buttonCon.activeListener(); }
     public void fichesOver(){
         buttonCon.decline();
     }
-    public void nextPhase(){ buttonCon.nextPhase(); }
+
     public void createShopItem() {
         buttonCon.createShopItem();
     }

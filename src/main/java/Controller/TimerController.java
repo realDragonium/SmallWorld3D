@@ -25,7 +25,6 @@ public class TimerController {
     }
 
     public void startTimer(){
-
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
@@ -43,7 +42,6 @@ public class TimerController {
         model.setTimer(model.getSeconds() - 1);
 
         if(model.getSeconds() == 0 && model.isMyTurn()){
-//            gameCon.getPhaseCon().nextPhase();
             gameCon.getFireBase().nextPhaseAction();
         }
 

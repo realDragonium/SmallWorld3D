@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.GameViewEnum;
 import Enums.PhaseEnum;
 import Firebase.FirebaseGameObserver;
 import Model.PhaseModel;
@@ -49,6 +50,7 @@ public class PhaseController implements FirebaseGameObserver {
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
         changeView();
+        gameCon.addToGameView(GameViewEnum.BUTTON);
     }
 
     public void startShopTurn() {
@@ -68,6 +70,7 @@ public class PhaseController implements FirebaseGameObserver {
     public void nextTurn(){
         countPoints();
         turnCon.nextTurn();
+        gameCon.removeFromGameView(GameViewEnum.BUTTON);
     }
 
     public void clearAreaInfoView(){
