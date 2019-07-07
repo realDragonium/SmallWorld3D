@@ -99,7 +99,6 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     }
 
     public void start(){            // start button
-
         startGame();
         clientStart = true;
         model.startGame(true);
@@ -108,6 +107,7 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     public void startGame(){
         System.out.println("got my start update!");
+        System.out.println(getGameInfo().get("lobbyId"));
         appCon.startGame(getGameInfo());
     }
 

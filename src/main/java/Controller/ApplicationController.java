@@ -82,6 +82,7 @@ public class ApplicationController {
 
     void startGame(HashMap info) {
         createGameController(info);
+        if ((Boolean) info.get("inProgress")) return;
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
@@ -91,9 +92,7 @@ public class ApplicationController {
             }
         };
         System.out.println(info.get("inProgress"));
-        if (!(Boolean) info.get("inProgress")) {
-            new Timer().schedule(start, 3000);
-        }
+        new Timer().schedule(start, 3000);
     }
 
     void beginGame() {

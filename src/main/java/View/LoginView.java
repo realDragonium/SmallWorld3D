@@ -62,6 +62,11 @@ public class LoginView implements LoginObserver{
 			anchorPane.getChildren().add(pane);
 		}
 
+		root.setOnKeyPressed(event -> {
+			if(event.getCode().getName().equals("Enter"))
+				login();
+		});
+
 	}
 
 	@FXML
