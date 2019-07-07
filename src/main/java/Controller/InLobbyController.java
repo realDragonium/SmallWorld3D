@@ -37,12 +37,14 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
 
     public void joinLobby(String player, int id){
+
         appCon.setActiveView(ApplicationViewEnum.INLOBBY);
+        model.setLobbyId(id);
         fb.joinLobby(Integer.toString(id));
         fb.actionDocumentListener(this);
         fb.pushDocumentUpdate(this);
         putPlayerAtEmptySpot(player);
-        model.setLobbyId(id);
+
         updateLobbyInfo();
 
     }
@@ -128,23 +130,26 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     @Override
     public void update(DocumentSnapshot ds) {
-
+        System.out.println("update?1");
         Map<String, Object> info = ds.getData();
+        model.setLobbyNaam((String)info.get("lobbyName"));
+        model.setPassword((String)info.get("password"));
+        model.startGame((Boolean)info.get("inProgress"));
+        System.out.println("update?2");
+        if((Boolean)info.get("inProgress") && !clientStart){
+            clientStart = true;
+            startGame();
+        }
         Map<String, String> players = (Map)info.get("playerNames");
         for(int i = 1; i <= players.size(); i++){
+            System.out.println("setting player" + i);
             model.setPlayer(i, players.get("player"+i));
         }
         Map<String, Boolean> states = (Map)info.get("playerStates");
         for(int i = 1; i <= states.size(); i++){
             model.setPlayerReady(i, states.get("player"+i));
         }
-        model.setLobbyNaam((String)info.get("lobbyName"));
-        model.setPassword((String)info.get("password"));
-        model.startGame((Boolean)info.get("inProgress"));
-        if((Boolean)info.get("inProgress") && !clientStart){
-            clientStart = true;
-            startGame();
-        }
+
         model.notifyAllObservers();
     }
 
