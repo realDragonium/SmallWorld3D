@@ -1,6 +1,7 @@
 package Power;
 
 import Model.CombinationModel;
+import Special.RedeployPhase.StoutAction;
 
 public class Stout implements Power {
 
@@ -16,7 +17,7 @@ public class Stout implements Power {
 
     @Override
     public void activatePower(CombinationModel combi) {
-
+        combi.powerSpecialAction = new StoutAction();
     }
 
 }

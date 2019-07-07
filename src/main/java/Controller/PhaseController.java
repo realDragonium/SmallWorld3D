@@ -7,6 +7,8 @@ import Model.PhaseModel;
 import Objects.SpecialFXMLLoader;
 import Observer.PhaseObserver;
 import Phase.Phase;
+import Special.RedeployPhase.RedeployPhase;
+import Special.SpecialAction;
 import View.PhaseView;
 import com.google.cloud.firestore.DocumentSnapshot;
 
@@ -98,6 +100,16 @@ public class PhaseController implements FirebaseGameObserver {
 
     public void setTimer(int time, boolean b) {
         gameCon.setTimer(time, b);
+    }
+
+    public void useRedeployingPowers(){
+        CombinationController combi = turnCon.getCurrentCombi();
+        SpecialAction power = turnCon.getCurrentCombi().getPowerSpecialAction();
+        SpecialAction race = turnCon.getCurrentCombi().getRaceSpecialAction();
+        if (power instanceof RedeployPhase)
+            ((RedeployPhase)power).doAction(gameCon, combi);
+        if (race instanceof RedeployPhase)
+            ((RedeployPhase) race).doAction(gameCon, combi);
     }
 
 

@@ -10,6 +10,7 @@ public class Conquering implements Phase{
     public void nextPhase(PhaseController phaseCon) {
         phaseCon.setPhase(PhaseEnum.REDEPLOYING);
         phaseCon.changeView();
+        phaseCon.useRedeployingPowers();
     }
 
 

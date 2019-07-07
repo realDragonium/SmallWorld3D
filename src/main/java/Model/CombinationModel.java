@@ -50,7 +50,7 @@ public class CombinationModel implements CombinationObservable {
     public Defend defend = new NormalDefend();
 
     public SpecialAction powerSpecialAction = new SpecialNone();
-
+    public SpecialAction raceSpecialAction = new SpecialNone();
 
     public Points racePoints = new NullPoints();
     public Points powerPoints = new NullPoints();

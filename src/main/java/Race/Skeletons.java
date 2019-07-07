@@ -3,9 +3,10 @@ package Race;
 import Controller.FicheController;
 import Model.CombinationModel;
 import Power.EveryRoundPower;
+import Special.RedeployPhase.SkeletonAction;
 import javafx.scene.paint.Color;
 
-public class Skeletons implements Race, EveryRoundPower {
+public class Skeletons implements Race {
 
     @Override
     public String getName() {
@@ -24,15 +25,7 @@ public class Skeletons implements Race, EveryRoundPower {
 
     @Override
     public void activateRacePower(CombinationModel combi) {
-        combi.everyRoundPower = this;
+        combi.raceSpecialAction = new SkeletonAction();
     }
 
-    @Override
-    public void doAction(CombinationModel combi) {
-        int numberOfFiches =  combi.thisRoundConquered.size()/2;
-        for (int i = 0; i < numberOfFiches ; i++) {
-            FicheController fiche = new FicheController(1, combi.race.getName());
-            combi.addFiche(fiche);
-        }
-    }
 }

@@ -11,6 +11,7 @@ public class SpectateConquering implements Phase {
     @Override
     public void nextPhase(PhaseController phaseCon) {
         phaseCon.setPhase(PhaseEnum.SPECTATEREDEPLOYING);
+        phaseCon.useRedeployingPowers();
     }
 
     @Override

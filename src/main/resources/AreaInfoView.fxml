@@ -71,5 +71,5 @@
             <Font size="21.0" />
         </font>
     </Button>
-   <Group fx:id="buttonGroup" layoutX="500" layoutY="400"  />
+   <Group fx:id="buttonGroup" layoutX="500" layoutY="350"  />
 </Pane>

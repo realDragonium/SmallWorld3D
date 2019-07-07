@@ -8,7 +8,8 @@ public enum GameViewEnum {
     TIMER(new Group()), DECLINE(new Group()), DICE(new Group()), ATTACK(new Group()),
     REDEPLOY(new Group()), INFO(new Group()),AREAINFO(new Group()), LEAVE(new Group()),
     UIOVERLAY(new Group()), NOTIFICATION(new Group()), COMBINATION(new Group()),
-    PLAYERSINFO(new Group()), VOTE(new Group()), COMBIINFO(new Group()), POWERSPATT(new Group());
+    PLAYERSINFO(new Group()), VOTE(new Group()), COMBIINFO(new Group()), POWERSPATT(new Group()),
+    RACESPATT(new Group());
 
     private Group view;
 

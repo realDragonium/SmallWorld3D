@@ -49,6 +49,7 @@ public class GameController implements FirebaseGameObserver {
     private RedeployingController redeployCon;
     private InfoController infoCon;
     private LeaveController leaveCon;
+    private RaceSpecialAttackController raceSpAttCon;
 
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
@@ -99,9 +100,7 @@ public class GameController implements FirebaseGameObserver {
                 System.out.println("My player Id: " + model.myPlayerId);
                 return;
             }
-
         }
-
     }
 
 
@@ -155,6 +154,7 @@ public class GameController implements FirebaseGameObserver {
         areaInfoCon = new AreaInformationController(this);
         leaveCon = new LeaveController(this);
         powerSpAttCon = new PowerSpecialAttackController(this);
+        raceSpAttCon = new RaceSpecialAttackController(this);
     }
 
     public void setPowerSpAtt(SpecialAction action){
@@ -217,7 +217,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
 
-    void addToGameView(GameViewEnum go){
+    public void addToGameView(GameViewEnum go){
         if(!model.getCurrenViews().contains(go)) model.addActiveView(go);
     }
 

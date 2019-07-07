@@ -5,16 +5,17 @@ import Objects.SpecialFXMLLoader;
 import Special.AttackPhase.AttackPhase;
 import Special.SpecialAction;
 import View.PowerSpecialAttackView;
+import View.RaceSpecialAttackView;
 
 import java.util.concurrent.Callable;
 
-public class PowerSpecialAttackController {
+public class RaceSpecialAttackController {
 
     private GameController gameCon;
     private SpecialAction action;
 
 
-    public PowerSpecialAttackController(GameController gameCon) {
+    public RaceSpecialAttackController(GameController gameCon) {
         this.gameCon = gameCon;
         createView();
     }
@@ -24,7 +25,7 @@ public class PowerSpecialAttackController {
 }
 
     private void createView() {
-        new SpecialFXMLLoader().loader("/PowerSpecialAttackView.fxml", (Callable<PowerSpecialAttackView>) () -> new PowerSpecialAttackView(this));
+        new SpecialFXMLLoader().loader("/RaceSpecialAttackView.fxml", (Callable<RaceSpecialAttackView>) () -> new RaceSpecialAttackView(this));
     }
 
     public void AttackArea(String areaId) {
