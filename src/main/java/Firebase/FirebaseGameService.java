@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.database.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseGameService {
@@ -24,7 +25,6 @@ public class FirebaseGameService {
     public void startFBService(){
         gameRef = fb.collection("Games").document(gameName);
     }
-
 
     public void placeAction(String number, Object object){
         gameRef.collection("Actions").document(number).set(object);
@@ -51,6 +51,9 @@ public class FirebaseGameService {
     }
 
 
+    private void delete(String documentId) {
+        gameRef.collection("Votes").document(documentId).delete();
+    }
 
     public void placeVote(Object vote){
         gameRef.collection("Votes").document().set(vote);
@@ -60,13 +63,9 @@ public class FirebaseGameService {
         List<QueryDocumentSnapshot> list = getQuerySnapshot(gameRef.collection("Votes")).getDocuments();
         for(QueryDocumentSnapshot qDocSS: list)
             delete(qDocSS.getId());
-
     }
 
 
-    private void delete(String documentId) {
-        gameRef.collection("Votes").document(documentId).delete();
-    }
 
 
 
@@ -111,5 +110,6 @@ public class FirebaseGameService {
         }
         return null;
     }
+
 
 }

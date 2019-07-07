@@ -19,4 +19,5 @@ public enum PowerEnum {
     public Power getPower(){
         return power;
     }
+
 }

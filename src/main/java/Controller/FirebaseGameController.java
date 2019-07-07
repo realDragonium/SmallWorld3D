@@ -3,10 +3,8 @@ package Controller;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseGameService;
-import Firebase.FirebaseLobbyService;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.application.Platform;
 
@@ -37,7 +35,6 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
     public void activateListener(){
         turnActionListener(this);
     }
-
 
     private void placeAction(Map<String, Object> map) {
         queue.add(map);
@@ -192,4 +189,8 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
             Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
     }
+
+
+
+
 }

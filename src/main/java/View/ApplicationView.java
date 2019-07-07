@@ -37,6 +37,7 @@ public class ApplicationView implements ApplicationObserver {
         appCon.createHomeScreenController();
         appCon.createLobbyController();
         appCon.createInLobbyController();
+        appCon.createLeaderBoard();
         //appCon.createGameController();
     }
 

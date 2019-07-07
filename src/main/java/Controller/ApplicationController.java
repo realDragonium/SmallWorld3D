@@ -1,8 +1,6 @@
 package Controller;
 
 import Enums.ApplicationViewEnum;
-import Enums.PowerEnum;
-import Enums.RaceEnum;
 import Firebase.FirebaseService;
 import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
@@ -29,6 +27,7 @@ public class ApplicationController {
     public ApplicationController() {
         fbService = new FirebaseService();
         new Thread(fbService).start();
+
     }
 
     public void setActiveView(ApplicationViewEnum view) {
@@ -60,20 +59,24 @@ public class ApplicationController {
     }
 
     public void createLeaderBoard(){
-        leaderCon = new LeaderboardController();
-        fxmlLoader.loader("/Leaderboard/LeaderboardScreen.fxml", (Callable<LeaderboardView>) () -> new LeaderboardView(leaderCon, ApplicationViewEnum.LEADER.getGroup()));
+        leaderCon = new LeaderboardController(this);
+        fxmlLoader.loader("/Leaderboard/Leaderboard.fxml", (Callable<LeaderboardView>) () -> new LeaderboardView(leaderCon, ApplicationViewEnum.LEADER.getGroup()));
     }
 
-    public void createGameController(HashMap info) {
+    private void createGameController(HashMap info) {
         gameCon = new GameController(this);
-//        new GameView(gameCon, ApplicationViewEnum.GAME.getGroup());
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, ApplicationViewEnum.GAME.getGroup()));
         gameCon.setLobbyInfo(info);
         gameCon.startFirebaseConnection(fbService.getfbGame());
         setActiveView(ApplicationViewEnum.GAME);
     }
 
-    public AccountController getAccount(){
+    void showLeaderBord(List<PlayerController> players){
+        leaderCon.sortPlayers(players);
+        setActiveView(ApplicationViewEnum.LEADER);
+    }
+
+    AccountController getAccount(){
         return account;
     }
 
@@ -86,8 +89,8 @@ public class ApplicationController {
     }
 
     void startGame(HashMap info) {
+        System.out.println("progress: "+info.get("inProgress"));
         createGameController(info);
-        System.out.println(info.get("inProgress"));
         if((Boolean) info.get("inProgress")) return;
         TimerTask start = new TimerTask() {
             @Override
@@ -99,20 +102,7 @@ public class ApplicationController {
     }
 
     void beginGame() {
-        List<String> races = new ArrayList<>();
-        List<String> powers = new ArrayList<>();
-        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
-        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
-        races.remove("losttribes");
-        for (int i = 0; i < 6; i++) {
-            String race = races.get((int) (Math.random() * races.size()));
-            String power = powers.get((int) (Math.random() * powers.size()));
-            races.remove(race);
-            powers.remove(power);
-            fbService.getfbGame().addCombiAction(race, power);
-        }
         fbService.getfbGame().startGame();
-
     }
 
     public FirebaseService getFirestore() {
@@ -129,5 +119,16 @@ public class ApplicationController {
 
     public void logout() {
         fbService.getfbLogin().logout(account.getAccountName());
+    }
+
+
+    public void createLeaderBordTest(){
+        List<PlayerController> players = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            players.add(new PlayerController("test"+i));
+            players.get(i).addPoints(5*i + 5);
+        }
+
+        showLeaderBord(players);
     }
 }

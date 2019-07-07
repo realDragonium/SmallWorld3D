@@ -66,11 +66,9 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
-        System.out.println(model.lobbyInfo.get("lobbyId"));
         this.fbGame = fbGame;
         fbGame.setGameName((String)model.lobbyInfo.get("lobbyId"));
         new Thread(fbGame).start();
-
 
         fbGame.register("start", this);
 
@@ -93,15 +91,16 @@ public class GameController implements FirebaseGameObserver {
         if(numberOfTimes > 4) numberOfTimes = 4;
         for (int i = 0; i < numberOfTimes; i++) {
             model.getPlayer(i).setPlayerName(names.get(i));
-
-        }
-        for (int i = 0; i < numberOfTimes; i++) {
             if(model.getPlayer(i).getName().equals(myName)){
                 model.myPlayerId = i;
-                System.out.println("My player Id: " + model.myPlayerId);
-                return;
             }
         }
+//        for (int i = 0; i < numberOfTimes; i++) {
+//            if(model.getPlayer(i).getName().equals(myName)){
+//                model.myPlayerId = i;
+//                return;
+//            }
+//        }
     }
 
 
@@ -202,6 +201,7 @@ public class GameController implements FirebaseGameObserver {
 
     void endGame(){
         model.gameEnded = true;
+        appCon.showLeaderBord(model.getPlayers());
     }
 
     boolean isGameOver(){

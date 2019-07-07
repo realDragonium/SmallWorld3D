@@ -21,23 +21,10 @@ public class FirebaseLobbyService {
         lobbiesRef = fb.collection("Lobbies");
     }
 
-//    public void changeLobbyInfo(Object info){
-//        System.out.println("updating");
-//        currentLobby.update((Map)info);
-//    }
-
-
     public DocumentReference joinLobby(String id){
         currentLobby  = lobbiesRef.document(id);
         return lobbiesRef.document(id);
     }
-
-//    public int createLobby(){
-//        int id = getHighestlobbyNumber() + 1;
-//        currentLobby = lobbiesRef.document(Integer.toString(id));
-//        currentLobby.set(newLobby());
-//        return id;
-//    }
 
 
     public DocumentReference createLobby(String id){
@@ -49,16 +36,6 @@ public class FirebaseLobbyService {
         List<QueryDocumentSnapshot> list = getQuerySnapshot(lobbiesRef).getDocuments();
         return list.size();
     }
-
-//    private Object newLobby() {
-//        HashMap<String, Object> info = new HashMap<>();
-//        info.put("gameSpeed", "normal");
-//        info.put("password", "");
-//        info.put("inProgress", false);
-//        info.put("playerNames", new HashMap<String, String>());
-//        info.put("playerStates", new HashMap<String, Boolean>());
-//        return info;
-//    }
 
     public void actionDocumentListener(final FirebaseLobbyObserver controller) {
         DocumentReference docRef = currentLobby;
@@ -105,6 +82,11 @@ public class FirebaseLobbyService {
         return null;
     }
 
+    public void placeStartingCombo(int id, int i, Map<String, Object> map) {
+        fb.collection("Games").document(""+id).collection("Actions")
+                .document("000"+i).set(map);
+    }
+
 //    public void leaveLobby(String player) {
 //        Map info = getDocumentSnapshot().getData();
 //        ((HashMap)info.get("playerNames")).remove(player);
@@ -112,5 +94,27 @@ public class FirebaseLobbyService {
 //        System.out.println("removing from player: " + player);
 //        changeLobbyInfo(info);
 //        currentLobby = null;
+//    }
+
+//        public void changeLobbyInfo(Object info){
+//        System.out.println("updating");
+//        currentLobby.update((Map)info);
+//    }
+
+//    public int createLobby(){
+//        int id = getHighestlobbyNumber() + 1;
+//        currentLobby = lobbiesRef.document(Integer.toString(id));
+//        currentLobby.set(newLobby());
+//        return id;
+//    }
+
+//    private Object newLobby() {
+//        HashMap<String, Object> info = new HashMap<>();
+//        info.put("gameSpeed", "normal");
+//        info.put("password", "");
+//        info.put("inProgress", false);
+//        info.put("playerNames", new HashMap<String, String>());
+//        info.put("playerStates", new HashMap<String, Boolean>());
+//        return info;
 //    }
 }

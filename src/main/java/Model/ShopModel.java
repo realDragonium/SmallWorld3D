@@ -24,6 +24,7 @@ public class ShopModel implements ShopObservable {
     public ShopModel(){
         creatNewRaceList();
         createNewPowerList();
+        removeRacesAndPowerWhoDontWork(); //Het verwijderen van de rassen die niet werken
     }
 
     private void creatNewRaceList(){
@@ -119,5 +120,17 @@ public class ShopModel implements ShopObservable {
         position.setY(position.getY() + translate.getY());
         position.setZ(position.getZ() + translate.getZ());
         notifyObservers();
+    }
+
+    private void removeRacesAndPowerWhoDontWork(){
+        races.remove("sorcerers");
+        races.remove("trolls");
+        races.remove("amazones");
+        races.remove("halflings"); // Werken half,
+        powers.remove("bivouacking");
+        powers.remove("fortified");
+        powers.remove("heroic");
+        powers.remove("diplomat");
+        powers.remove("dragonmaster");
     }
 }
