@@ -43,6 +43,7 @@ public class LobbyView implements LobbyObserver {
         scrollPane.setContent(pane);
         scrollPane.setPrefViewportHeight(280);
         scrollPane.setPrefViewportWidth(630);
+        lobbies.getChildren().add(scrollPane);
     }
 
     public void join() {
@@ -80,8 +81,6 @@ public class LobbyView implements LobbyObserver {
 
     @Override
     public void update(ObservableLobby lo) {
-        if(lo.getLobbyName().size() > 0)
-            lobbies.getChildren().add(scrollPane);
         for(int i = 0; i < lo.getLobbyName().size(); i++){
             setLobby(i, lo.getLobbyName().get(i));
         }
