@@ -94,9 +94,8 @@ public class PhaseController implements FirebaseGameObserver {
     @Override
     public void update(DocumentSnapshot ds) {
         nextPhase();
+        gameCon.removeFromGameView(GameViewEnum.VOTE);
     }
-
-
 
     public void setTimer(int time, boolean b) {
         gameCon.setTimer(time, b);

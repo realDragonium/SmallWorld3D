@@ -96,7 +96,6 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     }
 
     public void updateLobbyInfo(){
-
         fb.changeLobbyInfo(getGameInfo());
     }
 
@@ -108,8 +107,6 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     }
 
     public void startGame(){
-        System.out.println("got my start update!");
-        System.out.println(getGameInfo().get("lobbyId"));
         appCon.startGame(getGameInfo());
     }
 
@@ -138,7 +135,8 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
         System.out.println("update?2");
         if((Boolean)info.get("inProgress") && !clientStart){
             clientStart = true;
-            startGame();
+            Platform.runLater(()-> startGame());
+            return;
         }
         Map<String, String> players = (Map)info.get("playerNames");
         for(int i = 1; i <= players.size(); i++){

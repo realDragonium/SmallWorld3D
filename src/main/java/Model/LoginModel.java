@@ -35,7 +35,6 @@ public class LoginModel implements LoginObservable {
 
 	@Override
 	public boolean getLoginState() {
-		// TODO Auto-generated method stub
 		return loginAccepted;
 	}
 

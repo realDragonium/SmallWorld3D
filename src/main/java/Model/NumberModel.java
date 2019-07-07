@@ -4,9 +4,11 @@ import Observable.NumberObservable;
 import Observer.NumberObserver;
 import javafx.scene.transform.Translate;
 
+import java.util.ArrayList;
+
 public class NumberModel implements NumberObservable {
 
-    NumberObserver observer;
+    ArrayList<NumberObserver> observer = new ArrayList<>();
     int currentNumber;
     Translate position;
     double yAngle;
@@ -19,12 +21,13 @@ public class NumberModel implements NumberObservable {
 
     @Override
     public void register(NumberObserver ob) {
-        observer = ob;
+        observer.add(ob);
     }
 
     @Override
     public void notifyAllObs() {
-        observer.update(this);
+        for(NumberObserver observer : observer)
+            observer.update(this);
     }
 
     @Override

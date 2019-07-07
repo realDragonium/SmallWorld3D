@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.PhaseEnum;
 import Model.TimerModel;
 import Objects.SpecialFXMLLoader;
 import Observer.TimerObserver;
@@ -12,7 +13,7 @@ import java.util.concurrent.Callable;
 
 public class TimerController {
 
-    private PhaseController phaseController;
+    private PhaseController phaseCon;
     private TimerModel model = new TimerModel();
     private GameController gameCon;
     private boolean running = false;
@@ -22,6 +23,10 @@ public class TimerController {
         createTimerView();
         gameCon = gameController;
         startTimer();
+    }
+
+    TimerController(PhaseController phaseController){
+        this.phaseCon = phaseController;
     }
 
     public void startTimer(){
@@ -42,7 +47,11 @@ public class TimerController {
         model.setTimer(model.getSeconds() - 1);
 
         if(model.getSeconds() == 0 && model.isMyTurn()){
-            gameCon.getFireBase().nextPhaseAction();
+            if(gameCon.getTurnCon().getCurrentCombi() == null
+                    && phaseCon.getPhase().equals(PhaseEnum.PREPARING))
+                gameCon.getFireBase().buyCombiAction(0);
+            else
+                gameCon.getFireBase().nextPhaseAction();
         }
 
         if(model.getSeconds() == -10){
@@ -56,10 +65,6 @@ public class TimerController {
 
     public void registerObs(TimerObserver timerObs){
         model.register(timerObs);
-    }
-
-    TimerController(PhaseController phaseController){
-        this.phaseController = phaseController;
     }
 
     public long getElapsedTime(){

@@ -59,7 +59,6 @@ public class ApplicationController {
     }
 
     public void createGameController(HashMap info) {
-        System.out.println("creating gameControllers");
         gameCon = new GameController(this);
 //        new GameView(gameCon, ApplicationViewEnum.GAME.getGroup());
         fxmlLoader.loader("/GameView.fxml", (Callable<GameView>) () -> new GameView(gameCon, ApplicationViewEnum.GAME.getGroup()));
@@ -82,16 +81,14 @@ public class ApplicationController {
 
     void startGame(HashMap info) {
         createGameController(info);
-        if ((Boolean) info.get("inProgress")) return;
+        System.out.println(info.get("inProgress"));
+        if((Boolean) info.get("inProgress")) return;
         TimerTask start = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> {
-                    beginGame();
-                });
+                Platform.runLater(() -> beginGame());
             }
         };
-        System.out.println(info.get("inProgress"));
         new Timer().schedule(start, 3000);
     }
 
