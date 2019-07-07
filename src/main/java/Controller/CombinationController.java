@@ -34,6 +34,7 @@ public class CombinationController {
         model.race.activateRacePower(model);
         if (model.power instanceof SpecialPower)
             gameCon.setPowerSpAtt(model.powerSpecialAction);
+
         model.inShop = false;
     }
 
@@ -66,6 +67,7 @@ public class CombinationController {
         area.attackArea(getFiches(number));
         area.changeCombiOwner(this);
         addArea(area);
+        model.reserve = 0;
     }
 
     void retreat(AreaController area) {
@@ -104,7 +106,11 @@ public class CombinationController {
     }
 
     public int getFichesAmount() {
-        return model.raceFiches.size();
+        return model.raceFiches.size() - model.reserve;
+    }
+
+    public void reserveFiches(int count){
+        model.reserve = count;
     }
 
     public void setPlayer(PlayerController player) {
@@ -208,7 +214,8 @@ public class CombinationController {
     }
 
     public void returnAllButOne(AreaController area) {
-        for (int i = 0; i < (area.getFichesAmount() - 1); i++) {
+        int number = (area.getFichesAmount() - 1);
+        for (int i = 0; i < number; i++) {
             addRaceFiche(area.removeFiche());
         }
     }
