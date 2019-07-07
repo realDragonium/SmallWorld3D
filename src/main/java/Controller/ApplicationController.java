@@ -27,10 +27,9 @@ public class ApplicationController {
     public ApplicationController() {
         fbService = new FirebaseService();
         new Thread(fbService).start();
-
     }
 
-    public void setActiveView(ApplicationViewEnum view) {
+    void setActiveView(ApplicationViewEnum view) {
         appModel.setCurrentView(view);
     }
 
