@@ -27,7 +27,6 @@ public class AttackView {
 
     public void attackCountry() {
         attackCon.AttackArea(attackButton.getId());
-
     }
 
 

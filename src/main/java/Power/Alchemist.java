@@ -1,8 +1,9 @@
 package Power;
 
 import Model.CombinationModel;
+import Special.RedeployPhase.AlchemistAction;
 
-public class Alchemist implements Power, EveryRoundPower {
+public class Alchemist implements Power {
 
     @Override
     public String getName() {
@@ -16,11 +17,7 @@ public class Alchemist implements Power, EveryRoundPower {
 
     @Override
     public void activatePower(CombinationModel combi) {
-        combi.everyRoundPower = this;
+        combi.raceSpecialAction = new AlchemistAction();
     }
 
-    @Override
-    public void doAction(CombinationModel combi) {
-        combi.player.addPoints(2);
-    }
 }

@@ -1,7 +1,7 @@
 package Power;
 
 import Model.CombinationModel;
-import Special.BerserkAction;
+import Special.AttackPhase.BerserkAction;
 
 public class Berserk implements Power, SpecialPower {
 

@@ -2,7 +2,7 @@ package Power;
 
 import Model.CombinationModel;
 
-public class None implements EveryRoundPower, Power {
+public class None implements Power {
 
     @Override
     public String getName() {
@@ -16,11 +16,6 @@ public class None implements EveryRoundPower, Power {
 
     @Override
     public void activatePower(CombinationModel combi) {
-        //Do Nothing
-    }
-
-    @Override
-    public void doAction(CombinationModel combi) {
         //Do Nothing
     }
 }

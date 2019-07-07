@@ -6,13 +6,14 @@ import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import Power.SpecialPower;
-import Special.AttackPhase;
-import Special.BerserkAction;
+import Special.AttackPhase.AttackPhase;
 import Special.SpecialAction;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Stack;
 import java.util.concurrent.Callable;
 
 public class CombinationController {
@@ -31,7 +32,7 @@ public class CombinationController {
     void setPowersActive() {
         model.power.activatePower(model);
         model.race.activateRacePower(model);
-        if(model.power instanceof SpecialPower)
+        if (model.power instanceof SpecialPower)
             gameCon.setPowerSpAtt(model.powerSpecialAction);
         model.inShop = false;
     }
@@ -71,7 +72,7 @@ public class CombinationController {
         removeArea(area);
         model.defend.retreat(this);
     }
-    
+
     public int fichesNeeded(AreaController area) {
         int numbers = area.getDefenceValue();
         numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
@@ -95,10 +96,11 @@ public class CombinationController {
         return fiches;
     }
 
-    void addRaceFiche(FicheController fiche) {
+    public void addRaceFiche(FicheController fiche) {
         Translate fichePos = new Translate(player.get3dPos().getX(), (player.get3dPos().getY() + ((getFichesAmount() - 1) * 10)), player.get3dPos().getZ());
         model.raceFiches.add(fiche);
         fiche.moveToPosition(fichePos);
+        model.player.fichesChanged();
     }
 
     public int getFichesAmount() {
@@ -125,12 +127,12 @@ public class CombinationController {
     void goIntoDecline() {
         model.decline = model.inDecline;
         getPlayer().setDeclineCombi(this);
-        if(model.decline.isActive()) return;
+        if (model.decline.isActive()) return;
         keepOneFichePerArea();
         deleteAllFichesInHand();
     }
 
-    private void deleteAllFichesInHand(){
+    private void deleteAllFichesInHand() {
         int times = model.raceFiches.size();
         for (int i = 0; i < times; i++)
             fichePoof();
@@ -140,7 +142,7 @@ public class CombinationController {
         model.setPosition(pos);
     }
 
-    void createRaceFiches() {
+    public void createRaceFiches() {
         int fiches = model.race.getFicheAmount() + model.power.getFicheAmount();
         for (int i = 0; i < fiches; i++) {
             FicheController ficheCon = new FicheController(1, model.race.getName());
@@ -177,9 +179,10 @@ public class CombinationController {
         areas.addAll(model.raceAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
 
         manageAreaInfoButtons(areas, AreaInfoEnum.ATTACK);
-        if(model.powerSpecialAction instanceof AttackPhase)
+        if (model.powerSpecialAction instanceof AttackPhase)
             addAreaInfoButtons(areas, AreaInfoEnum.POWERSPATT);
-
+        if (model.raceSpecialAction instanceof AttackPhase)
+            addAreaInfoButtons(areas, AreaInfoEnum.RACESPATT);
     }
 
     public void checkPrepareAreas() {
@@ -192,13 +195,12 @@ public class CombinationController {
         model.lastUsedAreas = areas;
     }
 
-    private void addAreaInfoButtons(HashSet<AreaController> areas, AreaInfoEnum areainfo){
+    private void addAreaInfoButtons(HashSet<AreaController> areas, AreaInfoEnum areainfo) {
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas.addAll(areas);
     }
 
     void countPoints() {
-        model.everyRoundPower.doAction(model);
         int totalPoints = model.points.getPoints(model);
         totalPoints += model.racePoints.getPoints(model);
         totalPoints += model.powerPoints.getPoints(model);
@@ -250,4 +252,15 @@ public class CombinationController {
         gameCon.addToGameView(GameViewEnum.DECLINE);
     }
 
+    SpecialAction getPowerSpecialAction() {
+        return model.powerSpecialAction;
+    }
+
+    SpecialAction getRaceSpecialAction(){
+            return model.raceSpecialAction;
+    }
+
+    public int getNumberThisRoundConqueredAreas(){
+        return model.thisRoundConquered.size();
+    }
 }

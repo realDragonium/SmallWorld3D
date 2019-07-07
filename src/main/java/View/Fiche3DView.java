@@ -1,6 +1,7 @@
 package View;
 
 import Controller.FicheController;
+import Enums.GameViewEnum;
 import Objects.NormalFXMLLoader;
 import Observable.FicheObservable;
 import Observer.FicheObserver;
@@ -8,6 +9,7 @@ import javafx.scene.Group;
 import Enums.RaceEnum;
 
 import Enums.View3DEnum;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
 

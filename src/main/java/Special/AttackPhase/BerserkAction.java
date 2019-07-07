@@ -1,11 +1,11 @@
-package Special;
+package Special.AttackPhase;
 
 import Controller.AreaController;
 import Controller.CombinationController;
 import Controller.FirebaseGameController;
 import Controller.GameController;
-import Enums.GameViewEnum;
 import Enums.NotificationEnum;
+import Special.SpecialAction;
 import javafx.application.Platform;
 
 import java.util.Timer;
