@@ -2,60 +2,59 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="root" maxHeight="1080.0" maxWidth="1920.0" prefHeight="1060.0" prefWidth="1920.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="View.LoginView">
-    <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="1.0" layoutY="-8.0">
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-        <Image url="@Background.jpg"/>
+<AnchorPane fx:id="root" maxHeight="1080.0" maxWidth="1920.0" prefHeight="1060.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginView">
+    <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="-8.0" layoutY="-50.0">
+
+        <Image url="@Background.jpg" />
 
     </ImageView>
     <ImageView fitHeight="207.0" fitWidth="743.0" layoutX="593.0" layoutY="87.0">
 
-        <Image url="@SmallWorldLogo.png"/>
+        <Image url="@SmallWorldLogo.png" />
 
     </ImageView>
 
-    <TextField fx:id="Username" layoutX="781.0" layoutY="429.0" prefHeight="61.0" prefWidth="353.0"
-               promptText="Username" text="admin">
+    <TextField fx:id="Username" layoutX="781.0" layoutY="429.0" prefHeight="61.0" prefWidth="353.0" promptText="Username" text="admin">
         <font>
-            <Font size="25.0"/>
+            <Font size="25.0" />
         </font>
     </TextField>
-    <PasswordField fx:id="Password" layoutX="781.0" layoutY="579.0" prefHeight="61.0" prefWidth="353.0"
-                   promptText="Password" text="admin">
+    <PasswordField fx:id="Password" layoutX="781.0" layoutY="579.0" prefHeight="61.0" prefWidth="353.0" promptText="Password" text="admin">
         <font>
-            <Font size="25.0"/>
+            <Font size="25.0" />
         </font>
     </PasswordField>
     <Text layoutX="900.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
         <font>
-            <Font size="25.0"/>
+            <Font size="25.0" />
         </font>
     </Text>
 
-    <Text fx:id="failed" fill="RED" layoutX="499.0" layoutY="349.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0"
-          text="Failed to login! please try again with a different username or password">
+    <Text fx:id="failed" fill="RED" layoutX="499.0" layoutY="349.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Failed to login! please try again with a different username or password">
         <font>
-            <Font size="30.0"/>
+            <Font size="30.0" />
         </font>
     </Text>
 
     <Text layoutX="900.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
         <font>
-            <Font size="25.0"/>
+            <Font size="25.0" />
         </font>
     </Text>
     <ImageView id="button" fitHeight="90.0" fitWidth="282.0" layoutX="813.0" layoutY="678.0" onMouseClicked="#login">
 
-        <Image url="@login button.png"/>
+        <Image url="@login button.png" />
 
     </ImageView>
-    <Button fx:id="registeerButton" layoutX="1120.0" layoutY="708.0" mnemonicParsing="false" onAction="#registeren"
-            text="Registeren"/>
+    <Button fx:id="registeerButton" layoutX="1120.0" layoutY="708.0" mnemonicParsing="false" onAction="#registeren" text="Registeren" />
 
 </AnchorPane>

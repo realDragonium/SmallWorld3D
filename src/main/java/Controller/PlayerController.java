@@ -16,8 +16,8 @@ public class PlayerController implements FirebaseGameObserver {
     private PlayerModel model;
 
 
-    public PlayerController(int playerID, GameController gameCon, String name) {
-        model = new PlayerModel(playerID, name);
+    public PlayerController(int playerID, GameController gameCon) {
+        model = new PlayerModel(playerID);
         this.gameCon = gameCon;
         createPlayerView();
     }

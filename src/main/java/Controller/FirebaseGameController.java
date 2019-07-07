@@ -80,7 +80,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
 
 
 
-    void nextPhaseAction() {
+    public void nextPhaseAction() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "phase");
         map.put("action", "nextPhase");
@@ -116,7 +116,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         placeAction(map);
     }
 
-    void specificAttackAction(String areaId, int number) {
+    public void specificAttackAction(String areaId, int number) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "specificattack");
         map.put("areaId", areaId);
@@ -159,7 +159,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
         placeAction(map);
     }
 
-    void diceAction(int number, String areaId) {
+    public void diceAction(int number, String areaId) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "dice");
         map.put("eyes", number);

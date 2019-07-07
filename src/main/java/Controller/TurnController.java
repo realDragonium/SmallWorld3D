@@ -22,14 +22,13 @@ public class TurnController implements FirebaseGameObserver {
     private RoundController roundCon;
 
     TurnController(GameController gameCon){
-        model = new TurnModel(gameCon.getPlayers(), gameCon.imPlayer());
+        model = new TurnModel(gameCon.getPlayers(), gameCon.getMyPlayerId());
         this.gameCon = gameCon;
         createTurnView();
         manageControllers();
         registerFirebase();
-        newRound();
-        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
-        rotateCamera();
+//        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
+//        rotateCamera();
     }
 
     private void manageControllers(){
@@ -103,7 +102,7 @@ public class TurnController implements FirebaseGameObserver {
         return model.currentPlayer;
     }
 
-    CombinationController getCurrentCombi(){
+    public CombinationController getCurrentCombi(){
         return model.currentCombi;
     }
 
@@ -182,6 +181,7 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void turnUpdate(DocumentSnapshot ds){
+        gameCon.removeFromGameView(GameViewEnum.VOTE);
         nextTurn();
     }
 

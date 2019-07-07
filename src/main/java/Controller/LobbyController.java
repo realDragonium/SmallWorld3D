@@ -11,14 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LobbyController implements FirebaseAllLobbiesObserver {
+
 	private LobbyModel lobbymodel = new LobbyModel();
 	private FirebaseLobbyController fb;
 	private ApplicationController appCon;
 
 	public LobbyController(ApplicationController appCon){
 		this.appCon = appCon;
-		this.fb = appCon.fbService.getfbLobby();
-		System.out.println(appCon.fbService.getfbLobby());
+		this.fb = appCon.getLobbyFireBase();
 	}
 
 	public void createLobby(){
@@ -30,7 +30,8 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 	}
 
 	public void joinLobby(int id, int index, String password){
-		if (lobbymodel.getLobbyName().get(index).get("password").equals(password)) appCon.getInLobbyCon().joinLobby("player", id);
+		String name = appCon.getAccount().getAccountName();
+		if (lobbymodel.getLobbyName().get(index).get("password").equals(password)) appCon.getInLobbyCon().joinLobby(name, id);
 	}
 
 	public void register(LobbyObserver ob) {

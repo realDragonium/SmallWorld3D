@@ -4,6 +4,7 @@ import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
+import Special.SpecialAction;
 import View.*;
 import Enums.*;
 
@@ -26,49 +27,48 @@ public class GameController implements FirebaseGameObserver {
 
     private ApplicationController appCon;
     private MapController mapCon;
-    private ButtonController buttonCon;
     private TimerController timerCon;
-    private DeclineController declineCon;
-    private VoteController currentVote;
-    private InfoController infoCon;
     private NotificationController notiCon;
-    private LeaveController leaveCon;
     private CombinationInfoController combiInfoCon;
 
 
     private GameModel model;
-    private Map<String, PlayerController> players = new HashMap<>();
-    private PlayerController currentPlayer;
     private RoundController roundCon;
     private TurnController turnCon;
     private AreaInformationController areaInfoCon;
 
-    private DeclineController vervCon;
-    private TimerController timeCon;
+    private PowerSpecialAttackController powerSpAttCon;
+
     private AttackController attCon;
     private GameTimer gameTimer;
     private ShopController shopCon;
     private PhaseController phaseCon;
-    private RedeployingController redCon;
     private DiceController diceCon;
+    private ButtonController buttonCon;
+    private DeclineController declineCon;
+    private RedeployingController redeployCon;
+    private InfoController infoCon;
+    private LeaveController leaveCon;
 
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
-        int numberOfPlayers = 4;
         model = new GameModel(8);
         createPlayers();
         setPlayerPositions();
         createControllers();
     }
 
-    public void startGame(String lobbyId){
-        System.out.println(lobbyId);
-        fbGame.setGameName(lobbyId);
-        new Thread(fbGame).start();
+    void setLobbyInfo(HashMap info){
+        model.lobbyInfo = info;
+        setPlayerNames((HashMap) info.get("playerNames"));
+        model.setGameSpeed((String) info.get("gameSpeed"));
     }
 
     public void startFirebaseConnection(FirebaseGameController fbGame){
         this.fbGame = fbGame;
+        fbGame.setGameName((String)model.lobbyInfo.get("lobbyId"));
+        new Thread(fbGame).start();
+
 
         fbGame.register("start", this);
 
@@ -78,27 +78,40 @@ public class GameController implements FirebaseGameObserver {
         turnCon = new TurnController(this);
         timerCon = new TimerController(this);
         diceCon = new DiceController(this);
-        redCon = new RedeployingController(this);
+        redeployCon = new RedeployingController(this);
         declineCon = new DeclineController(this);
         buttonCon = new ButtonController(this);
         attCon = new AttackController(this);
     }
 
     private void setPlayerNames(HashMap info){
-        model.getPlayer(0).setPlayerName((String) info.get("player1"));
-        model.getPlayer(1).setPlayerName((String) info.get("player2"));
-        model.getPlayer(2).setPlayerName((String) info.get("player3"));
-        model.getPlayer(3).setPlayerName((String) info.get("player4"));
+        List<String> names = new ArrayList<>(info.values());
+        String myName = appCon.getAccount().getAccountName();
+        int numberOfTimes = names.size();
+        if(numberOfTimes > 4) numberOfTimes = 4;
+        for (int i = 0; i < numberOfTimes; i++) {
+            model.getPlayer(i).setPlayerName(names.get(i));
+
+        }
+        for (int i = 0; i < numberOfTimes; i++) {
+            if(model.getPlayer(i).getName().equals(myName)){
+                model.myPlayerId = i;
+                System.out.println("My player Id: " + model.myPlayerId);
+                return;
+            }
+
+        }
+
     }
 
 
     private void createPlayers(){
         List<PlayerController> players = new ArrayList<>();
 
-        players.add(new PlayerController(0, this, "None"));
-        players.add(new PlayerController(1, this, "none"));
-        players.add(new PlayerController(2, this, "None"));
-        players.add(new PlayerController(3, this, "None"));
+        players.add(new PlayerController(0, this));
+        players.add(new PlayerController(1, this));
+        players.add(new PlayerController(2, this));
+        players.add(new PlayerController(3, this));
 
         model.setPlayers(players);
     }
@@ -141,8 +154,14 @@ public class GameController implements FirebaseGameObserver {
         combiInfoCon = new CombinationInfoController(this);
         areaInfoCon = new AreaInformationController(this);
         leaveCon = new LeaveController(this);
+        powerSpAttCon = new PowerSpecialAttackController(this);
     }
 
+    public void setPowerSpAtt(SpecialAction action){
+        powerSpAttCon.setAction(action);
+    }
+
+    public TimerController getTimer(){return timerCon;}
 
     public PlayerController getPlayer(int id){
         return model.getPlayer(id);
@@ -172,11 +191,8 @@ public class GameController implements FirebaseGameObserver {
         return mapCon;
     }
 
-    public DeclineController getDeclineCon(){
-        return vervCon;
-    }
 
-    DiceController getDiceCon(){
+    public DiceController getDiceCon(){
         return diceCon;
     }
 
@@ -200,9 +216,6 @@ public class GameController implements FirebaseGameObserver {
         return gameTimer;
     }
 
-    TimerController getTimer(){
-        return timeCon;
-    }
 
     void addToGameView(GameViewEnum go){
         if(!model.getCurrenViews().contains(go)) model.addActiveView(go);
@@ -228,7 +241,7 @@ public class GameController implements FirebaseGameObserver {
         model.register(go);
     }
 
-    FirebaseGameController getFireBase() {
+    public FirebaseGameController getFireBase() {
         return fbGame;
     }
 
@@ -240,8 +253,8 @@ public class GameController implements FirebaseGameObserver {
         return model.getPlayers();
     }
 
-    public int imPlayer(){
-        return model.imPlayer();
+    public int getMyPlayerId(){
+        return model.myPlayerId;
     }
 
     public void setPhase(PhaseEnum phase){
@@ -266,7 +279,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void createVote(int i, String message) {
-        currentVote = new VoteController(i, message, this);
+        new VoteController(i, message, this);
     }
 
     public void setTimer(int time, boolean b) {
@@ -284,10 +297,5 @@ public class GameController implements FirebaseGameObserver {
     @Override
     public void update(DocumentSnapshot ds) {
         startGame();
-    }
-
-    public void setGameInfo(HashMap info) {
-        setPlayerNames((HashMap) info.get("playerNames"));
-        model.setGameSpeed((String) info.get("gameSpeed"));
     }
 }

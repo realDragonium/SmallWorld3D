@@ -32,7 +32,7 @@ public class Area3DView implements AreaObserver {
             //PickResult pr = e.getPickResult();
             areaCon.showInfo();
 //            createRaceFiche("ratten");
-            //System.out.println(area.getId());
+//            System.out.println(area.getId());
             //System.out.println("propPoints.put(\"" + area.getId() + "\" ,new Translate(" + Math.round(pr.getIntersectedPoint().getX() * 100) + "," + Math.round(pr.getIntersectedPoint().getY() * 100) + "," + Math.round( pr.getIntersectedPoint().getZ()* 100) + "));");
         });
         area.setOnMouseEntered(e -> {

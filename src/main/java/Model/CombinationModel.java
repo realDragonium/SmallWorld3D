@@ -13,9 +13,12 @@ import Observer.CombinationObserver;
 import Points.*;
 import Power.*;
 import Race.*;
+import Special.SpecialAction;
+import Special.SpecialNone;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -24,24 +27,29 @@ public class CombinationModel implements CombinationObservable {
 
     public PlayerController player;
     public Stack<FicheController> raceFiches = new Stack<>();
-    public List<AreaController> areas = new ArrayList<>();
+    public HashSet<AreaController> areas = new HashSet<>();
     public List<AreaController> thisRoundConquered = new ArrayList<>();
     public boolean buyButton = false;
 
     private Translate position;
     public boolean inShop = true;
-    public List<AreaController> lastUsedAreas = new ArrayList<>();
+    public HashSet<AreaController> lastUsedAreas = new HashSet<>();
 
     public Race race;
     public Power power;
+
     public EveryRoundPower everyRoundPower = new None();
-    public AttackableAreas attackableAreas;
-    public AttackableType attackableType;
-    public Decline decline;
-    public Decline inDecline;
-    public Points points;
-    public Defend defend;
-    public Object specialAction;
+
+    public AttackableAreas attackableAreas = new NormalAreasAttack();
+    public AttackableType attackableType = new NormalAttackableType();
+
+    public Decline decline = new NotInDecline();
+    public Decline inDecline = new InDecline();
+
+    public Points points = new NormalPoints();
+    public Defend defend = new NormalDefend();
+
+    public SpecialAction powerSpecialAction = new SpecialNone();
 
 
     public Points racePoints = new NullPoints();
@@ -56,16 +64,6 @@ public class CombinationModel implements CombinationObservable {
     public CombinationModel(String raceId, String powerId) {
         this.race = RaceEnum.valueOf(raceId).getRace();
         this.power = PowerEnum.valueOf(powerId).getPower();
-        attackableAreas = new NormalAreasAttack();
-        decline = new NotInDecline();
-        points = new NormalPoints();
-        attackableType = new NormalAttackableType();
-        defend = new NormalDefend();
-        inDecline = new InDecline();
-    }
-
-    public List<AreaController> getAreas() {
-        return areas;
     }
 
     public Stack<FicheController> removeFiches(int count) {

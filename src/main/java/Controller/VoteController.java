@@ -1,5 +1,6 @@
 package Controller;
 
+import Enums.GameViewEnum;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Model.VoteModel;
@@ -30,6 +31,7 @@ public class VoteController implements FirebaseActionObserver {
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
         fbGame.voteListener(this::update);
+        gameCon.addToGameView(GameViewEnum.VOTE);
     }
 
     private void createVoteView() {

@@ -215,5 +215,7 @@ public class AreaController{
     public void setAreaInfoButton(AreaInfoEnum areaInfoButton){
         model.setAreaInfoButton(areaInfoButton);
     }
-    public void resetAreaInfo(){model.resetAreaInfoButton();}
+    public void resetAreaInfo(){
+        model.resetAreaInfoButton();
+    }
 }

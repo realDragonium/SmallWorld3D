@@ -50,7 +50,6 @@ public class PhaseController implements FirebaseGameObserver {
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
         changeView();
-        gameCon.addToGameView(GameViewEnum.BUTTON);
     }
 
     public void startShopTurn() {
@@ -65,7 +64,7 @@ public class PhaseController implements FirebaseGameObserver {
     public void changeView(){
         if(turnCon.getCurrentCombi() == null) return;
         model.getPhase().setViews(turnCon.getCurrentCombi());
-        if(turnCon.getCurrentPlayer().getId() == gameCon.imPlayer()){
+        if(turnCon.getCurrentPlayer().getId() == gameCon.getMyPlayerId()){
             gameCon.addToGameView(GameViewEnum.BUTTON);
         }
     }

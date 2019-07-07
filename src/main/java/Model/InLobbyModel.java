@@ -27,8 +27,6 @@ public class InLobbyModel implements InLobbyObservable {
         this.lobbyNaam = lobbyNaam;
     }
 
-
-
     public String getLobbyNaam(){
         return lobbyNaam;
     }

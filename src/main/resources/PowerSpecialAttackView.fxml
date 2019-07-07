@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+
+<Button fx:id="button" layoutY="50" mnemonicParsing="false" onAction="#specialAttack"
+        style="-fx-background-color: rgb(224, 158, 145);" text="Use power"
+        xmlns="http://javafx.com/javafx/8.0.172-ea"
+        xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PowerSpecialAttackView">
+    <font>
+        <Font size="21.0"/>
+    </font>
+</Button>

@@ -1,8 +1,9 @@
 package Power;
 
 import Model.CombinationModel;
+import Special.BerserkAction;
 
-public class Berserk implements Power {
+public class Berserk implements Power, SpecialPower {
 
     @Override
     public String getName() {
@@ -16,7 +17,7 @@ public class Berserk implements Power {
 
     @Override
     public void activatePower(CombinationModel combi) {
-
+        combi.powerSpecialAction = new BerserkAction();
     }
 
 }

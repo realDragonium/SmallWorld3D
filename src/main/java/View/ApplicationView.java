@@ -16,7 +16,6 @@ public class ApplicationView implements ApplicationObserver {
     private Scene scene;
     private Stage primaryStage;
     private Group root = new Group();
-    private Map<String, Group> groups = new HashMap<>();
 
     private ApplicationController appCon;
 
@@ -30,7 +29,7 @@ public class ApplicationView implements ApplicationObserver {
     }
 
     private void setStartScreen(){
-        appCon.getLobbyCon().setAsActive();
+        setActive(ApplicationViewEnum.LOGIN);
     }
 
     private void createViews(){
@@ -49,6 +48,10 @@ public class ApplicationView implements ApplicationObserver {
         primaryStage.show();
 //        primaryStage.setMaximized(true);
         primaryStage.setTitle("Small World - Group 7b");
+
+        primaryStage.setOnCloseRequest(event -> {
+            appCon.logout();
+        });
     }
 
     private void setActive(ApplicationViewEnum view) {

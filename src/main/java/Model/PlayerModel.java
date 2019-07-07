@@ -15,21 +15,20 @@ public class PlayerModel implements PlayerObservable {
     private Translate player3dPos;
     private Translate player2dPos;
     private List<PlayerObserver> observers = new ArrayList<>();
-    private String NAME;
+    private String name = "";
     private int playerID;
     private List<CombinationController> combinations = new ArrayList<>();
     private List<CombinationController> declineCombies = new ArrayList<>();
     private CombinationController currentCombi;
     public int points;
 
-    public PlayerModel(int playerId, String Name) {
+    public PlayerModel(int playerId) {
         playerID = playerId;
         points = 5;
-        NAME = Name;
     }
 
     public PlayerModel(String name) {
-        NAME = name;
+        this.name = name;
     }
 
     public List<CombinationController> getCombies(){
@@ -118,11 +117,11 @@ public class PlayerModel implements PlayerObservable {
 
     @Override
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public void setName(String name) {
-        NAME = name;
+        this.name = name;
         notifyObserver();
     }
 }

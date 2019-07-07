@@ -9,7 +9,7 @@ import java.util.List;
 public class RoundModel implements RoundObservable {
 
     private int maxRounds;
-    public int currentRound = 1;
+    public int currentRound = 0;
     private List<RoundObserver> observers = new ArrayList<>();
 
     public RoundModel(int maxRounds){

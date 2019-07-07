@@ -6,16 +6,18 @@ import Observer.GameObserver;
 import Enums.GameViewEnum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameModel implements GameObservable {
     private GameObserver observer;
     private final int numberOfRounds;
-    private int imPlayer = 0;
+    public int myPlayerId;
     public boolean gameEnded = false;
     private List<GameViewEnum> activeViews = new ArrayList<>();
     private List<PlayerController> players;
     private String gameSpeed;
+    public HashMap<String, Object> lobbyInfo = new HashMap<>();
 
     public GameModel(int rounds){
         numberOfRounds = rounds;
@@ -24,11 +26,6 @@ public class GameModel implements GameObservable {
     public void setPlayers(List<PlayerController> players){
         this.players = players;
 
-    }
-
-
-    public int imPlayer(){
-        return imPlayer;
     }
 
     public int getNumberOfRounds(){
