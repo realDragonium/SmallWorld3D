@@ -61,10 +61,10 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 		lobbymodel.notifyAllObservers();
 	}
 
-    public void setAsActive() {
-
-	    appCon.setActiveView(ApplicationViewEnum.LOBBY);
+    void setAsActive() {
 		refreshLobbies();
+	    appCon.setActiveView(ApplicationViewEnum.LOBBY);
+
     }
 
 	public void back() {
