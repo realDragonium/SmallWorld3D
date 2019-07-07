@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -25,6 +26,9 @@ public class LobbyView implements LobbyObserver {
     private Button activeButton;
     private int gridCounter = 0;             // startwaarde aantal aangemaakte lobbies = 0
     private GridPane grid= new GridPane();
+    private ScrollPane scrollPane = new ScrollPane();
+    private Pane pane = new Pane();
+
 
     public LobbyView(LobbyController con, Group group) {
         this.group = group;
@@ -35,6 +39,10 @@ public class LobbyView implements LobbyObserver {
     public void initialize() {
         group.getChildren().add(root);
         lobbyCon.register(this);
+
+        scrollPane.setContent(pane);
+        scrollPane.setPrefViewportHeight(280);
+        scrollPane.setPrefViewportWidth(630);
     }
 
     public void join() {
@@ -63,7 +71,7 @@ public class LobbyView implements LobbyObserver {
         newLobby.getChildren().add(password);
         newLobby.getChildren().add(button);
         newLobby.setLayoutY(60 * index);
-        lobbies.getChildren().add(newLobby);
+        pane.getChildren().add(newLobby);
     }
 
     private void joinLobby(String id, int index, String password) {
@@ -72,6 +80,8 @@ public class LobbyView implements LobbyObserver {
 
     @Override
     public void update(ObservableLobby lo) {
+        if(lo.getLobbyName().size() > 0)
+            lobbies.getChildren().add(scrollPane);
         for(int i = 0; i < lo.getLobbyName().size(); i++){
             setLobby(i, lo.getLobbyName().get(i));
         }
