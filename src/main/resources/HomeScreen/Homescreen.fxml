@@ -21,7 +21,7 @@
         <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="50.0" layoutY="385.0">
             <Image url="@Blank_Power.png"/>
         </ImageView>
-        <Text id="game" text="Start Game">
+        <Text id="game" text="Lobby Menu">
             <font>
                 <Font size="35.0"/>
             </font>
