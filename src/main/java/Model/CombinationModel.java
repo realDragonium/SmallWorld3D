@@ -4,15 +4,20 @@ import Attacks.*;
 import Controller.AreaController;
 import Controller.FicheController;
 import Controller.PlayerController;
-import Decline.*;
-import Defend.*;
+import Decline.Decline;
+import Decline.InDecline;
+import Decline.NotInDecline;
+import Defend.Defend;
+import Defend.NormalDefend;
 import Enums.PowerEnum;
 import Enums.RaceEnum;
 import Observable.CombinationObservable;
 import Observer.CombinationObserver;
-import Points.*;
-import Power.*;
-import Race.*;
+import Points.NormalPoints;
+import Points.NullPoints;
+import Points.Points;
+import Power.Power;
+import Race.Race;
 import Special.SpecialAction;
 import Special.SpecialNone;
 import javafx.scene.transform.Translate;
@@ -38,7 +43,6 @@ public class CombinationModel implements CombinationObservable {
     public Race race;
     public Power power;
 
-    public EveryRoundPower everyRoundPower = new None();
 
     public AttackableAreas attackableAreas = new NormalAreasAttack();
     public AttackableType attackableType = new NormalAttackableType();

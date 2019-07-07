@@ -1,8 +1,6 @@
 package Race;
 
-import Controller.FicheController;
 import Model.CombinationModel;
-import Power.EveryRoundPower;
 import Special.RedeployPhase.SkeletonAction;
 import javafx.scene.paint.Color;
 

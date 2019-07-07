@@ -7,12 +7,13 @@ import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
 import Power.SpecialPower;
 import Special.AttackPhase.AttackPhase;
-import Special.RedeployPhase.RedeployPhase;
 import Special.SpecialAction;
 import View.CombinationView;
 import javafx.scene.transform.Translate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Stack;
 import java.util.concurrent.Callable;
 
 public class CombinationController {
@@ -200,7 +201,6 @@ public class CombinationController {
     }
 
     void countPoints() {
-        model.everyRoundPower.doAction(model);
         int totalPoints = model.points.getPoints(model);
         totalPoints += model.racePoints.getPoints(model);
         totalPoints += model.powerPoints.getPoints(model);
