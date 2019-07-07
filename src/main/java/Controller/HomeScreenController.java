@@ -18,7 +18,8 @@ public class HomeScreenController {
     }
 
     public void goToLobby() {
-        appCon.setActiveView(ApplicationViewEnum.LOBBY);
+//        appCon.setActiveView(ApplicationViewEnum.LOBBY);
+        appCon.getLobbyCon().setAsActive();
     }
 
     public void readGuide(){
