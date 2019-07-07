@@ -26,13 +26,21 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     public void putPlayerAtEmptySpot(String name){
         for(int i = 1; i <= 4; i++){
             if(model.getPlayer(i).equals("")){
+                model.removeAsHost();
                 model.setPlayer(i, name);
                 model.setMyPlayer("player" + i);
                 model.setMyName(name);
                 if(i == 1) model.setAsHost();
+
                 break;
             }
         }
+    }
+
+    public void setReady(){
+        model.getPlayerStates().put(model.getMyPlayer(), true);
+        updateLobbyInfo();
+        model.notifyAllObservers();
     }
 
 
@@ -100,10 +108,20 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
     }
 
     public void start(){            // start button
-        startGame();
-        clientStart = true;
-        model.startGame(true);
-        updateLobbyInfo();
+        boolean allPlayersReady = true;
+        for(int i = 1; i <= 4; i++){
+            if(!model.getPlayer(i).equals("")) {
+                if (!model.getPlayerState(i)) {
+                    allPlayersReady = false;
+                }
+            }
+        }
+        if(allPlayersReady) {
+            startGame();
+            clientStart = true;
+            model.startGame(true);
+            updateLobbyInfo();
+        }
     }
 
     public void startGame(){
@@ -134,18 +152,15 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
         if((Boolean)info.get("inProgress") && !clientStart){
             clientStart = true;
             Platform.runLater(()-> startGame());
-            return;
         }
         Map<String, String> players = (Map)info.get("playerNames");
-        for(int i = 1; i <= players.size(); i++){
-            model.setPlayer(i, players.get("player"+i));
-        }
         Map<String, Boolean> states = (Map)info.get("playerStates");
-        for(int i = 1; i <= states.size(); i++){
+        for(int i = 1; i <= 4; i++){
+            model.setPlayer(i, players.get("player"+i));
             model.setPlayerReady(i, states.get("player"+i));
         }
+        Platform.runLater(()-> model.notifyAllObservers());
 
-        model.notifyAllObservers();
     }
 
     public void changeLobbyPassword(String text) {

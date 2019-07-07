@@ -105,6 +105,7 @@ public class LobbyView implements LobbyObserver {
 
     @Override
     public void update(ObservableLobby lo) {
+        pane.getChildren().clear();
         for(int i = 0; i < lo.getLobbyName().size(); i++){
             setLobby(i, lo.getLobbyName().get(i));
         }
