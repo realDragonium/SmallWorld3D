@@ -86,6 +86,7 @@ public class FirebaseLobbyController {
         Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
         Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
         races.remove("losttribes");
+        removeRacesAndPowerWhoDontWork(races, powers);
         for (int i = 0; i < 6; i++) {
             String race = races.get((int) (Math.random() * races.size()));
             String power = powers.get((int) (Math.random() * powers.size()));
@@ -97,6 +98,18 @@ public class FirebaseLobbyController {
             map.put("power", power);
             service.placeStartingCombo(id, i, map);
         }
+    }
+
+    public void removeRacesAndPowerWhoDontWork(List<String> races, List<String> powers){
+        races.remove("sorcerers");
+        races.remove("trolls");
+        races.remove("amazones");
+        races.remove("halflings"); // Werken half
+        powers.remove("bivouacking");
+        powers.remove("fortified");
+        powers.remove("heroic");
+        powers.remove("diplomat");
+        powers.remove("dragonmaster");
     }
 
 }

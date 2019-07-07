@@ -1,14 +1,10 @@
 package Controller;
 
-import Enums.PowerEnum;
-import Enums.RaceEnum;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseGameService;
-import Firebase.FirebaseLobbyService;
 import com.google.cloud.firestore.DocumentChange;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import javafx.application.Platform;
 

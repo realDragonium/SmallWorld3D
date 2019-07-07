@@ -32,12 +32,8 @@ public class HomeScreenView implements HomeScreenObserver{
 	}
 
     @FXML
-    private void createGame(){
-
-		//new LeaderboardController();
-    	//new GameController("First", "player1");
-//		new LobbyController();
-		hsCon.startGame();
+    private void goToLobby(){
+		hsCon.goToLobby();
 	}
 
 	@FXML
@@ -89,9 +85,6 @@ public class HomeScreenView implements HomeScreenObserver{
 		}
 	}
 
-	private void startGame() {
-    	
-    }
 
 	@Override
 	public void update(HomeScreenObservable mvo) {
@@ -101,10 +94,13 @@ public class HomeScreenView implements HomeScreenObserver{
     	this.pane = pane;
     	pane.getChildren().addAll(root);
     }
-    
 
 
-    
-    
-	
+	public void readGuide(MouseEvent mouseEvent) {
+    	hsCon.readGuide();
+	}
+
+	public void logout(){
+    	hsCon.logout();
+	}
 }

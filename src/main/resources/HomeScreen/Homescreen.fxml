@@ -7,13 +7,16 @@
 <AnchorPane fx:id="root" maxHeight="1080.0" maxWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0"
             xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="View.HomeScreenView">
+
     <ImageView fitHeight="1080.0" fitWidth="1905.0" layoutX="3.0" layoutY="-1.0">
         <Image url="@Background.jpg"/>
     </ImageView>
+
     <ImageView fitHeight="230.0" fitWidth="648.0" layoutX="692.0" layoutY="56.0">
         <Image url="@SmallWorldLogo.png"/>
     </ImageView>
-    <HBox id="select" fx:id="" layoutX="690.0" layoutY="385.0" onMouseClicked="#createGame"
+
+    <HBox id="select" layoutX="690.0" layoutY="385.0" onMouseClicked="#goToLobby"
           onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
         <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="50.0" layoutY="385.0">
             <Image url="@Blank_Power.png"/>
@@ -26,13 +29,14 @@
         <ImageView id="Ras" fitHeight="141.0" fitWidth="316.0" layoutX="1200.0" layoutY="381.0">
             <Image url="@Blank_Ras.png"/>
         </ImageView>
-
     </HBox>
-    <HBox id="select" layoutX="690.0" layoutY="609.0" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+
+    <HBox id="select" layoutX="690.0" layoutY="609.0"  onMouseClicked="#readGuide"
+          onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
         <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="795.0" layoutY="609.0">
             <Image url="@Blank_Power.png"/>
         </ImageView>
-        <Text id="rules" text="Game Rules">
+        <Text id="rules" text="Game Guide">
             <font>
                 <Font size="35.0"/>
             </font>
@@ -41,7 +45,8 @@
             <Image url="@Blank_Ras.png"/>
         </ImageView>
     </HBox>
-    <HBox id="select" layoutX="690.0" layoutY="835.0" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
+
+    <HBox id="select" layoutX="690.0" layoutY="835.0" onMouseClicked="#logout" onMouseEntered="#enterHoverTitle" onMouseExited="#exitHoverTitle">
         <ImageView id="Power" fitHeight="137.0" fitWidth="158.0" layoutX="789.0" layoutY="835.0">
             <Image url="@Blank_Power.png"/>
         </ImageView>
@@ -49,7 +54,7 @@
             <padding>
                 <Insets bottom="25" left="20" top="50"/>
             </padding>
-            <Text text="Settings">
+            <Text text="Logout">
                 <font>
                     <Font size="35.0"/>
                 </font>
@@ -59,7 +64,9 @@
             <Image url="@Blank_Ras.png"/>
         </ImageView>
     </HBox>
+
     <ImageView fitHeight="1080.0" fitWidth="1920.0">
         <Image url="@Border_screen.png"/>
     </ImageView>
+
 </AnchorPane>

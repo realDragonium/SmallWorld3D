@@ -17,9 +17,16 @@ public class HomeScreenController {
     	hsModel.register(mvo);
     }
 
-    public void startGame() {
-//        appCon.setActiveView(ApplicationViewEnum.GAME);
-//        appCon.startGame();
+    public void goToLobby() {
         appCon.setActiveView(ApplicationViewEnum.LOBBY);
+    }
+
+    public void readGuide(){
+        appCon.createLeaderBordTest();
+    }
+
+    public void logout() {
+        appCon.logout();
+        appCon.setActiveView(ApplicationViewEnum.LOGIN);
     }
 }

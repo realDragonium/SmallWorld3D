@@ -35,22 +35,14 @@ public class LeaderboardView implements LeaderboardObserver {
 
     @Override
     public void update(LeaderboardObservable ob) {
-        place1.setText(ob.getPlace1());
-        place2.setText(ob.getPlace2());
-        place3.setText(ob.getPlace3());
-        points1.setText(ob.getValue1());
-        points2.setText(ob.getValue2());
-        points3.setText(ob.getValue3());
+        for (int i = 0; i < 3; i++) {
 
-    }
+        }
 
-    public void registreer(){
-        leadCon.registreer(this);
     }
 
     @FXML
-    public void drukKnop(){
-    leadCon.addValue();
+    public void backButton(){
 
     }
 }

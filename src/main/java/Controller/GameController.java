@@ -201,6 +201,7 @@ public class GameController implements FirebaseGameObserver {
 
     void endGame(){
         model.gameEnded = true;
+        appCon.showLeaderBord(model.getPlayers());
     }
 
     boolean isGameOver(){

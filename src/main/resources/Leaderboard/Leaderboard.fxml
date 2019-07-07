@@ -9,7 +9,6 @@
       <ImageView fitHeight="1080" fitWidth="1920" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@leaderboard.png" />
       </ImageView>
-      <Button layoutX="940.0" layoutY="800.0" mnemonicParsing="false" onAction="#drukKnop" text="Button" />
       <Label fx:id="place1" layoutX="900.0" layoutY="290.0" text="Player1" textFill="#ff0404">
          <font>
             <Font size="22.0" />
@@ -40,5 +39,5 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="hoofdmenu" layoutX="899.0" layoutY="943.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="135.0" text="Back" />
+      <Button fx:id="hoofdmenu" layoutX="899.0" layoutY="943.0" mnemonicParsing="false" onAction="#backButton" prefHeight="35.0" prefWidth="135.0" text="Back" />
 </Group>
