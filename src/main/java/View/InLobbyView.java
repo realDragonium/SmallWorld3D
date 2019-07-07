@@ -81,13 +81,13 @@ public class InLobbyView implements InLobbyObserver {
             setPlayerInformation(player1, ilo.getPlayerState(1), true, ilo.getPlayer(1));
         }
         if(!ilo.getPlayer(2).equals("")){
-            setPlayerInformation(player1, ilo.getPlayerState(2), false, ilo.getPlayer(2));
+            setPlayerInformation(player2, ilo.getPlayerState(2), false, ilo.getPlayer(2));
         }
         if(!ilo.getPlayer(3).equals("")){
-            setPlayerInformation(player1, ilo.getPlayerState(3), false, ilo.getPlayer(3));
+            setPlayerInformation(player3, ilo.getPlayerState(3), false, ilo.getPlayer(3));
         }
         if(!ilo.getPlayer(4).equals("")){
-            setPlayerInformation(player1, ilo.getPlayerState(4), false, ilo.getPlayer(4));
+            setPlayerInformation(player4, ilo.getPlayerState(4), false, ilo.getPlayer(4));
         }
         showLobbySettings(ilo.isHost());
     }

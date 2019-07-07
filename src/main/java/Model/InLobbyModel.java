@@ -25,7 +25,6 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void setLobbyNaam(String lobbyNaam){
         this.lobbyNaam = lobbyNaam;
-        notifyAllObservers();
     }
 
     public String getLobbyNaam(){
@@ -34,7 +33,6 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void startGame(boolean start){
         this.start = start;
-        notifyAllObservers();
     }
 
     // Notifies all observers in the list of observers
@@ -117,7 +115,6 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void setPassword(String password) {
         this.password = password;
-        notifyAllObservers();
     }
 
     public void setMyName(String name) {
