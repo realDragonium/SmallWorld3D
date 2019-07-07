@@ -42,4 +42,6 @@ public interface InLobbyObservable {
     boolean getStart();
 
     boolean isHost();
+
+    int getPlayersInLobby();
 }

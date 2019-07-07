@@ -5,44 +5,80 @@ import Firebase.FirebaseLobbyObserver;
 import Model.InLobbyModel;
 import Observer.InLobbyObserver;
 import com.google.cloud.firestore.DocumentSnapshot;
+import javafx.application.Platform;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class InLobbyController implements FirebaseLobbyObserver { ;
     private InLobbyModel model = new InLobbyModel();
     private FirebaseLobbyController fb;
     private ApplicationController appCon;
+    private boolean clientStart = false;
 
     public InLobbyController(ApplicationController appCon){
         this.appCon = appCon;
         fb = appCon.getLobbyFireBase();
     }
 
+    public void putPlayerAtEmptySpot(String name){
+        for(int i = 1; i <= 4; i++){
+            if(model.getPlayer(i).equals("")){
+                model.setPlayer(i, name);
+                model.setMyPlayer("player" + i);
+                model.setMyName(name);
+                if(i == 1) model.setAsHost();
+                break;
+            }
+        }
+    }
+
+
     public void joinLobby(String player, int id){
+        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
         fb.joinLobby(Integer.toString(id));
         fb.actionDocumentListener(this);
         fb.pushDocumentUpdate(this);
-        model.setPlayer(model.getPlayerNames().size() + 1, player);
-        model.setMyPlayer("player" + (model.getPlayerNames().size()));
-        model.setPlayerReady(model.getPlayerStates().size() + 1, false);
-        model.setMyName(player);
+        putPlayerAtEmptySpot(player);
         model.setLobbyId(id);
         updateLobbyInfo();
-        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
+
     }
 
     public void createLobby(String player){
         int lobbyId = fb.createLobby();
         fb.actionDocumentListener(this);
+
+        //
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(()->  initLobby(player, lobbyId));
+            }
+        };
+        new Timer().schedule(task, 4000);
+
+    }
+
+    public void initLobby(String player, int lobbyId){
+        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
+        fb.pushDocumentUpdate(this);
         model.setPlayer(1, player);
         model.setLobbyNaam("lobby" + lobbyId);
-        model.setPlayerReady(1, false);
-        model.setMyPlayer("player1");
         model.setMyName(player);
+        model.setMyPlayer("player1");
         model.setLobbyId(lobbyId);
+        model.setAsHost();
         updateLobbyInfo();
-        appCon.setActiveView(ApplicationViewEnum.INLOBBY);
+        model.notifyAllObservers();
+
+    }
+
+    public void changeLobbyName(String name){
+        model.setLobbyNaam(name);
+        updateLobbyInfo();
     }
 
     public HashMap getGameInfo(){
@@ -64,11 +100,15 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     public void start(){            // start button
 
-
-        //moet eigenlijk update geven aan iedereen en niet hier starten
-        appCon.startGame(getGameInfo()); // starten van het spel
+        startGame();
+        clientStart = true;
         model.startGame(true);
         updateLobbyInfo();
+    }
+
+    public void startGame(){
+        System.out.println("got my start update!");
+        appCon.startGame(getGameInfo());
     }
 
 
@@ -88,12 +128,12 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     @Override
     public void update(DocumentSnapshot ds) {
+
         Map<String, Object> info = ds.getData();
         Map<String, String> players = (Map)info.get("playerNames");
         for(int i = 1; i <= players.size(); i++){
             model.setPlayer(i, players.get("player"+i));
         }
-
         Map<String, Boolean> states = (Map)info.get("playerStates");
         for(int i = 1; i <= states.size(); i++){
             model.setPlayerReady(i, states.get("player"+i));
@@ -101,5 +141,19 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
         model.setLobbyNaam((String)info.get("lobbyName"));
         model.setPassword((String)info.get("password"));
         model.startGame((Boolean)info.get("inProgress"));
+        if((Boolean)info.get("inProgress") && !clientStart){
+            clientStart = true;
+            startGame();
+        }
+        model.notifyAllObservers();
+    }
+
+    public void changeLobbyPassword(String text) {
+        model.setPassword(text);
+        updateLobbyInfo();
+    }
+
+    public void changeGameSpeed(String value) {
+        model.setGameSpeed(value);
     }
 }

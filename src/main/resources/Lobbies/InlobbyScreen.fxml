@@ -9,6 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.ChoiceBoxListCell?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <Pane fx:id="pane" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.InLobbyView">
     <ImageView fitHeight="900.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@backgroundLobby.jpg"/>
@@ -21,4 +26,24 @@
             prefWidth="130.0" text="Exit lobby"/>
     <Button fx:id="start" layoutX="892.0" layoutY="574.0" mnemonicParsing="false" onAction="#start" prefHeight="30.0"
             prefWidth="130.0" text="Start game"/>
+    <Group fx:id="player1" layoutX="300" layoutY="300"/>
+    <Group fx:id="player2" layoutX="300" layoutY="350"/>
+    <Group fx:id="player3" layoutX="300" layoutY="400"/>
+    <Group fx:id="player4" layoutX="300" layoutY="450"/>
+    <Group fx:id="lobbySettings" >
+        <TextField fx:id="lobbyName" promptText="lobby name"/>
+        <Button fx:id="changeName" text="change" layoutX="200" onAction="#changeLobbyName"></Button>
+        <TextField fx:id="lobbyPassword" layoutX="300" promptText="password" />
+        <Button fx:id="changePassword" text="change" layoutX="600" onAction="#changeLobbyPassword"></Button>
+        <ChoiceBox fx:id="gameSpeed" layoutX="800" value="normal" onAction="#changeLobbyGameSpeed">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="slow" />
+                    <String fx:value="normal" />
+                    <String fx:value="fast" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </Group>
+
 </Pane>

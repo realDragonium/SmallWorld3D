@@ -69,7 +69,6 @@ public class FirebaseLobbyService {
                     return;
                 }
                 if (snapshot != null) {
-                    System.out.println("updating!");
                     controller.update(snapshot);
                 }
             }

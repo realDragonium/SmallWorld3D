@@ -25,6 +25,7 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void setLobbyNaam(String lobbyNaam){
         this.lobbyNaam = lobbyNaam;
+        notifyAllObservers();
     }
 
     public String getLobbyNaam(){
@@ -74,18 +75,24 @@ public class InLobbyModel implements InLobbyObservable {
         return host;
     }
 
+    @Override
+    public int getPlayersInLobby() {
+        int playerAmount = playerNames.size();
+        if(playerNames.size() > playerStates.size()) playerAmount = playerStates.size();
+        return playerAmount;
+    }
+
     public void setPlayer(int i, String name) {
         playerNames.put("player" + i, name);
-        notifyAllObservers();
     }
 
     public void setAsHost() {
         host = true;
+        notifyAllObservers();
     }
 
     public void setPlayerReady(int i, boolean state) {
         playerStates.put("player" + i, state);
-        notifyAllObservers();
     }
 
     public void setLobbyId(int id) {
@@ -110,6 +117,7 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void setPassword(String password) {
         this.password = password;
+        notifyAllObservers();
     }
 
     public void setMyName(String name) {
@@ -135,6 +143,10 @@ public class InLobbyModel implements InLobbyObservable {
 
     public int getLobbyId() {
         return lobbyId;
+    }
+
+    public void setGameSpeed(String value) {
+        gameSpeed = value;
     }
 }
 

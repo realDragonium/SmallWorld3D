@@ -42,15 +42,24 @@ public class FirebaseLobbyController {
         info.put("gameSpeed", "normal");
         info.put("password", "");
         info.put("inProgress", false);
-        info.put("playerNames", new HashMap<String, String>());
-        info.put("playerStates", new HashMap<String, Boolean>());
+        HashMap<String, String> names = new HashMap<>();
+        names.put("player1", "");
+        names.put("player2", "");
+        names.put("player3", "");
+        names.put("player4", "");
+        info.put("playerNames", names);
+        HashMap<String, Boolean> states = new HashMap<>();
+        states.put("player1", false);
+        states.put("player2", false);
+        states.put("player3", false);
+        states.put("player4", false);
+        info.put("playerStates", states);
         return info;
     }
 
     void leaveLobby(String player) {
         Map info = service.getDocumentSnapshot().getData();
-        ((HashMap)info.get("playerNames")).remove(player);
-        ((HashMap)info.get("playerStates")).remove(player);
+        ((HashMap)info.get("playerNames")).put(player, "");
         System.out.println("removing from player: " + player);
         changeLobbyInfo(info);
         currentLobby = null;
