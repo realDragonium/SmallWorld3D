@@ -130,19 +130,16 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     @Override
     public void update(DocumentSnapshot ds) {
-        System.out.println("update?1");
         Map<String, Object> info = ds.getData();
         model.setLobbyNaam((String)info.get("lobbyName"));
         model.setPassword((String)info.get("password"));
         model.startGame((Boolean)info.get("inProgress"));
-        System.out.println("update?2");
         if((Boolean)info.get("inProgress") && !clientStart){
             clientStart = true;
             startGame();
         }
         Map<String, String> players = (Map)info.get("playerNames");
         for(int i = 1; i <= players.size(); i++){
-            System.out.println("setting player" + i);
             model.setPlayer(i, players.get("player"+i));
         }
         Map<String, Boolean> states = (Map)info.get("playerStates");
@@ -160,5 +157,21 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
 
     public void changeGameSpeed(String value) {
         model.setGameSpeed(value);
+    }
+
+    public void joinInProgress(String name, int id) {
+        System.out.println("joining game in progress!");
+        clientStart = true;
+        model.setLobbyId(id);
+        model.setMyName(name);
+        fb.joinLobby(Integer.toString(id));
+        fb.actionDocumentListener(this);
+        fb.pushDocumentUpdate(this);
+        for(int i = 1; i <= 4; i++){
+            if(model.getPlayer(i).equals(name)){
+                model.setMyPlayer("player" + i);
+            }
+        }
+        startGame();
     }
 }

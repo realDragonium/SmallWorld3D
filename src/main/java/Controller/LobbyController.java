@@ -31,8 +31,19 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 	}
 
 	public void joinLobby(int id, int index, String password){
+		HashMap lobby = lobbymodel.getLobbyName().get(index);
 		String name = appCon.getAccount().getAccountName();
-		if (lobbymodel.getLobbyName().get(index).get("password").equals(password)) appCon.getInLobbyCon().joinLobby(name, id);
+		if((Boolean)lobby.get("inProgress")){
+			if(isPlaying(lobby, name)) appCon.getInLobbyCon().joinInProgress(name, id);
+		}
+		else if (lobbymodel.getLobbyName().get(index).get("password").equals(password)) appCon.getInLobbyCon().joinLobby(name, id);
+	}
+
+	private boolean isPlaying(HashMap lobby, String name) {
+		for(int i = 1; i <= 4; i++) {
+			if(((HashMap)lobby.get("playerNames")).get("player" + i).equals(name))return true;
+		}
+		return false;
 	}
 
 	public void register(LobbyObserver ob) {
