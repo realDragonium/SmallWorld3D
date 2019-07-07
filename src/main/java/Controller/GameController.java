@@ -4,6 +4,7 @@ import Firebase.FirebaseGameObserver;
 import Model.GameModel;
 import Objects.SpecialFXMLLoader;
 import Observer.GameObserver;
+import Special.SpecialAction;
 import View.*;
 import Enums.*;
 
@@ -26,13 +27,8 @@ public class GameController implements FirebaseGameObserver {
 
     private ApplicationController appCon;
     private MapController mapCon;
-    private ButtonController buttonCon;
     private TimerController timerCon;
-    private DeclineController declineCon;
-    private VoteController currentVote;
-    private InfoController infoCon;
     private NotificationController notiCon;
-    private LeaveController leaveCon;
     private CombinationInfoController combiInfoCon;
 
 
@@ -41,14 +37,18 @@ public class GameController implements FirebaseGameObserver {
     private TurnController turnCon;
     private AreaInformationController areaInfoCon;
 
-    private DeclineController vervCon;
-    private TimerController timeCon;
+    private PowerSpecialAttackController powerSpAttCon;
+
     private AttackController attCon;
     private GameTimer gameTimer;
     private ShopController shopCon;
     private PhaseController phaseCon;
-    private RedeployingController redCon;
     private DiceController diceCon;
+    private ButtonController buttonCon;
+    private DeclineController declineCon;
+    private RedeployingController redeployCon;
+    private InfoController infoCon;
+    private LeaveController leaveCon;
 
     public GameController(ApplicationController appCon) {
         this.appCon = appCon;
@@ -78,7 +78,7 @@ public class GameController implements FirebaseGameObserver {
         turnCon = new TurnController(this);
         timerCon = new TimerController(this);
         diceCon = new DiceController(this);
-        redCon = new RedeployingController(this);
+        redeployCon = new RedeployingController(this);
         declineCon = new DeclineController(this);
         buttonCon = new ButtonController(this);
         attCon = new AttackController(this);
@@ -87,14 +87,21 @@ public class GameController implements FirebaseGameObserver {
     private void setPlayerNames(HashMap info){
         List<String> names = new ArrayList<>(info.values());
         String myName = appCon.getAccount().getAccountName();
-        System.out.println("Names: "+names);
         int numberOfTimes = names.size();
         if(numberOfTimes > 4) numberOfTimes = 4;
         for (int i = 0; i < numberOfTimes; i++) {
             model.getPlayer(i).setPlayerName(names.get(i));
-            if(names.get(i).equals(myName)) model.myPlayerId = i;
+
         }
-        System.out.println("My player Id: " + model.myPlayerId);
+        for (int i = 0; i < numberOfTimes; i++) {
+            if(model.getPlayer(i).getName().equals(myName)){
+                model.myPlayerId = i;
+                System.out.println("My player Id: " + model.myPlayerId);
+                return;
+            }
+
+        }
+
     }
 
 
@@ -147,8 +154,14 @@ public class GameController implements FirebaseGameObserver {
         combiInfoCon = new CombinationInfoController(this);
         areaInfoCon = new AreaInformationController(this);
         leaveCon = new LeaveController(this);
+        powerSpAttCon = new PowerSpecialAttackController(this);
     }
 
+    public void setPowerSpAtt(SpecialAction action){
+        powerSpAttCon.setAction(action);
+    }
+
+    public TimerController getTimer(){return timerCon;}
 
     public PlayerController getPlayer(int id){
         return model.getPlayer(id);
@@ -178,11 +191,8 @@ public class GameController implements FirebaseGameObserver {
         return mapCon;
     }
 
-    public DeclineController getDeclineCon(){
-        return vervCon;
-    }
 
-    DiceController getDiceCon(){
+    public DiceController getDiceCon(){
         return diceCon;
     }
 
@@ -206,9 +216,6 @@ public class GameController implements FirebaseGameObserver {
         return gameTimer;
     }
 
-    TimerController getTimer(){
-        return timeCon;
-    }
 
     void addToGameView(GameViewEnum go){
         if(!model.getCurrenViews().contains(go)) model.addActiveView(go);
@@ -234,7 +241,7 @@ public class GameController implements FirebaseGameObserver {
         model.register(go);
     }
 
-    FirebaseGameController getFireBase() {
+    public FirebaseGameController getFireBase() {
         return fbGame;
     }
 
@@ -272,7 +279,7 @@ public class GameController implements FirebaseGameObserver {
     }
 
     public void createVote(int i, String message) {
-        currentVote = new VoteController(i, message, this);
+        new VoteController(i, message, this);
     }
 
     public void setTimer(int time, boolean b) {

@@ -26,7 +26,7 @@ public class DiceController implements FirebaseGameObserver {
         new SpecialFXMLLoader().loader("/Dice/DiceView.fxml", (Callable<DiceView>) () -> new DiceView(this));
     }
 
-    int rollDice() {
+    public int rollDice() {
         int uitkomst = RollDice();
         diceModel.play(uitkomst);
         return uitkomst;

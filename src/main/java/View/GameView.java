@@ -48,7 +48,7 @@ public class GameView implements GameObserver {
         root.getChildren().add(GameViewEnum.PHASE.getGroup());
         root.getChildren().add(GameViewEnum.COMBINATION.getGroup());
         root.getChildren().add(GameViewEnum.NOTIFICATION.getGroup());
-        root.getChildren().add(GameViewEnum.VOTE.getGroup());
+//        root.getChildren().add(GameViewEnum.VOTE.getGroup());
         root.getChildren().add(GameViewEnum.PLAYER.getGroup());
 
         root.getChildren().add(notBasicRoot);

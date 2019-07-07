@@ -1,14 +1,15 @@
 package Controller;
 
-import Decline.InDecline;
 import Enums.AreaInfoEnum;
 import Enums.GameViewEnum;
-import Enums.NotificationEnum;
 import Model.CombinationModel;
 import Objects.SpecialFXMLLoader;
 import Observer.CombinationObserver;
+import Power.SpecialPower;
+import Special.AttackPhase;
+import Special.BerserkAction;
+import Special.SpecialAction;
 import View.CombinationView;
-import javafx.application.Platform;
 import javafx.scene.transform.Translate;
 
 import java.util.*;
@@ -30,6 +31,8 @@ public class CombinationController {
     void setPowersActive() {
         model.power.activatePower(model);
         model.race.activateRacePower(model);
+        if(model.power instanceof SpecialPower)
+            gameCon.setPowerSpAtt(model.powerSpecialAction);
         model.inShop = false;
     }
 
@@ -69,7 +72,7 @@ public class CombinationController {
         model.defend.retreat(this);
     }
     
-    int fichesNeeded(AreaController area) {
+    public int fichesNeeded(AreaController area) {
         int numbers = area.getDefenceValue();
         numbers += model.powerAttackBoost.getBoost(area) + model.raceAttackBoost.getBoost(area);
         if (numbers < 1) numbers = 1;
@@ -164,7 +167,7 @@ public class CombinationController {
     }
 
     public void checkRedeployAreas() {
-        manageAreaInfoButtons(model.getAreas(), AreaInfoEnum.REDEPLOY);
+        manageAreaInfoButtons(model.areas, AreaInfoEnum.REDEPLOY);
     }
 
     public void checkAttackableAreas() {
@@ -173,18 +176,25 @@ public class CombinationController {
         areas.addAll(model.powerAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
         areas.addAll(model.raceAreas.checkAttackableAreas(model, gameCon.getMapCon().getAllAreas()));
 
-        List<AreaController> arealist = new ArrayList<>(areas);
-        manageAreaInfoButtons(arealist, AreaInfoEnum.ATTACK);
+        manageAreaInfoButtons(areas, AreaInfoEnum.ATTACK);
+        if(model.powerSpecialAction instanceof AttackPhase)
+            addAreaInfoButtons(areas, AreaInfoEnum.POWERSPATT);
+
     }
 
     public void checkPrepareAreas() {
-        manageAreaInfoButtons(model.getAreas(), AreaInfoEnum.LEAVE);
+        manageAreaInfoButtons(model.areas, AreaInfoEnum.LEAVE);
     }
 
-    private void manageAreaInfoButtons(List<AreaController> areas, AreaInfoEnum areainfo) {
+    private void manageAreaInfoButtons(HashSet<AreaController> areas, AreaInfoEnum areainfo) {
         cleareAreaInfo();
         areas.forEach(area -> area.setAreaInfoButton(areainfo));
         model.lastUsedAreas = areas;
+    }
+
+    private void addAreaInfoButtons(HashSet<AreaController> areas, AreaInfoEnum areainfo){
+        areas.forEach(area -> area.setAreaInfoButton(areainfo));
+        model.lastUsedAreas.addAll(areas);
     }
 
     void countPoints() {
@@ -203,7 +213,7 @@ public class CombinationController {
 
 
     private void keepOneFichePerArea() {
-        model.getAreas().forEach(area -> returnAllButOne(area));
+        model.areas.forEach(area -> returnAllButOne(area));
     }
 
     public void prepareRound() {
@@ -230,7 +240,7 @@ public class CombinationController {
     }
 
     void selfDestruct() {
-        for (AreaController area : model.getAreas()) {
+        for (AreaController area : model.areas) {
             area.leaveArea();
         }
         deleteAllFichesInHand();
@@ -239,4 +249,5 @@ public class CombinationController {
     public void showDeclineMessage() {
         gameCon.addToGameView(GameViewEnum.DECLINE);
     }
+
 }

@@ -26,6 +26,7 @@ public class FirebaseLobbyService {
 //        currentLobby.update((Map)info);
 //    }
 
+
     public DocumentReference joinLobby(String id){
         currentLobby  = lobbiesRef.document(id);
         return lobbiesRef.document(id);

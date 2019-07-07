@@ -6,6 +6,6 @@ public class NormalPoints implements Points {
 
     @Override
     public int getPoints(CombinationModel combi) {
-        return combi.getAreas().size();
+        return combi.areas.size();
     }
 }

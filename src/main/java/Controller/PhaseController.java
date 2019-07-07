@@ -50,7 +50,6 @@ public class PhaseController implements FirebaseGameObserver {
     public void myTurn(){
         setPhase(PhaseEnum.PREPARING);
         changeView();
-        gameCon.addToGameView(GameViewEnum.BUTTON);
     }
 
     public void startShopTurn() {

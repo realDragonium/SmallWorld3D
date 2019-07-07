@@ -35,7 +35,7 @@ public class AreaInformationView implements AreaInformationObserver {
     public void update(AreaInformationObservable ao) {
         areaOwner.setText("Owner: " + ao.getArea().getOwnerPlayer().getName());
         buttonGroup.getChildren().clear();
-
+        System.out.println("Areainfo: " + ao.getArea().getAreaInfoButtons());
         for(AreaInfoEnum areaInfo : ao.getArea().getAreaInfoButtons()){
             for(int i = 0; i < areaInfo.getGroup().getChildren().size(); i++){
                 Node button = areaInfo.getGroup().getChildren().get(i);

@@ -102,7 +102,7 @@ public class TurnController implements FirebaseGameObserver {
         return model.currentPlayer;
     }
 
-    CombinationController getCurrentCombi(){
+    public CombinationController getCurrentCombi(){
         return model.currentCombi;
     }
 
@@ -181,8 +181,8 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     private void turnUpdate(DocumentSnapshot ds){
-        nextTurn();
         gameCon.removeFromGameView(GameViewEnum.VOTE);
+        nextTurn();
     }
 
     private AreaController getArea(String id){

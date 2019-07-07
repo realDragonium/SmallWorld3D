@@ -31,6 +31,7 @@ public class VoteController implements FirebaseActionObserver {
         this.gameCon = gameCon;
         fbGame = gameCon.getFireBase();
         fbGame.voteListener(this::update);
+        gameCon.addToGameView(GameViewEnum.VOTE);
     }
 
     private void createVoteView() {

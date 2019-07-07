@@ -21,12 +21,13 @@ public class AttackView {
         this.attackCon = attackCon;
     }
 
-    public void initialize() {
+    public void initialize(){
         GameViewEnum.ATTACK.getGroup().getChildren().add(attackButton);
     }
 
     public void attackCountry() {
         attackCon.AttackArea(attackButton.getId());
+
     }
 
 
