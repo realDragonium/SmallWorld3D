@@ -22,7 +22,8 @@ public class LobbyController implements FirebaseAllLobbiesObserver {
 	}
 
 	public void createLobby(){
-		appCon.getInLobbyCon().createLobby("host");
+		String name = appCon.getAccount().getAccountName();
+		appCon.getInLobbyCon().createLobby(name);
 	}
 
 	public void refreshLobbies(){
