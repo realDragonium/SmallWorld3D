@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.PlayerController;
 import Observable.LeaderboardObservable;
 import Observer.LeaderboardObserver;
 
@@ -9,10 +8,10 @@ import java.util.List;
 
 public class LeaderboardModel implements LeaderboardObservable {
 
-    public List<PlayerController> players;
+    public List<String> names;
+    public List<Integer> points;
 
     private List<LeaderboardObserver> lijst = new ArrayList<>();
-
 
     @Override
     public void register(LeaderboardObserver ob) {
@@ -27,8 +26,14 @@ public class LeaderboardModel implements LeaderboardObservable {
     }
 
     @Override
-    public List<PlayerController> getPlayers() {
-        return players;
+    public List<String> getPlayerNames() {
+        return names;
     }
+
+    @Override
+    public List<Integer> getPoints() {
+        return points;
+    }
+
 
 }

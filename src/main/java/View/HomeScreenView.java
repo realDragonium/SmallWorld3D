@@ -96,7 +96,7 @@ public class HomeScreenView implements HomeScreenObserver{
     }
 
 
-	public void readGuide(MouseEvent mouseEvent) {
+	public void readGuide() {
     	hsCon.readGuide();
 	}
 

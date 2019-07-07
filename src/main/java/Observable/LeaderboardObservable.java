@@ -1,6 +1,5 @@
 package Observable;
 
-import Controller.PlayerController;
 import Observer.LeaderboardObserver;
 
 import java.util.List;
@@ -11,5 +10,6 @@ public interface LeaderboardObservable {
 
     void notifyAllObs();
 
-    List<PlayerController> getPlayers();
+    List<String> getPlayerNames();
+    List<Integer> getPoints();
 }

@@ -1,8 +1,6 @@
 package Controller;
 
 import Enums.ApplicationViewEnum;
-import Enums.PowerEnum;
-import Enums.RaceEnum;
 import Firebase.FirebaseService;
 import Model.ApplicationModel;
 import Objects.SpecialFXMLLoader;
@@ -62,7 +60,7 @@ public class ApplicationController {
 
     public void createLeaderBoard(){
         leaderCon = new LeaderboardController(this);
-        fxmlLoader.loader("/Leaderboard/LeaderboardScreen.fxml", (Callable<LeaderboardView>) () -> new LeaderboardView(leaderCon, ApplicationViewEnum.LEADER.getGroup()));
+        fxmlLoader.loader("/Leaderboard/Leaderboard.fxml", (Callable<LeaderboardView>) () -> new LeaderboardView(leaderCon, ApplicationViewEnum.LEADER.getGroup()));
     }
 
     private void createGameController(HashMap info) {
