@@ -1,5 +1,7 @@
 package Controller;
 
+import Enums.PowerEnum;
+import Enums.RaceEnum;
 import Firebase.FirebaseActionObserver;
 import Firebase.FirebaseGameObserver;
 import Firebase.FirebaseGameService;
@@ -37,7 +39,6 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
     public void activateListener(){
         turnActionListener(this);
     }
-
 
     private void placeAction(Map<String, Object> map) {
         queue.add(map);
@@ -192,4 +193,8 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
             Platform.runLater(() -> observers.get(doc.getString("id")).update(doc));
         }
     }
+
+
+
+
 }

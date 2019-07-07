@@ -86,8 +86,8 @@ public class ApplicationController {
     }
 
     void startGame(HashMap info) {
+        System.out.println("progress: "+info.get("inProgress"));
         createGameController(info);
-        System.out.println(info.get("inProgress"));
         if((Boolean) info.get("inProgress")) return;
         TimerTask start = new TimerTask() {
             @Override
@@ -99,20 +99,7 @@ public class ApplicationController {
     }
 
     void beginGame() {
-        List<String> races = new ArrayList<>();
-        List<String> powers = new ArrayList<>();
-        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
-        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
-        races.remove("losttribes");
-        for (int i = 0; i < 6; i++) {
-            String race = races.get((int) (Math.random() * races.size()));
-            String power = powers.get((int) (Math.random() * powers.size()));
-            races.remove(race);
-            powers.remove(power);
-            fbService.getfbGame().addCombiAction(race, power);
-        }
         fbService.getfbGame().startGame();
-
     }
 
     public FirebaseService getFirestore() {

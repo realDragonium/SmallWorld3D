@@ -1,12 +1,13 @@
 package Controller;
 
+import Enums.PowerEnum;
+import Enums.RaceEnum;
 import Firebase.FirebaseAllLobbiesObserver;
 import Firebase.FirebaseLobbyObserver;
 import Firebase.FirebaseLobbyService;
 import com.google.cloud.firestore.DocumentReference;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FirebaseLobbyController {
 
@@ -34,6 +35,7 @@ public class FirebaseLobbyController {
         int id = getHighestlobbyNumber() + 1;
         currentLobby = service.createLobby(Integer.toString(id));
         currentLobby.set(newLobby());
+        createStartingShopItems(id);
         return id;
     }
 
@@ -76,6 +78,25 @@ public class FirebaseLobbyController {
 
     void pushAllLobbiesUpdate(FirebaseAllLobbiesObserver lobbies){
         service.pushAllLobbiesUpdate(lobbies);
+    }
+
+    public void createStartingShopItems(int id){
+        List<String> races = new ArrayList<>();
+        List<String> powers = new ArrayList<>();
+        Arrays.asList(PowerEnum.values()).forEach(power -> powers.add(power.getPower().getName()));
+        Arrays.asList(RaceEnum.values()).forEach(race -> races.add(race.getRace().getName()));
+        races.remove("losttribes");
+        for (int i = 0; i < 6; i++) {
+            String race = races.get((int) (Math.random() * races.size()));
+            String power = powers.get((int) (Math.random() * powers.size()));
+            races.remove(race);
+            powers.remove(power);
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", "add");
+            map.put("race", race);
+            map.put("power", power);
+            service.placeStartingCombo(id, i, map);
+        }
     }
 
 }

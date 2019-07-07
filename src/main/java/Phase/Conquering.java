@@ -13,7 +13,6 @@ public class Conquering implements Phase{
         phaseCon.useRedeployingPowers();
     }
 
-
     @Override
     public String getName() {
         return "Conquering";

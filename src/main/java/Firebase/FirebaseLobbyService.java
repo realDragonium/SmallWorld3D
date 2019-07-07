@@ -105,6 +105,11 @@ public class FirebaseLobbyService {
         return null;
     }
 
+    public void placeStartingCombo(int id, int i, Map<String, Object> map) {
+        fb.collection("Games").document(""+id).collection("Actions")
+                .document("000"+i).set(map);
+    }
+
 //    public void leaveLobby(String player) {
 //        Map info = getDocumentSnapshot().getData();
 //        ((HashMap)info.get("playerNames")).remove(player);
