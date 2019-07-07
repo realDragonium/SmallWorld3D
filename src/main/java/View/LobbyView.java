@@ -89,5 +89,6 @@ public class LobbyView implements LobbyObserver {
     }
 
     public void terug(ActionEvent actionEvent) {
+        lobbyCon.back();
     }
 }
