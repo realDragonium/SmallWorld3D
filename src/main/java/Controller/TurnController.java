@@ -97,8 +97,10 @@ public class TurnController implements FirebaseGameObserver {
     }
 
     void nextPlayer(){
-        while(model.currentPlayer == model.turns.peek().getPlayer()){
-            model.turns.pop();
+        if(model.turns.peek() != null) {
+            while (model.currentPlayer == model.turns.peek().getPlayer()) {
+                model.turns.pop();
+            }
         }
         nextTurn();
     }
