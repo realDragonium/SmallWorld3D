@@ -20,7 +20,7 @@ public class SpectatePreparing implements Phase {
 
     @Override
     public void setViews(CombinationController combi) {
-
+        combi.prepareRound();
     }
 
     @Override

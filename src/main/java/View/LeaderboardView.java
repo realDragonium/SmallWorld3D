@@ -23,7 +23,7 @@ public class LeaderboardView implements LeaderboardObserver {
     private Group group;
     public Button hoofdmenu;
 
-    public LeaderboardView(Group group, LeaderboardController leadCon){
+    public LeaderboardView(LeaderboardController leadCon, Group group){
         this.group = group;
         this.leadCon = leadCon;
     }

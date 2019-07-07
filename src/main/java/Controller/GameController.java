@@ -192,7 +192,6 @@ public class GameController implements FirebaseGameObserver {
         return mapCon;
     }
 
-
     public DiceController getDiceCon(){
         return diceCon;
     }
@@ -216,7 +215,6 @@ public class GameController implements FirebaseGameObserver {
     GameTimer getGameTimer() {
         return gameTimer;
     }
-
 
     public void addToGameView(GameViewEnum go){
         if(!model.getCurrenViews().contains(go)) model.addActiveView(go);

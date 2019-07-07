@@ -26,7 +26,7 @@ public class BerserkAction implements SpecialAction, AttackPhase {
         }
         if(needed < 1) needed = 1;
         int fiches = needed;
-
+        combi.reserveFiches(needed);
         TimerTask delayedAttack = new TimerTask() {
             @Override
             public void run() {

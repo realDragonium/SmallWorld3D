@@ -27,8 +27,6 @@ public class TurnController implements FirebaseGameObserver {
         createTurnView();
         manageControllers();
         registerFirebase();
-//        model.currentPlayer = gameCon.getPlayer(model.myPlayerId);
-//        rotateCamera();
     }
 
     private void manageControllers(){
@@ -96,6 +94,15 @@ public class TurnController implements FirebaseGameObserver {
         model.currentTurn.nextTurn(phaseCon);
         rotateCamera();
         model.notifyObservers();
+    }
+
+    void nextPlayer(){
+        if(model.turns.peek() != null) {
+            while (model.currentPlayer == model.turns.peek().getPlayer()) {
+                model.turns.pop();
+            }
+        }
+        nextTurn();
     }
 
     PlayerController getCurrentPlayer() {
@@ -182,7 +189,7 @@ public class TurnController implements FirebaseGameObserver {
 
     private void turnUpdate(DocumentSnapshot ds){
         gameCon.removeFromGameView(GameViewEnum.VOTE);
-        nextTurn();
+        nextPlayer();
     }
 
     private AreaController getArea(String id){

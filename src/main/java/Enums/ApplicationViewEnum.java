@@ -4,7 +4,7 @@ import javafx.scene.Group;
 
 public enum ApplicationViewEnum {
     LOGIN(new Group()), GAME(new Group()), HOMESCREEN(new Group()), LOBBY(new Group()),
-    INLOBBY(new Group());
+    INLOBBY(new Group()), LEADER(new Group());
 
     private Group group;
 

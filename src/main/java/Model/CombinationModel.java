@@ -35,6 +35,8 @@ public class CombinationModel implements CombinationObservable {
     public HashSet<AreaController> areas = new HashSet<>();
     public List<AreaController> thisRoundConquered = new ArrayList<>();
     public boolean buyButton = false;
+    public int reserve = 0;
+
 
     private Translate position;
     public boolean inShop = true;

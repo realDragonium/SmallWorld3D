@@ -19,6 +19,7 @@ public class ApplicationController {
 
     private AccountController account = new AccountController("host");
     private LoginController loginCon;
+    private LeaderboardController leaderCon;
     private HomeScreenController hsCon;
     private GameController gameCon;
     private LobbyController lobbyCon;
@@ -56,6 +57,11 @@ public class ApplicationController {
     public void createInLobbyController() {
         inLobbyCon = new InLobbyController(this);
         fxmlLoader.loader("/Lobbies/InLobbyScreen.fxml", (Callable<InLobbyView>) () -> new InLobbyView(inLobbyCon, ApplicationViewEnum.INLOBBY.getGroup()));
+    }
+
+    public void createLeaderBoard(){
+        leaderCon = new LeaderboardController();
+        fxmlLoader.loader("/Leaderboard/LeaderboardScreen.fxml", (Callable<LeaderboardView>) () -> new LeaderboardView(leaderCon, ApplicationViewEnum.LEADER.getGroup()));
     }
 
     public void createGameController(HashMap info) {
