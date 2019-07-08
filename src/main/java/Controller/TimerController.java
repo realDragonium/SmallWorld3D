@@ -48,7 +48,7 @@ public class TimerController {
 
         if(model.getSeconds() == 0 && model.isMyTurn()){
             if(gameCon.getTurnCon().getCurrentCombi() == null
-                    && phaseCon.getPhase().equals(PhaseEnum.PREPARING))
+                    && gameCon.getPhaseCon().getPhase().equals(PhaseEnum.PREPARING))
                 gameCon.getFireBase().buyCombiAction(0);
             else
                 gameCon.getFireBase().nextPhaseAction();
