@@ -77,6 +77,7 @@ public class AreaController{
         int number = model.getNumberOfFiches();
         for(int i = 0; i < number; i++)
             model.getOwningCombi().addRaceFiche(removeFiche());
+        model.getOwningCombi().removeArea(this);
     }
 
     public void putFiche(FicheController fiche){

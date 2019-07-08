@@ -6,13 +6,15 @@ import Controller.PhaseController;
 import Enums.PhaseEnum;
 
 
-public class Preparing implements Phase {
+public class Preparing implements Phase{
+
+    private boolean onlyOneTime = false;
 
     @Override
     public void nextPhase(PhaseController phaseCon) {
         phaseCon.setPhase(PhaseEnum.CONQUERING);
         phaseCon.changeView();
-        phaseCon.showDeclineMessage();
+        onlyOneTime = false;
     }
 
     @Override
@@ -22,8 +24,14 @@ public class Preparing implements Phase {
 
     @Override
     public void setViews(CombinationController combi) {
-        combi.prepareRound();
-        combi.checkPrepareAreas();
+        if(combi == combi.getPlayer().getCurrentCombi() && !onlyOneTime) {
+            combi.showDeclineMessage();
+            onlyOneTime = true;
+        }
+        else{
+            combi.prepareRound();
+            combi.checkPrepareAreas();
+        }
     }
 
 

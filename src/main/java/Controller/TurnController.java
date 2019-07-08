@@ -72,7 +72,7 @@ public class TurnController implements FirebaseGameObserver {
         }
         if(player.getCurrentCombi() == null)
             turns.add(new NotMyTurn(player, null));
-         else
+        else
             turns.add(new NotMyTurn(player, player.getCurrentCombi()));
     }
 
