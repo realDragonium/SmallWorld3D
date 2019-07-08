@@ -28,6 +28,7 @@ public class AreaController{
     public AreaController(AreaInfo info, MapController map, GameController gameCon){
         mapCon = map;
         model = new AreaModel(info);
+
         this.gameCon = gameCon;
     }
 
