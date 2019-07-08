@@ -62,7 +62,7 @@ public class FirebaseLobbyController {
     void leaveLobby(String player) {
         Map info = service.getDocumentSnapshot().getData();
         ((HashMap)info.get("playerNames")).put(player, "");
-        System.out.println("removing from player: " + player);
+        ((HashMap)info.get("playerStates")).put(player, false);
         changeLobbyInfo(info);
         currentLobby = null;
     }

@@ -44,4 +44,6 @@ public interface InLobbyObservable {
     boolean isHost();
 
     int getPlayersInLobby();
+
+    String getLobbyName();
 }

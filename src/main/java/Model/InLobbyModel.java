@@ -80,6 +80,11 @@ public class InLobbyModel implements InLobbyObservable {
         return playerAmount;
     }
 
+    @Override
+    public String getLobbyName() {
+        return lobbyNaam;
+    }
+
     public void setPlayer(int i, String name) {
         playerNames.put("player" + i, name);
     }
@@ -144,6 +149,10 @@ public class InLobbyModel implements InLobbyObservable {
 
     public void setGameSpeed(String value) {
         gameSpeed = value;
+    }
+
+    public void removeAsHost(){
+        host = false;
     }
 }
 
