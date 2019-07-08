@@ -6,11 +6,7 @@ import Observable.ApplicationObservable;
 import Observer.ApplicationObserver;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ApplicationView implements ApplicationObserver {
     private Scene scene;
