@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class AnimationsManager {
     private static AnimationsManager animManager;
-    int animationFPS = 30;
+    int animationFPS = 60;
     List<AnimationController> translateAnimations = new ArrayList<>();
     List<AnimationController> rotateAnimations = new ArrayList<>();
 

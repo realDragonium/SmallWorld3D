@@ -68,7 +68,7 @@ public class InLobbyController implements FirebaseLobbyObserver { ;
                 Platform.runLater(()->  initLobby(player, lobbyId));
             }
         };
-        new Timer().schedule(task, 4000);
+        new Timer().schedule(task, 2000);
 
     }
 
