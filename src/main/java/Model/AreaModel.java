@@ -24,7 +24,7 @@ public class AreaModel implements AreaObservable {
     public List<AreaController> neighbourCons;
     private String id;
     private AreaType type;
-    private boolean lostTribe;
+    public boolean lostTribe;
     private boolean nextToWater;
     private boolean attackAble;
 

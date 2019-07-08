@@ -9,20 +9,17 @@ public class NotMyTurn implements Turn {
     private final PlayerController player;
     private final CombinationController combi;
 
-    public NotMyTurn(PlayerController player,CombinationController combi ) {
+    public NotMyTurn(PlayerController player, CombinationController combi) {
         this.combi = combi;
         this.player = player;
     }
 
     @Override
     public void nextTurn(PhaseController phaseCon) {
-        if(combi != null) {
-            if (combi.isActive()) {
-                phaseCon.notMyTurn();
-                return;
-            }
-        }
-        phaseCon.nextTurn();
+        if (player.isCurrenCombi(combi) || combi.isActive() || combi == null) {
+            phaseCon.notMyTurn();
+        } else
+            phaseCon.nextTurn();
     }
 
     @Override

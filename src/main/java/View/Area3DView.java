@@ -46,6 +46,7 @@ public class Area3DView implements AreaObserver {
         });
         areaCon.createNumber(number);
         map.getChildren().add(number);
+//        areaCon.placeLostTribe();
 
     }
 

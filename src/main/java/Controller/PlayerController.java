@@ -116,4 +116,8 @@ public class PlayerController implements FirebaseGameObserver {
     public void setPlayerName(String name) {
         model.setName(name);
     }
+
+    public boolean isCurrenCombi(CombinationController combi){
+        return model.getCurrentCombi().equals(combi);
+    }
 }

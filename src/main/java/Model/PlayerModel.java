@@ -17,7 +17,7 @@ public class PlayerModel implements PlayerObservable {
     private List<PlayerObserver> observers = new ArrayList<>();
     private String name = "";
     private int playerID;
-    private List<CombinationController> combinations = new ArrayList<>();
+    public List<CombinationController> combinations = new ArrayList<>();
     private List<CombinationController> declineCombies = new ArrayList<>();
     private CombinationController currentCombi;
     public int points;

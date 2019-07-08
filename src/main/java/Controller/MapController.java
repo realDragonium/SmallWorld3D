@@ -29,11 +29,14 @@ public class MapController{
         CombinationController combi = new CombinationController(gameCon,"losttribes", "flying");
         combi.setPlayer(new PlayerController("None"));
 		model = new MapModel(combi);
+		combi.getPlayer().setPlayer3dPosition(new Translate(0, 100, 0));
+		combi.createRaceFiches();
 		cameraCon = new CameraController();
 		loadInAreaInfo();
 		setupAreaPoints();
 		setupSpecialPropPoints();
 		createAreaControllers();
+//		placeLostTribe();
 	}
 
 	public void createAreaView(Node area, Group map){
@@ -124,6 +127,14 @@ public class MapController{
 
 	public Collection<AreaController> getAllAreas(){
 		return areas.values();
+	}
+
+	private void placeLostTribe(){
+		for(AreaController area : areas.values()){
+			if(area.isLostTribe()){
+				area.addFiche(model.getCombi().getFiche());
+			}
+		}
 	}
 
 	private void setupSpecialPropPoints(){

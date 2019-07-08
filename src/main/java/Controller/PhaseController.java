@@ -97,6 +97,8 @@ public class PhaseController implements FirebaseGameObserver {
         gameCon.removeFromGameView(GameViewEnum.VOTE);
     }
 
+
+
     public void setTimer(int time, boolean b) {
         gameCon.setTimer(time, b);
     }

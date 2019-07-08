@@ -25,6 +25,7 @@ public class MapModel {
         mapPlayer = combi.getPlayer();
         mapCombi = combi;
         mapCombi.setPlayer(combi.getPlayer());
+
     }
 
     public PlayerController getMapPlayer(){

@@ -168,6 +168,10 @@ public class AreaController{
         new NumberView(numberCon, group);
     }
 
+    public boolean isLostTribe(){
+        return model.lostTribe;
+    }
+
 
 
     public void setNumber(int number){
@@ -219,5 +223,10 @@ public class AreaController{
     }
     public void resetAreaInfo(){
         model.resetAreaInfoButton();
+    }
+
+    public void placeLostTribe() {
+        if(model.lostTribe)
+            addFiche(mapCon.getLostTribeCombi().getFiche());
     }
 }
