@@ -22,8 +22,9 @@ public class Area3DView implements AreaObserver {
         this.area = (MeshView) area;
         this.areaCon = areaCon;
         this.map = map;
-        init();
         areaCon.register(this);
+        init();
+
     }
 
 
@@ -46,7 +47,7 @@ public class Area3DView implements AreaObserver {
         });
         areaCon.createNumber(number);
         map.getChildren().add(number);
-//        areaCon.placeLostTribe();
+        areaCon.placeLostTribe();
 
     }
 

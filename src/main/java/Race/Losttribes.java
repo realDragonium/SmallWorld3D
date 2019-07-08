@@ -12,7 +12,7 @@ public class Losttribes implements Race {
 
     @Override
     public int getFicheAmount() {
-        return 20;
+        return 13;
     }
 
     @Override
