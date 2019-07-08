@@ -91,6 +91,12 @@ public class PhaseController implements FirebaseGameObserver {
         model.register(po);
     }
 
+    public void showDeclineMessage(){
+        CombinationController combi = turnCon.getCurrentCombi();
+        if(combi == combi.getPlayer().getCurrentCombi())
+            combi.showDeclineMessage();
+    }
+
     @Override
     public void update(DocumentSnapshot ds) {
         nextPhase();
