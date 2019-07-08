@@ -16,7 +16,7 @@ public class NotMyTurn implements Turn {
 
     @Override
     public void nextTurn(PhaseController phaseCon) {
-        if (player.isCurrenCombi(combi) || combi.isActive() || combi == null) {
+        if (combi.isActive() || combi == null) {
             phaseCon.notMyTurn();
         } else
             phaseCon.nextTurn();
