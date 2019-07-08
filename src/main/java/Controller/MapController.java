@@ -29,7 +29,7 @@ public class MapController{
         CombinationController combi = new CombinationController(gameCon,"losttribes", "flying");
         combi.setPlayer(new PlayerController("None"));
 		model = new MapModel(combi);
-		combi.getPlayer().setPlayer3dPosition(new Translate(0, 100, 0));
+		combi.getPlayer().setPlayer3dPosition(new Translate(600, 0, 600));
 		combi.createRaceFiches();
 		cameraCon = new CameraController();
 		loadInAreaInfo();

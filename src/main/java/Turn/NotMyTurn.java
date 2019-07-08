@@ -16,10 +16,15 @@ public class NotMyTurn implements Turn {
 
     @Override
     public void nextTurn(PhaseController phaseCon) {
-        if (combi.isActive() || combi == null) {
+        if(combi == null){
             phaseCon.notMyTurn();
-        } else
-            phaseCon.nextTurn();
+            return;
+        } else {
+            if (combi.isActive()) {
+                phaseCon.notMyTurn();
+            } else
+                phaseCon.nextTurn();
+        }
     }
 
     @Override
