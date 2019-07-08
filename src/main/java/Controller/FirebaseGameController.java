@@ -49,7 +49,7 @@ public class FirebaseGameController implements FirebaseActionObserver, Runnable 
                 }
             }
         };
-        new Timer().scheduleAtFixedRate(start, 0, 250);
+        new Timer().scheduleAtFixedRate(start, 0, 500);
     }
 
     private String getEventNumber(){
